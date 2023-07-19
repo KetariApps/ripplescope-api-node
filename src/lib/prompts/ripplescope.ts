@@ -1,10 +1,40 @@
-import { ChatCompletionRequestMessage } from "openai";
+import {
+  ChatCompletionRequestMessage,
+  ChatCompletionRequestMessageRoleEnum,
+} from "openai";
 import { global } from "./sysFoundations.js";
 
 export const ripplescope: ChatCompletionRequestMessage[] = [
   ...global,
   {
-    role: "system",
+    role: ChatCompletionRequestMessageRoleEnum.Assistant,
+    content: `A co-benefit is an aspect of the project that would have a positive impact, which is not known of or described by the stated mission of the project.
+  A co-hazard is an aspect of the project that would have a negative impact, which is not known of or described by the stated mission of the project.
+  `,
+  },
+  {
+    role: ChatCompletionRequestMessageRoleEnum.Assistant,
+    content: `Format the report using the following Markdown Template: 
+  
+  ## Title
+  
+  ### Co-Benefits
+
+  * co-benefit 
+  * co-benefit 
+  * co-benefit 
+
+
+  ### Co-Hazards
+
+  * co-hazard 
+  * co-hazard 
+  * co-hazard 
+
+  `,
+  },
+  {
+    role: ChatCompletionRequestMessageRoleEnum.Assistant,
     content: `DATA SOURCES -  based on Question 1 below, pulls data by country or region from:
   
       World Bank Data or UN Data
@@ -155,11 +185,11 @@ export const ripplescope: ChatCompletionRequestMessage[] = [
   },
 ];
 
-export const buildPrompt = (projectPlan: string) => `PROJECT PLAN
+export const buildPrompt = (projectPlan: string) => `PROJECT
   ${projectPlan}
   
   
   ---
   
   
-  Assess the ethical and ecological impact of the project plan.`;
+  Assess the ethical and ecological co-benefits and co-hazards of the project.`;

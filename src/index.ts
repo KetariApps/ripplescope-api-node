@@ -46,7 +46,6 @@ app.get("/sse", (req: Request, res: Response) => {
 });
 
 // ripplescope endpoint
-// request edits
 app.post("/ripplescope", (req: Request, res: Response) => {
   res.setHeader("Content-Type", "text/event-stream");
   res.setHeader("Cache-Control", "no-cache");

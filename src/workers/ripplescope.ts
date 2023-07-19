@@ -1,5 +1,10 @@
 import { workerData, parentPort } from "worker_threads";
-import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
+import {
+  ChatCompletionRequestMessage,
+  ChatCompletionRequestMessageRoleEnum,
+  Configuration,
+  OpenAIApi,
+} from "openai";
 import * as dotenv from "dotenv";
 import processUserMessage from "../lib/helpers/processUserMessage.js";
 import parseGPTBuffer from "../lib/helpers/parseGPTBuffer.js";
@@ -38,8 +43,11 @@ const { processed: processedContent, tokens: tokenizedContent } =
 
 // build the gpt request
 const messages: ChatCompletionRequestMessage[] = [
+  {
+    role: ChatCompletionRequestMessageRoleEnum.User,
+    content: buildPrompt(processedContent),
+  },
   ...ripplescope,
-  { role: "user", content: buildPrompt(processedContent) },
 ];
 
 // get the response
@@ -68,7 +76,6 @@ try {
             // send the completed suggestion back to the user
 
             const event = buildSSEEvent(messagePart);
-            console.log(event);
             postMessage(JSON.stringify(event));
           }
         } catch (error) {
