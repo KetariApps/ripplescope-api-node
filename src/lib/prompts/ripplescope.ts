@@ -15,7 +15,7 @@ export const ripplescope: ChatCompletionRequestMessage[] = [
 ];
 
 export const buildPrompt = (projectPlan: string) => {
-  const prompt = `PROJECT\n${projectPlan}\n\n---\n\nUsing the provided impact categories, report any direct or indirect impact items within all categories where the project has some impact.`;
+  const prompt = `PROJECT\n${projectPlan}\n\n---\n\nUsing the provided impact categories, report any direct or indirect impact within all categories where the project has any impact.`;
 
   return {
     role: ChatCompletionRequestMessageRoleEnum.User,
