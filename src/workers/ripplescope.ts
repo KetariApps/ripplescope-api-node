@@ -9,6 +9,7 @@ import * as dotenv from "dotenv";
 import processUserMessage from "../lib/helpers/processUserMessage.js";
 import parseGPTBuffer from "../lib/helpers/parseGPTBuffer.js";
 import { buildPrompt, ripplescope } from "../lib/prompts/ripplescope.js";
+import { global } from "../lib/prompts/global.js";
 
 function postMessage(message: string) {
   if (parentPort) {
@@ -43,11 +44,9 @@ const { processed: processedContent, tokens: tokenizedContent } =
 
 // build the gpt request
 const messages: ChatCompletionRequestMessage[] = [
-  {
-    role: ChatCompletionRequestMessageRoleEnum.User,
-    content: buildPrompt(processedContent),
-  },
+  ...global,
   ...ripplescope,
+  buildPrompt(processedContent),
 ];
 
 // get the response
