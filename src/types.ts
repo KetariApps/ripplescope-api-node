@@ -33,7 +33,7 @@ export interface DoneMessage {
 
 export interface CategorizationMessage {
   type: WorkerMessageType.CATEGORIZATION;
-  impactAreas: string;
+  impactAreas: ProjectCategorizationGPTResponse;
 }
 
 export type CategorizationWorkerMessage =
@@ -66,4 +66,13 @@ export interface ImpactArea {
   questions: string;
   context: string;
   initiatives: string;
+}
+
+export interface ProjectCategorizationGPTResponseItem {
+  name: string;
+  aspect: string;
+  reason: string;
+}
+export interface ProjectCategorizationGPTResponse {
+  impactAreas: ProjectCategorizationGPTResponseItem[];
 }

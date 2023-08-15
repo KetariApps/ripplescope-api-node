@@ -1,14 +1,16 @@
 import { workerData } from "worker_threads";
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
 import * as dotenv from "dotenv";
-import sendMessageToMainProcess from "../lib/sendMessageToMainProcess.js";
-import { global } from "../../lib/prompts/global.js";
-import ImpactAreas from "../../lib/prompts/ripplescope-v2/impactAreas/index.js";
+import sendMessageToMainProcess from "../helpers/sendMessageToMainProcess.js";
+import { global } from "../../prompts/global.js";
+import ImpactAreas from "../../prompts/ripplescope-v2/impactAreas/index.js";
 import {
   CategorizationWorkerMessage,
   CategorizeImpactAreasWorkerData,
+  ProjectCategorizationGPTResponse,
   WorkerMessageType,
 } from "../../types.js";
+import getJSONString from "../../helpers/getJSONString.js";
 
 //// env stuff
 dotenv.config();
@@ -25,8 +27,8 @@ const messages: ChatCompletionRequestMessage[] = [
   ImpactAreas.userPromptResponseTemplate,
   ImpactAreas.list,
 ];
-let impactAreas: string | undefined;
-let impactAreasJSON: string;
+let impactAreasGPTResponseString: string | undefined;
+let impactAreaMatches: ProjectCategorizationGPTResponse | undefined;
 let responseMessage: CategorizationWorkerMessage;
 
 try {
@@ -40,9 +42,13 @@ try {
 
     .then((response) => {
       if (response) {
-        impactAreas = response.data.choices[0].message?.content;
+        impactAreasGPTResponseString =
+          response.data.choices[0].message?.content;
+        impactAreaMatches = getJSONString(impactAreasGPTResponseString) as
+          | ProjectCategorizationGPTResponse
+          | undefined;
 
-        if (impactAreas === undefined) {
+        if (impactAreaMatches === undefined) {
           responseMessage = {
             type: WorkerMessageType.ERROR,
           };
@@ -51,7 +57,7 @@ try {
         } else {
           responseMessage = {
             type: WorkerMessageType.CATEGORIZATION,
-            impactAreas,
+            impactAreas: impactAreaMatches,
           };
           sendMessageToMainProcess(responseMessage);
         }

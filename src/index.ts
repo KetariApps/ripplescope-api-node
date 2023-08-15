@@ -1,40 +1,48 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
-import { AnalysisRequest } from "./types.js";
-import categorizeProject from "./workers/categorization/categorizeProject.js";
+import categorize from "./routes/categorize.js";
+import neo4j from "neo4j-driver";
 
 //// env stuff
 dotenv.config();
-const { PORT } = process.env;
-const app = express();
-// configure cors
-const corsConfig = {
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-};
-app.use(cors(corsConfig));
-app.options("*", cors(corsConfig));
-app.use(express.json());
+const { PORT, NEO_URI, NEO_USER, NEO_PASS, OPENAI_API_KEY } = process.env;
 
-app.post("/categorize", async (req: Request, res: Response) => {
+if (
+  NEO_URI === undefined ||
+  NEO_USER === undefined ||
+  NEO_PASS === undefined ||
+  PORT === undefined ||
+  OPENAI_API_KEY === undefined
+) {
+  console.error("undefined environment variables");
+} else {
+  let driver: neo4j.Driver;
   try {
-    const analysisRequest = req.body as AnalysisRequest;
-    console.log(analysisRequest);
-    const { processId: streamId, categorizationWorker } = categorizeProject({
-      analysisRequest,
-      categorizationMessageHandler: (props) => console.log(props),
-    });
-    res.status(200).json({ streamId }); // Send JSON response
-    res.end(); // End the response
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "An error occurred" });
-    res.end(); // Ensure the response is properly terminated
-  }
-});
+    // connect to the neo4j instance
+    driver = neo4j.driver(NEO_URI, neo4j.auth.basic(NEO_USER, NEO_PASS));
+    const serverInfo = await driver.getServerInfo();
+    console.log("Neo4j connection established");
+    console.log(serverInfo);
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+    // configure the express server
+    const app = express();
+    const corsConfig = {
+      origin: "*",
+      methods: ["GET", "POST", "PUT", "DELETE"],
+    };
+    app.use(cors(corsConfig));
+    app.options("*", cors(corsConfig));
+    app.use(express.json());
+
+    // set up the routes
+    app.post("/categorize", categorize);
+
+    // Start the server
+    app.listen(PORT, () => {
+      console.log(`Server listening on port ${PORT}`);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}

@@ -19,7 +19,7 @@ body="{\"projectInfo\":$formatted_projectInfo}"
 echo $body
 
 # Send text to the ripplescope endpoint and retrieve SSE key
-stream_id=$(curl -X POST -H "Content-Type: application/json" -d "$body" http://localhost:4000/ripplescope | jq -r '.streamId')
+stream_id=$(curl -X POST -H "Content-Type: application/json" -d "$body" http://localhost:4000/categorize | jq -r '.streamId')
 
 echo $stream_id
 
