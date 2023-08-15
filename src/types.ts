@@ -15,12 +15,12 @@ export enum WorkerMessageType {
   "ERROR" = "error",
   "DONE" = "done",
   "CATEGORIZATION" = "categorization",
-  "CATEGORY_ANALYSIS" = "categoryAnalysis",
+  "IMPACT_AREA_ANALYSIS" = "areaAnalysis",
 }
 export type WorkerTuple = [Worker, WorkerRole];
 export type WorkerMap = Map<string, WorkerTuple>;
 
-export interface CategorizeImpactCategoriesWorkerData {
+export interface CategorizeImpactAreasWorkerData {
   projectInfo: string;
 }
 
@@ -33,7 +33,7 @@ export interface DoneMessage {
 
 export interface CategorizationMessage {
   type: WorkerMessageType.CATEGORIZATION;
-  categories: string;
+  impactAreas: string;
 }
 
 export type CategorizationWorkerMessage =
@@ -41,19 +41,29 @@ export type CategorizationWorkerMessage =
   | ErrorMessage
   | CategorizationMessage;
 
-export interface CategoryAnalysisMessage {
-  type: WorkerMessageType.CATEGORY_ANALYSIS;
+export interface ImpactAreaAnalysisMessage {
+  type: WorkerMessageType.IMPACT_AREA_ANALYSIS;
 }
 
-export type CategoryAnalysisWorkerMessage =
+export type ImpactAreaAnalysisWorkerMessage =
   | DoneMessage
   | ErrorMessage
-  | CategoryAnalysisMessage;
+  | ImpactAreaAnalysisMessage;
 
 export type WorkerMessage =
   | CategorizationWorkerMessage
-  | CategoryAnalysisWorkerMessage;
+  | ImpactAreaAnalysisWorkerMessage;
 
 export interface AnalysisRequest {
   projectInfo: string;
+}
+
+export interface ImpactArea {
+  dbName: string;
+  name: string;
+  description: string;
+  stakeholders: string;
+  questions: string;
+  context: string;
+  initiatives: string;
 }

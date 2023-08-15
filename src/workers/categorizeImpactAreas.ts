@@ -3,12 +3,10 @@ import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
 import * as dotenv from "dotenv";
 import sendMessageToMainProcess from "./lib/sendMessageToMainProcess.js";
 import { global } from "../lib/prompts/global.js";
-import impactCategoriesList from "../lib/prompts/ripplescope-v2/categorizeImpactCategories/impactCategoriesList.js";
-import impactCategoriesUserPromptResponseTemplate from "../lib/prompts/ripplescope-v2/categorizeImpactCategories/impactCategoriesReturnTemplate.js";
-import impactCategoriesUserPrompt from "../lib/prompts/ripplescope-v2/categorizeImpactCategories/impactCategoriesUserPrompt.js";
+import ImpactAreas from "../lib/prompts/ripplescope-v2/impactAreas/index.js";
 import {
   CategorizationWorkerMessage,
-  CategorizeImpactCategoriesWorkerData,
+  CategorizeImpactAreasWorkerData,
   WorkerMessageType,
 } from "../types.js";
 
@@ -20,15 +18,15 @@ const configuration = new Configuration({
   apiKey: OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
-const { projectInfo }: CategorizeImpactCategoriesWorkerData = workerData;
+const { projectInfo }: CategorizeImpactAreasWorkerData = workerData;
 const messages: ChatCompletionRequestMessage[] = [
   ...global,
-  impactCategoriesUserPrompt(projectInfo),
-  impactCategoriesUserPromptResponseTemplate,
-  impactCategoriesList,
+  ImpactAreas.userPrompt(projectInfo),
+  ImpactAreas.userPromptResponseTemplate,
+  ImpactAreas.list,
 ];
-let categories: string | undefined;
-let categoriesJSON: string;
+let impactAreas: string | undefined;
+let impactAreasJSON: string;
 let responseMessage: CategorizationWorkerMessage;
 
 try {
@@ -42,9 +40,9 @@ try {
 
     .then((response) => {
       if (response) {
-        categories = response.data.choices[0].message?.content;
+        impactAreas = response.data.choices[0].message?.content;
 
-        if (categories === undefined) {
+        if (impactAreas === undefined) {
           responseMessage = {
             type: WorkerMessageType.ERROR,
           };
@@ -53,7 +51,7 @@ try {
         } else {
           responseMessage = {
             type: WorkerMessageType.CATEGORIZATION,
-            categories,
+            impactAreas,
           };
           sendMessageToMainProcess(responseMessage);
         }

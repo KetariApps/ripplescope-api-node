@@ -2,7 +2,7 @@ import { Worker } from "worker_threads";
 import {
   AnalysisRequest,
   CategorizationWorkerMessage,
-  CategorizeImpactCategoriesWorkerData,
+  CategorizeImpactAreasWorkerData,
   WorkerMessageType,
 } from "../types.js";
 
@@ -16,29 +16,25 @@ const analyzeProject = (props: AnalyzeProjectProps) => {
   const { analysisRequest } = props;
   const processId = uuid();
 
-  const categorizeImpactCategoriesWorkerData =
-    analysisRequest as CategorizeImpactCategoriesWorkerData;
-  const categorizeImpactCategoriesWorker = new Worker(
-    "./build/workers/categorizeImpactCategories.js",
+  const categorizeImpactAreasWorkerData =
+    analysisRequest as CategorizeImpactAreasWorkerData;
+  const categorizeImpactAreasWorker = new Worker(
+    "./build/workers/categorizeImpactAreas.js",
     {
-      workerData: categorizeImpactCategoriesWorkerData,
+      workerData: categorizeImpactAreasWorkerData,
     }
   );
-  categorizeImpactCategoriesWorker.on("message", (message) =>
-    handleCategorizationMessage(
-      message,
-      categorizeImpactCategoriesWorker,
-      processId
-    )
+  categorizeImpactAreasWorker.on("message", (message) =>
+    handleCategorizationMessage(message, categorizeImpactAreasWorker, processId)
   );
-  categorizeImpactCategoriesWorker.on("exit", () =>
-    categorizeImpactCategoriesWorker.terminate()
+  categorizeImpactAreasWorker.on("exit", () =>
+    categorizeImpactAreasWorker.terminate()
   );
-  categorizeImpactCategoriesWorker.on("error", () =>
-    categorizeImpactCategoriesWorker.terminate()
+  categorizeImpactAreasWorker.on("error", () =>
+    categorizeImpactAreasWorker.terminate()
   );
 
-  return { processId, categorizationWorker: categorizeImpactCategoriesWorker };
+  return { processId, categorizationWorker: categorizeImpactAreasWorker };
 };
 
 export default analyzeProject;
