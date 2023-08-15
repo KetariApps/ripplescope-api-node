@@ -1,14 +1,14 @@
 import { workerData } from "worker_threads";
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
 import * as dotenv from "dotenv";
-import sendMessageToMainProcess from "./lib/sendMessageToMainProcess.js";
-import { global } from "../lib/prompts/global.js";
-import ImpactAreas from "../lib/prompts/ripplescope-v2/impactAreas/index.js";
+import sendMessageToMainProcess from "../lib/sendMessageToMainProcess.js";
+import { global } from "../../lib/prompts/global.js";
+import ImpactAreas from "../../lib/prompts/ripplescope-v2/impactAreas/index.js";
 import {
   CategorizationWorkerMessage,
   CategorizeImpactAreasWorkerData,
   WorkerMessageType,
-} from "../types.js";
+} from "../../types.js";
 
 //// env stuff
 dotenv.config();
