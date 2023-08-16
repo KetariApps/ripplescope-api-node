@@ -1,8 +1,9 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
-import categorize from "./routes/categorize.js";
+import categorize from "./routes/post/categorize.js";
 import neo4j, { Driver } from "neo4j-driver";
+import project from "./routes/get/project.js";
 
 //// env stuff
 dotenv.config();
@@ -36,6 +37,7 @@ if (
     app.use(express.json());
 
     // set up the routes
+    app.get("/projects/:uniqueName", (req, res) => project(req, res, driver));
     app.post("/categorize", (req, res) => categorize(req, res, driver));
 
     // Start the server

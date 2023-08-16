@@ -93,3 +93,13 @@ export interface Project {
   problem: string;
   solution: string;
 }
+
+export interface Touch {
+  aspect: string;
+  reason: string;
+}
+export interface GetProjectResponse {
+  project: string;
+  relationship: Touch;
+  impactArea: string;
+}
