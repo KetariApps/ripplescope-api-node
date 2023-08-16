@@ -1,5 +1,5 @@
 import RecyclableMaterial from "./recyclableMaterial.js";
-import ChemicalPolution from "./chemicalPolution.js";
+import ChemicalPolution from "./chemicalPollution.js";
 import NitrogenAndPhosphorusLoading from "./nitrogenAndPhosphorusLoading.js";
 import SupplyChainAndSourcing from "./supplyChainAndSourcing.js";
 

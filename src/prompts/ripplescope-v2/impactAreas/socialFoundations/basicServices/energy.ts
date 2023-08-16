@@ -1,4 +1,8 @@
-import { ImpactArea } from "../../../../../types.js";
+import {
+  DoughnutCategory,
+  ImpactArea,
+  ImpactAreaCategory,
+} from "../../../../../types.js";
 
 const name = "Energy";
 const dbName = "water";
@@ -27,6 +31,8 @@ Renewable Energy Transition: Support and collaborate with communities in transit
 Identify Renewable Energy Sources: Assess the availability of clean energy sources like solar, wind, hydro, or geothermal energy in the region. Explore feasibility studies for community-scale projects.
 Electrification Outreach: Collaborate with local authorities and organizations to facilitate the installation and maintenance of electrification services in households lacking electricity. Promote access to clean energy solutions.`;
 const Energy: ImpactArea = {
+  impactAreaCategory: ImpactAreaCategory.BASIC_SERVICES,
+  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
   name,
   dbName,
   description,

@@ -1,4 +1,8 @@
-import { ImpactArea } from "../../../../../types.js";
+import {
+  DoughnutCategory,
+  ImpactArea,
+  ImpactAreaCategory,
+} from "../../../../../types.js";
 
 const name = "Health";
 const dbName = "health";
@@ -31,6 +35,8 @@ Maternal and Child Health: Focus on prenatal care and safe childbirth.
 Collaborations: Partner with healthcare organizations and local authorities.
 Health Impact Assessments: Regularly evaluate initiative effectiveness.`;
 const Health: ImpactArea = {
+  impactAreaCategory: ImpactAreaCategory.SOCIAL_RIGHTS,
+  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
   name,
   dbName,
   description,

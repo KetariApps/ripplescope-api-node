@@ -20,10 +20,6 @@ export enum WorkerMessageType {
 export type WorkerTuple = [Worker, WorkerRole];
 export type WorkerMap = Map<string, WorkerTuple>;
 
-export interface CategorizeImpactAreasWorkerData {
-  projectInfo: string;
-}
-
 export interface ErrorMessage {
   type: WorkerMessageType.ERROR;
 }
@@ -33,7 +29,7 @@ export interface DoneMessage {
 
 export interface CategorizationMessage {
   type: WorkerMessageType.CATEGORIZATION;
-  impactAreas: ProjectCategorizationGPTResponse;
+  impactAreas: ProjectCategorizationGPTResponseItem[];
 }
 
 export type CategorizationWorkerMessage =
@@ -55,10 +51,24 @@ export type WorkerMessage =
   | ImpactAreaAnalysisWorkerMessage;
 
 export interface AnalysisRequest {
-  projectInfo: string;
+  project: Project;
 }
 
+export enum DoughnutCategory {
+  "ECOLOGICAL_CEILINGS" = "EcologicalCeilings",
+  "SOCIAL_FOUNDATIONS" = "SocialFoundations",
+}
+export enum ImpactAreaCategory {
+  "ATMOSPHERE" = "Atmosphere",
+  "CHEMICAL_WASTE_AND_SUPPLY_CHAINS" = "ChemicalWasteAndSupplyChains",
+  "ENVIRONMENTAL_PRESERVATION" = "EnvironmentalPreservation",
+  "BASIC_SERVICES" = "BasicServices",
+  "SOCIAL_OPPORTUNITIES" = "SocialOpportunities",
+  "SOCIAL_RIGHTS" = "SocialRights",
+}
 export interface ImpactArea {
+  doughnutCategory: DoughnutCategory;
+  impactAreaCategory: ImpactAreaCategory;
   dbName: string;
   name: string;
   description: string;
@@ -75,4 +85,11 @@ export interface ProjectCategorizationGPTResponseItem {
 }
 export interface ProjectCategorizationGPTResponse {
   impactAreas: ProjectCategorizationGPTResponseItem[];
+}
+export interface Project {
+  name: string;
+  uniqueName?: string;
+  nations: string[];
+  problem: string;
+  solution: string;
 }

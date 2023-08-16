@@ -1,4 +1,8 @@
-import { ImpactArea } from "../../../../../types.js";
+import {
+  DoughnutCategory,
+  ImpactArea,
+  ImpactAreaCategory,
+} from "../../../../../types.js";
 
 const name = "Food";
 const dbName = "food";
@@ -29,6 +33,8 @@ Engage the Community: Involve locals in food-related decisions.
 Educate on Nutrition: Promote healthy eating through awareness programs.
 Enhance Food Access: Partner with local suppliers for nutritious options.`;
 const Food: ImpactArea = {
+  impactAreaCategory: ImpactAreaCategory.BASIC_SERVICES,
+  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
   name,
   dbName,
   description,

@@ -1,4 +1,8 @@
-import { ImpactArea } from "../../../../../types.js";
+import {
+  DoughnutCategory,
+  ImpactArea,
+  ImpactAreaCategory,
+} from "../../../../../types.js";
 
 const name = "Education";
 const dbName = "education";
@@ -34,6 +38,8 @@ Vocational Training Programs: Provide skill-based training centers.
 Community Learning Centers: Offer educational resources for residents.
 Mentorship and Internship Opportunities: Promote practical experience for students, including STEM initiatives.`;
 const Education: ImpactArea = {
+  impactAreaCategory: ImpactAreaCategory.SOCIAL_RIGHTS,
+  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
   name,
   dbName,
   description,

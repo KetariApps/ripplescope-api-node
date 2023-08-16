@@ -1,4 +1,4 @@
-import AirPolution from "./airPolution.js";
+import AirPolution from "./airPollution.js";
 import ClimateChange from "./climateChange.js";
 import Ozone from "./ozone.js";
 

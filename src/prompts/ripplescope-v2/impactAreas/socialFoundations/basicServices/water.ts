@@ -1,4 +1,8 @@
-import { ImpactArea } from "../../../../../types.js";
+import {
+  DoughnutCategory,
+  ImpactArea,
+  ImpactAreaCategory,
+} from "../../../../../types.js";
 
 const name = "Water";
 const dbName = "water";
@@ -30,6 +34,8 @@ Timing of Water Use: Schedule off-peak water-intensive activities.
 Water Metering: Monitor usage to target water conservation efforts.`;
 
 const Water: ImpactArea = {
+  impactAreaCategory: ImpactAreaCategory.BASIC_SERVICES,
+  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
   name,
   dbName,
   description,

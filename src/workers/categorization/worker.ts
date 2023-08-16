@@ -6,7 +6,7 @@ import { global } from "../../prompts/global.js";
 import ImpactAreas from "../../prompts/ripplescope-v2/impactAreas/index.js";
 import {
   CategorizationWorkerMessage,
-  CategorizeImpactAreasWorkerData,
+  AnalysisRequest,
   ProjectCategorizationGPTResponse,
   WorkerMessageType,
 } from "../../types.js";
@@ -20,10 +20,10 @@ const configuration = new Configuration({
   apiKey: OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
-const { projectInfo }: CategorizeImpactAreasWorkerData = workerData;
+const { project }: AnalysisRequest = workerData;
 const messages: ChatCompletionRequestMessage[] = [
   ...global,
-  ImpactAreas.userPrompt(projectInfo),
+  ImpactAreas.userPrompt(project),
   ImpactAreas.userPromptResponseTemplate,
   ImpactAreas.list,
 ];
@@ -57,7 +57,7 @@ try {
         } else {
           responseMessage = {
             type: WorkerMessageType.CATEGORIZATION,
-            impactAreas: impactAreaMatches,
+            impactAreas: impactAreaMatches.impactAreas,
           };
           sendMessageToMainProcess(responseMessage);
         }

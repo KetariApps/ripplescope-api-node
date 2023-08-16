@@ -1,4 +1,8 @@
-import { ImpactArea } from "../../../../../types.js";
+import {
+  DoughnutCategory,
+  ImpactArea,
+  ImpactAreaCategory,
+} from "../../../../../types.js";
 
 const name = "Nitrogen and Phosphorus Loading";
 const dbName = "nitrogen_and_phosphorous_loading";
@@ -29,6 +33,8 @@ Responsible Sourcing: Source fertilizers from environmentally responsible suppli
 Addressing Socio-Economic Consequences: Assess and mitigate fertilizer's impact on livelihoods and food security.`;
 
 const NitrogenAndPhosphorusLoading: ImpactArea = {
+  impactAreaCategory: ImpactAreaCategory.CHEMICAL_WASTE_AND_SUPPLY_CHAINS,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
   name,
   dbName,
   description,

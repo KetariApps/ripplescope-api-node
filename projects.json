@@ -1,0 +1,272 @@
+{
+  "Projects": [
+    {
+      "name": "Adamo Foods",
+      "nations": ["United Kingdom"],
+      "employees": 5,
+      "problem": "Animal farming is a leading contributor to climate change and environmental degradation. Steak production is resource-intensive.",
+      "solution": "Leveraging fungi to create fibrous fungus roots (mycelium) as a sustainable and efficient alternative to beef steak."
+    },
+    {
+      "name": "1MT Nation",
+      "nations": ["Estonia"],
+      "employees": 6,
+      "problem": "Combat climate change and offset carbon emissions.",
+      "solution": "Restoring 1 million hectares of degraded lands by planting polyculture native bamboo, sequestering carbon dioxide pollution, and supporting local communities."
+    },
+    {
+      "name": "Telo Trucks",
+      "nations": ["United States"],
+      "employees": 4,
+      "problem": "Need for practical and sustainable trucks suited for urban and suburban environments and active lifestyles.",
+      "solution": "Building right-sized trucks with space for people and gear, promoting purposeful and responsible mobility."
+    },
+    {
+      "name": "Enersee",
+      "nations": ["Belgium"],
+      "employees": 7,
+      "problem": "Energy efficiency is a modern issue.",
+      "solution": "AI-driven platform for energy managers to optimize energy utilization, detect issues, and make informed decisions."
+    },
+    {
+      "name": "Uncaged Innovations",
+      "nations": ["United States"],
+      "employees": 8,
+      "problem": "Alternatives to materials harming the ecosystem, such as traditional leather.",
+      "solution": "Developing biomaterials that mimic leather without the negative environmental impact, reducing water, chemicals, and methane emissions."
+    },
+    {
+      "name": "EVRNU",
+      "nations": ["United States"],
+      "employees": "21",
+      "problem": "Textile waste and unsustainable production methods.",
+      "solution": "Using black soldier flies to transform organic waste into valuable biomaterials for various applications, promoting a circular economy."
+    },
+    {
+      "name": "Climatebase",
+      "nations": ["United States"],
+      "employees": "11-20",
+      "problem": "Challenges in hiring mission-driven talent for climate companies.",
+      "solution": "Connecting companies with top talent through a platform for climate careers, supporting the growth of the climate sector."
+    },
+    {
+      "name": "insectta",
+      "nations": ["Singapore"],
+      "employees": 4,
+      "problem": "Food waste in landfills and unsustainable biomaterial production.",
+      "solution": "Using black soldier flies to valorize organic waste and produce valuable biomaterials like chitosan and melanin."
+    },
+    {
+      "name": "Solar Ladder",
+      "nations": ["India"],
+      "employees": 18,
+      "problem": "Disorganized solar installer needs.",
+      "solution": "Full-stack supply chain platform for solar installers, streamlining the solar energy installation process."
+    },
+    {
+      "name": "Universe Energy Inc.",
+      "nations": ["USA"],
+      "problem": "Batteries are challenging to reuse due to expensive shipping, non-standard testing, and dangerous manual disassembly.",
+      "solution": "Automate the battery reuse process using machine learning and robotics, turning them into grid storage or raw materials for new cells."
+    },
+    {
+      "name": "Urbyn",
+      "nations": ["France"],
+      "problem": "Sustainable management of business waste throughout France.",
+      "solution": "Analyze waste production, find recovery solutions with a network of service providers, offer sorting systems, and assist in waste collection and management."
+    },
+    {
+      "name": "RAIKU",
+      "nations": ["Estonia"],
+      "problem": "Single-use plastic packaging.",
+      "solution": "Introduce RAIKU wrap, a 100% natural and compostable alternative to plastic bubble wrap and packaging filling."
+    },
+    {
+      "name": "sensand",
+      "nations": ["Australia"],
+      "problem": "Collect and collate data for carbon credit creation and crop optimization.",
+      "solution": "Provide an all-in-one digital agriculture ecosystem, integrating smart farming and land management technologies with a carbon credit trading platform."
+    },
+    {
+      "name": "Allye",
+      "nations": ["UK"],
+      "problem": "Providing cheaper, cleaner energy for businesses and homes.",
+      "solution": "Offer distributed energy storage with smart battery technology to lower energy costs and accelerate grid decarbonization."
+    },
+    {
+      "name": "dClimate",
+      "nations": ["USA"],
+      "problem": "Seamless data exchange and collaboration in climate technology.",
+      "solution": "Create a transparent, decentralized marketplace for standardized, monetized, and distributed climate data, forecasts, and models."
+    },
+    {
+      "name": "Forum for African Women Educationalists",
+      "nations": ["Kenya"],
+      "problem": "Ensuring quality education and equal opportunities for Kenyan girls.",
+      "solution": "Work with Ministries of Education to implement programs promoting education for girls and women, leveraging existing institutions and structures."
+    },
+    {
+      "name": "BIOCeanOR",
+      "nations": ["France"],
+      "problem": "Anticipating water quality deterioration and climate change impact on oceans and aquaculture.",
+      "solution": "Predictive monitoring of water quality, better understanding of the environment, and support for sustainable aquaculture through digitalization."
+    },
+    {
+      "name": "NetZeroNitrogen",
+      "nations": ["UK"],
+      "problem": "Addressing climate change, sustainable agriculture, and rural development.",
+      "solution": "Bringing biochar at scale in the tropics to perform long-term carbon removal from the atmosphere, improve soil quality, and promote sustainable practices."
+    },
+    {
+      "name": "Re-Fresh Global",
+      "nations": ["Germany", "Israel"],
+      "problem": "Disrupting the textile industry and tackling textile waste.",
+      "solution": "Transforming textile waste into new raw materials, offering innovative solutions to revolutionize the linear textile industry."
+    },
+    {
+      "name": "Aviwell",
+      "nations": ["France"],
+      "problem": "Improving animal health for global food security.",
+      "solution": "Developing natural and sustainable feed solutions to enhance animal growth and health, with proprietary algorithms and biomimicry."
+    },
+    {
+      "name": "Zero Homes",
+      "nations": ["USA"],
+      "problem": "Reducing carbon emissions from buildings and enabling home electrification.",
+      "solution": "A home electrification marketplace providing guidance, assistance, and projects for homeowners to reduce their home's carbon footprint."
+    },
+    {
+      "name": "Alga Biosciences",
+      "nations": ["USA"],
+      "employees": "8",
+      "problem": "Ruminants, mainly cattle, account for 27% of annual methane emissions in the USA.",
+      "solution": "Using biochemistry to eliminate enteric methane emissions, Alga's feed supplement reduces methane emissions in cattle and provides financial benefits to cattle owners."
+    },
+    {
+      "name": "Aquaria",
+      "nations": ["USA"],
+      "employees": "10",
+      "problem": "Safeguarding access to water against drought and climate change.",
+      "solution": "Aquaria's atmospheric water generators (AWGs) tap into air humidity to provide a renewable source of water, acting as a backup or alternative water supply for consumers facing water stress or contamination."
+    },
+    {
+      "name": "Ludlow Electrochemical Hardware",
+      "nations": ["USA"],
+      "employees": "4",
+      "problem": "Extracting hydrogen from excess emitted gas mixtures.",
+      "solution": "Ludlow offers multiple electrochemical hydrogen pump (EHP) platforms capable of producing high-purity hydrogen from gas mixtures."
+    },
+    {
+      "name": "Big Akwa",
+      "nations": ["Sweden"],
+      "employees": "2",
+      "problem": "Creating synergy between co-located fish farming and the forest industry.",
+      "solution": "Big Akwa introduces industrial symbiosis between aquaculture and the industry, resulting in more efficient fish farming and valuable by-products like fertilizer and animal feed."
+    },
+    {
+      "name": "Brilliant Planet",
+      "nations": ["UK"],
+      "employees": "47",
+      "problem": "Permanently removing carbon at a gigaton scale.",
+      "solution": "Brilliant Planet utilizes algae in open-air pond-based systems to sequester carbon at a large scale, contributing to ocean and air health."
+    },
+    {
+      "name": "Groguru",
+      "nations": ["USA"],
+      "employees": "16",
+      "problem": "Optimal irrigation is required to maximize crop yield and save water and resources.",
+      "solution": "GroGuru's irrigation management solution, using Wireless Underground System (WUGS) technology, enables farmers to optimize irrigation and improve sustainability."
+    },
+    {
+      "name": "OpConnect",
+      "nations": ["USA"],
+      "employees": "18",
+      "problem": "Making electric vehicle charging accessible and efficient.",
+      "solution": "OpConnect provides cloud-based software platforms for fleet, property, and facility managers to streamline electric vehicle charging operations."
+    },
+    {
+      "name": "Divirod",
+      "nations": ["USA"],
+      "employees": "20",
+      "problem": "Understanding and predicting water risks due to climate change.",
+      "solution": "Divirod is building a comprehensive data lake to map, manage, and predict water risks, aiding in informed decisions for water resource conservation and protection."
+    },
+    {
+      "name": "SnoFox Sciences",
+      "nations": ["USA"],
+      "employees": "9",
+      "problem": "Improving efficiency and reducing energy usage in cold warehousing and 3PL.",
+      "solution": "SnoFox Sciences provides thermodynamically-informed data analytics for cold chain monitoring and preventative maintenance, revolutionizing cold industrial space efficiency."
+    },
+    {
+      "name": "GlassPoint",
+      "nations": ["USA"],
+      "employees": "75",
+      "problem": "Reducing carbon emissions and cost in steam production.",
+      "solution": "GlassPoint's solar steam production harnesses sunshine to reduce emissions and cost in industrial steam production."
+    },
+    {
+      "name": "Adamo Foods",
+      "nations": ["United Kingdom"],
+      "employees": 5,
+      "problem": "Animal farming is a leading contributor to climate change and environmental degradation. Steak production is resource-intensive.",
+      "solution": "Leveraging fungi to create fibrous fungus roots (mycelium) as a sustainable and efficient alternative to beef steak."
+    },
+    {
+      "name": "1MT Nation",
+      "nations": ["Estonia"],
+      "employees": 6,
+      "problem": "Combat climate change and offset carbon emissions.",
+      "solution": "Restoring 1 million hectares of degraded lands by planting polyculture native bamboo, sequestering carbon dioxide pollution, and supporting local communities."
+    },
+    {
+      "name": "Telo Trucks",
+      "nations": ["United States"],
+      "employees": 4,
+      "problem": "Need for practical and sustainable trucks suited for urban and suburban environments and active lifestyles.",
+      "solution": "Building right-sized trucks with space for people and gear, promoting purposeful and responsible mobility."
+    },
+    {
+      "name": "Enersee",
+      "nations": ["Belgium"],
+      "employees": 7,
+      "problem": "Energy efficiency is a modern issue.",
+      "solution": "AI-driven platform for energy managers to optimize energy utilization, detect issues, and make informed decisions."
+    },
+    {
+      "name": "Uncaged Innovations",
+      "nations": ["United States"],
+      "employees": 8,
+      "problem": "Alternatives to materials harming the ecosystem, such as traditional leather.",
+      "solution": "Developing biomaterials that mimic leather without the negative environmental impact, reducing water, chemicals, and methane emissions."
+    },
+    {
+      "name": "EVRNU",
+      "nations": ["United States"],
+      "employees": "21",
+      "problem": "Textile waste and unsustainable production methods.",
+      "solution": "Using black soldier flies to transform organic waste into valuable biomaterials for various applications, promoting a circular economy."
+    },
+    {
+      "name": "Climatebase",
+      "nations": ["United States"],
+      "employees": "11-20",
+      "problem": "Challenges in hiring mission-driven talent for climate companies.",
+      "solution": "Connecting companies with top talent through a platform for climate careers, supporting the growth of the climate sector."
+    },
+    {
+      "name": "insectta",
+      "nations": ["Singapore"],
+      "employees": 4,
+      "problem": "Food waste in landfills and unsustainable biomaterial production.",
+      "solution": "Using black soldier flies to valorize organic waste and produce valuable biomaterials like chitosan and melanin."
+    },
+    {
+      "name": "Solar Ladder",
+      "nations": ["India"],
+      "employees": 18,
+      "problem": "Disorganized solar installer needs.",
+      "solution": "Full-stack supply chain platform for solar installers, streamlining the solar energy installation process."
+    }
+  ]
+}

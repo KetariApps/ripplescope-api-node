@@ -3,8 +3,8 @@ import ChemicalsWasteAndSupplyChains from "./chemicalWasteAndSupplyChains/index.
 import EnvironmentalPreseration from "./environmentalPreservation/index.js";
 
 const EcologicalCeilings = {
-  Atmosphere,
-  ChemicalsWasteAndSupplyChains,
-  EnvironmentalPreseration,
+  ...Atmosphere,
+  ...ChemicalsWasteAndSupplyChains,
+  ...EnvironmentalPreseration,
 };
 export default EcologicalCeilings;

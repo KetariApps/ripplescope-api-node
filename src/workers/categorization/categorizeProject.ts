@@ -4,12 +4,10 @@ import {
   AnalysisRequest,
   CategorizationMessage,
   CategorizationWorkerMessage,
-  CategorizeImpactAreasWorkerData,
   WorkerMessageType,
 } from "../../types.js";
 
 export interface CategorizationMessageHandlerProps {
-  processId: string;
   message: CategorizationMessage;
 }
 export interface CategorizeProjectProps {
@@ -21,10 +19,8 @@ export interface CategorizeProjectProps {
 
 const categorizeProject = (props: CategorizeProjectProps) => {
   const { analysisRequest, categorizationMessageHandler } = props;
-  const processId = uuid();
 
-  const categorizeImpactAreasWorkerData =
-    analysisRequest as CategorizeImpactAreasWorkerData;
+  const categorizeImpactAreasWorkerData = analysisRequest as AnalysisRequest;
   const categorizeImpactAreasWorker = new Worker(
     "./build/workers/categorization/worker.js",
     {
@@ -45,7 +41,6 @@ const categorizeProject = (props: CategorizeProjectProps) => {
 
         default:
           const payload: CategorizationMessageHandlerProps = {
-            processId,
             message,
           };
           categorizationMessageHandler(payload);
@@ -59,8 +54,6 @@ const categorizeProject = (props: CategorizeProjectProps) => {
   categorizeImpactAreasWorker.on("error", () =>
     categorizeImpactAreasWorker.terminate()
   );
-
-  return { processId, categorizationWorker: categorizeImpactAreasWorker };
 };
 
 export default categorizeProject;

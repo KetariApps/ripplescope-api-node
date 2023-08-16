@@ -1,4 +1,8 @@
-import { ImpactArea } from "../../../../../types.js";
+import {
+  DoughnutCategory,
+  ImpactArea,
+  ImpactAreaCategory,
+} from "../../../../../types.js";
 
 const name = "Biodiversity";
 const dbName = "biodiversity";
@@ -37,6 +41,8 @@ Collaboration with Conservation Organizations: Partner with conservation groups 
 Sustainable Resource Use: Ensure responsible sourcing, waste reduction, and energy minimization to protect biodiversity.`;
 
 const Biodiversity: ImpactArea = {
+  impactAreaCategory: ImpactAreaCategory.ENVIRONMENTAL_PRESERVATION,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
   name,
   dbName,
   description,

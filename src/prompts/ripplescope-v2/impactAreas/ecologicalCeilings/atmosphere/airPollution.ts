@@ -1,6 +1,10 @@
-import { ImpactArea } from "../../../../../types.js";
+import {
+  DoughnutCategory,
+  ImpactArea,
+  ImpactAreaCategory,
+} from "../../../../../types.js";
 
-const name = "Air Polution";
+const name = "Air Pollution";
 const dbName = "air_pollution";
 const description =
   "Reducing harmful air pollutants that can have adverse effects on human health and ecosystems.";
@@ -31,6 +35,8 @@ Air Quality Awareness: Educate employees, communities, and stakeholders about ai
 Addressing Concerns: Create a system to track, report, and handle air quality complaints; resolve issues promptly.`;
 
 const AirPolution: ImpactArea = {
+  impactAreaCategory: ImpactAreaCategory.ATMOSPHERE,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
   name,
   dbName,
   description,

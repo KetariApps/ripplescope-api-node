@@ -1,4 +1,8 @@
-import { ImpactArea } from "../../../../../types.js";
+import {
+  DoughnutCategory,
+  ImpactArea,
+  ImpactAreaCategory,
+} from "../../../../../types.js";
 
 const name = "Networks";
 const dbName = "networks";
@@ -10,6 +14,8 @@ const context = ``;
 const initiatives = ``;
 
 const Networks: ImpactArea = {
+  impactAreaCategory: ImpactAreaCategory.SOCIAL_OPPORTUNITIES,
+  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
   name,
   dbName,
   description,

@@ -1,4 +1,8 @@
-import { ImpactArea } from "../../../../../types.js";
+import {
+  DoughnutCategory,
+  ImpactArea,
+  ImpactAreaCategory,
+} from "../../../../../types.js";
 
 const name = "Land";
 const dbName = "land";
@@ -25,6 +29,8 @@ Create Community Outreach Programs: Involve locals in conservation efforts.
 Form Partnerships with Conservation Organizations: Collaborate with conservation groups for advice and support.`;
 
 const Land: ImpactArea = {
+  impactAreaCategory: ImpactAreaCategory.ENVIRONMENTAL_PRESERVATION,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
   name,
   dbName,
   description,

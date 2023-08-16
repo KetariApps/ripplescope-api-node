@@ -1,4 +1,8 @@
-import { ImpactArea } from "../../../../../types.js";
+import {
+  DoughnutCategory,
+  ImpactArea,
+  ImpactAreaCategory,
+} from "../../../../../types.js";
 
 const name = "Recyclable Materials";
 const dbName = "recyclable_materials";
@@ -31,6 +35,8 @@ Opt for Sustainable Packaging and Design: Use eco-friendly materials, reduce exc
 Involve Stakeholders: Engage employees, customers, and communities in waste management efforts.`;
 
 const RecyclableMaterial: ImpactArea = {
+  impactAreaCategory: ImpactAreaCategory.CHEMICAL_WASTE_AND_SUPPLY_CHAINS,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
   name,
   dbName,
   description,

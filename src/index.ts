@@ -2,7 +2,7 @@ import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import categorize from "./routes/categorize.js";
-import neo4j from "neo4j-driver";
+import neo4j, { Driver } from "neo4j-driver";
 
 //// env stuff
 dotenv.config();
@@ -17,7 +17,7 @@ if (
 ) {
   console.error("undefined environment variables");
 } else {
-  let driver: neo4j.Driver;
+  let driver: Driver;
   try {
     // connect to the neo4j instance
     driver = neo4j.driver(NEO_URI, neo4j.auth.basic(NEO_USER, NEO_PASS));
@@ -36,7 +36,7 @@ if (
     app.use(express.json());
 
     // set up the routes
-    app.post("/categorize", categorize);
+    app.post("/categorize", (req, res) => categorize(req, res, driver));
 
     // Start the server
     app.listen(PORT, () => {

@@ -1,4 +1,8 @@
-import { ImpactArea } from "../../../../../types.js";
+import {
+  DoughnutCategory,
+  ImpactArea,
+  ImpactAreaCategory,
+} from "../../../../../types.js";
 const name = "Climate Change";
 const dbName = "climate_change";
 const description =
@@ -28,6 +32,8 @@ Carbon Removal/Offsets Characteristics: Present genuine, measurable, permanent, 
 Collaboration for Best Practices and Improvement: Collaborate with stakeholders, stay updated on climate-related technologies, conduct energy audits, analyze data, and adapt strategies.`;
 
 const ClimateChange: ImpactArea = {
+  impactAreaCategory: ImpactAreaCategory.ATMOSPHERE,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
   name,
   dbName,
   description,
