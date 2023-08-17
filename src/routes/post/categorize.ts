@@ -4,6 +4,7 @@ import categorizeProject from "../../workers/categorization/categorizeProject.js
 import { Driver } from "neo4j-driver";
 import insertProject from "../../db/mutations/insertProject.js";
 import connectImpactAreas from "../../db/mutations/connectImpactAreas.js";
+import isRedundantImpactArea from "../../workers/categorization/isRedundantImpactArea.js";
 
 export default async function categorize(
   req: Request,

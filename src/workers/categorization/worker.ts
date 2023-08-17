@@ -34,9 +34,8 @@ let responseMessage: CategorizationWorkerMessage;
 try {
   await openai
     .createChatCompletion({
-      model: "gpt-4",
+      model: "gpt-3.5-turbo",
       messages,
-      stream: false,
     })
     .catch((error) => console.error(error))
 

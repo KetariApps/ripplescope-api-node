@@ -1,64 +1,15 @@
-import {
-  ChatCompletionRequestMessage,
-  ChatCompletionRequestMessageRoleEnum,
-} from "openai";
 import SocialFoundations from "./socialFoundations/index.js";
 import EcologicalCeilings from "./ecologicalCeilings/index.js";
-import { Project, ProjectCategorizationGPTResponse } from "../../../types.js";
-
-const list = () => {
-  const impactAreasString = Object.values({
-    ...SocialFoundations,
-    ...EcologicalCeilings,
-  })
-    .map((impactArea) => `"${impactArea.name}": ${impactArea.description}`)
-    .join("\n");
-
-  return {
-    role: ChatCompletionRequestMessageRoleEnum.Assistant,
-    content: `IMPACT AREAS:\n\n${impactAreasString}`,
-  };
-};
-
-const userPrompt = (project: Project) => {
-  const message: ChatCompletionRequestMessage = {
-    role: ChatCompletionRequestMessageRoleEnum.User,
-    content:
-      `COMPANY INFORMATION:\n\nName: ${
-        project.name
-      }\nLocation: ${project.nations.join(", ")}\nProblem: ${
-        project.problem
-      }\nSolution: ${project.solution}\n\n\n` +
-      "Return a JSON list of the impact areas related to the company." +
-      "The list of impact areas should include unforseen, beneficial or detrimental, impact areas that are logically implied by the project, but not directly stated." +
-      "For example, projects may have unforseen impact on a area not directly stated in their project goals because of the geo-political location in which the project is taking place.",
-  };
-
-  return message;
-};
-
-const returnObject: ProjectCategorizationGPTResponse = {
-  impactAreas: [
-    {
-      name: "The impact area name from the list of impact areas.",
-      aspect:
-        "A breif description of the aspect of the project which led to the assertion of relevance.",
-      reason:
-        "A breif description of why this aspect makes the project relevant to the impact area.",
-    },
-  ],
-};
-const userPromptResponseTemplate: ChatCompletionRequestMessage = {
-  role: ChatCompletionRequestMessageRoleEnum.Assistant,
-  content:
-    "The JSON object should match this template:\n\n" +
-    JSON.stringify(returnObject),
-};
+import list from "./list.js";
+import userPromptResponseTemplate from "./responseTemplate.js";
+import userPrompt from "./userPrompt.js";
+import constructTestRedundanciesPrompt from "./constructTestRedundanciesPrompt.js";
 
 const ImpactAreas = {
   list: list(),
   object: { ...EcologicalCeilings, ...SocialFoundations },
-  userPrompt,
-  userPromptResponseTemplate,
+  userPrompt: userPrompt,
+  userPromptResponseTemplate: userPromptResponseTemplate,
+  constructTestRedundanciesPrompt: constructTestRedundanciesPrompt,
 };
 export default ImpactAreas;

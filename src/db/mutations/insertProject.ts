@@ -11,15 +11,14 @@ const insertProject = async (driver: Driver, project: Project) => {
           tx.run(
             `
           MERGE (project:Project {name: $projectName, uniqueName: $uniqueProjectName, problem: $problem, solution: $solution})
-          MERGE (nation:Location:Nation {name: $nationName, uniqueName: $uniqueNationName})
-          CREATE (project)-[:DEPLOYED_TO]->(location)
-          RETURN *`,
+          MERGE (nation:Nation {uniqueName: $uniqueNationName})
+          MERGE (project)-[:DEPLOYED_TO]->(nation)
+          RETURN project.uniqueName as project, nation.uniqueName as nation`,
             {
               projectName: project.name,
               uniqueProjectName: snakeCase(project.name),
               problem: project.problem,
               solution: project.solution,
-              nationName: nation,
               uniqueNationName: snakeCase(nation),
             }
           )

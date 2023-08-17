@@ -8,16 +8,15 @@ const getProject = async (driver: Driver, uniqueName: string) => {
       tx
         .run(
           `
-        MATCH r=(p:Project {uniqueName: $uniqueName})-[t]-(i: ImpactArea)
-        RETURN p.name as project, collect({reason: t.reason, aspect: t.aspect}) as relationship as, collect(distinct i.uniqueName) as impactArea
-      `,
+          MATCH r=(p:Project {uniqueName: "Adamo_Foods"})-[rel]-(i: ImpactArea)
+          RETURN p.name as project, collect({reason: rel.reason, aspect: rel.aspect, impactArea: i.uniqueName}) as impactAreas
+          `,
           { uniqueName }
         )
         .then((res) =>
           res.records.map((rec) => ({
-            project: rec.get("projectName"),
-            relationship: rec.get("relationship"),
-            impactArea: rec.get("impactArea"),
+            project: rec.get("project"),
+            impactAreas: rec.get("impactAreas"),
           }))
         )
     );

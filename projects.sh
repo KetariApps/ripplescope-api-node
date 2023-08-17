@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Read JSON objects from the projects.json file and process each entry
-jq -c '.Projects[]' projects.json | while IFS= read -r formatted_project; do
+jq -c '.Projects[]' projects-list.json | while IFS= read -r formatted_project; do
   # Create the JSON object with the formatted_project variable
   body="{\"project\":$formatted_project}"
 

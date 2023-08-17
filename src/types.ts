@@ -82,6 +82,7 @@ export interface ProjectCategorizationGPTResponseItem {
   name: string;
   aspect: string;
   reason: string;
+  score: string;
 }
 export interface ProjectCategorizationGPTResponse {
   impactAreas: ProjectCategorizationGPTResponseItem[];
@@ -94,12 +95,12 @@ export interface Project {
   solution: string;
 }
 
-export interface Touch {
+export interface AddressesEdge {
+  impactArea: string;
   aspect: string;
   reason: string;
 }
 export interface GetProjectResponse {
   project: string;
-  relationship: Touch;
-  impactArea: string;
+  impactAreas: AddressesEdge[];
 }

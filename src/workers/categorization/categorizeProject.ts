@@ -1,5 +1,4 @@
 import { Worker } from "worker_threads";
-import { v4 as uuid } from "uuid";
 import {
   AnalysisRequest,
   CategorizationMessage,
