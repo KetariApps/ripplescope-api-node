@@ -83,7 +83,6 @@ export interface ProjectCategorizationGPTResponseItem {
   name: string;
   aspect: string;
   reason: string;
-  summary: string;
   score: string;
 }
 export interface ProjectCategorizationGPTResponse {
@@ -122,5 +121,4 @@ export interface ProjectToImpactAreaConnectionMutationVariables {
   edge_aspect: string;
   edge_reason: string;
   edge_score: string;
-  edge_summary: string;
 }

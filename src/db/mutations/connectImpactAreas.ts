@@ -7,7 +7,6 @@ import {
   ProjectCategorizationGPTResponse,
 } from "../../types.js";
 import ImpactAreas from "../../prompts/ripplescope-v2/impactAreas/index.js";
-import getProject from "../queries/getProject.js";
 import isRedundantImpactArea from "../../workers/categorization/isRedundantImpactArea.js";
 
 const connectImpactAreas = async (
@@ -54,7 +53,6 @@ const connectImpactAreas = async (
             edge_aspect: impactArea.aspect,
             edge_reason: impactArea.reason,
             edge_score: impactArea.score,
-            edge_summary: impactArea.summary,
             ...localpayloadParams,
           };
           // check project relationships for redundancies
