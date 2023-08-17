@@ -9,7 +9,7 @@ const returnObject: ProjectCategorizationGPTResponse = {
     {
       name: "The impact area name from the list of impact areas.",
       aspect:
-        "Identify the aspect of the project which is relevant to this impact area.",
+        "Identify the aspect of the project which is relevant to this impact area. Use the project name if it was provided.",
       reason:
         "A breif description of why this aspect is relevant to the impact area.",
       score:
