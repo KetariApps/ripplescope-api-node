@@ -13,9 +13,11 @@ const userPrompt = (project: Project) => {
       }\nLocation: ${project.nations.join(", ")}\nProblem: ${
         project.problem
       }\nSolution: ${project.solution}\n\n\n` +
-      "Return a JSON list of the impact areas the project impacts from the provided list of impact areas." +
-      "The list of impact areas should include direct and indirect, known and unforseen, beneficial or detrimental, impact areas that are logically implied by the project, but not directly stated." +
-      "For example, projects may have unforseen impact on a area not directly stated in their project goals because of the geo-political location in which the project is taking place.",
+      "Return a JSON list of impact areas the project addresses." +
+      "An impact area returned in the JSON list must be present in the IMPACT AREAS list." +
+      "An impact area returned in the JSON list may be directly stated in the project details or logically implied by the project details but not directly stated." +
+      "An impact area returned in the JSON list may be beneficial or detrimental." +
+      "For example, projects may have unforseen impact that was stated in their project details because of the geo-political location in which the project is taking place.",
   };
 
   return message;

@@ -8,7 +8,8 @@ const getProject = async (driver: Driver, uniqueName: string) => {
       tx
         .run(
           `
-          MATCH r=(p:Project {uniqueName: "Adamo_Foods"})-[rel]-(i: ImpactArea)
+          MATCH (p:Project {uniqueName: $uniqueName})
+          OPTIONAL MATCH r=(p)-[rel]-(i: ImpactArea)
           RETURN p.name as project, collect({reason: rel.reason, aspect: rel.aspect, impactArea: i.uniqueName}) as impactAreas
           `,
           { uniqueName }

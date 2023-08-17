@@ -1,0 +1,10 @@
+{
+  "Projects": [
+    {
+      "name": "sensand",
+      "nations": ["Australia"],
+      "problem": "Collect and collate data for carbon credit creation and crop optimization.",
+      "solution": "Provide an all-in-one digital agriculture ecosystem, integrating smart farming and land management technologies with a carbon credit trading platform."
+    }
+  ]
+}

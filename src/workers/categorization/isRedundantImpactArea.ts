@@ -29,10 +29,10 @@ export default async function isRedundantImpactArea(
         const isRedundant = response.data.choices[0].message?.content;
         if (isRedundant === undefined) return undefined;
         if (isRedundant.toLocaleUpperCase().includes("TRUE")) {
-          return true;
+          return { value: true, content: isRedundant };
         }
         if (isRedundant.toLocaleUpperCase().includes("FALSE")) {
-          return false;
+          return { value: false, content: isRedundant };
         }
       }
     });

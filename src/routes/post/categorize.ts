@@ -13,7 +13,7 @@ export default async function categorize(
 ) {
   try {
     const analysisRequest = req.body as AnalysisRequest;
-    console.log(analysisRequest);
+    console.log({ type: "categorization request", analysisRequest });
     const insertProjectResponse = await insertProject(
       driver,
       analysisRequest.project
@@ -22,7 +22,6 @@ export default async function categorize(
     categorizeProject({
       analysisRequest,
       categorizationMessageHandler: async ({ message }) => {
-        console.log(analysisRequest.project.name, message);
         connectImpactAreas(
           driver,
           analysisRequest.project,

@@ -76,12 +76,14 @@ export interface ImpactArea {
   questions: string;
   context: string;
   initiatives: string;
+  verified?: boolean;
 }
 
 export interface ProjectCategorizationGPTResponseItem {
   name: string;
   aspect: string;
   reason: string;
+  summary: string;
   score: string;
 }
 export interface ProjectCategorizationGPTResponse {
@@ -96,11 +98,29 @@ export interface Project {
 }
 
 export interface AddressesEdge {
-  impactArea: string;
-  aspect: string;
-  reason: string;
+  impactArea: string | null;
+  aspect: string | null;
+  reason: string | null;
 }
 export interface GetProjectResponse {
   project: string;
   impactAreas: AddressesEdge[];
+}
+
+export interface ProjectToImpactAreaConnectionMutationVariables {
+  project_uniqueName: string;
+  impactArea_doughnutCategory: DoughnutCategory | string;
+  impactArea_impactAreaCategory: ImpactAreaCategory | string;
+  impactArea_uniqueName: string;
+  impactArea_name?: string;
+  impactArea_description: string;
+  // impactArea_stakeholders: string ;
+  impactArea_questions: string;
+  impactArea_context: string;
+  // impactArea_initiatives: string ;
+  impactArea_verified: boolean;
+  edge_aspect: string;
+  edge_reason: string;
+  edge_score: string;
+  edge_summary: string;
 }
