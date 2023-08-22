@@ -33,7 +33,7 @@ Flood Mitigation and Water Regulation: Engage in flood mitigation and collaborat
 
 const Freshwater: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.ENVIRONMENTAL_PRESERVATION,
-  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL,
   name,
   dbName,
   description,

@@ -35,7 +35,7 @@ Water Metering: Monitor usage to target water conservation efforts.`;
 
 const Water: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.BASIC_SERVICES,
-  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
+  doughnutCategory: DoughnutCategory.SOCIAL,
   name,
   dbName,
   description,

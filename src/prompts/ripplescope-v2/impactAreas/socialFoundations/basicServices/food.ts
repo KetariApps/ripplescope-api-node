@@ -34,7 +34,7 @@ Educate on Nutrition: Promote healthy eating through awareness programs.
 Enhance Food Access: Partner with local suppliers for nutritious options.`;
 const Food: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.BASIC_SERVICES,
-  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
+  doughnutCategory: DoughnutCategory.SOCIAL,
   name,
   dbName,
   description,

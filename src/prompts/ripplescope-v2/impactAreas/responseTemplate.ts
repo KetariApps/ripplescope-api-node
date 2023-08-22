@@ -12,7 +12,7 @@ const returnObject: ProjectCategorizationGPTResponse = {
         "Identify the aspect of the project which is relevant to this impact area. Use the project name if it was provided.",
       reason:
         "A breif description of why this aspect is relevant to the impact area.",
-      score:
+      impactScore:
         "A stringified float between -1 and 1, where -1 means the aspect of the project has the potential to be extremely harmful to the impact area, and 1 means it has the potential to be extremely beneficial",
     },
   ],

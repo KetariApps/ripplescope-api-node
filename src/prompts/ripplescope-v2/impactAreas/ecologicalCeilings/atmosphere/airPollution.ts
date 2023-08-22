@@ -36,7 +36,7 @@ Addressing Concerns: Create a system to track, report, and handle air quality co
 
 const AirPolution: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.ATMOSPHERE,
-  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL,
   name,
   dbName,
   description,

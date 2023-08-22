@@ -32,7 +32,7 @@ Transparent Communication: Communicate transparently about sourcing, supply chai
 
 const SupplyChain: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.CHEMICAL_WASTE_AND_SUPPLY_CHAINS,
-  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL,
   name,
   dbName,
   description,

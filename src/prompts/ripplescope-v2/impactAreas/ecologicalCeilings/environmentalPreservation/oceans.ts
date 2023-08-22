@@ -14,7 +14,7 @@ const initiatives = ``;
 
 const Oceans: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.ENVIRONMENTAL_PRESERVATION,
-  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL,
   name,
   dbName,
   description,

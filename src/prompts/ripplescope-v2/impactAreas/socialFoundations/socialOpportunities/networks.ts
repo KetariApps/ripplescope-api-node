@@ -15,7 +15,7 @@ const initiatives = ``;
 
 const Networks: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.SOCIAL_OPPORTUNITIES,
-  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
+  doughnutCategory: DoughnutCategory.SOCIAL,
   name,
   dbName,
   description,

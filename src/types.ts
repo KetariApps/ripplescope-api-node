@@ -55,8 +55,8 @@ export interface AnalysisRequest {
 }
 
 export enum DoughnutCategory {
-  "ECOLOGICAL_CEILINGS" = "EcologicalCeilings",
-  "SOCIAL_FOUNDATIONS" = "SocialFoundations",
+  "ECOLOGICAL" = "ECOLOGICAL",
+  "SOCIAL" = "SOCIAL",
 }
 export enum ImpactAreaCategory {
   "ATMOSPHERE" = "Atmosphere",
@@ -83,7 +83,7 @@ export interface ProjectCategorizationGPTResponseItem {
   name: string;
   aspect: string;
   reason: string;
-  score: string;
+  impactScore: string;
 }
 export interface ProjectCategorizationGPTResponse {
   impactAreas: ProjectCategorizationGPTResponseItem[];
@@ -108,17 +108,17 @@ export interface GetProjectResponse {
 
 export interface ProjectToImpactAreaConnectionMutationVariables {
   project_uniqueName: string;
-  impactArea_doughnutCategory: DoughnutCategory | string;
-  impactArea_impactAreaCategory: ImpactAreaCategory | string;
-  impactArea_uniqueName: string;
+  impactArea_doughnutCategory?: DoughnutCategory | string;
+  impactArea_impactAreaCategory?: ImpactAreaCategory | string;
+  impactArea_uniqueName?: string;
   impactArea_name?: string;
-  impactArea_description: string;
+  impactArea_description?: string;
   // impactArea_stakeholders: string ;
-  impactArea_questions: string;
-  impactArea_context: string;
+  impactArea_questions?: string;
+  impactArea_context?: string;
   // impactArea_initiatives: string ;
   impactArea_verified: boolean;
   edge_aspect: string;
   edge_reason: string;
-  edge_score: string;
+  edge_score: number;
 }

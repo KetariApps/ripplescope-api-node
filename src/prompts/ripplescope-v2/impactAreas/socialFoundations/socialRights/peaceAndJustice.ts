@@ -26,7 +26,7 @@ Mitigate Affiliations: Communicate transparently; engage with local leaders; avo
 Regional Nuances: Invest in cultural sensitivity training; involve community leaders; prioritize community participation; monitor impact on peace and justice indicators.`;
 const PeaceAndJustice: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.SOCIAL_RIGHTS,
-  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
+  doughnutCategory: DoughnutCategory.SOCIAL,
   name,
   dbName,
   description,

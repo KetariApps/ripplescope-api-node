@@ -42,7 +42,7 @@ Sustainable Resource Use: Ensure responsible sourcing, waste reduction, and ener
 
 const Biodiversity: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.ENVIRONMENTAL_PRESERVATION,
-  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL,
   name,
   dbName,
   description,

@@ -33,7 +33,7 @@ Collaboration for Best Practices and Improvement: Collaborate with stakeholders,
 
 const ClimateChange: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.ATMOSPHERE,
-  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL,
   name,
   dbName,
   description,

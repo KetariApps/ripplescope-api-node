@@ -34,7 +34,7 @@ Comprehensive Worker Benefits: Provide comprehensive worker benefits beyond basi
 Financial Inclusion Support: Assist employees in gaining access to financial resources by facilitating services like opening bank accounts, accessing loans, and financial education.`;
 const IncomeAndWork: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.SOCIAL_RIGHTS,
-  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
+  doughnutCategory: DoughnutCategory.SOCIAL,
   name,
   dbName,
   description,

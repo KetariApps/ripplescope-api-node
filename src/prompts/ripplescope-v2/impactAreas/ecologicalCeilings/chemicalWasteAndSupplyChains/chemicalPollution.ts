@@ -35,7 +35,7 @@ Transparency and Reporting: Transparently report chemical usage, environmental m
 
 const ChemicalPolution: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.CHEMICAL_WASTE_AND_SUPPLY_CHAINS,
-  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL,
   name,
   dbName,
   description,

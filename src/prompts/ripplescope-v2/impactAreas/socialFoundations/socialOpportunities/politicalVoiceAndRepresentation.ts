@@ -33,7 +33,7 @@ Inclusion of Marginalized Groups: Assess marginalized groups' needs; create safe
 
 const PoliticalVoiceAndRepresentation: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.SOCIAL_OPPORTUNITIES,
-  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
+  doughnutCategory: DoughnutCategory.SOCIAL,
   name,
   dbName,
   description,

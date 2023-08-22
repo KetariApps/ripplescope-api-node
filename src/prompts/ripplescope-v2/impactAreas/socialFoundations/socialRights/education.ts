@@ -39,7 +39,7 @@ Community Learning Centers: Offer educational resources for residents.
 Mentorship and Internship Opportunities: Promote practical experience for students, including STEM initiatives.`;
 const Education: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.SOCIAL_RIGHTS,
-  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
+  doughnutCategory: DoughnutCategory.SOCIAL,
   name,
   dbName,
   description,

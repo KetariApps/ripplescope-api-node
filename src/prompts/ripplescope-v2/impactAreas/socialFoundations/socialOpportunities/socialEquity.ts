@@ -35,7 +35,7 @@ Transparency in Sharing Diversity Metrics: Publicly share diversity and inclusio
 
 const SocialEquity: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.SOCIAL_OPPORTUNITIES,
-  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
+  doughnutCategory: DoughnutCategory.SOCIAL,
   name,
   dbName,
   description,

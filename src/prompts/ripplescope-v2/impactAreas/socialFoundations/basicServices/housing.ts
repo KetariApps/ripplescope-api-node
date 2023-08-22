@@ -30,7 +30,7 @@ Community Engagement: Actively engage with employees, local communities, and sta
 
 const Housing: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.BASIC_SERVICES,
-  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
+  doughnutCategory: DoughnutCategory.SOCIAL,
   name,
   dbName,
   description,

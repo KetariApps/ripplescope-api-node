@@ -36,7 +36,7 @@ Collaborations: Partner with healthcare organizations and local authorities.
 Health Impact Assessments: Regularly evaluate initiative effectiveness.`;
 const Health: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.SOCIAL_RIGHTS,
-  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
+  doughnutCategory: DoughnutCategory.SOCIAL,
   name,
   dbName,
   description,

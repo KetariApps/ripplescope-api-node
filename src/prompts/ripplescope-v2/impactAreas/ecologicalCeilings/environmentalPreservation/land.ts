@@ -30,7 +30,7 @@ Form Partnerships with Conservation Organizations: Collaborate with conservation
 
 const Land: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.ENVIRONMENTAL_PRESERVATION,
-  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL,
   name,
   dbName,
   description,

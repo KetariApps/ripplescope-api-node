@@ -32,7 +32,7 @@ Identify Renewable Energy Sources: Assess the availability of clean energy sourc
 Electrification Outreach: Collaborate with local authorities and organizations to facilitate the installation and maintenance of electrification services in households lacking electricity. Promote access to clean energy solutions.`;
 const Energy: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.BASIC_SERVICES,
-  doughnutCategory: DoughnutCategory.SOCIAL_FOUNDATIONS,
+  doughnutCategory: DoughnutCategory.SOCIAL,
   name,
   dbName,
   description,

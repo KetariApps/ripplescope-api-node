@@ -36,7 +36,7 @@ Involve Stakeholders: Engage employees, customers, and communities in waste mana
 
 const RecyclableMaterial: ImpactArea = {
   impactAreaCategory: ImpactAreaCategory.CHEMICAL_WASTE_AND_SUPPLY_CHAINS,
-  doughnutCategory: DoughnutCategory.ECOLOGICAL_CEILINGS,
+  doughnutCategory: DoughnutCategory.ECOLOGICAL,
   name,
   dbName,
   description,

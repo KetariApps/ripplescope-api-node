@@ -30,12 +30,12 @@ const connectImpactAreas = async (
           const localpayloadParams =
             localImpactArea === undefined
               ? {
-                  impactArea_doughnutCategory: "",
-                  impactArea_impactAreaCategory: "",
-                  impactArea_description: "",
-                  impactArea_questions: "",
-                  impactArea_context: "",
-                  impactArea_name: "",
+                  impactArea_doughnutCategory: undefined,
+                  impactArea_impactAreaCategory: undefined,
+                  impactArea_description: undefined,
+                  impactArea_questions: undefined,
+                  impactArea_context: undefined,
+                  impactArea_name: undefined,
                 }
               : {
                   impactArea_doughnutCategory: localImpactArea.doughnutCategory,
@@ -52,7 +52,7 @@ const connectImpactAreas = async (
             impactArea_verified: localImpactArea !== undefined,
             edge_aspect: impactArea.aspect,
             edge_reason: impactArea.reason,
-            edge_score: impactArea.score,
+            edge_score: Number(impactArea.impactScore),
             ...localpayloadParams,
           };
           // check project relationships for redundancies
