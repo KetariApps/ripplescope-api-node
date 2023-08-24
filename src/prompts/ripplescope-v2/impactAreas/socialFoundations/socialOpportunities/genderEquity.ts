@@ -1,8 +1,8 @@
 import {
-  DoughnutCategory,
-  ImpactArea,
-  ImpactAreaCategory,
-} from "../../../../../types.js";
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../../../../../gql/graphql.js";
+import { ImpactArea } from "../../../../../types.js";
 
 const name = "Gender Equity";
 const dbName = "gender_equity";
@@ -28,8 +28,8 @@ Promotion of Gender-Sensitive Language and Imagery: Use gender-neutral language 
 Capacity Building on Gender Issues: Offer regular training and workshops to all staff on gender issues, including unconscious bias.`;
 
 const GenderEquity: ImpactArea = {
-  impactAreaCategory: ImpactAreaCategory.SOCIAL_OPPORTUNITIES,
-  doughnutCategory: DoughnutCategory.SOCIAL,
+  impactAreaCategory: ImpactCategoryName.SocialOpportunities,
+  doughnutCategory: DoughnutCategoryName.Social,
   name,
   dbName,
   description,

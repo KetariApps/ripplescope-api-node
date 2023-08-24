@@ -1,8 +1,8 @@
 import {
-  DoughnutCategory,
-  ImpactArea,
-  ImpactAreaCategory,
-} from "../../../../../types.js";
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../../../../../gql/graphql.js";
+import { ImpactArea } from "../../../../../types.js";
 
 const name = "Food";
 const dbName = "food";
@@ -33,8 +33,8 @@ Engage the Community: Involve locals in food-related decisions.
 Educate on Nutrition: Promote healthy eating through awareness programs.
 Enhance Food Access: Partner with local suppliers for nutritious options.`;
 const Food: ImpactArea = {
-  impactAreaCategory: ImpactAreaCategory.BASIC_SERVICES,
-  doughnutCategory: DoughnutCategory.SOCIAL,
+  impactAreaCategory: ImpactCategoryName.BasicServices,
+  doughnutCategory: DoughnutCategoryName.Social,
   name,
   dbName,
   description,

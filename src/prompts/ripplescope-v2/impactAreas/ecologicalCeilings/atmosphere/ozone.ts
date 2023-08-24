@@ -1,8 +1,8 @@
 import {
-  DoughnutCategory,
-  ImpactArea,
-  ImpactAreaCategory,
-} from "../../../../../types.js";
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../../../../../gql/graphql.js";
+import { ImpactArea } from "../../../../../types.js";
 
 const name = "Ozone";
 const dbName = "ozone";
@@ -35,8 +35,8 @@ Continuous Improvement: Ensure ongoing environmental responsibility by learning 
 Public Disclosure: Regularly share progress, findings, and impacts for accountability and trust.`;
 
 const Ozone: ImpactArea = {
-  impactAreaCategory: ImpactAreaCategory.ATMOSPHERE,
-  doughnutCategory: DoughnutCategory.ECOLOGICAL,
+  impactAreaCategory: ImpactCategoryName.Atmosphere,
+  doughnutCategory: DoughnutCategoryName.Ecological,
   name,
   dbName,
   description,

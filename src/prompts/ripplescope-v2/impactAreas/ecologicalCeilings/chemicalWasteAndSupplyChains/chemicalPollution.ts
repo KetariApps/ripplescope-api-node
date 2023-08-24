@@ -1,8 +1,8 @@
 import {
-  DoughnutCategory,
-  ImpactArea,
-  ImpactAreaCategory,
-} from "../../../../../types.js";
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../../../../../gql/graphql.js";
+import { ImpactArea } from "../../../../../types.js";
 
 const name = "Chemical Pollution";
 const dbName = "chemical_pollution";
@@ -34,8 +34,8 @@ Partnerships and Expert Collaboration: Collaborate with specialized organization
 Transparency and Reporting: Transparently report chemical usage, environmental monitoring results, and safety measures to build stakeholder trust and demonstrate commitment to responsible chemical management.`;
 
 const ChemicalPolution: ImpactArea = {
-  impactAreaCategory: ImpactAreaCategory.CHEMICAL_WASTE_AND_SUPPLY_CHAINS,
-  doughnutCategory: DoughnutCategory.ECOLOGICAL,
+  impactAreaCategory: ImpactCategoryName.ChemicalWasteAndSupplyChains,
+  doughnutCategory: DoughnutCategoryName.Ecological,
   name,
   dbName,
   description,

@@ -1,8 +1,8 @@
 import {
-  DoughnutCategory,
-  ImpactArea,
-  ImpactAreaCategory,
-} from "../../../../../types.js";
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../../../../../gql/graphql.js";
+import { ImpactArea } from "../../../../../types.js";
 
 const name = "Housing";
 const dbName = "housing";
@@ -29,8 +29,8 @@ Environmental Compliance: Establish stringent measures to ensure housing constru
 Community Engagement: Actively engage with employees, local communities, and stakeholders to understand housing needs and preferences. Prioritize hiring and training local staff to create a robust local workforce. Invest in skill development and provide growth opportunities for local talent.`;
 
 const Housing: ImpactArea = {
-  impactAreaCategory: ImpactAreaCategory.BASIC_SERVICES,
-  doughnutCategory: DoughnutCategory.SOCIAL,
+  impactAreaCategory: ImpactCategoryName.BasicServices,
+  doughnutCategory: DoughnutCategoryName.Social,
   name,
   dbName,
   description,

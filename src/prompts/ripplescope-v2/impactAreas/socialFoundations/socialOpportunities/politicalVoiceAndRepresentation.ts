@@ -1,8 +1,8 @@
 import {
-  DoughnutCategory,
-  ImpactArea,
-  ImpactAreaCategory,
-} from "../../../../../types.js";
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../../../../../gql/graphql.js";
+import { ImpactArea } from "../../../../../types.js";
 
 const name = "Political Voice and Representation";
 const dbName = "political_voice_and_representation";
@@ -32,8 +32,8 @@ Inclusion of Marginalized Groups: Assess marginalized groups' needs; create safe
 `;
 
 const PoliticalVoiceAndRepresentation: ImpactArea = {
-  impactAreaCategory: ImpactAreaCategory.SOCIAL_OPPORTUNITIES,
-  doughnutCategory: DoughnutCategory.SOCIAL,
+  impactAreaCategory: ImpactCategoryName.SocialOpportunities,
+  doughnutCategory: DoughnutCategoryName.Social,
   name,
   dbName,
   description,

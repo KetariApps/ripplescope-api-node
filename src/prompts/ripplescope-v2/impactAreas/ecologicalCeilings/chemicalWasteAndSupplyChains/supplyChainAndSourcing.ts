@@ -1,8 +1,8 @@
 import {
-  DoughnutCategory,
-  ImpactArea,
-  ImpactAreaCategory,
-} from "../../../../../types.js";
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../../../../../gql/graphql.js";
+import { ImpactArea } from "../../../../../types.js";
 
 const name = "Supply Chain";
 const dbName = "supply_chain";
@@ -31,8 +31,8 @@ Responsible Handling of Hazardous Materials: Develop initiatives to ensure respo
 Transparent Communication: Communicate transparently about sourcing, supply chain actions, and progress, such as through product labeling, websites, and marketing to inform consumers of responsible options.`;
 
 const SupplyChain: ImpactArea = {
-  impactAreaCategory: ImpactAreaCategory.CHEMICAL_WASTE_AND_SUPPLY_CHAINS,
-  doughnutCategory: DoughnutCategory.ECOLOGICAL,
+  impactAreaCategory: ImpactCategoryName.ChemicalWasteAndSupplyChains,
+  doughnutCategory: DoughnutCategoryName.Ecological,
   name,
   dbName,
   description,

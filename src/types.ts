@@ -1,4 +1,9 @@
 import { Worker } from "worker_threads";
+import {
+  DoughnutCategoryName,
+  ImpactCategoryName,
+  NationCode,
+} from "./gql/graphql.js";
 
 export enum WorkerRole {
   "CATEGORIZATION" = "Categorization",
@@ -22,6 +27,7 @@ export type WorkerMap = Map<string, WorkerTuple>;
 
 export interface ErrorMessage {
   type: WorkerMessageType.ERROR;
+  content: string;
 }
 export interface DoneMessage {
   type: WorkerMessageType.DONE;
@@ -50,25 +56,13 @@ export type WorkerMessage =
   | CategorizationWorkerMessage
   | ImpactAreaAnalysisWorkerMessage;
 
-export interface AnalysisRequest {
-  project: Project;
+export interface CategorizationRequest {
+  project: CategorizationRequestProject;
 }
 
-export enum DoughnutCategory {
-  "ECOLOGICAL" = "ECOLOGICAL",
-  "SOCIAL" = "SOCIAL",
-}
-export enum ImpactAreaCategory {
-  "ATMOSPHERE" = "Atmosphere",
-  "CHEMICAL_WASTE_AND_SUPPLY_CHAINS" = "ChemicalWasteAndSupplyChains",
-  "ENVIRONMENTAL_PRESERVATION" = "EnvironmentalPreservation",
-  "BASIC_SERVICES" = "BasicServices",
-  "SOCIAL_OPPORTUNITIES" = "SocialOpportunities",
-  "SOCIAL_RIGHTS" = "SocialRights",
-}
 export interface ImpactArea {
-  doughnutCategory: DoughnutCategory;
-  impactAreaCategory: ImpactAreaCategory;
+  doughnutCategory: DoughnutCategoryName;
+  impactAreaCategory: ImpactCategoryName;
   dbName: string;
   name: string;
   description: string;
@@ -88,10 +82,14 @@ export interface ProjectCategorizationGPTResponseItem {
 export interface ProjectCategorizationGPTResponse {
   impactAreas: ProjectCategorizationGPTResponseItem[];
 }
-export interface Project {
+export interface CategorizationRequestLocation {
+  city: string;
+  nation: NationCode;
+  state?: string;
+}
+export interface CategorizationRequestProject {
   name: string;
-  uniqueName?: string;
-  nations: string[];
+  locations: CategorizationRequestLocation[];
   problem: string;
   solution: string;
 }
@@ -104,21 +102,4 @@ export interface AddressesEdge {
 export interface GetProjectResponse {
   project: string;
   impactAreas: AddressesEdge[];
-}
-
-export interface ProjectToImpactAreaConnectionMutationVariables {
-  project_uniqueName: string;
-  impactArea_doughnutCategory?: DoughnutCategory | string;
-  impactArea_impactAreaCategory?: ImpactAreaCategory | string;
-  impactArea_uniqueName?: string;
-  impactArea_name?: string;
-  impactArea_description?: string;
-  // impactArea_stakeholders: string ;
-  impactArea_questions?: string;
-  impactArea_context?: string;
-  // impactArea_initiatives: string ;
-  impactArea_verified: boolean;
-  edge_aspect: string;
-  edge_reason: string;
-  edge_score: number;
 }

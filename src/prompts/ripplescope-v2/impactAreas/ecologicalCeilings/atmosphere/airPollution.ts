@@ -1,8 +1,8 @@
 import {
-  DoughnutCategory,
-  ImpactArea,
-  ImpactAreaCategory,
-} from "../../../../../types.js";
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../../../../../gql/graphql.js";
+import { ImpactArea } from "../../../../../types.js";
 
 const name = "Air Pollution";
 const dbName = "air_pollution";
@@ -35,8 +35,8 @@ Air Quality Awareness: Educate employees, communities, and stakeholders about ai
 Addressing Concerns: Create a system to track, report, and handle air quality complaints; resolve issues promptly.`;
 
 const AirPolution: ImpactArea = {
-  impactAreaCategory: ImpactAreaCategory.ATMOSPHERE,
-  doughnutCategory: DoughnutCategory.ECOLOGICAL,
+  impactAreaCategory: ImpactCategoryName.Atmosphere,
+  doughnutCategory: DoughnutCategoryName.Ecological,
   name,
   dbName,
   description,

@@ -1,8 +1,8 @@
 import {
-  DoughnutCategory,
-  ImpactArea,
-  ImpactAreaCategory,
-} from "../../../../../types.js";
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../../../../../gql/graphql.js";
+import { ImpactArea } from "../../../../../types.js";
 
 const name = "Biodiversity";
 const dbName = "biodiversity";
@@ -41,8 +41,8 @@ Collaboration with Conservation Organizations: Partner with conservation groups 
 Sustainable Resource Use: Ensure responsible sourcing, waste reduction, and energy minimization to protect biodiversity.`;
 
 const Biodiversity: ImpactArea = {
-  impactAreaCategory: ImpactAreaCategory.ENVIRONMENTAL_PRESERVATION,
-  doughnutCategory: DoughnutCategory.ECOLOGICAL,
+  impactAreaCategory: ImpactCategoryName.EnvironmentalPreservation,
+  doughnutCategory: DoughnutCategoryName.Ecological,
   name,
   dbName,
   description,

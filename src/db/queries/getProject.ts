@@ -1,34 +1,20 @@
-import { Driver } from "neo4j-driver";
-import { GetProjectResponse } from "../../types.js";
+import { GraphQLClient } from "graphql-request";
+import { gql } from "../../gql/gql.js";
+import { GetProjectsQueryVariables } from "../../gql/graphql.js";
 
-const getProject = async (driver: Driver, uniqueName: string) => {
-  let session = driver.session();
-  try {
-    const results: GetProjectResponse[] = await session.executeRead((tx) =>
-      tx
-        .run(
-          `
-          MATCH (p:Project {uniqueName: $uniqueName})
-          OPTIONAL MATCH r=(p)-[rel]-(i: ImpactArea)
-          RETURN p.name as project, collect({reason: rel.reason, aspect: rel.aspect, impactArea: i.uniqueName}) as impactAreas
-          `,
-          { uniqueName }
-        )
-        .then((res) =>
-          res.records.map((rec) => ({
-            project: rec.get("project"),
-            impactAreas: rec.get("impactAreas"),
-          }))
-        )
-    );
-
-    await session.close();
-    return results;
-  } catch (error) {
-    console.error(error);
-    await session.close();
-    return;
-  }
+export const getProjects = async (
+  client: GraphQLClient,
+  variables: GetProjectsQueryVariables
+) => {
+  const results = await client.request(getProjectsQuery, variables);
+  return results;
 };
 
-export default getProject;
+// todo: add score to projectsConnection
+const getProjectsQuery = gql(`
+query GetProjects($where: ProjectWhere) {
+  projects(where: $where) {
+    uniqueName
+  }
+}
+`);

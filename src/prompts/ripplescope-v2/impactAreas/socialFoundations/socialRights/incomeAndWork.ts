@@ -1,8 +1,8 @@
 import {
-  DoughnutCategory,
-  ImpactArea,
-  ImpactAreaCategory,
-} from "../../../../../types.js";
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../../../../../gql/graphql.js";
+import { ImpactArea } from "../../../../../types.js";
 
 const name = "Income and Work";
 const dbName = "income_and_work";
@@ -33,8 +33,8 @@ Community Impact Assessment: Evaluate the broader positive impacts of the initia
 Comprehensive Worker Benefits: Provide comprehensive worker benefits beyond basic wages, including paid time off, health insurance matching, retirement support, transportation assistance, and inflation-adjusted salaries.
 Financial Inclusion Support: Assist employees in gaining access to financial resources by facilitating services like opening bank accounts, accessing loans, and financial education.`;
 const IncomeAndWork: ImpactArea = {
-  impactAreaCategory: ImpactAreaCategory.SOCIAL_RIGHTS,
-  doughnutCategory: DoughnutCategory.SOCIAL,
+  impactAreaCategory: ImpactCategoryName.SocialRights,
+  doughnutCategory: DoughnutCategoryName.Social,
   name,
   dbName,
   description,

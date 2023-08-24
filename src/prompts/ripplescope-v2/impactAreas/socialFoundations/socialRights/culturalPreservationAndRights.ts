@@ -1,8 +1,8 @@
 import {
-  DoughnutCategory,
-  ImpactArea,
-  ImpactAreaCategory,
-} from "../../../../../types.js";
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../../../../../gql/graphql.js";
+import { ImpactArea } from "../../../../../types.js";
 
 const name = "Cultural Preservation and Rights";
 const dbName = "cultural_preservation_and_rights";
@@ -35,8 +35,8 @@ Educate Culturally: Implement employee cultural education programs.
 Prevent Appropriation: Avoid cultural misrepresentation or appropriation.
 Empower Economically: Support community businesses, create culturally aligned income opportunities, ensure fair compensation for traditional knowledge or expressions.`;
 const CulturalPreservationAndRights: ImpactArea = {
-  impactAreaCategory: ImpactAreaCategory.SOCIAL_RIGHTS,
-  doughnutCategory: DoughnutCategory.SOCIAL,
+  impactAreaCategory: ImpactCategoryName.SocialRights,
+  doughnutCategory: DoughnutCategoryName.Social,
   name,
   dbName,
   description,

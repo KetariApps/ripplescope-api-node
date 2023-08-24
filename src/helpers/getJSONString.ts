@@ -4,9 +4,9 @@
  * @param str
  * @returns
  */
-export default function getJSONString(str?: string) {
+export default function getJSONString(str: string | null) {
   if (
-    str === undefined ||
+    str === null ||
     !str.includes("{") ||
     !str.includes("}") ||
     !str.includes("[") ||

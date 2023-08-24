@@ -1,7 +1,4 @@
-import {
-  ChatCompletionRequestMessage,
-  ChatCompletionRequestMessageRoleEnum,
-} from "openai";
+import OpenAI from "openai";
 import { ProjectCategorizationGPTResponse } from "../../../types.js";
 
 const returnObject: ProjectCategorizationGPTResponse = {
@@ -17,11 +14,12 @@ const returnObject: ProjectCategorizationGPTResponse = {
     },
   ],
 };
-const userPromptResponseTemplate: ChatCompletionRequestMessage = {
-  role: ChatCompletionRequestMessageRoleEnum.Assistant,
-  content:
-    "The JSON object should match this template:\n\n" +
-    JSON.stringify(returnObject),
-};
+const userPromptResponseTemplate: OpenAI.Chat.CreateChatCompletionRequestMessage =
+  {
+    role: "assistant",
+    content:
+      "The JSON object should match this template:\n\n" +
+      JSON.stringify(returnObject),
+  };
 
 export default userPromptResponseTemplate;

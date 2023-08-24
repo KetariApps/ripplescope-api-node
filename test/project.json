@@ -1,10 +1,16 @@
 {
   "Projects": [
     {
-      "name": "sensand",
-      "nations": ["Australia"],
-      "problem": "Collect and collate data for carbon credit creation and crop optimization.",
-      "solution": "Provide an all-in-one digital agriculture ecosystem, integrating smart farming and land management technologies with a carbon credit trading platform."
+      "name": "Universe Energy Inc.",
+      "locations": [
+        {
+          "nation": "USA",
+          "city": "Los Angeles",
+          "state": "California"
+        }
+      ],
+      "problem": "Batteries are challenging to reuse due to expensive shipping, non-standard testing, and dangerous disassembly.",
+      "solution": "Ship used batteries, automate testing and dismantling using machine learning and robotics, repurpose for grid storage or raw materials, reduce CO2e emissions."
     }
   ]
 }

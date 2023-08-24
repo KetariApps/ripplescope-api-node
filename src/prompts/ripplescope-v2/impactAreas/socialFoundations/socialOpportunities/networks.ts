@@ -1,8 +1,8 @@
 import {
-  DoughnutCategory,
-  ImpactArea,
-  ImpactAreaCategory,
-} from "../../../../../types.js";
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../../../../../gql/graphql.js";
+import { ImpactArea } from "../../../../../types.js";
 
 const name = "Networks";
 const dbName = "networks";
@@ -14,8 +14,8 @@ const context = ``;
 const initiatives = ``;
 
 const Networks: ImpactArea = {
-  impactAreaCategory: ImpactAreaCategory.SOCIAL_OPPORTUNITIES,
-  doughnutCategory: DoughnutCategory.SOCIAL,
+  impactAreaCategory: ImpactCategoryName.SocialOpportunities,
+  doughnutCategory: DoughnutCategoryName.Social,
   name,
   dbName,
   description,

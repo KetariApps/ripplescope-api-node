@@ -1,8 +1,8 @@
 import {
-  DoughnutCategory,
-  ImpactArea,
-  ImpactAreaCategory,
-} from "../../../../../types.js";
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../../../../../gql/graphql.js";
+import { ImpactArea } from "../../../../../types.js";
 
 const name = "Social Equity";
 const dbName = "social_equity";
@@ -34,8 +34,8 @@ Training on Disability Etiquette and Cultural Sensitivity: Educate employees on 
 Transparency in Sharing Diversity Metrics: Publicly share diversity and inclusion metrics and progress to demonstrate commitment to accountability and improvement.`;
 
 const SocialEquity: ImpactArea = {
-  impactAreaCategory: ImpactAreaCategory.SOCIAL_OPPORTUNITIES,
-  doughnutCategory: DoughnutCategory.SOCIAL,
+  impactAreaCategory: ImpactCategoryName.SocialOpportunities,
+  doughnutCategory: DoughnutCategoryName.Social,
   name,
   dbName,
   description,

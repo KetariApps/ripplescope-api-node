@@ -1,8 +1,8 @@
 import {
-  DoughnutCategory,
-  ImpactArea,
-  ImpactAreaCategory,
-} from "../../../../../types.js";
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../../../../../gql/graphql.js";
+import { ImpactArea } from "../../../../../types.js";
 
 const name = "Peace and Justice";
 const dbName = "peace_and_justice";
@@ -25,8 +25,8 @@ Confidentiality and Privacy: Implement data protection measures; train staff on 
 Mitigate Affiliations: Communicate transparently; engage with local leaders; avoid direct involvement in politics or religion; collaborate with reputable local NGOs.
 Regional Nuances: Invest in cultural sensitivity training; involve community leaders; prioritize community participation; monitor impact on peace and justice indicators.`;
 const PeaceAndJustice: ImpactArea = {
-  impactAreaCategory: ImpactAreaCategory.SOCIAL_RIGHTS,
-  doughnutCategory: DoughnutCategory.SOCIAL,
+  impactAreaCategory: ImpactCategoryName.SocialRights,
+  doughnutCategory: DoughnutCategoryName.Social,
   name,
   dbName,
   description,
