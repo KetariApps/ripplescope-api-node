@@ -6,11 +6,19 @@ import analysis from "./prompts/analysis/index.js";
 import { ImpactAreaDetailsFragment } from "../__generated__/graphql.js";
 import { ProjectAnalysisGPTResponse } from "../types.js";
 import getJSONString from "../helpers/getJSONString.js";
+import _ from "lodash";
 
+export type AnalyzeProjectResult = ProjectAnalysisGPTResponse & {
+  project: {
+    impactArea: {
+      uniqueName: string;
+    };
+  };
+};
 export default async function analyzeProject(
   uniqueName: string,
   client: GraphQLClient
-) {
+): Promise<PromiseSettledResult<AnalyzeProjectResult>[]> {
   //// env stuff
   dotenv.config();
   const { OPENAI_API_KEY } = process.env;
@@ -56,7 +64,10 @@ export default async function analyzeProject(
         if (projectAnalysisGPTResponse === undefined) {
           throw new Error("error parsing GPT response");
         } else {
-          return projectAnalysisGPTResponse;
+          const projectAnalysis = _.merge(projectAnalysisGPTResponse, {
+            project: { impactArea: { uniqueName: edge.node.uniqueName } },
+          });
+          return projectAnalysis;
         }
       } else {
         throw new Error("error analyzing project with GPT");

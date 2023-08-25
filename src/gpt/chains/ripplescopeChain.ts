@@ -4,7 +4,7 @@ import cateorizeProject from "../categorizeProject.js";
 import { connectImpactAreas } from "../../db/connectImpactAreas.js";
 import { createProject } from "../../db/mutations/createProject.js";
 import dbName from "../../helpers/dbName.js";
-import analyzeProject from "../analyzeProject.js";
+import analyzeProject, { AnalyzeProjectResult } from "../analyzeProject.js";
 
 export const ripplescopeChain = async (
   project: CategorizationRequestProject,
@@ -18,6 +18,7 @@ export const ripplescopeChain = async (
 
     console.log({
       type: "CREATE PROJECT",
+      status: "DONE",
       message: createProjectMutation,
     });
 
@@ -25,6 +26,7 @@ export const ripplescopeChain = async (
 
     console.log({
       type: "CATEGORIZE PROJECT",
+      status: "DONE",
       message: categorizationResponse,
     });
 
@@ -36,6 +38,7 @@ export const ripplescopeChain = async (
 
     console.log({
       type: "CONNECT PROJECT",
+      status: "DONE",
       message: updateProjectImpactAreasMutation,
     });
 
@@ -44,7 +47,13 @@ export const ripplescopeChain = async (
       client
     );
 
-    console.log({ type: "ANALYZE PROJECT", message: analysis });
+    console.log({ type: "ANALYZE PROJECT", status: "DONE", message: analysis });
+
+    const validResults = analysis.filter(
+      (res): res is PromiseFulfilledResult<AnalyzeProjectResult> =>
+        res.status === "fulfilled"
+    );
+
     console.log(analysis);
   } catch (error) {
     console.error(error);
