@@ -1,6 +1,6 @@
 import { GraphQLClient } from "graphql-request";
-import { gql } from "../../gql/gql.js";
-import { GetImpactAreasQueryVariables } from "../../gql/graphql.js";
+import { gql } from "../../__generated__/gql.js";
+import { GetImpactAreasQueryVariables } from "../../__generated__/graphql.js";
 
 export const getImpactAreas = async (
   client: GraphQLClient,
@@ -12,10 +12,10 @@ export const getImpactAreas = async (
 
 // todo: add score to projectsConnection
 const getImpactAreasQuery = gql(`
-query GetImpactAreas($where: ImpactAreaWhere) {
+query GetImpactAreas($where: ImpactAreaWhere, $includeDetails: Boolean!) {
     impactAreas(where: $where) {
-      name
-      description
+      uniqueName
+      ...ImpactAreaDetails @include (if: $includeDetails)
     }
   }
 `);

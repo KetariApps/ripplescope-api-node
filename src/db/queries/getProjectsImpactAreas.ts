@@ -1,6 +1,6 @@
 import { GraphQLClient } from "graphql-request";
-import { gql } from "../../gql/gql.js";
-import { GetProjectsImpactAreasQueryVariables } from "../../gql/graphql.js";
+import { gql } from "../../__generated__/gql.js";
+import { GetProjectsImpactAreasQueryVariables } from "../../__generated__/graphql.js";
 
 export const getProjectsImpactAreas = async (
   client: GraphQLClient,
@@ -10,19 +10,19 @@ export const getProjectsImpactAreas = async (
   return results;
 };
 
-// todo: add score to projectsConnection
 const getProjectsImpactAreasQuery = gql(`
-query GetProjectsImpactAreas($where: ProjectWhere) {
+query GetProjectsImpactAreas($where: ProjectWhere, $impactAreasConnectionWhere: ProjectImpactAreasConnectionWhere, $includeProjectDetails: Boolean!, $includeImpactAreaDetails: Boolean!) {
   projects(where: $where) {
     uniqueName
-    impactAreasConnection {
+    ...ProjectDetails @include (if: $includeProjectDetails)
+    impactAreasConnection(where: $impactAreasConnectionWhere) {
       edges {
         aspect
         reason
         score
         node {
           uniqueName
-          description
+          ...ImpactAreaDetails @include (if: $includeImpactAreaDetails)
         }
       }
     }

@@ -1,9 +1,12 @@
 import * as dotenv from "dotenv";
 // import neo4j, { Driver } from "neo4j-driver";
 import { GraphQLClient } from "graphql-request";
-import { gql } from "../gql/gql.js";
-import ImpactAreas from "../prompts/ripplescope-v2/impactAreas/index.js";
-import { DoughnutCategoryName, ImpactCategoryName } from "../gql/graphql.js";
+import { gql } from "../__generated__/gql.js";
+import ImpactAreas from "../gpt/prompts/ripplescope-v2/impactAreas/index.js";
+import {
+  DoughnutCategoryName,
+  ImpactCategoryName,
+} from "../__generated__/graphql.js";
 import dbName from "../helpers/dbName.js";
 import splitSnakeCase from "../helpers/snakeCaseToCapitalized.js";
 import capitalizeWords from "../helpers/capitalizeWords.js";

@@ -2,8 +2,8 @@ import { GraphQLClient } from "graphql-request";
 import {
   ProjectConnectOrCreateInput,
   ProjectWhere,
-} from "../../gql/graphql.js";
-import { gql } from "../../gql/gql.js";
+} from "../../__generated__/graphql.js";
+import { gql } from "../../__generated__/gql.js";
 
 export const updateProjectImpactAreas = async (
   client: GraphQLClient,

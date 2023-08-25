@@ -3,7 +3,7 @@ import {
   DoughnutCategoryName,
   ImpactCategoryName,
   NationCode,
-} from "./gql/graphql.js";
+} from "./__generated__/graphql.js";
 
 export enum WorkerRole {
   "CATEGORIZATION" = "Categorization",
@@ -82,6 +82,25 @@ export interface ProjectCategorizationGPTResponseItem {
 export interface ProjectCategorizationGPTResponse {
   impactAreas: ProjectCategorizationGPTResponseItem[];
 }
+
+export interface ProjectAnalysisGPTResponse {
+  project: {
+    impactArea: {
+      benefits: {
+        description: string;
+        aspect: string;
+        reason: string;
+        score: string;
+      }[];
+      hazards: {
+        description: string;
+        aspect: string;
+        reason: string;
+        score: string;
+      }[];
+    };
+  };
+}
 export interface CategorizationRequestLocation {
   city: string;
   nation: NationCode;
@@ -92,6 +111,8 @@ export interface CategorizationRequestProject {
   locations: CategorizationRequestLocation[];
   problem: string;
   solution: string;
+  context: string;
+  employees?: number;
 }
 
 export interface AddressesEdge {

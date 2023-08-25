@@ -1,9 +1,9 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
-import categorize from "./routes/post/categorize.js";
 // import neo4j, { Driver } from "neo4j-driver";
 import { GraphQLClient } from "graphql-request";
+import ripplescope from "./routes/post/ripplescope.js";
 
 //// env stuff
 dotenv.config();
@@ -40,7 +40,7 @@ if (
     app.use(express.json());
 
     // set up the routes
-    app.post("/categorize", (req, res) => categorize(req, res, client));
+    app.post("/ripplescope", (req, res) => ripplescope(req, res, client));
 
     // Start the server
     app.listen(PORT, () => {

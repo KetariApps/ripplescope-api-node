@@ -10,11 +10,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf build && npx tsc",
-    "start": "node build/index.js",
+    "start": "npm run build && node build/index.js",
     "compile": "graphql-codegen",
     "watch": "graphql-codegen -w",
     "codegen": "graphql-codegen --config codegen.ts",
-    "insert-impacts": "GRAPH_URI='http://localhost:4100/graphql' node build/db/insertAllImpactAreas.js"
+    "insert-impacts": "GRAPH_URI='http://localhost:4100/graphql' node build/db/insertAllImpactAreas.js",
+    "insert-single-project": "cd test && ./project.sh"
   },
   "author": "Zach Garrett",
   "license": "ISC",

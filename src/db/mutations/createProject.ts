@@ -1,6 +1,6 @@
 import { GraphQLClient } from "graphql-request";
-import { gql } from "../../gql/gql.js";
-import { ProjectCreateInput } from "../../gql/graphql.js";
+import { gql } from "../../__generated__/gql.js";
+import { ProjectCreateInput } from "../../__generated__/graphql.js";
 
 export const createProject = async (
   client: GraphQLClient,

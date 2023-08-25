@@ -1,16 +1,17 @@
 {
   "Projects": [
     {
-      "name": "Universe Energy Inc.",
+      "name": "Urbyn",
       "locations": [
         {
-          "nation": "USA",
-          "city": "Los Angeles",
-          "state": "California"
+          "nation": "FRA",
+          "city": "Paris"
         }
       ],
-      "problem": "Batteries are challenging to reuse due to expensive shipping, non-standard testing, and dangerous disassembly.",
-      "solution": "Ship used batteries, automate testing and dismantling using machine learning and robotics, repurpose for grid storage or raw materials, reduce CO2e emissions."
+      "problem": "Sustainable management of business waste in France.",
+      "solution": "Analyze waste production, find recovery solutions with service providers, offer sorting systems, assist with waste collection, provide operational support.",
+      "employees": 31,
+      "context": "Offers administrative monitoring and continuous optimization of services for waste management."
     }
   ]
 }
