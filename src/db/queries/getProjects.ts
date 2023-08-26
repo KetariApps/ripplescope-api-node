@@ -10,7 +10,7 @@ export const getProjects = async (
   return results;
 };
 export const getProjectsQuery = gql(`
-query GetProjects($where: ProjectWhere, $impactAreasConnectionWhere: ProjectImpactAreasConnectionWhere, $includeLocations: Boolean!, $includeImpactAreasConnection: Boolean!) {
+query GetProjects($where: ProjectWhere, $impactWhere: ImpactWhere, $includeLocations: Boolean!, $includeImpacts: Boolean!) {
   projects(where: $where) {
     uniqueName
     name
@@ -22,15 +22,24 @@ query GetProjects($where: ProjectWhere, $impactAreasConnectionWhere: ProjectImpa
       uniqueName
       ...LocationDetails
     }
-    impactAreasConnection(where: $impactAreasConnectionWhere) @include(if: $includeImpactAreasConnection) {
-      edges {
-        aspect
-        reason
-        score
-        node {
-          uniqueName
-          verified
-          ...ImpactAreaDetails
+    impacts(where: $impactWhere) @include(if: $includeImpacts) {
+      verified
+      uniqueName
+      impactableConnection {
+        edges {
+          score
+          reason
+          aspect
+          node {
+            ... on Impact {
+              uniqueName
+              verified
+            }
+            ... on ImpactArea {
+              uniqueName
+              verified
+            }
+          }
         }
       }
     }

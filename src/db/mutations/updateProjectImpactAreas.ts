@@ -25,9 +25,6 @@ export const updateProjectImpactAreasMutation = gql(`
         updateProjects(where: $where, connectOrCreate: $connectOrCreate) {
           projects {
             uniqueName
-            impactAreas {
-              uniqueName
-            }
           }
         }
       }

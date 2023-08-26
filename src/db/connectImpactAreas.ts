@@ -16,17 +16,17 @@ export const connectImpactAreas = async (
 ) => {
   const dbProject = await getProjects(client, {
     where: { uniqueName: project.createProjects.projects[0].uniqueName },
-    includeImpactAreasConnection: true,
+    includeImpacts: true,
     includeLocations: false,
   });
-  let impactAreasToLink: ProjectCategorizationGPTResponseItem[] = impactAreas;
-  if (dbProject.projects[0].impactAreasConnection!.edges.length > 0) {
+  let impactsToLink: ProjectCategorizationGPTResponseItem[] = impactAreas;
+  if (dbProject.projects[0].impacts!.length > 0) {
     // project exists and has impact areas -- check for redundancy before linking
     const redundancyTestResults = await Promise.all(
       impactAreas.map(async (ia) => ({
         gptIa: ia,
         result: await isRedundantImpactArea(
-          dbProject.projects[0].impactAreasConnection!.edges,
+          dbProject.projects[0].impacts,
           ia
         ),
       }))
@@ -37,7 +37,7 @@ export const connectImpactAreas = async (
 
     console.log(redundancyTestResults);
 
-    impactAreasToLink = uniqueRedundancyTestResults.map(({ gptIa }) => gptIa);
+    impactsToLink = uniqueRedundancyTestResults.map(({ gptIa }) => gptIa);
   }
 
   const updateProjectImpactAreasMutation = await updateProjectImpactAreas(
@@ -47,7 +47,7 @@ export const connectImpactAreas = async (
         uniqueName: project.createProjects.projects[0].uniqueName,
       },
       connectOrCreate: {
-        impactAreas: impactAreasToLink.map((gptResponseItem) => {
+        impacts: impactsToLink.map((gptResponseItem) => {
           const uniqueName = dbName(gptResponseItem.name);
 
           return {

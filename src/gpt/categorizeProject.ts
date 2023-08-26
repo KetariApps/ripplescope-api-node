@@ -1,10 +1,7 @@
 import OpenAI from "openai";
-import * as dotenv from "dotenv";
 import {
   CategorizationRequestProject,
-  CategorizationWorkerMessage,
   ProjectCategorizationGPTResponse,
-  WorkerMessageType,
 } from "../types.js";
 import { global } from "./prompts/global.js";
 import getJSONString from "../helpers/getJSONString.js";
@@ -14,15 +11,9 @@ import categorization from "./prompts/categorization/index.js";
 
 export default async function cateorizeProject(
   project: CategorizationRequestProject,
-  client: GraphQLClient
+  client: GraphQLClient,
+  openai: OpenAI
 ) {
-  //// env stuff
-  dotenv.config();
-  const { OPENAI_API_KEY } = process.env;
-  //// openai stuff
-  const openai = new OpenAI({
-    apiKey: OPENAI_API_KEY,
-  });
   let messages: OpenAI.Chat.Completions.CreateChatCompletionRequestMessage[] = [
     ...global,
     categorization.userPrompt(project),

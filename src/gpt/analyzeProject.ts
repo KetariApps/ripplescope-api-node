@@ -17,15 +17,9 @@ export type AnalyzeProjectResult = ProjectAnalysisGPTResponse & {
 };
 export default async function analyzeProject(
   uniqueName: string,
-  client: GraphQLClient
+  client: GraphQLClient,
+  openai: OpenAI
 ): Promise<PromiseSettledResult<AnalyzeProjectResult>[]> {
-  //// env stuff
-  dotenv.config();
-  const { OPENAI_API_KEY } = process.env;
-  //// openai stuff
-  const openai = new OpenAI({
-    apiKey: OPENAI_API_KEY,
-  });
 
   const { projects } = await getProjects(client, {
     where: {

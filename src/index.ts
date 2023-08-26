@@ -7,14 +7,11 @@ import ripplescope from "./routes/post/ripplescope.js";
 
 //// env stuff
 dotenv.config();
-const { GRAPH_URI, PORT, NEO_URI, NEO_USER, NEO_PASS, OPENAI_API_KEY } =
+const { GRAPH_URI, PORT, OPENAI_API_KEY } =
   process.env;
 
 if (
   GRAPH_URI === undefined ||
-  NEO_URI === undefined ||
-  NEO_USER === undefined ||
-  NEO_PASS === undefined ||
   PORT === undefined ||
   OPENAI_API_KEY === undefined
 ) {
