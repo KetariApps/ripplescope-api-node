@@ -1,11 +1,13 @@
 import {
   DoughnutCategoryName,
-  Impact,
   ImpactCategoryName,
-  Location,
+  LocationDetailsFragment,
+  ProjectDetailsFragment,
 } from "./__generated__/graphql.js";
 
-
+export type CategorizationRequestProject = ProjectDetailsFragment & {
+  locations: LocationDetailsFragment[];
+};
 export interface CategorizationRequest {
   project: CategorizationRequestProject;
 }
@@ -25,22 +27,20 @@ export interface ImpactArea {
 
 export interface ProjectCategorizationGPTResponseItem {
   name: string;
+  description: string;
 }
 export interface ProjectCategorizationGPTResponse {
   impactAreas: ProjectCategorizationGPTResponseItem[];
 }
+export interface ProjectAnalysisGPTResponseItem {
+  name: string;
+  reason: string;
+  aspect: string;
+  score: string;
+}
 export interface ProjectAnalysisGPTResponse {
   project: {
-      benefits: Impact[];
-      hazards: Impact[];
+    benefits: ProjectAnalysisGPTResponseItem[];
+    hazards: ProjectAnalysisGPTResponseItem[];
   };
 }
-export interface CategorizationRequestProject {
-  name: string;
-  locations: Location[];
-  problem: string;
-  solution: string;
-  context: string;
-  employees?: number;
-}
-

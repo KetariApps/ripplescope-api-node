@@ -2,12 +2,11 @@ import OpenAI from "openai";
 import { ImpactAreaDetailsFragment } from "../../../__generated__/graphql.js";
 
 const impactAreaContextMessage = (
-  impactArea: ImpactAreaDetailsFragment
+  projectImpactArea: ImpactAreaDetailsFragment
 ): OpenAI.Chat.ChatCompletionMessage => {
-  const { name, description, context, questions } = impactArea;
   return {
     role: "assistant",
-    content: `IMPACT AREA:\n${name}\n${description}\n${context}\n${questions}`,
+    content: `IMPACT AREA:\n${projectImpactArea.name}\n${projectImpactArea.description}\n${projectImpactArea.context}\n${projectImpactArea.questions}`,
   };
 };
 export default impactAreaContextMessage;

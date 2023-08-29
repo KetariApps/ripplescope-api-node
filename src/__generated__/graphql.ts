@@ -341,29 +341,36 @@ export type FloatAggregateSelectionNonNullable = {
 
 export type Impact = {
   __typename?: 'Impact';
-  impactable: Array<Impactable>;
-  impactableConnection: ImpactImpactableConnection;
+  impactArea: ImpactArea;
+  impactAreaAggregate?: Maybe<ImpactImpactAreaImpactAreaAggregationSelection>;
+  impactAreaConnection: ImpactImpactAreaConnection;
+  name: Scalars['String']['output'];
   project: Project;
   projectAggregate?: Maybe<ImpactProjectProjectAggregationSelection>;
   projectConnection: ImpactProjectConnection;
-  uniqueName: Scalars['String']['output'];
   verified: Scalars['Boolean']['output'];
 };
 
 
-export type ImpactImpactableArgs = {
+export type ImpactImpactAreaArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
-  options?: InputMaybe<QueryOptions>;
-  where?: InputMaybe<ImpactableWhere>;
+  options?: InputMaybe<ImpactAreaOptions>;
+  where?: InputMaybe<ImpactAreaWhere>;
 };
 
 
-export type ImpactImpactableConnectionArgs = {
+export type ImpactImpactAreaAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<ImpactAreaWhere>;
+};
+
+
+export type ImpactImpactAreaConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<ImpactImpactableConnectionSort>>;
-  where?: InputMaybe<ImpactImpactableConnectionWhere>;
+  sort?: InputMaybe<Array<ImpactImpactAreaConnectionSort>>;
+  where?: InputMaybe<ImpactImpactAreaConnectionWhere>;
 };
 
 
@@ -391,7 +398,7 @@ export type ImpactProjectConnectionArgs = {
 export type ImpactAggregateSelection = {
   __typename?: 'ImpactAggregateSelection';
   count: Scalars['Int']['output'];
-  uniqueName: StringAggregateSelectionNonNullable;
+  name: StringAggregateSelectionNonNullable;
 };
 
 export type ImpactArea = {
@@ -404,7 +411,10 @@ export type ImpactArea = {
   impacts: Array<Impact>;
   impactsAggregate?: Maybe<ImpactAreaImpactImpactsAggregationSelection>;
   impactsConnection: ImpactAreaImpactsConnection;
-  name?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  projects: Array<Project>;
+  projectsAggregate?: Maybe<ImpactAreaProjectProjectsAggregationSelection>;
+  projectsConnection: ImpactAreaProjectsConnection;
   questions?: Maybe<Scalars['String']['output']>;
   uniqueName: Scalars['String']['output'];
   verified: Scalars['Boolean']['output'];
@@ -454,12 +464,34 @@ export type ImpactAreaImpactsConnectionArgs = {
   where?: InputMaybe<ImpactAreaImpactsConnectionWhere>;
 };
 
+
+export type ImpactAreaProjectsArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<ProjectOptions>;
+  where?: InputMaybe<ProjectWhere>;
+};
+
+
+export type ImpactAreaProjectsAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<ProjectWhere>;
+};
+
+
+export type ImpactAreaProjectsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<ImpactAreaProjectsConnectionSort>>;
+  where?: InputMaybe<ImpactAreaProjectsConnectionWhere>;
+};
+
 export type ImpactAreaAggregateSelection = {
   __typename?: 'ImpactAreaAggregateSelection';
   context: StringAggregateSelectionNullable;
   count: Scalars['Int']['output'];
   description: StringAggregateSelectionNullable;
-  name: StringAggregateSelectionNullable;
+  name: StringAggregateSelectionNonNullable;
   questions: StringAggregateSelectionNullable;
   uniqueName: StringAggregateSelectionNonNullable;
 };
@@ -467,11 +499,12 @@ export type ImpactAreaAggregateSelection = {
 export type ImpactAreaConnectInput = {
   impactCategory?: InputMaybe<ImpactAreaImpactCategoryConnectFieldInput>;
   impacts?: InputMaybe<Array<ImpactAreaImpactsConnectFieldInput>>;
+  projects?: InputMaybe<Array<ImpactAreaProjectsConnectFieldInput>>;
 };
 
 export type ImpactAreaConnectOrCreateInput = {
   impactCategory?: InputMaybe<ImpactAreaImpactCategoryConnectOrCreateFieldInput>;
-  impacts?: InputMaybe<Array<ImpactAreaImpactsConnectOrCreateFieldInput>>;
+  projects?: InputMaybe<Array<ImpactAreaProjectsConnectOrCreateFieldInput>>;
 };
 
 export type ImpactAreaConnectOrCreateWhere = {
@@ -487,7 +520,8 @@ export type ImpactAreaCreateInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   impactCategory?: InputMaybe<ImpactAreaImpactCategoryFieldInput>;
   impacts?: InputMaybe<ImpactAreaImpactsFieldInput>;
-  name?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  projects?: InputMaybe<ImpactAreaProjectsFieldInput>;
   questions?: InputMaybe<Scalars['String']['input']>;
   uniqueName: Scalars['String']['input'];
   verified: Scalars['Boolean']['input'];
@@ -496,11 +530,13 @@ export type ImpactAreaCreateInput = {
 export type ImpactAreaDeleteInput = {
   impactCategory?: InputMaybe<ImpactAreaImpactCategoryDeleteFieldInput>;
   impacts?: InputMaybe<Array<ImpactAreaImpactsDeleteFieldInput>>;
+  projects?: InputMaybe<Array<ImpactAreaProjectsDeleteFieldInput>>;
 };
 
 export type ImpactAreaDisconnectInput = {
   impactCategory?: InputMaybe<ImpactAreaImpactCategoryDisconnectFieldInput>;
   impacts?: InputMaybe<Array<ImpactAreaImpactsDisconnectFieldInput>>;
+  projects?: InputMaybe<Array<ImpactAreaProjectsDisconnectFieldInput>>;
 };
 
 export type ImpactAreaEdge = {
@@ -643,7 +679,7 @@ export type ImpactAreaImpactImpactsEdgeAggregateSelection = {
 
 export type ImpactAreaImpactImpactsNodeAggregateSelection = {
   __typename?: 'ImpactAreaImpactImpactsNodeAggregateSelection';
-  uniqueName: StringAggregateSelectionNonNullable;
+  name: StringAggregateSelectionNonNullable;
 };
 
 export type ImpactAreaImpactsAggregateInput = {
@@ -661,20 +697,10 @@ export type ImpactAreaImpactsAggregateInput = {
 
 export type ImpactAreaImpactsConnectFieldInput = {
   connect?: InputMaybe<Array<ImpactConnectInput>>;
-  edge: ImpactsCreateInput;
+  edge: ImpactOnCreateInput;
   /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
   overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<ImpactConnectWhere>;
-};
-
-export type ImpactAreaImpactsConnectOrCreateFieldInput = {
-  onCreate: ImpactAreaImpactsConnectOrCreateFieldInputOnCreate;
-  where: ImpactConnectOrCreateWhere;
-};
-
-export type ImpactAreaImpactsConnectOrCreateFieldInputOnCreate = {
-  edge: ImpactsCreateInput;
-  node: ImpactOnCreateInput;
 };
 
 export type ImpactAreaImpactsConnection = {
@@ -685,7 +711,7 @@ export type ImpactAreaImpactsConnection = {
 };
 
 export type ImpactAreaImpactsConnectionSort = {
-  edge?: InputMaybe<ImpactsSort>;
+  edge?: InputMaybe<ImpactOnSort>;
   node?: InputMaybe<ImpactSort>;
 };
 
@@ -693,12 +719,12 @@ export type ImpactAreaImpactsConnectionWhere = {
   AND?: InputMaybe<Array<ImpactAreaImpactsConnectionWhere>>;
   NOT?: InputMaybe<ImpactAreaImpactsConnectionWhere>;
   OR?: InputMaybe<Array<ImpactAreaImpactsConnectionWhere>>;
-  edge?: InputMaybe<ImpactsWhere>;
+  edge?: InputMaybe<ImpactOnWhere>;
   node?: InputMaybe<ImpactWhere>;
 };
 
 export type ImpactAreaImpactsCreateFieldInput = {
-  edge: ImpactsCreateInput;
+  edge: ImpactOnCreateInput;
   node: ImpactCreateInput;
 };
 
@@ -770,7 +796,6 @@ export type ImpactAreaImpactsEdgeAggregationWhereInput = {
 
 export type ImpactAreaImpactsFieldInput = {
   connect?: InputMaybe<Array<ImpactAreaImpactsConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<ImpactAreaImpactsConnectOrCreateFieldInput>>;
   create?: InputMaybe<Array<ImpactAreaImpactsCreateFieldInput>>;
 };
 
@@ -778,6 +803,262 @@ export type ImpactAreaImpactsNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<ImpactAreaImpactsNodeAggregationWhereInput>>;
   NOT?: InputMaybe<ImpactAreaImpactsNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<ImpactAreaImpactsNodeAggregationWhereInput>>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type ImpactAreaImpactsRelationship = ImpactOn & {
+  __typename?: 'ImpactAreaImpactsRelationship';
+  aspect: Scalars['String']['output'];
+  cursor: Scalars['String']['output'];
+  node: Impact;
+  reason: Scalars['String']['output'];
+  score: Scalars['Float']['output'];
+};
+
+export type ImpactAreaImpactsUpdateConnectionInput = {
+  edge?: InputMaybe<ImpactOnUpdateInput>;
+  node?: InputMaybe<ImpactUpdateInput>;
+};
+
+export type ImpactAreaImpactsUpdateFieldInput = {
+  connect?: InputMaybe<Array<ImpactAreaImpactsConnectFieldInput>>;
+  create?: InputMaybe<Array<ImpactAreaImpactsCreateFieldInput>>;
+  delete?: InputMaybe<Array<ImpactAreaImpactsDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<ImpactAreaImpactsDisconnectFieldInput>>;
+  update?: InputMaybe<ImpactAreaImpactsUpdateConnectionInput>;
+  where?: InputMaybe<ImpactAreaImpactsConnectionWhere>;
+};
+
+export type ImpactAreaOnCreateInput = {
+  context?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  questions?: InputMaybe<Scalars['String']['input']>;
+  uniqueName: Scalars['String']['input'];
+  verified: Scalars['Boolean']['input'];
+};
+
+export type ImpactAreaOptions = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  /** Specify one or more ImpactAreaSort objects to sort ImpactAreas by. The sorts will be applied in the order in which they are arranged in the array. */
+  sort?: InputMaybe<Array<ImpactAreaSort>>;
+};
+
+export type ImpactAreaProjectProjectsAggregationSelection = {
+  __typename?: 'ImpactAreaProjectProjectsAggregationSelection';
+  count: Scalars['Int']['output'];
+  edge?: Maybe<ImpactAreaProjectProjectsEdgeAggregateSelection>;
+  node?: Maybe<ImpactAreaProjectProjectsNodeAggregateSelection>;
+};
+
+export type ImpactAreaProjectProjectsEdgeAggregateSelection = {
+  __typename?: 'ImpactAreaProjectProjectsEdgeAggregateSelection';
+  description: StringAggregateSelectionNonNullable;
+};
+
+export type ImpactAreaProjectProjectsNodeAggregateSelection = {
+  __typename?: 'ImpactAreaProjectProjectsNodeAggregateSelection';
+  context: StringAggregateSelectionNonNullable;
+  employees: IntAggregateSelectionNullable;
+  name: StringAggregateSelectionNonNullable;
+  problem: StringAggregateSelectionNonNullable;
+  solution: StringAggregateSelectionNonNullable;
+  uniqueName: StringAggregateSelectionNonNullable;
+  website: StringAggregateSelectionNullable;
+};
+
+export type ImpactAreaProjectsAggregateInput = {
+  AND?: InputMaybe<Array<ImpactAreaProjectsAggregateInput>>;
+  NOT?: InputMaybe<ImpactAreaProjectsAggregateInput>;
+  OR?: InputMaybe<Array<ImpactAreaProjectsAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  edge?: InputMaybe<ImpactAreaProjectsEdgeAggregationWhereInput>;
+  node?: InputMaybe<ImpactAreaProjectsNodeAggregationWhereInput>;
+};
+
+export type ImpactAreaProjectsConnectFieldInput = {
+  connect?: InputMaybe<Array<ProjectConnectInput>>;
+  edge: ProjectImpactsCreateInput;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<ProjectConnectWhere>;
+};
+
+export type ImpactAreaProjectsConnectOrCreateFieldInput = {
+  onCreate: ImpactAreaProjectsConnectOrCreateFieldInputOnCreate;
+  where: ProjectConnectOrCreateWhere;
+};
+
+export type ImpactAreaProjectsConnectOrCreateFieldInputOnCreate = {
+  edge: ProjectImpactsCreateInput;
+  node: ProjectOnCreateInput;
+};
+
+export type ImpactAreaProjectsConnection = {
+  __typename?: 'ImpactAreaProjectsConnection';
+  edges: Array<ImpactAreaProjectsRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type ImpactAreaProjectsConnectionSort = {
+  edge?: InputMaybe<ProjectImpactsSort>;
+  node?: InputMaybe<ProjectSort>;
+};
+
+export type ImpactAreaProjectsConnectionWhere = {
+  AND?: InputMaybe<Array<ImpactAreaProjectsConnectionWhere>>;
+  NOT?: InputMaybe<ImpactAreaProjectsConnectionWhere>;
+  OR?: InputMaybe<Array<ImpactAreaProjectsConnectionWhere>>;
+  edge?: InputMaybe<ProjectImpactsWhere>;
+  node?: InputMaybe<ProjectWhere>;
+};
+
+export type ImpactAreaProjectsCreateFieldInput = {
+  edge: ProjectImpactsCreateInput;
+  node: ProjectCreateInput;
+};
+
+export type ImpactAreaProjectsDeleteFieldInput = {
+  delete?: InputMaybe<ProjectDeleteInput>;
+  where?: InputMaybe<ImpactAreaProjectsConnectionWhere>;
+};
+
+export type ImpactAreaProjectsDisconnectFieldInput = {
+  disconnect?: InputMaybe<ProjectDisconnectInput>;
+  where?: InputMaybe<ImpactAreaProjectsConnectionWhere>;
+};
+
+export type ImpactAreaProjectsEdgeAggregationWhereInput = {
+  AND?: InputMaybe<Array<ImpactAreaProjectsEdgeAggregationWhereInput>>;
+  NOT?: InputMaybe<ImpactAreaProjectsEdgeAggregationWhereInput>;
+  OR?: InputMaybe<Array<ImpactAreaProjectsEdgeAggregationWhereInput>>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type ImpactAreaProjectsFieldInput = {
+  connect?: InputMaybe<Array<ImpactAreaProjectsConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<ImpactAreaProjectsConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<ImpactAreaProjectsCreateFieldInput>>;
+};
+
+export type ImpactAreaProjectsNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<ImpactAreaProjectsNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<ImpactAreaProjectsNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<ImpactAreaProjectsNodeAggregationWhereInput>>;
+  context_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  context_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  context_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  context_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  context_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  context_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  context_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  context_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  context_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  context_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  employees_AVERAGE_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  employees_AVERAGE_GT?: InputMaybe<Scalars['Float']['input']>;
+  employees_AVERAGE_GTE?: InputMaybe<Scalars['Float']['input']>;
+  employees_AVERAGE_LT?: InputMaybe<Scalars['Float']['input']>;
+  employees_AVERAGE_LTE?: InputMaybe<Scalars['Float']['input']>;
+  employees_MAX_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  employees_MAX_GT?: InputMaybe<Scalars['Int']['input']>;
+  employees_MAX_GTE?: InputMaybe<Scalars['Int']['input']>;
+  employees_MAX_LT?: InputMaybe<Scalars['Int']['input']>;
+  employees_MAX_LTE?: InputMaybe<Scalars['Int']['input']>;
+  employees_MIN_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  employees_MIN_GT?: InputMaybe<Scalars['Int']['input']>;
+  employees_MIN_GTE?: InputMaybe<Scalars['Int']['input']>;
+  employees_MIN_LT?: InputMaybe<Scalars['Int']['input']>;
+  employees_MIN_LTE?: InputMaybe<Scalars['Int']['input']>;
+  employees_SUM_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  employees_SUM_GT?: InputMaybe<Scalars['Int']['input']>;
+  employees_SUM_GTE?: InputMaybe<Scalars['Int']['input']>;
+  employees_SUM_LT?: InputMaybe<Scalars['Int']['input']>;
+  employees_SUM_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  problem_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  problem_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  problem_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  problem_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  problem_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  problem_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  problem_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  problem_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  problem_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  problem_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  problem_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  problem_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  problem_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  problem_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  problem_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  solution_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  solution_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  solution_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  solution_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  solution_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  solution_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  solution_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  solution_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  solution_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  solution_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  solution_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  solution_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  solution_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  solution_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  solution_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
   uniqueName_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
   uniqueName_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
   uniqueName_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
@@ -793,51 +1074,49 @@ export type ImpactAreaImpactsNodeAggregationWhereInput = {
   uniqueName_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
   uniqueName_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
   uniqueName_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  website_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  website_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type ImpactAreaImpactsRelationship = Impacts & {
-  __typename?: 'ImpactAreaImpactsRelationship';
-  aspect: Scalars['String']['output'];
+export type ImpactAreaProjectsRelationship = ProjectImpacts & {
+  __typename?: 'ImpactAreaProjectsRelationship';
   cursor: Scalars['String']['output'];
-  node: Impact;
-  reason: Scalars['String']['output'];
-  score: Scalars['Float']['output'];
+  description: Scalars['String']['output'];
+  node: Project;
 };
 
-export type ImpactAreaImpactsUpdateConnectionInput = {
-  edge?: InputMaybe<ImpactsUpdateInput>;
-  node?: InputMaybe<ImpactUpdateInput>;
+export type ImpactAreaProjectsUpdateConnectionInput = {
+  edge?: InputMaybe<ProjectImpactsUpdateInput>;
+  node?: InputMaybe<ProjectUpdateInput>;
 };
 
-export type ImpactAreaImpactsUpdateFieldInput = {
-  connect?: InputMaybe<Array<ImpactAreaImpactsConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<ImpactAreaImpactsConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<ImpactAreaImpactsCreateFieldInput>>;
-  delete?: InputMaybe<Array<ImpactAreaImpactsDeleteFieldInput>>;
-  disconnect?: InputMaybe<Array<ImpactAreaImpactsDisconnectFieldInput>>;
-  update?: InputMaybe<ImpactAreaImpactsUpdateConnectionInput>;
-  where?: InputMaybe<ImpactAreaImpactsConnectionWhere>;
-};
-
-export type ImpactAreaOnCreateInput = {
-  context?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  questions?: InputMaybe<Scalars['String']['input']>;
-  uniqueName: Scalars['String']['input'];
-  verified: Scalars['Boolean']['input'];
-};
-
-export type ImpactAreaOptions = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-  /** Specify one or more ImpactAreaSort objects to sort ImpactAreas by. The sorts will be applied in the order in which they are arranged in the array. */
-  sort?: InputMaybe<Array<ImpactAreaSort>>;
+export type ImpactAreaProjectsUpdateFieldInput = {
+  connect?: InputMaybe<Array<ImpactAreaProjectsConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<ImpactAreaProjectsConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<ImpactAreaProjectsCreateFieldInput>>;
+  delete?: InputMaybe<Array<ImpactAreaProjectsDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<ImpactAreaProjectsDisconnectFieldInput>>;
+  update?: InputMaybe<ImpactAreaProjectsUpdateConnectionInput>;
+  where?: InputMaybe<ImpactAreaProjectsConnectionWhere>;
 };
 
 export type ImpactAreaRelationInput = {
   impactCategory?: InputMaybe<ImpactAreaImpactCategoryCreateFieldInput>;
   impacts?: InputMaybe<Array<ImpactAreaImpactsCreateFieldInput>>;
+  projects?: InputMaybe<Array<ImpactAreaProjectsCreateFieldInput>>;
 };
 
 /** Fields to sort ImpactAreas by. The order in which sorts are applied is not guaranteed when specifying many fields in one ImpactAreaSort object. */
@@ -860,6 +1139,7 @@ export type ImpactAreaUpdateInput = {
   impactCategory?: InputMaybe<ImpactAreaImpactCategoryUpdateFieldInput>;
   impacts?: InputMaybe<Array<ImpactAreaImpactsUpdateFieldInput>>;
   name?: InputMaybe<Scalars['String']['input']>;
+  projects?: InputMaybe<Array<ImpactAreaProjectsUpdateFieldInput>>;
   questions?: InputMaybe<Scalars['String']['input']>;
   uniqueName?: InputMaybe<Scalars['String']['input']>;
   verified?: InputMaybe<Scalars['Boolean']['input']>;
@@ -904,8 +1184,25 @@ export type ImpactAreaWhere = {
   name?: InputMaybe<Scalars['String']['input']>;
   name_CONTAINS?: InputMaybe<Scalars['String']['input']>;
   name_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
-  name_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  name_IN?: InputMaybe<Array<Scalars['String']['input']>>;
   name_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  projectsAggregate?: InputMaybe<ImpactAreaProjectsAggregateInput>;
+  /** Return ImpactAreas where all of the related ImpactAreaProjectsConnections match this filter */
+  projectsConnection_ALL?: InputMaybe<ImpactAreaProjectsConnectionWhere>;
+  /** Return ImpactAreas where none of the related ImpactAreaProjectsConnections match this filter */
+  projectsConnection_NONE?: InputMaybe<ImpactAreaProjectsConnectionWhere>;
+  /** Return ImpactAreas where one of the related ImpactAreaProjectsConnections match this filter */
+  projectsConnection_SINGLE?: InputMaybe<ImpactAreaProjectsConnectionWhere>;
+  /** Return ImpactAreas where some of the related ImpactAreaProjectsConnections match this filter */
+  projectsConnection_SOME?: InputMaybe<ImpactAreaProjectsConnectionWhere>;
+  /** Return ImpactAreas where all of the related Projects match this filter */
+  projects_ALL?: InputMaybe<ProjectWhere>;
+  /** Return ImpactAreas where none of the related Projects match this filter */
+  projects_NONE?: InputMaybe<ProjectWhere>;
+  /** Return ImpactAreas where one of the related Projects match this filter */
+  projects_SINGLE?: InputMaybe<ProjectWhere>;
+  /** Return ImpactAreas where some of the related Projects match this filter */
+  projects_SOME?: InputMaybe<ProjectWhere>;
   questions?: InputMaybe<Scalars['String']['input']>;
   questions_CONTAINS?: InputMaybe<Scalars['String']['input']>;
   questions_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
@@ -1164,7 +1461,7 @@ export type ImpactCategoryImpactAreaImpactAreasNodeAggregateSelection = {
   __typename?: 'ImpactCategoryImpactAreaImpactAreasNodeAggregateSelection';
   context: StringAggregateSelectionNullable;
   description: StringAggregateSelectionNullable;
-  name: StringAggregateSelectionNullable;
+  name: StringAggregateSelectionNonNullable;
   questions: StringAggregateSelectionNullable;
   uniqueName: StringAggregateSelectionNonNullable;
 };
@@ -1415,17 +1712,13 @@ export type ImpactCategoryWhere = {
 };
 
 export type ImpactConnectInput = {
-  impactable?: InputMaybe<ImpactImpactableConnectInput>;
+  impactArea?: InputMaybe<ImpactImpactAreaConnectFieldInput>;
   project?: InputMaybe<ImpactProjectConnectFieldInput>;
 };
 
 export type ImpactConnectOrCreateInput = {
-  impactable?: InputMaybe<ImpactImpactableConnectOrCreateInput>;
+  impactArea?: InputMaybe<ImpactImpactAreaConnectOrCreateFieldInput>;
   project?: InputMaybe<ImpactProjectConnectOrCreateFieldInput>;
-};
-
-export type ImpactConnectOrCreateWhere = {
-  node: ImpactUniqueWhere;
 };
 
 export type ImpactConnectWhere = {
@@ -1433,19 +1726,19 @@ export type ImpactConnectWhere = {
 };
 
 export type ImpactCreateInput = {
-  impactable?: InputMaybe<ImpactImpactableCreateInput>;
+  impactArea?: InputMaybe<ImpactImpactAreaFieldInput>;
+  name: Scalars['String']['input'];
   project?: InputMaybe<ImpactProjectFieldInput>;
-  uniqueName: Scalars['String']['input'];
   verified: Scalars['Boolean']['input'];
 };
 
 export type ImpactDeleteInput = {
-  impactable?: InputMaybe<ImpactImpactableDeleteInput>;
+  impactArea?: InputMaybe<ImpactImpactAreaDeleteFieldInput>;
   project?: InputMaybe<ImpactProjectDeleteFieldInput>;
 };
 
 export type ImpactDisconnectInput = {
-  impactable?: InputMaybe<ImpactImpactableDisconnectInput>;
+  impactArea?: InputMaybe<ImpactImpactAreaDisconnectFieldInput>;
   project?: InputMaybe<ImpactProjectDisconnectFieldInput>;
 };
 
@@ -1455,189 +1748,310 @@ export type ImpactEdge = {
   node: Impact;
 };
 
-export type ImpactImpactableConnectInput = {
-  Impact?: InputMaybe<Array<ImpactImpactableImpactConnectFieldInput>>;
-  ImpactArea?: InputMaybe<Array<ImpactImpactableImpactAreaConnectFieldInput>>;
+export type ImpactImpactAreaAggregateInput = {
+  AND?: InputMaybe<Array<ImpactImpactAreaAggregateInput>>;
+  NOT?: InputMaybe<ImpactImpactAreaAggregateInput>;
+  OR?: InputMaybe<Array<ImpactImpactAreaAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  edge?: InputMaybe<ImpactImpactAreaEdgeAggregationWhereInput>;
+  node?: InputMaybe<ImpactImpactAreaNodeAggregationWhereInput>;
 };
 
-export type ImpactImpactableConnectOrCreateInput = {
-  Impact?: InputMaybe<Array<ImpactImpactableImpactConnectOrCreateFieldInput>>;
-  ImpactArea?: InputMaybe<Array<ImpactImpactableImpactAreaConnectOrCreateFieldInput>>;
+export type ImpactImpactAreaConnectFieldInput = {
+  connect?: InputMaybe<ImpactAreaConnectInput>;
+  edge: ImpactOnCreateInput;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<ImpactAreaConnectWhere>;
 };
 
-export type ImpactImpactableConnection = {
-  __typename?: 'ImpactImpactableConnection';
-  edges: Array<ImpactImpactableRelationship>;
+export type ImpactImpactAreaConnectOrCreateFieldInput = {
+  onCreate: ImpactImpactAreaConnectOrCreateFieldInputOnCreate;
+  where: ImpactAreaConnectOrCreateWhere;
+};
+
+export type ImpactImpactAreaConnectOrCreateFieldInputOnCreate = {
+  edge: ImpactOnCreateInput;
+  node: ImpactAreaOnCreateInput;
+};
+
+export type ImpactImpactAreaConnection = {
+  __typename?: 'ImpactImpactAreaConnection';
+  edges: Array<ImpactImpactAreaRelationship>;
   pageInfo: PageInfo;
   totalCount: Scalars['Int']['output'];
 };
 
-export type ImpactImpactableConnectionSort = {
-  edge?: InputMaybe<ImpactsSort>;
+export type ImpactImpactAreaConnectionSort = {
+  edge?: InputMaybe<ImpactOnSort>;
+  node?: InputMaybe<ImpactAreaSort>;
 };
 
-export type ImpactImpactableConnectionWhere = {
-  Impact?: InputMaybe<ImpactImpactableImpactConnectionWhere>;
-  ImpactArea?: InputMaybe<ImpactImpactableImpactAreaConnectionWhere>;
-};
-
-export type ImpactImpactableCreateFieldInput = {
-  Impact?: InputMaybe<Array<ImpactImpactableImpactCreateFieldInput>>;
-  ImpactArea?: InputMaybe<Array<ImpactImpactableImpactAreaCreateFieldInput>>;
-};
-
-export type ImpactImpactableCreateInput = {
-  Impact?: InputMaybe<ImpactImpactableImpactFieldInput>;
-  ImpactArea?: InputMaybe<ImpactImpactableImpactAreaFieldInput>;
-};
-
-export type ImpactImpactableDeleteInput = {
-  Impact?: InputMaybe<Array<ImpactImpactableImpactDeleteFieldInput>>;
-  ImpactArea?: InputMaybe<Array<ImpactImpactableImpactAreaDeleteFieldInput>>;
-};
-
-export type ImpactImpactableDisconnectInput = {
-  Impact?: InputMaybe<Array<ImpactImpactableImpactDisconnectFieldInput>>;
-  ImpactArea?: InputMaybe<Array<ImpactImpactableImpactAreaDisconnectFieldInput>>;
-};
-
-export type ImpactImpactableImpactAreaConnectFieldInput = {
-  connect?: InputMaybe<Array<ImpactAreaConnectInput>>;
-  edge: ImpactsCreateInput;
-  where?: InputMaybe<ImpactAreaConnectWhere>;
-};
-
-export type ImpactImpactableImpactAreaConnectOrCreateFieldInput = {
-  onCreate: ImpactImpactableImpactAreaConnectOrCreateFieldInputOnCreate;
-  where: ImpactAreaConnectOrCreateWhere;
-};
-
-export type ImpactImpactableImpactAreaConnectOrCreateFieldInputOnCreate = {
-  edge: ImpactsCreateInput;
-  node: ImpactAreaOnCreateInput;
-};
-
-export type ImpactImpactableImpactAreaConnectionWhere = {
-  AND?: InputMaybe<Array<ImpactImpactableImpactAreaConnectionWhere>>;
-  NOT?: InputMaybe<ImpactImpactableImpactAreaConnectionWhere>;
-  OR?: InputMaybe<Array<ImpactImpactableImpactAreaConnectionWhere>>;
-  edge?: InputMaybe<ImpactsWhere>;
+export type ImpactImpactAreaConnectionWhere = {
+  AND?: InputMaybe<Array<ImpactImpactAreaConnectionWhere>>;
+  NOT?: InputMaybe<ImpactImpactAreaConnectionWhere>;
+  OR?: InputMaybe<Array<ImpactImpactAreaConnectionWhere>>;
+  edge?: InputMaybe<ImpactOnWhere>;
   node?: InputMaybe<ImpactAreaWhere>;
 };
 
-export type ImpactImpactableImpactAreaCreateFieldInput = {
-  edge: ImpactsCreateInput;
+export type ImpactImpactAreaCreateFieldInput = {
+  edge: ImpactOnCreateInput;
   node: ImpactAreaCreateInput;
 };
 
-export type ImpactImpactableImpactAreaDeleteFieldInput = {
+export type ImpactImpactAreaDeleteFieldInput = {
   delete?: InputMaybe<ImpactAreaDeleteInput>;
-  where?: InputMaybe<ImpactImpactableImpactAreaConnectionWhere>;
+  where?: InputMaybe<ImpactImpactAreaConnectionWhere>;
 };
 
-export type ImpactImpactableImpactAreaDisconnectFieldInput = {
+export type ImpactImpactAreaDisconnectFieldInput = {
   disconnect?: InputMaybe<ImpactAreaDisconnectInput>;
-  where?: InputMaybe<ImpactImpactableImpactAreaConnectionWhere>;
+  where?: InputMaybe<ImpactImpactAreaConnectionWhere>;
 };
 
-export type ImpactImpactableImpactAreaFieldInput = {
-  connect?: InputMaybe<Array<ImpactImpactableImpactAreaConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<ImpactImpactableImpactAreaConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<ImpactImpactableImpactAreaCreateFieldInput>>;
+export type ImpactImpactAreaEdgeAggregationWhereInput = {
+  AND?: InputMaybe<Array<ImpactImpactAreaEdgeAggregationWhereInput>>;
+  NOT?: InputMaybe<ImpactImpactAreaEdgeAggregationWhereInput>;
+  OR?: InputMaybe<Array<ImpactImpactAreaEdgeAggregationWhereInput>>;
+  aspect_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  aspect_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  aspect_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  aspect_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  aspect_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  aspect_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  aspect_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  aspect_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  aspect_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  aspect_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  aspect_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  aspect_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  aspect_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  aspect_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  aspect_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  reason_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  reason_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  reason_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  reason_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  reason_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  reason_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  reason_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  reason_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  reason_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  reason_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  reason_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  reason_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  reason_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  reason_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  reason_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  score_AVERAGE_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  score_AVERAGE_GT?: InputMaybe<Scalars['Float']['input']>;
+  score_AVERAGE_GTE?: InputMaybe<Scalars['Float']['input']>;
+  score_AVERAGE_LT?: InputMaybe<Scalars['Float']['input']>;
+  score_AVERAGE_LTE?: InputMaybe<Scalars['Float']['input']>;
+  score_MAX_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  score_MAX_GT?: InputMaybe<Scalars['Float']['input']>;
+  score_MAX_GTE?: InputMaybe<Scalars['Float']['input']>;
+  score_MAX_LT?: InputMaybe<Scalars['Float']['input']>;
+  score_MAX_LTE?: InputMaybe<Scalars['Float']['input']>;
+  score_MIN_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  score_MIN_GT?: InputMaybe<Scalars['Float']['input']>;
+  score_MIN_GTE?: InputMaybe<Scalars['Float']['input']>;
+  score_MIN_LT?: InputMaybe<Scalars['Float']['input']>;
+  score_MIN_LTE?: InputMaybe<Scalars['Float']['input']>;
+  score_SUM_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  score_SUM_GT?: InputMaybe<Scalars['Float']['input']>;
+  score_SUM_GTE?: InputMaybe<Scalars['Float']['input']>;
+  score_SUM_LT?: InputMaybe<Scalars['Float']['input']>;
+  score_SUM_LTE?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type ImpactImpactableImpactAreaUpdateConnectionInput = {
-  edge?: InputMaybe<ImpactsUpdateInput>;
-  node?: InputMaybe<ImpactAreaUpdateInput>;
+export type ImpactImpactAreaFieldInput = {
+  connect?: InputMaybe<ImpactImpactAreaConnectFieldInput>;
+  connectOrCreate?: InputMaybe<ImpactImpactAreaConnectOrCreateFieldInput>;
+  create?: InputMaybe<ImpactImpactAreaCreateFieldInput>;
 };
 
-export type ImpactImpactableImpactAreaUpdateFieldInput = {
-  connect?: InputMaybe<Array<ImpactImpactableImpactAreaConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<ImpactImpactableImpactAreaConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<ImpactImpactableImpactAreaCreateFieldInput>>;
-  delete?: InputMaybe<Array<ImpactImpactableImpactAreaDeleteFieldInput>>;
-  disconnect?: InputMaybe<Array<ImpactImpactableImpactAreaDisconnectFieldInput>>;
-  update?: InputMaybe<ImpactImpactableImpactAreaUpdateConnectionInput>;
-  where?: InputMaybe<ImpactImpactableImpactAreaConnectionWhere>;
+export type ImpactImpactAreaImpactAreaAggregationSelection = {
+  __typename?: 'ImpactImpactAreaImpactAreaAggregationSelection';
+  count: Scalars['Int']['output'];
+  edge?: Maybe<ImpactImpactAreaImpactAreaEdgeAggregateSelection>;
+  node?: Maybe<ImpactImpactAreaImpactAreaNodeAggregateSelection>;
 };
 
-export type ImpactImpactableImpactConnectFieldInput = {
-  connect?: InputMaybe<Array<ImpactConnectInput>>;
-  edge: ImpactsCreateInput;
-  where?: InputMaybe<ImpactConnectWhere>;
+export type ImpactImpactAreaImpactAreaEdgeAggregateSelection = {
+  __typename?: 'ImpactImpactAreaImpactAreaEdgeAggregateSelection';
+  aspect: StringAggregateSelectionNonNullable;
+  reason: StringAggregateSelectionNonNullable;
+  score: FloatAggregateSelectionNonNullable;
 };
 
-export type ImpactImpactableImpactConnectOrCreateFieldInput = {
-  onCreate: ImpactImpactableImpactConnectOrCreateFieldInputOnCreate;
-  where: ImpactConnectOrCreateWhere;
+export type ImpactImpactAreaImpactAreaNodeAggregateSelection = {
+  __typename?: 'ImpactImpactAreaImpactAreaNodeAggregateSelection';
+  context: StringAggregateSelectionNullable;
+  description: StringAggregateSelectionNullable;
+  name: StringAggregateSelectionNonNullable;
+  questions: StringAggregateSelectionNullable;
+  uniqueName: StringAggregateSelectionNonNullable;
 };
 
-export type ImpactImpactableImpactConnectOrCreateFieldInputOnCreate = {
-  edge: ImpactsCreateInput;
-  node: ImpactOnCreateInput;
+export type ImpactImpactAreaNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<ImpactImpactAreaNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<ImpactImpactAreaNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<ImpactImpactAreaNodeAggregationWhereInput>>;
+  context_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  context_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  context_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  context_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  context_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  context_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  context_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  context_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  context_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  context_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  questions_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  questions_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  questions_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  questions_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  questions_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  questions_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  questions_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  questions_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  questions_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  questions_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  questions_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  questions_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  questions_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  questions_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  questions_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  uniqueName_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  uniqueName_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  uniqueName_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  uniqueName_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  uniqueName_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type ImpactImpactableImpactConnectionWhere = {
-  AND?: InputMaybe<Array<ImpactImpactableImpactConnectionWhere>>;
-  NOT?: InputMaybe<ImpactImpactableImpactConnectionWhere>;
-  OR?: InputMaybe<Array<ImpactImpactableImpactConnectionWhere>>;
-  edge?: InputMaybe<ImpactsWhere>;
-  node?: InputMaybe<ImpactWhere>;
-};
-
-export type ImpactImpactableImpactCreateFieldInput = {
-  edge: ImpactsCreateInput;
-  node: ImpactCreateInput;
-};
-
-export type ImpactImpactableImpactDeleteFieldInput = {
-  delete?: InputMaybe<ImpactDeleteInput>;
-  where?: InputMaybe<ImpactImpactableImpactConnectionWhere>;
-};
-
-export type ImpactImpactableImpactDisconnectFieldInput = {
-  disconnect?: InputMaybe<ImpactDisconnectInput>;
-  where?: InputMaybe<ImpactImpactableImpactConnectionWhere>;
-};
-
-export type ImpactImpactableImpactFieldInput = {
-  connect?: InputMaybe<Array<ImpactImpactableImpactConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<ImpactImpactableImpactConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<ImpactImpactableImpactCreateFieldInput>>;
-};
-
-export type ImpactImpactableImpactUpdateConnectionInput = {
-  edge?: InputMaybe<ImpactsUpdateInput>;
-  node?: InputMaybe<ImpactUpdateInput>;
-};
-
-export type ImpactImpactableImpactUpdateFieldInput = {
-  connect?: InputMaybe<Array<ImpactImpactableImpactConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<ImpactImpactableImpactConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<ImpactImpactableImpactCreateFieldInput>>;
-  delete?: InputMaybe<Array<ImpactImpactableImpactDeleteFieldInput>>;
-  disconnect?: InputMaybe<Array<ImpactImpactableImpactDisconnectFieldInput>>;
-  update?: InputMaybe<ImpactImpactableImpactUpdateConnectionInput>;
-  where?: InputMaybe<ImpactImpactableImpactConnectionWhere>;
-};
-
-export type ImpactImpactableRelationship = Impacts & {
-  __typename?: 'ImpactImpactableRelationship';
+export type ImpactImpactAreaRelationship = ImpactOn & {
+  __typename?: 'ImpactImpactAreaRelationship';
   aspect: Scalars['String']['output'];
   cursor: Scalars['String']['output'];
-  node: Impactable;
+  node: ImpactArea;
   reason: Scalars['String']['output'];
   score: Scalars['Float']['output'];
 };
 
-export type ImpactImpactableUpdateInput = {
-  Impact?: InputMaybe<Array<ImpactImpactableImpactUpdateFieldInput>>;
-  ImpactArea?: InputMaybe<Array<ImpactImpactableImpactAreaUpdateFieldInput>>;
+export type ImpactImpactAreaUpdateConnectionInput = {
+  edge?: InputMaybe<ImpactOnUpdateInput>;
+  node?: InputMaybe<ImpactAreaUpdateInput>;
+};
+
+export type ImpactImpactAreaUpdateFieldInput = {
+  connect?: InputMaybe<ImpactImpactAreaConnectFieldInput>;
+  connectOrCreate?: InputMaybe<ImpactImpactAreaConnectOrCreateFieldInput>;
+  create?: InputMaybe<ImpactImpactAreaCreateFieldInput>;
+  delete?: InputMaybe<ImpactImpactAreaDeleteFieldInput>;
+  disconnect?: InputMaybe<ImpactImpactAreaDisconnectFieldInput>;
+  update?: InputMaybe<ImpactImpactAreaUpdateConnectionInput>;
+  where?: InputMaybe<ImpactImpactAreaConnectionWhere>;
+};
+
+export type ImpactOn = {
+  aspect: Scalars['String']['output'];
+  reason: Scalars['String']['output'];
+  score: Scalars['Float']['output'];
 };
 
 export type ImpactOnCreateInput = {
-  uniqueName: Scalars['String']['input'];
-  verified: Scalars['Boolean']['input'];
+  aspect: Scalars['String']['input'];
+  reason: Scalars['String']['input'];
+  score: Scalars['Float']['input'];
+};
+
+export type ImpactOnSort = {
+  aspect?: InputMaybe<SortDirection>;
+  reason?: InputMaybe<SortDirection>;
+  score?: InputMaybe<SortDirection>;
+};
+
+export type ImpactOnUpdateInput = {
+  aspect?: InputMaybe<Scalars['String']['input']>;
+  reason?: InputMaybe<Scalars['String']['input']>;
+  score?: InputMaybe<Scalars['Float']['input']>;
+  score_ADD?: InputMaybe<Scalars['Float']['input']>;
+  score_DIVIDE?: InputMaybe<Scalars['Float']['input']>;
+  score_MULTIPLY?: InputMaybe<Scalars['Float']['input']>;
+  score_SUBTRACT?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type ImpactOnWhere = {
+  AND?: InputMaybe<Array<ImpactOnWhere>>;
+  NOT?: InputMaybe<ImpactOnWhere>;
+  OR?: InputMaybe<Array<ImpactOnWhere>>;
+  aspect?: InputMaybe<Scalars['String']['input']>;
+  aspect_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  aspect_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  aspect_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  aspect_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  reason?: InputMaybe<Scalars['String']['input']>;
+  reason_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  reason_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  reason_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  reason_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  score?: InputMaybe<Scalars['Float']['input']>;
+  score_GT?: InputMaybe<Scalars['Float']['input']>;
+  score_GTE?: InputMaybe<Scalars['Float']['input']>;
+  score_IN?: InputMaybe<Array<Scalars['Float']['input']>>;
+  score_LT?: InputMaybe<Scalars['Float']['input']>;
+  score_LTE?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type ImpactOptions = {
@@ -1812,6 +2226,21 @@ export type ImpactProjectNodeAggregationWhereInput = {
   uniqueName_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
   uniqueName_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
   uniqueName_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  website_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  website_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type ImpactProjectProjectAggregationSelection = {
@@ -1828,6 +2257,7 @@ export type ImpactProjectProjectNodeAggregateSelection = {
   problem: StringAggregateSelectionNonNullable;
   solution: StringAggregateSelectionNonNullable;
   uniqueName: StringAggregateSelectionNonNullable;
+  website: StringAggregateSelectionNullable;
 };
 
 export type ImpactProjectRelationship = {
@@ -1851,24 +2281,20 @@ export type ImpactProjectUpdateFieldInput = {
 };
 
 export type ImpactRelationInput = {
-  impactable?: InputMaybe<ImpactImpactableCreateFieldInput>;
+  impactArea?: InputMaybe<ImpactImpactAreaCreateFieldInput>;
   project?: InputMaybe<ImpactProjectCreateFieldInput>;
 };
 
 /** Fields to sort Impacts by. The order in which sorts are applied is not guaranteed when specifying many fields in one ImpactSort object. */
 export type ImpactSort = {
-  uniqueName?: InputMaybe<SortDirection>;
+  name?: InputMaybe<SortDirection>;
   verified?: InputMaybe<SortDirection>;
 };
 
-export type ImpactUniqueWhere = {
-  uniqueName?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type ImpactUpdateInput = {
-  impactable?: InputMaybe<ImpactImpactableUpdateInput>;
+  impactArea?: InputMaybe<ImpactImpactAreaUpdateFieldInput>;
+  name?: InputMaybe<Scalars['String']['input']>;
   project?: InputMaybe<ImpactProjectUpdateFieldInput>;
-  uniqueName?: InputMaybe<Scalars['String']['input']>;
   verified?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -1876,38 +2302,22 @@ export type ImpactWhere = {
   AND?: InputMaybe<Array<ImpactWhere>>;
   NOT?: InputMaybe<ImpactWhere>;
   OR?: InputMaybe<Array<ImpactWhere>>;
-  /** Return Impacts where all of the related ImpactImpactableConnections match this filter */
-  impactableConnection_ALL?: InputMaybe<ImpactImpactableConnectionWhere>;
-  /** Return Impacts where none of the related ImpactImpactableConnections match this filter */
-  impactableConnection_NONE?: InputMaybe<ImpactImpactableConnectionWhere>;
-  /** Return Impacts where one of the related ImpactImpactableConnections match this filter */
-  impactableConnection_SINGLE?: InputMaybe<ImpactImpactableConnectionWhere>;
-  /** Return Impacts where some of the related ImpactImpactableConnections match this filter */
-  impactableConnection_SOME?: InputMaybe<ImpactImpactableConnectionWhere>;
+  impactArea?: InputMaybe<ImpactAreaWhere>;
+  impactAreaAggregate?: InputMaybe<ImpactImpactAreaAggregateInput>;
+  impactAreaConnection?: InputMaybe<ImpactImpactAreaConnectionWhere>;
+  impactAreaConnection_NOT?: InputMaybe<ImpactImpactAreaConnectionWhere>;
+  impactArea_NOT?: InputMaybe<ImpactAreaWhere>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  name_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  name_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  name_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  name_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
   project?: InputMaybe<ProjectWhere>;
   projectAggregate?: InputMaybe<ImpactProjectAggregateInput>;
   projectConnection?: InputMaybe<ImpactProjectConnectionWhere>;
   projectConnection_NOT?: InputMaybe<ImpactProjectConnectionWhere>;
   project_NOT?: InputMaybe<ProjectWhere>;
-  uniqueName?: InputMaybe<Scalars['String']['input']>;
-  uniqueName_CONTAINS?: InputMaybe<Scalars['String']['input']>;
-  uniqueName_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
-  uniqueName_IN?: InputMaybe<Array<Scalars['String']['input']>>;
-  uniqueName_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
   verified?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type Impactable = Impact | ImpactArea;
-
-export type ImpactableWhere = {
-  Impact?: InputMaybe<ImpactWhere>;
-  ImpactArea?: InputMaybe<ImpactAreaWhere>;
-};
-
-export type Impacts = {
-  aspect: Scalars['String']['output'];
-  reason: Scalars['String']['output'];
-  score: Scalars['Float']['output'];
 };
 
 export type ImpactsConnection = {
@@ -1915,50 +2325,6 @@ export type ImpactsConnection = {
   edges: Array<ImpactEdge>;
   pageInfo: PageInfo;
   totalCount: Scalars['Int']['output'];
-};
-
-export type ImpactsCreateInput = {
-  aspect: Scalars['String']['input'];
-  reason: Scalars['String']['input'];
-  score: Scalars['Float']['input'];
-};
-
-export type ImpactsSort = {
-  aspect?: InputMaybe<SortDirection>;
-  reason?: InputMaybe<SortDirection>;
-  score?: InputMaybe<SortDirection>;
-};
-
-export type ImpactsUpdateInput = {
-  aspect?: InputMaybe<Scalars['String']['input']>;
-  reason?: InputMaybe<Scalars['String']['input']>;
-  score?: InputMaybe<Scalars['Float']['input']>;
-  score_ADD?: InputMaybe<Scalars['Float']['input']>;
-  score_DIVIDE?: InputMaybe<Scalars['Float']['input']>;
-  score_MULTIPLY?: InputMaybe<Scalars['Float']['input']>;
-  score_SUBTRACT?: InputMaybe<Scalars['Float']['input']>;
-};
-
-export type ImpactsWhere = {
-  AND?: InputMaybe<Array<ImpactsWhere>>;
-  NOT?: InputMaybe<ImpactsWhere>;
-  OR?: InputMaybe<Array<ImpactsWhere>>;
-  aspect?: InputMaybe<Scalars['String']['input']>;
-  aspect_CONTAINS?: InputMaybe<Scalars['String']['input']>;
-  aspect_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
-  aspect_IN?: InputMaybe<Array<Scalars['String']['input']>>;
-  aspect_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
-  reason?: InputMaybe<Scalars['String']['input']>;
-  reason_CONTAINS?: InputMaybe<Scalars['String']['input']>;
-  reason_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
-  reason_IN?: InputMaybe<Array<Scalars['String']['input']>>;
-  reason_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
-  score?: InputMaybe<Scalars['Float']['input']>;
-  score_GT?: InputMaybe<Scalars['Float']['input']>;
-  score_GTE?: InputMaybe<Scalars['Float']['input']>;
-  score_IN?: InputMaybe<Array<Scalars['Float']['input']>>;
-  score_LT?: InputMaybe<Scalars['Float']['input']>;
-  score_LTE?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type IntAggregateSelectionNullable = {
@@ -2058,7 +2424,7 @@ export type LocationImpactAreaProjectsNodeAggregateSelection = {
   __typename?: 'LocationImpactAreaProjectsNodeAggregateSelection';
   context: StringAggregateSelectionNullable;
   description: StringAggregateSelectionNullable;
-  name: StringAggregateSelectionNullable;
+  name: StringAggregateSelectionNonNullable;
   questions: StringAggregateSelectionNullable;
   uniqueName: StringAggregateSelectionNonNullable;
 };
@@ -2732,6 +3098,9 @@ export type Project = {
   __typename?: 'Project';
   context: Scalars['String']['output'];
   employees?: Maybe<Scalars['Int']['output']>;
+  impactAreas: Array<ImpactArea>;
+  impactAreasAggregate?: Maybe<ProjectImpactAreaImpactAreasAggregationSelection>;
+  impactAreasConnection: ProjectImpactAreasConnection;
   impacts: Array<Impact>;
   impactsAggregate?: Maybe<ProjectImpactImpactsAggregationSelection>;
   impactsConnection: ProjectImpactsConnection;
@@ -2742,6 +3111,30 @@ export type Project = {
   problem: Scalars['String']['output'];
   solution: Scalars['String']['output'];
   uniqueName: Scalars['String']['output'];
+  verified: Scalars['Boolean']['output'];
+  website?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type ProjectImpactAreasArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<ImpactAreaOptions>;
+  where?: InputMaybe<ImpactAreaWhere>;
+};
+
+
+export type ProjectImpactAreasAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<ImpactAreaWhere>;
+};
+
+
+export type ProjectImpactAreasConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<ProjectImpactAreasConnectionSort>>;
+  where?: InputMaybe<ProjectImpactAreasConnectionWhere>;
 };
 
 
@@ -2797,15 +3190,17 @@ export type ProjectAggregateSelection = {
   problem: StringAggregateSelectionNonNullable;
   solution: StringAggregateSelectionNonNullable;
   uniqueName: StringAggregateSelectionNonNullable;
+  website: StringAggregateSelectionNullable;
 };
 
 export type ProjectConnectInput = {
+  impactAreas?: InputMaybe<Array<ProjectImpactAreasConnectFieldInput>>;
   impacts?: InputMaybe<Array<ProjectImpactsConnectFieldInput>>;
   locations?: InputMaybe<Array<ProjectLocationsConnectFieldInput>>;
 };
 
 export type ProjectConnectOrCreateInput = {
-  impacts?: InputMaybe<Array<ProjectImpactsConnectOrCreateFieldInput>>;
+  impactAreas?: InputMaybe<Array<ProjectImpactAreasConnectOrCreateFieldInput>>;
   locations?: InputMaybe<Array<ProjectLocationsConnectOrCreateFieldInput>>;
 };
 
@@ -2820,20 +3215,25 @@ export type ProjectConnectWhere = {
 export type ProjectCreateInput = {
   context: Scalars['String']['input'];
   employees?: InputMaybe<Scalars['Int']['input']>;
+  impactAreas?: InputMaybe<ProjectImpactAreasFieldInput>;
   impacts?: InputMaybe<ProjectImpactsFieldInput>;
   locations?: InputMaybe<ProjectLocationsFieldInput>;
   name: Scalars['String']['input'];
   problem: Scalars['String']['input'];
   solution: Scalars['String']['input'];
   uniqueName: Scalars['String']['input'];
+  verified: Scalars['Boolean']['input'];
+  website?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ProjectDeleteInput = {
+  impactAreas?: InputMaybe<Array<ProjectImpactAreasDeleteFieldInput>>;
   impacts?: InputMaybe<Array<ProjectImpactsDeleteFieldInput>>;
   locations?: InputMaybe<Array<ProjectLocationsDeleteFieldInput>>;
 };
 
 export type ProjectDisconnectInput = {
+  impactAreas?: InputMaybe<Array<ProjectImpactAreasDisconnectFieldInput>>;
   impacts?: InputMaybe<Array<ProjectImpactsDisconnectFieldInput>>;
   locations?: InputMaybe<Array<ProjectLocationsDisconnectFieldInput>>;
 };
@@ -2844,6 +3244,223 @@ export type ProjectEdge = {
   node: Project;
 };
 
+export type ProjectImpactAreaImpactAreasAggregationSelection = {
+  __typename?: 'ProjectImpactAreaImpactAreasAggregationSelection';
+  count: Scalars['Int']['output'];
+  edge?: Maybe<ProjectImpactAreaImpactAreasEdgeAggregateSelection>;
+  node?: Maybe<ProjectImpactAreaImpactAreasNodeAggregateSelection>;
+};
+
+export type ProjectImpactAreaImpactAreasEdgeAggregateSelection = {
+  __typename?: 'ProjectImpactAreaImpactAreasEdgeAggregateSelection';
+  description: StringAggregateSelectionNonNullable;
+};
+
+export type ProjectImpactAreaImpactAreasNodeAggregateSelection = {
+  __typename?: 'ProjectImpactAreaImpactAreasNodeAggregateSelection';
+  context: StringAggregateSelectionNullable;
+  description: StringAggregateSelectionNullable;
+  name: StringAggregateSelectionNonNullable;
+  questions: StringAggregateSelectionNullable;
+  uniqueName: StringAggregateSelectionNonNullable;
+};
+
+export type ProjectImpactAreasAggregateInput = {
+  AND?: InputMaybe<Array<ProjectImpactAreasAggregateInput>>;
+  NOT?: InputMaybe<ProjectImpactAreasAggregateInput>;
+  OR?: InputMaybe<Array<ProjectImpactAreasAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  edge?: InputMaybe<ProjectImpactAreasEdgeAggregationWhereInput>;
+  node?: InputMaybe<ProjectImpactAreasNodeAggregationWhereInput>;
+};
+
+export type ProjectImpactAreasConnectFieldInput = {
+  connect?: InputMaybe<Array<ImpactAreaConnectInput>>;
+  edge: ProjectImpactsCreateInput;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<ImpactAreaConnectWhere>;
+};
+
+export type ProjectImpactAreasConnectOrCreateFieldInput = {
+  onCreate: ProjectImpactAreasConnectOrCreateFieldInputOnCreate;
+  where: ImpactAreaConnectOrCreateWhere;
+};
+
+export type ProjectImpactAreasConnectOrCreateFieldInputOnCreate = {
+  edge: ProjectImpactsCreateInput;
+  node: ImpactAreaOnCreateInput;
+};
+
+export type ProjectImpactAreasConnection = {
+  __typename?: 'ProjectImpactAreasConnection';
+  edges: Array<ProjectImpactAreasRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type ProjectImpactAreasConnectionSort = {
+  edge?: InputMaybe<ProjectImpactsSort>;
+  node?: InputMaybe<ImpactAreaSort>;
+};
+
+export type ProjectImpactAreasConnectionWhere = {
+  AND?: InputMaybe<Array<ProjectImpactAreasConnectionWhere>>;
+  NOT?: InputMaybe<ProjectImpactAreasConnectionWhere>;
+  OR?: InputMaybe<Array<ProjectImpactAreasConnectionWhere>>;
+  edge?: InputMaybe<ProjectImpactsWhere>;
+  node?: InputMaybe<ImpactAreaWhere>;
+};
+
+export type ProjectImpactAreasCreateFieldInput = {
+  edge: ProjectImpactsCreateInput;
+  node: ImpactAreaCreateInput;
+};
+
+export type ProjectImpactAreasDeleteFieldInput = {
+  delete?: InputMaybe<ImpactAreaDeleteInput>;
+  where?: InputMaybe<ProjectImpactAreasConnectionWhere>;
+};
+
+export type ProjectImpactAreasDisconnectFieldInput = {
+  disconnect?: InputMaybe<ImpactAreaDisconnectInput>;
+  where?: InputMaybe<ProjectImpactAreasConnectionWhere>;
+};
+
+export type ProjectImpactAreasEdgeAggregationWhereInput = {
+  AND?: InputMaybe<Array<ProjectImpactAreasEdgeAggregationWhereInput>>;
+  NOT?: InputMaybe<ProjectImpactAreasEdgeAggregationWhereInput>;
+  OR?: InputMaybe<Array<ProjectImpactAreasEdgeAggregationWhereInput>>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type ProjectImpactAreasFieldInput = {
+  connect?: InputMaybe<Array<ProjectImpactAreasConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<ProjectImpactAreasConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<ProjectImpactAreasCreateFieldInput>>;
+};
+
+export type ProjectImpactAreasNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<ProjectImpactAreasNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<ProjectImpactAreasNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<ProjectImpactAreasNodeAggregationWhereInput>>;
+  context_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  context_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  context_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  context_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  context_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  context_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  context_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  context_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  context_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  context_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  context_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  questions_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  questions_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  questions_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  questions_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  questions_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  questions_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  questions_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  questions_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  questions_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  questions_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  questions_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  questions_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  questions_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  questions_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  questions_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  uniqueName_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  uniqueName_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  uniqueName_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  uniqueName_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  uniqueName_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  uniqueName_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type ProjectImpactAreasRelationship = ProjectImpacts & {
+  __typename?: 'ProjectImpactAreasRelationship';
+  cursor: Scalars['String']['output'];
+  description: Scalars['String']['output'];
+  node: ImpactArea;
+};
+
+export type ProjectImpactAreasUpdateConnectionInput = {
+  edge?: InputMaybe<ProjectImpactsUpdateInput>;
+  node?: InputMaybe<ImpactAreaUpdateInput>;
+};
+
+export type ProjectImpactAreasUpdateFieldInput = {
+  connect?: InputMaybe<Array<ProjectImpactAreasConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<ProjectImpactAreasConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<ProjectImpactAreasCreateFieldInput>>;
+  delete?: InputMaybe<Array<ProjectImpactAreasDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<ProjectImpactAreasDisconnectFieldInput>>;
+  update?: InputMaybe<ProjectImpactAreasUpdateConnectionInput>;
+  where?: InputMaybe<ProjectImpactAreasConnectionWhere>;
+};
+
 export type ProjectImpactImpactsAggregationSelection = {
   __typename?: 'ProjectImpactImpactsAggregationSelection';
   count: Scalars['Int']['output'];
@@ -2852,7 +3469,11 @@ export type ProjectImpactImpactsAggregationSelection = {
 
 export type ProjectImpactImpactsNodeAggregateSelection = {
   __typename?: 'ProjectImpactImpactsNodeAggregateSelection';
-  uniqueName: StringAggregateSelectionNonNullable;
+  name: StringAggregateSelectionNonNullable;
+};
+
+export type ProjectImpacts = {
+  description: Scalars['String']['output'];
 };
 
 export type ProjectImpactsAggregateInput = {
@@ -2872,15 +3493,6 @@ export type ProjectImpactsConnectFieldInput = {
   /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
   overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<ImpactConnectWhere>;
-};
-
-export type ProjectImpactsConnectOrCreateFieldInput = {
-  onCreate: ProjectImpactsConnectOrCreateFieldInputOnCreate;
-  where: ImpactConnectOrCreateWhere;
-};
-
-export type ProjectImpactsConnectOrCreateFieldInputOnCreate = {
-  node: ImpactOnCreateInput;
 };
 
 export type ProjectImpactsConnection = {
@@ -2905,6 +3517,10 @@ export type ProjectImpactsCreateFieldInput = {
   node: ImpactCreateInput;
 };
 
+export type ProjectImpactsCreateInput = {
+  description: Scalars['String']['input'];
+};
+
 export type ProjectImpactsDeleteFieldInput = {
   delete?: InputMaybe<ImpactDeleteInput>;
   where?: InputMaybe<ProjectImpactsConnectionWhere>;
@@ -2917,7 +3533,6 @@ export type ProjectImpactsDisconnectFieldInput = {
 
 export type ProjectImpactsFieldInput = {
   connect?: InputMaybe<Array<ProjectImpactsConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<ProjectImpactsConnectOrCreateFieldInput>>;
   create?: InputMaybe<Array<ProjectImpactsCreateFieldInput>>;
 };
 
@@ -2925,21 +3540,21 @@ export type ProjectImpactsNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<ProjectImpactsNodeAggregationWhereInput>>;
   NOT?: InputMaybe<ProjectImpactsNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<ProjectImpactsNodeAggregationWhereInput>>;
-  uniqueName_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
-  uniqueName_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
-  uniqueName_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
-  uniqueName_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
-  uniqueName_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
-  uniqueName_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
-  uniqueName_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
-  uniqueName_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
-  uniqueName_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
-  uniqueName_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
-  uniqueName_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
-  uniqueName_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
-  uniqueName_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
-  uniqueName_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
-  uniqueName_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type ProjectImpactsRelationship = {
@@ -2948,18 +3563,36 @@ export type ProjectImpactsRelationship = {
   node: Impact;
 };
 
+export type ProjectImpactsSort = {
+  description?: InputMaybe<SortDirection>;
+};
+
 export type ProjectImpactsUpdateConnectionInput = {
   node?: InputMaybe<ImpactUpdateInput>;
 };
 
 export type ProjectImpactsUpdateFieldInput = {
   connect?: InputMaybe<Array<ProjectImpactsConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<ProjectImpactsConnectOrCreateFieldInput>>;
   create?: InputMaybe<Array<ProjectImpactsCreateFieldInput>>;
   delete?: InputMaybe<Array<ProjectImpactsDeleteFieldInput>>;
   disconnect?: InputMaybe<Array<ProjectImpactsDisconnectFieldInput>>;
   update?: InputMaybe<ProjectImpactsUpdateConnectionInput>;
   where?: InputMaybe<ProjectImpactsConnectionWhere>;
+};
+
+export type ProjectImpactsUpdateInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ProjectImpactsWhere = {
+  AND?: InputMaybe<Array<ProjectImpactsWhere>>;
+  NOT?: InputMaybe<ProjectImpactsWhere>;
+  OR?: InputMaybe<Array<ProjectImpactsWhere>>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  description_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  description_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  description_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  description_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ProjectLocationLocationsAggregationSelection = {
@@ -3119,6 +3752,8 @@ export type ProjectOnCreateInput = {
   problem: Scalars['String']['input'];
   solution: Scalars['String']['input'];
   uniqueName: Scalars['String']['input'];
+  verified: Scalars['Boolean']['input'];
+  website?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ProjectOptions = {
@@ -3129,6 +3764,7 @@ export type ProjectOptions = {
 };
 
 export type ProjectRelationInput = {
+  impactAreas?: InputMaybe<Array<ProjectImpactAreasCreateFieldInput>>;
   impacts?: InputMaybe<Array<ProjectImpactsCreateFieldInput>>;
   locations?: InputMaybe<Array<ProjectLocationsCreateFieldInput>>;
 };
@@ -3141,10 +3777,13 @@ export type ProjectSort = {
   problem?: InputMaybe<SortDirection>;
   solution?: InputMaybe<SortDirection>;
   uniqueName?: InputMaybe<SortDirection>;
+  verified?: InputMaybe<SortDirection>;
+  website?: InputMaybe<SortDirection>;
 };
 
 export type ProjectUniqueWhere = {
   uniqueName?: InputMaybe<Scalars['String']['input']>;
+  website?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ProjectUpdateInput = {
@@ -3152,12 +3791,15 @@ export type ProjectUpdateInput = {
   employees?: InputMaybe<Scalars['Int']['input']>;
   employees_DECREMENT?: InputMaybe<Scalars['Int']['input']>;
   employees_INCREMENT?: InputMaybe<Scalars['Int']['input']>;
+  impactAreas?: InputMaybe<Array<ProjectImpactAreasUpdateFieldInput>>;
   impacts?: InputMaybe<Array<ProjectImpactsUpdateFieldInput>>;
   locations?: InputMaybe<Array<ProjectLocationsUpdateFieldInput>>;
   name?: InputMaybe<Scalars['String']['input']>;
   problem?: InputMaybe<Scalars['String']['input']>;
   solution?: InputMaybe<Scalars['String']['input']>;
   uniqueName?: InputMaybe<Scalars['String']['input']>;
+  verified?: InputMaybe<Scalars['Boolean']['input']>;
+  website?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ProjectWhere = {
@@ -3175,6 +3817,23 @@ export type ProjectWhere = {
   employees_IN?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
   employees_LT?: InputMaybe<Scalars['Int']['input']>;
   employees_LTE?: InputMaybe<Scalars['Int']['input']>;
+  impactAreasAggregate?: InputMaybe<ProjectImpactAreasAggregateInput>;
+  /** Return Projects where all of the related ProjectImpactAreasConnections match this filter */
+  impactAreasConnection_ALL?: InputMaybe<ProjectImpactAreasConnectionWhere>;
+  /** Return Projects where none of the related ProjectImpactAreasConnections match this filter */
+  impactAreasConnection_NONE?: InputMaybe<ProjectImpactAreasConnectionWhere>;
+  /** Return Projects where one of the related ProjectImpactAreasConnections match this filter */
+  impactAreasConnection_SINGLE?: InputMaybe<ProjectImpactAreasConnectionWhere>;
+  /** Return Projects where some of the related ProjectImpactAreasConnections match this filter */
+  impactAreasConnection_SOME?: InputMaybe<ProjectImpactAreasConnectionWhere>;
+  /** Return Projects where all of the related ImpactAreas match this filter */
+  impactAreas_ALL?: InputMaybe<ImpactAreaWhere>;
+  /** Return Projects where none of the related ImpactAreas match this filter */
+  impactAreas_NONE?: InputMaybe<ImpactAreaWhere>;
+  /** Return Projects where one of the related ImpactAreas match this filter */
+  impactAreas_SINGLE?: InputMaybe<ImpactAreaWhere>;
+  /** Return Projects where some of the related ImpactAreas match this filter */
+  impactAreas_SOME?: InputMaybe<ImpactAreaWhere>;
   impactsAggregate?: InputMaybe<ProjectImpactsAggregateInput>;
   /** Return Projects where all of the related ProjectImpactsConnections match this filter */
   impactsConnection_ALL?: InputMaybe<ProjectImpactsConnectionWhere>;
@@ -3229,6 +3888,12 @@ export type ProjectWhere = {
   uniqueName_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
   uniqueName_IN?: InputMaybe<Array<Scalars['String']['input']>>;
   uniqueName_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  verified?: InputMaybe<Scalars['Boolean']['input']>;
+  website?: InputMaybe<Scalars['String']['input']>;
+  website_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  website_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  website_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  website_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ProjectsConnection = {
@@ -3374,11 +4039,6 @@ export type QueryProjectsConnectionArgs = {
   where?: InputMaybe<ProjectWhere>;
 };
 
-export type QueryOptions = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  offset?: InputMaybe<Scalars['Int']['input']>;
-};
-
 export enum SortDirection {
   /** Sort by field values in ascending order. */
   Asc = 'ASC',
@@ -3443,11 +4103,13 @@ export type UpdateProjectsMutationResponse = {
   projects: Array<Project>;
 };
 
-export type ImpactAreaDetailsFragment = { __typename?: 'ImpactArea', name?: string | null, description?: string | null, questions?: string | null, context?: string | null } & { ' $fragmentName'?: 'ImpactAreaDetailsFragment' };
+export type ImpactDetailsFragment = { __typename?: 'Impact', verified: boolean, name: string } & { ' $fragmentName'?: 'ImpactDetailsFragment' };
+
+export type ImpactAreaDetailsFragment = { __typename?: 'ImpactArea', verified: boolean, name: string, description?: string | null, questions?: string | null, context?: string | null } & { ' $fragmentName'?: 'ImpactAreaDetailsFragment' };
 
 export type LocationDetailsFragment = { __typename?: 'Location', city: string, nation: NationCode, state?: string | null } & { ' $fragmentName'?: 'LocationDetailsFragment' };
 
-export type ProjectDetailsFragment = { __typename?: 'Project', name: string, employees?: number | null, problem: string, solution: string, context: string } & { ' $fragmentName'?: 'ProjectDetailsFragment' };
+export type ProjectDetailsFragment = { __typename?: 'Project', website?: string | null, verified: boolean, name: string, problem: string, solution: string, employees?: number | null, context: string } & { ' $fragmentName'?: 'ProjectDetailsFragment' };
 
 export type CreateImpactCategoriesMutationVariables = Exact<{
   input: Array<ImpactCategoryCreateInput> | ImpactCategoryCreateInput;
@@ -3458,18 +4120,46 @@ export type CreateImpactCategoriesMutation = { __typename?: 'Mutation', createIm
 
 export type CreateProjectMutationVariables = Exact<{
   input: Array<ProjectCreateInput> | ProjectCreateInput;
+  includeProjectDetails: Scalars['Boolean']['input'];
+  includeLocations: Scalars['Boolean']['input'];
 }>;
 
 
-export type CreateProjectMutation = { __typename?: 'Mutation', createProjects: { __typename?: 'CreateProjectsMutationResponse', projects: Array<{ __typename?: 'Project', name: string, uniqueName: string, solution: string, problem: string, locations: Array<{ __typename?: 'Location', uniqueName: string }> }> } };
+export type CreateProjectMutation = { __typename?: 'Mutation', createProjects: { __typename?: 'CreateProjectsMutationResponse', projects: Array<(
+      { __typename?: 'Project', uniqueName: string, locations?: Array<(
+        { __typename?: 'Location', uniqueName: string }
+        & { ' $fragmentRefs'?: { 'LocationDetailsFragment': LocationDetailsFragment } }
+      )> }
+      & { ' $fragmentRefs'?: { 'ProjectDetailsFragment': ProjectDetailsFragment } }
+    )> } };
 
-export type UpdateProjectImpactAreasMutationVariables = Exact<{
+export type UpdateProjectsMutationVariables = Exact<{
   where?: InputMaybe<ProjectWhere>;
   connectOrCreate?: InputMaybe<ProjectConnectOrCreateInput>;
+  create?: InputMaybe<ProjectRelationInput>;
+  includeImpacts: Scalars['Boolean']['input'];
+  includeImpactAreas: Scalars['Boolean']['input'];
+  includeLocations: Scalars['Boolean']['input'];
+  includeInfo: Scalars['Boolean']['input'];
 }>;
 
 
-export type UpdateProjectImpactAreasMutation = { __typename?: 'Mutation', updateProjects: { __typename?: 'UpdateProjectsMutationResponse', projects: Array<{ __typename?: 'Project', uniqueName: string }> } };
+export type UpdateProjectsMutation = { __typename?: 'Mutation', updateProjects: { __typename?: 'UpdateProjectsMutationResponse', projects: Array<(
+      { __typename?: 'Project', uniqueName: string, impactAreasConnection?: { __typename?: 'ProjectImpactAreasConnection', edges: Array<{ __typename?: 'ProjectImpactAreasRelationship', description: string, node: (
+            { __typename?: 'ImpactArea', uniqueName: string }
+            & { ' $fragmentRefs'?: { 'ImpactAreaDetailsFragment': ImpactAreaDetailsFragment } }
+          ) }> }, impactsConnection?: { __typename?: 'ProjectImpactsConnection', edges: Array<{ __typename?: 'ProjectImpactsRelationship', node: (
+            { __typename?: 'Impact', impactAreaConnection: { __typename?: 'ImpactImpactAreaConnection', edges: Array<{ __typename?: 'ImpactImpactAreaRelationship', score: number, reason: string, aspect: string, node: (
+                  { __typename?: 'ImpactArea', uniqueName: string }
+                  & { ' $fragmentRefs'?: { 'ImpactAreaDetailsFragment': ImpactAreaDetailsFragment } }
+                ) }> } }
+            & { ' $fragmentRefs'?: { 'ImpactDetailsFragment': ImpactDetailsFragment } }
+          ) }> }, locationsConnection?: { __typename?: 'ProjectLocationsConnection', edges: Array<{ __typename?: 'ProjectLocationsRelationship', node: (
+            { __typename?: 'Location', uniqueName: string }
+            & { ' $fragmentRefs'?: { 'LocationDetailsFragment': LocationDetailsFragment } }
+          ) }> } }
+      & { ' $fragmentRefs'?: { 'ProjectDetailsFragment': ProjectDetailsFragment } }
+    )>, info?: { __typename?: 'UpdateInfo', nodesCreated: number, nodesDeleted: number, relationshipsCreated: number, relationshipsDeleted: number } } };
 
 export type GetImpactAreasQueryVariables = Exact<{
   where?: InputMaybe<ImpactAreaWhere>;
@@ -3490,16 +4180,26 @@ export type GetProjectsQueryVariables = Exact<{
 }>;
 
 
-export type GetProjectsQuery = { __typename?: 'Query', projects: Array<{ __typename?: 'Project', uniqueName: string, name: string, employees?: number | null, problem: string, solution: string, context: string, locations?: Array<(
+export type GetProjectsQuery = { __typename?: 'Query', projects: Array<(
+    { __typename?: 'Project', locations?: Array<(
       { __typename?: 'Location', uniqueName: string }
       & { ' $fragmentRefs'?: { 'LocationDetailsFragment': LocationDetailsFragment } }
-    )>, impacts?: Array<{ __typename?: 'Impact', verified: boolean, uniqueName: string, impactableConnection: { __typename?: 'ImpactImpactableConnection', edges: Array<{ __typename?: 'ImpactImpactableRelationship', score: number, reason: string, aspect: string, node: { __typename?: 'Impact', uniqueName: string, verified: boolean } | { __typename?: 'ImpactArea', uniqueName: string, verified: boolean } }> } }> }> };
+    )>, impacts?: Array<(
+      { __typename?: 'Impact', impactAreaConnection: { __typename?: 'ImpactImpactAreaConnection', edges: Array<{ __typename?: 'ImpactImpactAreaRelationship', score: number, reason: string, aspect: string, node: (
+            { __typename?: 'ImpactArea' }
+            & { ' $fragmentRefs'?: { 'ImpactAreaDetailsFragment': ImpactAreaDetailsFragment } }
+          ) }> } }
+      & { ' $fragmentRefs'?: { 'ImpactDetailsFragment': ImpactDetailsFragment } }
+    )> }
+    & { ' $fragmentRefs'?: { 'ProjectDetailsFragment': ProjectDetailsFragment } }
+  )> };
 
-export const ImpactAreaDetailsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImpactAreaDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImpactArea"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"questions"}},{"kind":"Field","name":{"kind":"Name","value":"context"}}]}}]} as unknown as DocumentNode<ImpactAreaDetailsFragment, unknown>;
+export const ImpactDetailsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImpactDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Impact"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]} as unknown as DocumentNode<ImpactDetailsFragment, unknown>;
+export const ImpactAreaDetailsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImpactAreaDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImpactArea"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"questions"}},{"kind":"Field","name":{"kind":"Name","value":"context"}}]}}]} as unknown as DocumentNode<ImpactAreaDetailsFragment, unknown>;
 export const LocationDetailsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LocationDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Location"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"nation"}},{"kind":"Field","name":{"kind":"Name","value":"state"}}]}}]} as unknown as DocumentNode<LocationDetailsFragment, unknown>;
-export const ProjectDetailsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProjectDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Project"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"employees"}},{"kind":"Field","name":{"kind":"Name","value":"problem"}},{"kind":"Field","name":{"kind":"Name","value":"solution"}},{"kind":"Field","name":{"kind":"Name","value":"context"}}]}}]} as unknown as DocumentNode<ProjectDetailsFragment, unknown>;
+export const ProjectDetailsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProjectDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Project"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"problem"}},{"kind":"Field","name":{"kind":"Name","value":"solution"}},{"kind":"Field","name":{"kind":"Name","value":"employees"}},{"kind":"Field","name":{"kind":"Name","value":"context"}}]}}]} as unknown as DocumentNode<ProjectDetailsFragment, unknown>;
 export const CreateImpactCategoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateImpactCategories"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ImpactCategoryCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createImpactCategories"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"impactCategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"doughnutCategory"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateImpactCategoriesMutation, CreateImpactCategoriesMutationVariables>;
-export const CreateProjectDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateProject"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createProjects"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"locations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"Field","name":{"kind":"Name","value":"solution"}},{"kind":"Field","name":{"kind":"Name","value":"problem"}}]}}]}}]}}]} as unknown as DocumentNode<CreateProjectMutation, CreateProjectMutationVariables>;
-export const UpdateProjectImpactAreasDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateProjectImpactAreas"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectConnectOrCreateInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProjects"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"connectOrCreate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}}]}}]}}]}}]} as unknown as DocumentNode<UpdateProjectImpactAreasMutation, UpdateProjectImpactAreasMutationVariables>;
-export const GetImpactAreasDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetImpactAreas"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ImpactAreaWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"includeDetails"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"impactAreas"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImpactAreaDetails"},"directives":[{"kind":"Directive","name":{"kind":"Name","value":"include"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"if"},"value":{"kind":"Variable","name":{"kind":"Name","value":"includeDetails"}}}]}]}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImpactAreaDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImpactArea"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"questions"}},{"kind":"Field","name":{"kind":"Name","value":"context"}}]}}]} as unknown as DocumentNode<GetImpactAreasQuery, GetImpactAreasQueryVariables>;
-export const GetProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetProjects"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"impactWhere"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ImpactWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"includeLocations"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"includeImpacts"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"employees"}},{"kind":"Field","name":{"kind":"Name","value":"problem"}},{"kind":"Field","name":{"kind":"Name","value":"solution"}},{"kind":"Field","name":{"kind":"Name","value":"context"}},{"kind":"Field","name":{"kind":"Name","value":"locations"},"directives":[{"kind":"Directive","name":{"kind":"Name","value":"include"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"if"},"value":{"kind":"Variable","name":{"kind":"Name","value":"includeLocations"}}}]}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LocationDetails"}}]}},{"kind":"Field","name":{"kind":"Name","value":"impacts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"impactWhere"}}}],"directives":[{"kind":"Directive","name":{"kind":"Name","value":"include"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"if"},"value":{"kind":"Variable","name":{"kind":"Name","value":"includeImpacts"}}}]}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"Field","name":{"kind":"Name","value":"impactableConnection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"score"}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"aspect"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Impact"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"Field","name":{"kind":"Name","value":"verified"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImpactArea"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"Field","name":{"kind":"Name","value":"verified"}}]}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LocationDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Location"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"nation"}},{"kind":"Field","name":{"kind":"Name","value":"state"}}]}}]} as unknown as DocumentNode<GetProjectsQuery, GetProjectsQueryVariables>;
+export const CreateProjectDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateProject"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectCreateInput"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"includeProjectDetails"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"includeLocations"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createProjects"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProjectDetails"},"directives":[{"kind":"Directive","name":{"kind":"Name","value":"include"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"if"},"value":{"kind":"Variable","name":{"kind":"Name","value":"includeProjectDetails"}}}]}]},{"kind":"Field","name":{"kind":"Name","value":"locations"},"directives":[{"kind":"Directive","name":{"kind":"Name","value":"include"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"if"},"value":{"kind":"Variable","name":{"kind":"Name","value":"includeLocations"}}}]}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LocationDetails"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProjectDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Project"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"problem"}},{"kind":"Field","name":{"kind":"Name","value":"solution"}},{"kind":"Field","name":{"kind":"Name","value":"employees"}},{"kind":"Field","name":{"kind":"Name","value":"context"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LocationDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Location"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"nation"}},{"kind":"Field","name":{"kind":"Name","value":"state"}}]}}]} as unknown as DocumentNode<CreateProjectMutation, CreateProjectMutationVariables>;
+export const UpdateProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateProjects"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectConnectOrCreateInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"create"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectRelationInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"includeImpacts"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"includeImpactAreas"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"includeLocations"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"includeInfo"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProjects"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"connectOrCreate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}}},{"kind":"Argument","name":{"kind":"Name","value":"create"},"value":{"kind":"Variable","name":{"kind":"Name","value":"create"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProjectDetails"}},{"kind":"Field","name":{"kind":"Name","value":"impactAreasConnection"},"directives":[{"kind":"Directive","name":{"kind":"Name","value":"include"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"if"},"value":{"kind":"Variable","name":{"kind":"Name","value":"includeImpactAreas"}}}]}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImpactAreaDetails"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"impactsConnection"},"directives":[{"kind":"Directive","name":{"kind":"Name","value":"include"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"if"},"value":{"kind":"Variable","name":{"kind":"Name","value":"includeImpacts"}}}]}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImpactDetails"}},{"kind":"Field","name":{"kind":"Name","value":"impactAreaConnection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"score"}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"aspect"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImpactAreaDetails"}}]}}]}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"locationsConnection"},"directives":[{"kind":"Directive","name":{"kind":"Name","value":"include"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"if"},"value":{"kind":"Variable","name":{"kind":"Name","value":"includeLocations"}}}]}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LocationDetails"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"info"},"directives":[{"kind":"Directive","name":{"kind":"Name","value":"include"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"if"},"value":{"kind":"Variable","name":{"kind":"Name","value":"includeInfo"}}}]}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodesCreated"}},{"kind":"Field","name":{"kind":"Name","value":"nodesDeleted"}},{"kind":"Field","name":{"kind":"Name","value":"relationshipsCreated"}},{"kind":"Field","name":{"kind":"Name","value":"relationshipsDeleted"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProjectDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Project"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"problem"}},{"kind":"Field","name":{"kind":"Name","value":"solution"}},{"kind":"Field","name":{"kind":"Name","value":"employees"}},{"kind":"Field","name":{"kind":"Name","value":"context"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImpactAreaDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImpactArea"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"questions"}},{"kind":"Field","name":{"kind":"Name","value":"context"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImpactDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Impact"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LocationDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Location"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"nation"}},{"kind":"Field","name":{"kind":"Name","value":"state"}}]}}]} as unknown as DocumentNode<UpdateProjectsMutation, UpdateProjectsMutationVariables>;
+export const GetImpactAreasDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetImpactAreas"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ImpactAreaWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"includeDetails"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"impactAreas"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImpactAreaDetails"},"directives":[{"kind":"Directive","name":{"kind":"Name","value":"include"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"if"},"value":{"kind":"Variable","name":{"kind":"Name","value":"includeDetails"}}}]}]}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImpactAreaDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImpactArea"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"questions"}},{"kind":"Field","name":{"kind":"Name","value":"context"}}]}}]} as unknown as DocumentNode<GetImpactAreasQuery, GetImpactAreasQueryVariables>;
+export const GetProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetProjects"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"impactWhere"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ImpactWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"includeLocations"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"includeImpacts"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProjectDetails"}},{"kind":"Field","name":{"kind":"Name","value":"locations"},"directives":[{"kind":"Directive","name":{"kind":"Name","value":"include"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"if"},"value":{"kind":"Variable","name":{"kind":"Name","value":"includeLocations"}}}]}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uniqueName"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LocationDetails"}}]}},{"kind":"Field","name":{"kind":"Name","value":"impacts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"impactWhere"}}}],"directives":[{"kind":"Directive","name":{"kind":"Name","value":"include"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"if"},"value":{"kind":"Variable","name":{"kind":"Name","value":"includeImpacts"}}}]}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImpactDetails"}},{"kind":"Field","name":{"kind":"Name","value":"impactAreaConnection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"score"}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"aspect"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImpactAreaDetails"}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProjectDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Project"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"problem"}},{"kind":"Field","name":{"kind":"Name","value":"solution"}},{"kind":"Field","name":{"kind":"Name","value":"employees"}},{"kind":"Field","name":{"kind":"Name","value":"context"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LocationDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Location"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"nation"}},{"kind":"Field","name":{"kind":"Name","value":"state"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImpactDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Impact"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImpactAreaDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImpactArea"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verified"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"questions"}},{"kind":"Field","name":{"kind":"Name","value":"context"}}]}}]} as unknown as DocumentNode<GetProjectsQuery, GetProjectsQueryVariables>;

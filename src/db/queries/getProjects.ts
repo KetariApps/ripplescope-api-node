@@ -12,33 +12,20 @@ export const getProjects = async (
 export const getProjectsQuery = gql(`
 query GetProjects($where: ProjectWhere, $impactWhere: ImpactWhere, $includeLocations: Boolean!, $includeImpacts: Boolean!) {
   projects(where: $where) {
-    uniqueName
-    name
-    employees
-    problem
-    solution
-    context
+    ...ProjectDetails
     locations @include(if: $includeLocations) {
       uniqueName
       ...LocationDetails
     }
     impacts(where: $impactWhere) @include(if: $includeImpacts) {
-      verified
-      uniqueName
-      impactableConnection {
+      ...ImpactDetails
+      impactAreaConnection {
         edges {
           score
           reason
           aspect
           node {
-            ... on Impact {
-              uniqueName
-              verified
-            }
-            ... on ImpactArea {
-              uniqueName
-              verified
-            }
+            ...ImpactAreaDetails
           }
         }
       }

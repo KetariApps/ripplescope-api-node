@@ -4,7 +4,11 @@ import { ProjectCreateInput } from "../../__generated__/graphql.js";
 
 export const createProject = async (
   client: GraphQLClient,
-  variables: { input: ProjectCreateInput[] }
+  variables: {
+    input: ProjectCreateInput[];
+    includeProjectDetails: boolean;
+    includeLocations: boolean;
+  }
 ) => {
   const results = await client.request(createProjectMutation, variables);
   return results;
@@ -12,16 +16,15 @@ export const createProject = async (
 
 // todo: add score to projectsConnection
 const createProjectMutation = gql(`
-  mutation CreateProject($input: [ProjectCreateInput!]!) {
+  mutation CreateProject($input: [ProjectCreateInput!]!, $includeProjectDetails: Boolean!, $includeLocations: Boolean!) {
     createProjects(input: $input) {
       projects {
-        locations {
-          uniqueName
-        }
-        name
         uniqueName
-        solution
-        problem
+        ...ProjectDetails @include (if: $includeProjectDetails)
+        locations @include (if: $includeLocations) {
+          uniqueName
+          ...LocationDetails
+        }
       }
     }
   }

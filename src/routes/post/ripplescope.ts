@@ -20,7 +20,7 @@ export default async function ripplescope(
       where: {
         uniqueName: dbName(categorizationRequest.project.name),
       },
-      includeImpactAreasConnection: false,
+      includeImpacts: false,
       includeLocations: false,
     });
     if (getProjectsQuery.projects.length === 0) {

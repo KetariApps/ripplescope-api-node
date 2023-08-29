@@ -1,7 +1,14 @@
 import OpenAI from "openai";
-import { CategorizationRequestProject } from "../../../types.js";
+import {
+  LocationDetailsFragment,
+  ProjectDetailsFragment,
+} from "../../../__generated__/graphql.js";
 
-const userPrompt = (project: CategorizationRequestProject) => {
+const userPrompt = (
+  project: ProjectDetailsFragment & {
+    locations: readonly LocationDetailsFragment[];
+  }
+) => {
   const message: OpenAI.Chat.CreateChatCompletionRequestMessage = {
     role: "user",
     content:
@@ -17,11 +24,9 @@ const userPrompt = (project: CategorizationRequestProject) => {
         .join(", ")}\nProblem: ${project.problem}\nSolution: ${
         project.solution
       }\n\n\n` +
-      "Return a JSON list of impact areas the project addresses." +
-      "An impact area returned in the JSON list must be present in the IMPACT AREAS list." +
-      "An impact area returned in the JSON list may be directly stated in the project details or logically implied by the project details but not directly stated." +
-      "An impact area returned in the JSON list may be beneficial or detrimental." +
-      "For example, projects may have unforseen impact that was stated in their project details because of the geo-political location in which the project is taking place.",
+      "Using the provided IMPACT AREAS list, return a JSON list of impact areas where the project has a positive or negative impact." +
+      "A project's impact areas may be tangential to the core solution of the project." +
+      "As an example of this type of relationship is a project that requires workers. That project has a tangential impact on the local economy, although economic stimulation may not be an expressed purpose of the project.",
   };
 
   return message;
