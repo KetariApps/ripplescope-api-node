@@ -15,7 +15,8 @@
     "watch": "graphql-codegen -w",
     "codegen": "graphql-codegen --config codegen.ts",
     "insert-impacts": "GRAPH_URI='http://localhost:4100/graphql' node build/db/insertAllImpactAreas.js",
-    "insert-single-project": "cd test && ./project.sh"
+    "insert-single-project": "cd test && ./project.sh",
+    "insert-project-list": "cd test && ./project-list.sh"
   },
   "author": "Zach Garrett",
   "license": "ISC",
