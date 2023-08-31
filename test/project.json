@@ -1,0 +1,17 @@
+{
+  "Projects": [
+    {
+      "name": "Urbyn",
+      "locations": [
+        {
+          "nation": "FRA",
+          "city": "Paris"
+        }
+      ],
+      "problem": "Sustainable management of business waste in France.",
+      "solution": "Analyze waste production, find recovery solutions with service providers, offer sorting systems, assist with waste collection, provide operational support.",
+      "employees": 31,
+      "context": "Offers administrative monitoring and continuous optimization of services for waste management."
+    }
+  ]
+}

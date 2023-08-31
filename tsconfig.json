@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "moduleResolution": "node16",
+    "module": "node16",
+    "target": "ES2022",
     "lib": ["esnext"],
     "types": ["node"],
     "allowJs": true,
@@ -10,8 +12,6 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "outDir": "build",

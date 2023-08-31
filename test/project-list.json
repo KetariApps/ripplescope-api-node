@@ -1,0 +1,97 @@
+{
+  "Projects": [
+    {
+      "name": "Universe Energy Inc.",
+      "locations": [
+        {
+          "nation": "USA",
+          "city": "Los Angeles",
+          "state": "California"
+        }
+      ],
+      "problem": "Batteries are challenging to reuse due to expensive shipping, non-standard testing, and dangerous manual disassembly.",
+      "solution": "Shipping used batteries, automated testing, and robotic disassembly at reduced cost. Repurpose batteries for cheap grid storage or raw materials.",
+      "employees": 11,
+      "context": "Vision of becoming the largest manufacturer of EV batteries from used batteries to reduce mining, manufacturing, and emissions."
+    },
+    {
+      "name": "Urbyn",
+      "locations": [
+        {
+          "nation": "FRA",
+          "city": "Paris"
+        }
+      ],
+      "problem": "Sustainable management of business waste in France.",
+      "solution": "Analyze waste production, find recovery solutions with service providers, offer sorting systems, assist with waste collection, provide operational support.",
+      "employees": 31,
+      "context": "Offers administrative monitoring and continuous optimization of services for waste management."
+    },
+    {
+      "name": "RAIKU",
+      "locations": [
+        {
+          "nation": "EST",
+          "city": "Tallinn"
+        }
+      ],
+      "problem": "Single-use plastic packaging.",
+      "solution": "RAIKU wrap, a natural and compostable alternative to plastic bubble wrap and packaging filling, with lower environmental footprint.",
+      "employees": 8,
+      "context": "Requires significantly less resources compared to traditional packaging materials."
+    },
+    {
+      "name": "sensand",
+      "locations": [
+        {
+          "nation": "AUS",
+          "city": "Melbourne"
+        }
+      ],
+      "problem": "Collecting data for carbon credit creation and crop optimization.",
+      "solution": "Digital agriculture ecosystem integrating smart farming technologies, transparent carbon credit trading, and MRV land management.",
+      "employees": 24,
+      "context": "Provides comprehensive digital platform for agriculture, carbon projects, and technology providers."
+    },
+    {
+      "name": "Allye",
+      "locations": [
+        {
+          "nation": "GBR",
+          "city": "London"
+        }
+      ],
+      "problem": "Providing cheaper and cleaner energy to businesses and homes.",
+      "solution": "Distributed energy storage using smart battery technology, partnering with electricity networks to decarbonize the grid.",
+      "employees": 11,
+      "context": "Batteries are self-learning and intelligently managed via the cloud for optimal performance and energy cost savings."
+    },
+    {
+      "name": "dClimate",
+      "locations": [
+        {
+          "nation": "USA",
+          "city": "New York",
+          "state": "NY"
+        }
+      ],
+      "problem": "Standardizing, monetizing, and distributing climate data and forecasts.",
+      "solution": "Decentralized marketplace connecting climate data providers with consumers, promoting accessibility and reliability.",
+      "employees": 24,
+      "context": "Employs a scoring system for data reliability, enhancing transparency and ease of data sharing."
+    },
+    {
+      "name": "Forum for African Women Educationalists",
+      "locations": [
+        {
+          "nation": "KEN",
+          "city": "Nairobi"
+        }
+      ],
+      "problem": "Ensuring quality education and equal opportunities for Kenyan girls.",
+      "solution": "Collaborates with Ministries of Education and community structures for policy and institutional change in education.",
+      "employees": 69,
+      "context": "Education for girls and women leads to various societal benefits including health, economic growth, and governance improvement."
+    }
+  ]
+}

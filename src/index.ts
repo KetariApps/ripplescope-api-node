@@ -1,84 +1,52 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
-import { Worker } from "worker_threads";
-import { v4 as uuid } from "uuid";
-import { RipplescopeWorkerData } from "./workers/ripplescope.js";
+// import neo4j, { Driver } from "neo4j-driver";
+import { GraphQLClient } from "graphql-request";
+import ripplescope from "./routes/post/ripplescope.js";
 
 //// env stuff
 dotenv.config();
-const { PORT } = process.env;
+const { GRAPH_URI, PORT, NEO_URI, NEO_USER, NEO_PASS, OPENAI_API_KEY } =
+  process.env;
 
-const app = express();
-app.use(cors());
+if (
+  GRAPH_URI === undefined ||
+  NEO_URI === undefined ||
+  NEO_USER === undefined ||
+  NEO_PASS === undefined ||
+  PORT === undefined ||
+  OPENAI_API_KEY === undefined
+) {
+  console.error("undefined environment variables");
+} else {
+  // let driver: Driver;
+  const client = new GraphQLClient(GRAPH_URI);
+  try {
+    // connect to the neo4j instance
+    // driver = neo4j.driver(NEO_URI, neo4j.auth.basic(NEO_USER, NEO_PASS));
+    // const serverInfo = await driver.getServerInfo();
+    // console.log("Neo4j connection established");
+    // console.log(serverInfo);
 
-// Enable parsing of request bodies
-app.use(express.json());
+    // configure the express server
+    const app = express();
+    const corsConfig = {
+      origin: "*",
+      methods: ["GET", "POST", "PUT", "DELETE"],
+    };
+    app.use(cors(corsConfig));
+    app.options("*", cors(corsConfig));
+    app.use(express.json());
 
-const workers: Map<string, Worker> = new Map();
+    // set up the routes
+    app.post("/ripplescope", (req, res) => ripplescope(req, res, client));
 
-// SSE endpoint
-// stream results to specific users
-app.get("/sse", (req: Request, res: Response) => {
-  const streamId = req.query.streamId as string;
-  const worker = workers.get(streamId);
-
-  if (worker === undefined) {
-    res.status(404).send("Error locating worker");
-    return;
+    // Start the server
+    app.listen(PORT, () => {
+      console.log(`Server listening on port ${PORT}`);
+    });
+  } catch (err) {
+    console.log(err);
   }
-
-  res.setHeader("Content-Type", "text/event-stream");
-  res.setHeader("Cache-Control", "no-cache");
-  res.setHeader("Connection", "keep-alive");
-  res.setHeader("Access-Control-Allow-Origin", "*");
-
-  worker.on("message", (message: string) => {
-    if (message === "done") {
-      workers.delete(streamId);
-      res.end();
-    } else if (message === "error") {
-      console.error("Error from worker");
-    } else {
-      res.write(`data: ${message}\n\n`);
-    }
-  });
-});
-
-// ripplescope endpoint
-app.post("/ripplescope", (req: Request, res: Response) => {
-  res.setHeader("Content-Type", "text/event-stream");
-  res.setHeader("Cache-Control", "no-cache");
-  res.setHeader("Connection", "keep-alive");
-  res.setHeader("Access-Control-Allow-Origin", "*");
-
-  const content = req.body.message;
-  const streamId = uuid();
-  const workerData: RipplescopeWorkerData = {
-    streamId,
-    content,
-  };
-  const worker = new Worker("./build/workers/ripplescope.js", {
-    workerData,
-  });
-
-  workers.set(streamId, worker);
-  res.write(JSON.stringify({ streamId }), () => {
-    res.end();
-  });
-  worker.on("message", (message: string) => {
-    if (message === "done") {
-      workers.delete(streamId);
-      res.end();
-    } else if (message === "error") {
-      console.error("Error from worker");
-    } else {
-      res.write(`data: ${message}\n\n`);
-    }
-  });
-});
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+}

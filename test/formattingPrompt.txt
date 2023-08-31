@@ -1,0 +1,8 @@
+format this list into a a JSON object with this shape:  {Projects: {
+    name: string;
+    locations: {nation: NationCode, city: string, state?:string}[];
+    problem: string (phrase as a problem statement);
+    solution: string (phrase as a solution statement);
+    employees?: int
+    context: string (any additional information that might help in analyzing the company's ethical and ethological impact)
+  }}
