@@ -1,28 +1,21 @@
 import OpenAI from "openai";
-import * as dotenv from "dotenv";
-import {
-  CategorizationRequestProject,
-  CategorizationWorkerMessage,
-  ProjectCategorizationGPTResponse,
-  WorkerMessageType,
-} from "../types.js";
+import { ProjectCategorizationGPTResponse } from "../types.js";
 import { global } from "./prompts/global.js";
 import getJSONString from "../helpers/getJSONString.js";
-import { getImpactAreas } from "../db/queries/getImpactAreas.js";
-import { GraphQLClient } from "graphql-request";
 import categorization from "./prompts/categorization/index.js";
+import {
+  ImpactAreaDetailsFragment,
+  LocationDetailsFragment,
+  ProjectDetailsFragment,
+} from "../__generated__/graphql.js";
 
-export default async function cateorizeProject(
-  project: CategorizationRequestProject,
-  client: GraphQLClient
+export default async function categorizeProject(
+  project: ProjectDetailsFragment & {
+    locations: readonly LocationDetailsFragment[];
+  },
+  impactAreas: ImpactAreaDetailsFragment[],
+  openai: OpenAI
 ) {
-  //// env stuff
-  dotenv.config();
-  const { OPENAI_API_KEY } = process.env;
-  //// openai stuff
-  const openai = new OpenAI({
-    apiKey: OPENAI_API_KEY,
-  });
   let messages: OpenAI.Chat.Completions.CreateChatCompletionRequestMessage[] = [
     ...global,
     categorization.userPrompt(project),
@@ -31,11 +24,7 @@ export default async function cateorizeProject(
   let impactAreasGPTResponseString: string | null;
   let impactAreaMatches: ProjectCategorizationGPTResponse | undefined;
 
-  const getImpactAreasQuery = await getImpactAreas(client, {
-    where: { verified: true },
-    includeDetails: true,
-  });
-  messages.push(categorization.context(getImpactAreasQuery.impactAreas));
+  messages.push(categorization.context(impactAreas));
 
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
