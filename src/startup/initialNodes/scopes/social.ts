@@ -1,4 +1,4 @@
-import { ScopeCreateInput } from '../../../src/__generated__/graphql';
+import { ScopeCreateInput } from '../../../__generated__/graphql.js';
 
 const social: ScopeCreateInput[] = [
   {
