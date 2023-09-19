@@ -4,26 +4,26 @@
  * @param str
  * @returns
  */
-export default function getJSONString(str: string | null) {
+export default function getJSONString(str: string) {
   if (
-    str === null ||
-    !str.includes("{") ||
-    !str.includes("}") ||
-    !str.includes("[") ||
-    !str.includes("]")
-  )
-    return undefined;
+    !str.includes('{') ||
+    !str.includes('}') ||
+    !str.includes('[') ||
+    !str.includes(']')
+  ) {
+    throw new Error('String did not contain valid JSON');
+  }
 
-  const firstCurlIndex = str.indexOf("{");
-  const firstSquareIndex = str.indexOf("[");
+  const firstCurlIndex = str.indexOf('{');
+  const firstSquareIndex = str.indexOf('[');
   let jsonStartIndex = 0;
   let jsonEndIndex = 0;
   if (firstCurlIndex < firstSquareIndex) {
-    const lastCurlIndex = str.lastIndexOf("}");
+    const lastCurlIndex = str.lastIndexOf('}');
     jsonStartIndex = firstCurlIndex;
     jsonEndIndex = lastCurlIndex;
   } else if (firstCurlIndex > firstSquareIndex) {
-    const lastSquareIndex = str.lastIndexOf("]");
+    const lastSquareIndex = str.lastIndexOf(']');
     jsonStartIndex = firstSquareIndex;
     jsonEndIndex = lastSquareIndex;
   }
@@ -32,7 +32,6 @@ export default function getJSONString(str: string | null) {
     const json = JSON.parse(maybeJSONString);
     return json;
   } catch (error) {
-    // not valid JSON
-    return undefined;
+    throw new Error('Matched string was not valid JSON');
   }
 }

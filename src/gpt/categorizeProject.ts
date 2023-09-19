@@ -1,33 +1,30 @@
-import OpenAI from "openai";
-import { ProjectCategorizationGPTResponse } from "../types.js";
-import { global } from "./prompts/global.js";
-import getJSONString from "../helpers/getJSONString.js";
-import categorization from "./prompts/categorization/index.js";
+import OpenAI from 'openai';
+import { ProjectCategorizationGPTResponse } from '../types.js';
+import { global } from './prompts/global.js';
+import getJSONString from '../helpers/getJSONString.js';
 import {
   ImpactAreaDetailsFragment,
-  LocationDetailsFragment,
   ProjectDetailsFragment,
-} from "../__generated__/graphql.js";
+} from '../__generated__/graphql.js';
+import Scopes from './prompts/ripplescope-v2/scopes/index.js';
 
 export default async function categorizeProject(
-  project: ProjectDetailsFragment & {
-    locations: readonly LocationDetailsFragment[];
-  },
+  project: ProjectDetailsFragment,
   impactAreas: ImpactAreaDetailsFragment[],
-  openai: OpenAI
+  openai: OpenAI,
 ) {
   let messages: OpenAI.Chat.Completions.CreateChatCompletionRequestMessage[] = [
     ...global,
-    categorization.userPrompt(project),
-    categorization.responseTemplate,
+    Scopes.userPrompt(project),
+    Scopes.responseTemplate,
   ];
   let impactAreasGPTResponseString: string | null;
   let impactAreaMatches: ProjectCategorizationGPTResponse | undefined;
 
-  messages.push(categorization.context(impactAreas));
+  messages.push(Scopes.context(impactAreas));
 
   const response = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
+    model: 'gpt-3.5-turbo',
     messages,
   });
 
@@ -38,11 +35,11 @@ export default async function categorizeProject(
       | undefined;
 
     if (impactAreaMatches === undefined) {
-      throw new Error("error parsing GPT response");
+      throw new Error('error parsing GPT response');
     } else {
       return impactAreaMatches.impactAreas;
     }
   } else {
-    throw new Error("error categorizing project with GPT");
+    throw new Error('error categorizing project with GPT');
   }
 }

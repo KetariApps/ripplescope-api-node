@@ -1,32 +1,30 @@
-import { GraphQLClient } from "graphql-request";
+import { GraphQLClient } from 'graphql-request';
 import {
   CategorizationRequestProject,
   ProjectAnalysisGPTResponseItem,
-} from "../../types.js";
-import categorizeProject from "../categorizeProject.js";
-import { createProject } from "../../db/mutations/createProject.js";
-import dbName from "../../helpers/dbName.js";
-import analyzeProjectImpactArea from "../analyzeProjectImpactArea.js";
-import * as dotenv from "dotenv";
-import OpenAI from "openai";
-import { getImpactAreas } from "../../db/queries/getImpactAreas.js";
+} from '../../types.js';
+import categorizeProject from '../categorizeProject.js';
+import { createProject } from '../../db/mutations/createProject.js';
+import dbName from '../../helpers/dbName.js';
+import analyzeProjectImpactArea from '../analyzeProjectImpactArea.js';
+import * as dotenv from 'dotenv';
+import OpenAI from 'openai';
+import { getImpactAreas } from '../../db/queries/getImpactAreas.js';
 import {
   CreateProjectMutation,
   ImpactAreaDetailsFragmentDoc,
-  LocationDetailsFragment,
-  LocationDetailsFragmentDoc,
   ProjectCreateInput,
   ProjectDetailsFragment,
   ProjectDetailsFragmentDoc,
   ProjectImpactsCreateFieldInput,
   UpdateProjectsMutation,
-} from "../../__generated__/graphql.js";
-import { useFragment } from "../../__generated__/fragment-masking.js";
-import { updateProjects } from "../../db/mutations/updateProject.js";
+} from '../../__generated__/graphql.js';
+import { useFragment } from '../../__generated__/fragment-masking.js';
+import { updateProjects } from '../../db/mutations/updateProject.js';
 
 export const ripplescopeChain = async (
-  project: CategorizationRequestProject,
-  client: GraphQLClient
+  project: ProjectDetailsFragment,
+  client: GraphQLClient,
 ) => {
   try {
     //// env stuff
@@ -37,10 +35,9 @@ export const ripplescopeChain = async (
       apiKey: OPENAI_API_KEY,
     });
 
-    let createdProject: CreateProjectMutation["createProjects"]["projects"][0];
-    let updatedProject: UpdateProjectsMutation["updateProjects"]["projects"][0];
+    let createdProject: CreateProjectMutation['createProjects']['projects'][0];
+    let updatedProject: UpdateProjectsMutation['updateProjects']['projects'][0];
     let updatedProjectDetails: ProjectDetailsFragment;
-    let projectLocations: readonly LocationDetailsFragment[];
 
     // create the project in the database
     const createProjectMutation = await createProject(client, {
@@ -51,15 +48,15 @@ export const ripplescopeChain = async (
     createdProject = createProjectMutation.createProjects.projects[0];
     if (createdProject === undefined) {
       console.log({
-        type: "CREATE PROJECT",
-        status: "ERROR - could not create project",
+        type: 'CREATE PROJECT',
+        status: 'ERROR - could not create project',
         message: createProjectMutation,
       });
       return;
     } else {
       console.log({
-        type: "CREATE PROJECT",
-        status: "DONE",
+        type: 'CREATE PROJECT',
+        status: 'DONE',
         message: createProjectMutation,
       });
     }
@@ -74,26 +71,18 @@ export const ripplescopeChain = async (
       ...useFragment(ImpactAreaDetailsFragmentDoc, ia),
     }));
 
-    projectLocations = useFragment(
-      LocationDetailsFragmentDoc,
-      createdProject.locations!
-    );
-
     // categorize the project to the verified impact areas
     const categorizationResponse = await categorizeProject(
-      {
-        locations: projectLocations,
-        ...useFragment(
-          ProjectDetailsFragmentDoc,
-          createProjectMutation.createProjects.projects[0]
-        ),
-      },
+      useFragment(
+        ProjectDetailsFragmentDoc,
+        createProjectMutation.createProjects.projects[0],
+      ),
       verifiedImpactAreas,
-      openai
+      openai,
     );
     console.log({
-      type: "CATEGORIZE PROJECT",
-      status: "DONE",
+      type: 'CATEGORIZE PROJECT',
+      status: 'DONE',
       message: categorizationResponse,
     });
 
@@ -130,27 +119,27 @@ export const ripplescopeChain = async (
     updatedProject = connectImpactAreasMutation.updateProjects.projects[0];
     updatedProjectDetails = useFragment(
       ProjectDetailsFragmentDoc,
-      updatedProject
+      updatedProject,
     );
     if (updatedProject === undefined) {
       console.log({
-        type: "CONNECT IMPACT AREAS TO PROJECT",
-        status: "ERROR",
+        type: 'CONNECT IMPACT AREAS TO PROJECT',
+        status: 'ERROR',
         message: connectImpactAreasMutation,
       });
       return;
     } else if (updatedProject.impactAreasConnection === undefined) {
       console.log({
-        type: "CONNECT IMPACT AREAS TO PROJECT",
+        type: 'CONNECT IMPACT AREAS TO PROJECT',
         status:
-          "ERROR - impact areas were not returned from the connection mutation",
+          'ERROR - impact areas were not returned from the connection mutation',
         message: connectImpactAreasMutation,
       });
       return;
     } else {
       console.log({
-        type: "CONNECT IMPACT AREAS TO PROJECT",
-        status: "DONE",
+        type: 'CONNECT IMPACT AREAS TO PROJECT',
+        status: 'DONE',
         message: connectImpactAreasMutation,
       });
     }
@@ -169,20 +158,20 @@ export const ripplescopeChain = async (
     const updatedProjects = await Promise.allSettled(
       verifiedImpactAreasRelationships.map(async (v_iar) => {
         console.log({
-          type: "ANALYZE PROJECT",
-          status: "BEGIN",
+          type: 'ANALYZE PROJECT',
+          status: 'BEGIN',
           impactArea: v_iar,
           project: updatedProject.uniqueName,
         });
         // analyze the benefits and hazards related to the verified impact area
         const analysis = await analyzeProjectImpactArea(
           v_iar.node,
-          { ...updatedProjectDetails, locations: projectLocations },
-          openai
+          updatedProjectDetails,
+          openai,
         );
         console.log({
-          type: "ANALYZE PROJECT",
-          status: "DONE",
+          type: 'ANALYZE PROJECT',
+          status: 'DONE',
           message: analysis,
         });
 
@@ -201,22 +190,22 @@ export const ripplescopeChain = async (
                 createImpactInputFromAnalysisResponseItem(
                   benefit,
                   v_iar.node.uniqueName,
-                  "benefit"
-                )
+                  'benefit',
+                ),
               ),
               ...analysis.project.hazards.map((hazard) =>
                 createImpactInputFromAnalysisResponseItem(
                   hazard,
                   v_iar.node.uniqueName,
-                  "hazard"
-                )
+                  'hazard',
+                ),
               ),
             ],
           },
         });
 
         return connectImpactsMutation;
-      })
+      }),
     );
     return updatedProjects;
   } catch (error) {
@@ -225,7 +214,7 @@ export const ripplescopeChain = async (
 };
 
 const createProjectInput = (
-  project: CategorizationRequestProject
+  project: ProjectDetailsFragment,
 ): ProjectCreateInput[] => [
   {
     context: project.context,
@@ -236,35 +225,13 @@ const createProjectInput = (
     verified: false,
     website: project.website,
     name: project.name,
-    locations: {
-      connectOrCreate: project.locations.map((l) => {
-        const uniqueName = dbName(
-          `${l.city}:${l.state ? l.state + ":" : ""}${l.nation}`
-        );
-        return {
-          onCreate: {
-            node: {
-              uniqueName,
-              state: l.state,
-              nation: l.nation,
-              city: l.city,
-            },
-          },
-          where: {
-            node: {
-              uniqueName,
-            },
-          },
-        };
-      }),
-    },
   },
 ];
 
 const createImpactInputFromAnalysisResponseItem = (
   analysisResponseItem: ProjectAnalysisGPTResponseItem,
   impactAreaUniqueName: string,
-  type: "benefit" | "hazard"
+  type: 'benefit' | 'hazard',
 ): ProjectImpactsCreateFieldInput => {
   const { name, score, reason, aspect } = analysisResponseItem;
   return {
@@ -274,7 +241,7 @@ const createImpactInputFromAnalysisResponseItem = (
       impactArea: {
         connect: {
           edge: {
-            score: type === "benefit" ? Number(score) : -1 * Number(score),
+            score: type === 'benefit' ? Number(score) : -1 * Number(score),
             reason,
             aspect,
           },

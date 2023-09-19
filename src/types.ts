@@ -1,13 +1,10 @@
 import {
   DoughnutCategoryName,
   ImpactCategoryName,
-  LocationDetailsFragment,
   ProjectDetailsFragment,
-} from "./__generated__/graphql.js";
+} from './__generated__/graphql.js';
 
-export type CategorizationRequestProject = ProjectDetailsFragment & {
-  locations: LocationDetailsFragment[];
-};
+export type CategorizationRequestProject = ProjectDetailsFragment;
 export interface CategorizationRequest {
   project: CategorizationRequestProject;
 }
