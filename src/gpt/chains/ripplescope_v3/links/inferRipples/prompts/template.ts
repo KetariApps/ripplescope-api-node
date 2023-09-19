@@ -1,5 +1,5 @@
 import OpenAI from 'openai';
-import { GPT_RipplesResponse } from '../../types.js';
+import { GPT_RipplesResponse } from '../../../types.js';
 
 const responseObject: GPT_RipplesResponse = {
   ripples: [

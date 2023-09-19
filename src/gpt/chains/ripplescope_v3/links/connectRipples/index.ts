@@ -2,7 +2,7 @@ import { GraphQLClient } from 'graphql-request';
 import { updateProjects } from '../../../../../db/mutation/project/update.js';
 import inferRipples from '../inferRipples/index.js';
 import { ProjectStatusName } from '../../../../../__generated__/graphql.js';
-import { RecentlyCreatedProject } from '../types.js';
+import { RecentlyCreatedProject } from '../../types.js';
 
 export default async function connectRipples(
   project: RecentlyCreatedProject,
@@ -34,25 +34,22 @@ export default async function connectRipples(
       ],
     },
     create: {
-      ripples: ripplesResponses.map(({ scope, ripple }) => {
+      ripples: ripplesResponses.map(({ scopeEdge, ripple }) => {
         return {
           edge: { aspect: ripple.edge.aspect, reason: ripple.edge.reason },
           node: {
             name: ripple.name,
             description: ripple.description,
             scopes: {
-              connectOrCreate: [
+              connect: [
                 {
                   where: {
                     node: {
-                      name: scope.name,
+                      name: scopeEdge.node.name,
                     },
                   },
-                  onCreate: {
-                    edge: {
-                      magnitude: Number(ripple.edge.magnitude),
-                    },
-                    node: scope,
+                  edge: {
+                    magnitude: Number(ripple.edge.magnitude),
                   },
                 },
               ],

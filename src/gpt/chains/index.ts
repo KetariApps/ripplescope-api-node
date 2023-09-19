@@ -1,4 +1,1 @@
-import { ripplescopeChain } from "./ripplescopeChain.js";
-
-const chains = { ripplescope: ripplescopeChain };
-export default chains;
+export { default as ripplescope } from './ripplescope_v3/index.js';

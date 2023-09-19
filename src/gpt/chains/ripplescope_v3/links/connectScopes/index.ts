@@ -1,7 +1,7 @@
 import { GraphQLClient } from 'graphql-request';
 import { updateProjects } from '../../../../../db/mutation/project/update.js';
 import { ProjectStatusName } from '../../../../../__generated__/graphql.js';
-import { GPT_ScopesResponse, RecentlyCreatedProject } from '../types.js';
+import { GPT_ScopesResponse, RecentlyCreatedProject } from '../../types.js';
 
 export default async function connectScopes(
   project: RecentlyCreatedProject,

@@ -22,6 +22,20 @@ mutation UpdateProjects(
       statuses {
         name
       }
+      scopesConnection {
+        edges {
+          aspect
+          reason
+          node {
+            name
+            description
+            considerations {
+              name
+              details
+            }
+          }
+        }
+      }
     }
   }
 }

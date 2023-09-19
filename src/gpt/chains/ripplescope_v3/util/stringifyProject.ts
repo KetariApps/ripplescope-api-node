@@ -1,6 +1,6 @@
-import { RecentlyCreatedProject } from '../links/types.js';
+import { connectScopes } from '../links/index.js';
 
-const stringifyProject = (project: RecentlyCreatedProject) =>
+const stringifyProject = (project: Awaited<ReturnType<typeof connectScopes>>) =>
   `Project:\n${project.name}\n${project.considerations
     .map(({ details, name }) => `${name}\n${details}`)
     .join('\n')}`;

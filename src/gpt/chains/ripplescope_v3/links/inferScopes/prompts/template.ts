@@ -1,5 +1,5 @@
 import OpenAI from 'openai';
-import { GPT_ScopesResponse } from '../../types.js';
+import { GPT_ScopesResponse } from '../../../types.js';
 
 const responseObject: GPT_ScopesResponse = {
   scopes: [

@@ -1,28 +1,28 @@
 import OpenAI from 'openai';
-import getJSONString from '../../../../../helpers/getJSONString.js';
-import {
-  GPT_Ripple,
-  GPT_RipplesResponse,
-  GPT_Scope,
-  RecentlyCreatedProject,
-} from '../types.js';
+import getJSONString from '../../../../util/getJSONString.js';
+import { GPT_Ripple, GPT_RipplesResponse } from '../../types.js';
 import { definitions, raisonDetre } from '../../systemPrompts/index.js';
 import { initializer } from './prompts/index.js';
+import { connectScopes } from '../index.js';
 
 export default async function inferRipples(
-  scopes: GPT_Scope[],
-  project: RecentlyCreatedProject,
+  project: Awaited<ReturnType<typeof connectScopes>>,
   openai: OpenAI,
 ) {
+  const scopeEdges = project.scopesConnection.edges;
   const settled_GPT_RipplesResponse = await Promise.allSettled(
-    scopes.map(async (scope, i, arr) => {
+    scopeEdges.map(async (scopeEdge, i, arr) => {
       const decorator = `[${new Date().toUTCString()}][${project.name}][${
         i + 1
-      }/${arr.length}][${scope.name}]`;
+      }/${arr.length}][${scopeEdge.node.name}]`;
 
       const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
-        messages: [definitions, raisonDetre, ...initializer(project, scope)],
+        messages: [
+          definitions,
+          raisonDetre,
+          ...initializer(project, scopeEdge),
+        ],
       });
 
       if (response) {
@@ -42,7 +42,7 @@ export default async function inferRipples(
           );
         } else {
           return GPT_Response.ripples.map((ripple) => ({
-            scope,
+            scopeEdge,
             ripple,
           }));
         }
@@ -56,7 +56,9 @@ export default async function inferRipples(
 
   const fulfilled_GPT_RipplesResponses: Array<
     Array<{
-      scope: GPT_Scope;
+      scopeEdge: Awaited<
+        ReturnType<typeof connectScopes>
+      >['scopesConnection']['edges'][0];
       ripple: GPT_Ripple;
     }>
   > = [];

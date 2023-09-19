@@ -1,8 +1,8 @@
 import OpenAI from 'openai';
-import getJSONString from '../../../../../helpers/getJSONString.js';
+import getJSONString from '../../../../util/getJSONString.js';
 import { initializer, template } from './prompts/index.js';
 import { GraphQLClient } from 'graphql-request';
-import { GPT_ScopesResponse, RecentlyCreatedProject } from '../types.js';
+import { GPT_ScopesResponse, RecentlyCreatedProject } from '../../types.js';
 import {
   definitions,
   getExistingScopes,

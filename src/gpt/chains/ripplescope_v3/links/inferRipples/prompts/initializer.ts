@@ -1,10 +1,12 @@
 import OpenAI from 'openai';
-import { stringifyProject, stringifyScope } from '../../../util/index.js';
-import { GPT_Scope, RecentlyCreatedProject } from '../../types.js';
+import { stringifyProject, stringifyScopeEdge } from '../../../util/index.js';
+import { connectScopes } from '../../index.js';
 
 export default function initializer(
-  project: RecentlyCreatedProject,
-  scope: GPT_Scope,
+  project: Awaited<ReturnType<typeof connectScopes>>,
+  scopeEdge: Awaited<
+    ReturnType<typeof connectScopes>
+  >['scopesConnection']['edges'][0],
 ): OpenAI.Chat.CreateChatCompletionRequestMessage[] {
   const projectMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
     role: 'assistant',
@@ -12,7 +14,7 @@ export default function initializer(
   };
   const scopeMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
     role: 'assistant',
-    content: stringifyScope(scope),
+    content: stringifyScopeEdge(scopeEdge),
   };
   const userMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
     role: 'user',

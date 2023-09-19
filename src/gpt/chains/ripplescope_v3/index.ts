@@ -8,7 +8,7 @@ import {
   inferScopes,
 } from './links/index.js';
 import ripplescopeError from './links/ripplescopeError/index.js';
-import { NewProjectInput } from './links/types.js';
+import { NewProjectInput } from './types.js';
 
 export default async function ripplescope(
   projectDetails: NewProjectInput,
@@ -18,9 +18,9 @@ export default async function ripplescope(
   const project = await createProject(projectDetails, client);
   try {
     const scopes = await inferScopes(project, openai, client);
-    await connectScopes(project, scopes, client);
-    const ripplesResponses = await inferRipples(scopes, project, openai);
-    await connectRipples(project, ripplesResponses, client);
+    const projectWithScopes = await connectScopes(project, scopes, client);
+    const ripplesResponses = await inferRipples(projectWithScopes, openai);
+    await connectRipples(projectWithScopes, ripplesResponses, client);
   } catch (error) {
     await ripplescopeError(project, error, client);
   }

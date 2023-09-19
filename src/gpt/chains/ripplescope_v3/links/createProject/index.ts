@@ -1,7 +1,7 @@
 import { GraphQLClient } from 'graphql-request';
 import { createProjects } from '../../../../../db/mutation/project/create.js';
 import { ProjectCreateInput } from '../../../../../__generated__/graphql.js';
-import { NewProjectInput } from '../types.js';
+import { NewProjectInput } from '../../types.js';
 
 export default async function createProject(
   projectDetails: NewProjectInput,
