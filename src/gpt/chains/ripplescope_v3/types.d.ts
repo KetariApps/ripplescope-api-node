@@ -1,5 +1,4 @@
 import {
-  Consideration,
   Project,
   Ripple,
   Scope,
@@ -11,11 +10,6 @@ export type RecentlyCreatedProject = Awaited<ReturnType<typeof createProject>>;
 export type ProjectWithScopes = Awaited<ReturnType<typeof connectScopes>>;
 export type ConnectedScopeEdge =
   ProjectWithScopes['scopesConnection']['edges'][0];
-export type NewConsideration = Pick<Consideration, 'id' | 'name' | 'details'>;
-
-export type NewProjectInput = Pick<Project, 'name' | 'website'> & {
-  considerations: Array<{ node: NewConsideration }>;
-};
 
 export type GPT_Ripple = Pick<Ripple, 'name' | 'description'> & {
   edge: {

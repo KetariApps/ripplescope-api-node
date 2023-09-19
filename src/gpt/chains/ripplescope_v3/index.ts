@@ -7,11 +7,13 @@ import {
   inferScopes,
 } from './links/index.js';
 import ripplescopeError from './links/ripplescopeError/index.js';
-import { NewProjectInput } from './types.js';
 import * as dotenv from 'dotenv';
 import { GraphQLClient } from 'graphql-request';
+import { ProjectCreateInput } from '../../../__generated__/graphql.js';
 
-export default async function ripplescope(projectDetails: NewProjectInput) {
+export default async function ripplescopeChain(
+  projectDetails: ProjectCreateInput,
+) {
   dotenv.config();
   const { GRAPH_URI, OPENAI_API_KEY } = process.env;
   if (GRAPH_URI === undefined) throw new Error('GRAPH_URI is undefined');
