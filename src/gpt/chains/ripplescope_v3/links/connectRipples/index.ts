@@ -1,11 +1,14 @@
 import { GraphQLClient } from 'graphql-request';
 import { updateProjects } from '../../../../../db/mutation/project/update.js';
 import inferRipples from '../inferRipples/index.js';
-import { ProjectStatusName } from '../../../../../__generated__/graphql.js';
-import { RecentlyCreatedProject } from '../../types.js';
+import {
+  ProjectStatusName,
+  RipplesSentiment,
+} from '../../../../../__generated__/graphql.js';
+import { ProjectWithScopes } from '../../types.js';
 
 export default async function connectRipples(
-  project: RecentlyCreatedProject,
+  project: ProjectWithScopes,
   ripplesResponses: Awaited<ReturnType<typeof inferRipples>>,
   client: GraphQLClient,
 ) {
@@ -38,8 +41,8 @@ export default async function connectRipples(
         return {
           edge: { aspect: ripple.edge.aspect, reason: ripple.edge.reason },
           node: {
-            name: ripple.name,
-            description: ripple.description,
+            name: ripple.name.toLocaleUpperCase(),
+            brief: ripple.description,
             scopes: {
               connect: [
                 {
@@ -50,6 +53,8 @@ export default async function connectRipples(
                   },
                   edge: {
                     magnitude: Number(ripple.edge.magnitude),
+                    sentiment:
+                      ripple.edge.sentiment.toLocaleUpperCase() as RipplesSentiment,
                   },
                 },
               ],

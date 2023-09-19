@@ -12,12 +12,17 @@ const responseObject: GPT_RipplesResponse = {
         aspect: 'The aspect of the project which is related to this scope.',
         reason:
           'The reason the aspect of the project is related to this scope.',
+        sentiment: 'Either POSITIVE or NEGATIVE',
       },
     },
   ],
 };
 const template: OpenAI.Chat.CreateChatCompletionRequestMessage = {
   role: 'assistant',
-  content: JSON.stringify(responseObject, undefined, 2),
+  content: `Return an answer in the following format:\n\n${JSON.stringify(
+    responseObject,
+    undefined,
+    2,
+  )}`,
 };
 export default template;

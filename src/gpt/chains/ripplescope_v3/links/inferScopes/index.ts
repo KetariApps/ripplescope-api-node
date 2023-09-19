@@ -8,9 +8,10 @@ import {
   getExistingScopes,
   raisonDetre,
 } from '../../systemPrompts/index.js';
+import { CreateProjectsMutation } from '../../../../../__generated__/graphql.js';
 
 export default async function inferScopes(
-  project: RecentlyCreatedProject,
+  project: CreateProjectsMutation['createProjects']['projects'][0],
   openai: OpenAI,
   client: GraphQLClient,
 ) {

@@ -1,4 +1,5 @@
 import OpenAI from 'openai';
+import stringifyProject from '../../../util/stringifyProject.js';
 import { RecentlyCreatedProject } from '../../../types.js';
 
 const initializer = (
@@ -7,13 +8,11 @@ const initializer = (
   role: 'user',
   content: `${project.name}
   
-  ${project.considerations
-    .map(({ details, name }) => `${name}\n${details}`)
-    .join('\n\n')}
+  ${stringifyProject(project)}
   
     -------
   
-    Infer the scopes of this project. Use one of the existing scopes unless a new scope if it would be completely unique or it refines an existing scope by making it more specific.
+    Classify this project to one or more of the provided scopes. Suggest a new scope if it would be completely unique or it refines an existing scope by making it more specific.
   `,
 });
 export default initializer;

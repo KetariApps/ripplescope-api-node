@@ -15,9 +15,19 @@ mutation UpdateProjects(
       id
       name
       considerations {
-        id
-        name
-        details
+        ... on Stakeholder {
+          name
+          stakeholderBreif: brief
+        }
+        ... on WebDump {
+          content
+        }
+        ... on Geographic {
+          brief
+        }
+        ... on Workers {
+          brief
+        }
       }
       statuses {
         name
@@ -30,8 +40,18 @@ mutation UpdateProjects(
             name
             description
             considerations {
-              name
-              details
+              ... on Stakeholder {
+                name
+                brief
+              }
+              ... on Question {
+                id
+                brief
+              }
+              ... on Example {
+                id
+                brief
+              }
             }
           }
         }

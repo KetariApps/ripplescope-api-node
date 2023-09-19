@@ -7,9 +7,19 @@ mutation CreateProjects($input: [ProjectCreateInput!]!) {
         id
         name
         considerations {
-          id
-          name
-          details
+          ... on Stakeholder {
+            name
+            stakeholderBreif: brief
+          }
+          ... on WebDump {
+            content
+          }
+          ... on Geographic {
+            brief
+          }
+          ... on Workers {
+            brief
+          }
         }
       }
     }

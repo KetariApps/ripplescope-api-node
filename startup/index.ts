@@ -11,6 +11,8 @@ import social from './initialNodes/scopes/social';
 
   const client = new GraphQLClient(GRAPH_URI);
 
+  // todo: verify scopes don't already exist -- this may run at every container startup
+
   console.log('Creating initial scopes.');
   await client.request(createScopes, { input: [...ecological, ...social] });
   console.log('Created initial scopes.');

@@ -1,12 +1,10 @@
 import OpenAI from 'openai';
 import { stringifyProject, stringifyScopeEdge } from '../../../util/index.js';
-import { connectScopes } from '../../index.js';
+import { ConnectedScopeEdge, ProjectWithScopes } from '../../../types.js';
 
 export default function initializer(
-  project: Awaited<ReturnType<typeof connectScopes>>,
-  scopeEdge: Awaited<
-    ReturnType<typeof connectScopes>
-  >['scopesConnection']['edges'][0],
+  project: ProjectWithScopes,
+  scopeEdge: ConnectedScopeEdge,
 ): OpenAI.Chat.CreateChatCompletionRequestMessage[] {
   const projectMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
     role: 'assistant',

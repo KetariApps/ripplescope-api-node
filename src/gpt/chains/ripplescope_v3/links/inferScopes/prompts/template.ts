@@ -16,6 +16,10 @@ const responseObject: GPT_ScopesResponse = {
 };
 const template: OpenAI.Chat.CreateChatCompletionRequestMessage = {
   role: 'assistant',
-  content: JSON.stringify(responseObject, undefined, 2),
+  content: `Return an answer in the following format:\n\n${JSON.stringify(
+    responseObject,
+    undefined,
+    2,
+  )}`,
 };
 export default template;

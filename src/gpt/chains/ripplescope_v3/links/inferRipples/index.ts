@@ -1,12 +1,16 @@
 import OpenAI from 'openai';
 import getJSONString from '../../../../util/getJSONString.js';
-import { GPT_Ripple, GPT_RipplesResponse } from '../../types.js';
+import {
+  GPT_Ripple,
+  GPT_RipplesResponse,
+  ProjectWithScopes,
+} from '../../types.js';
 import { definitions, raisonDetre } from '../../systemPrompts/index.js';
 import { initializer } from './prompts/index.js';
 import { connectScopes } from '../index.js';
 
 export default async function inferRipples(
-  project: Awaited<ReturnType<typeof connectScopes>>,
+  project: ProjectWithScopes,
   openai: OpenAI,
 ) {
   const scopeEdges = project.scopesConnection.edges;
