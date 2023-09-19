@@ -13,7 +13,7 @@ const initializer = (
   
     -------
   
-    Infer the scopes of this project.
+    Infer the scopes of this project. Use one of the existing scopes unless a new scope if it would be completely unique or it refines an existing scope by making it more specific.
   `,
 });
 export default initializer;

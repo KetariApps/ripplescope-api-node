@@ -1562,6 +1562,7 @@ export type ProjectScopeScopesEdgeAggregateSelection = {
 
 export type ProjectScopeScopesNodeAggregateSelection = {
   __typename?: 'ProjectScopeScopesNodeAggregateSelection';
+  basis: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -1701,6 +1702,21 @@ export type ProjectScopesNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<ProjectScopesNodeAggregationWhereInput>>;
   NOT?: InputMaybe<ProjectScopesNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<ProjectScopesNodeAggregationWhereInput>>;
+  basis_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  basis_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  basis_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  basis_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  basis_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  basis_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  basis_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  basis_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  basis_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  basis_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
   createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
   createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
   createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
@@ -3382,6 +3398,7 @@ export type RippleScopeScopesEdgeAggregateSelection = {
 
 export type RippleScopeScopesNodeAggregateSelection = {
   __typename?: 'RippleScopeScopesNodeAggregateSelection';
+  basis: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -3511,6 +3528,21 @@ export type RippleScopesNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<RippleScopesNodeAggregationWhereInput>>;
   NOT?: InputMaybe<RippleScopesNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<RippleScopesNodeAggregationWhereInput>>;
+  basis_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  basis_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  basis_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  basis_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  basis_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  basis_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  basis_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  basis_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  basis_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  basis_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
   createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
   createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
   createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
@@ -3931,6 +3963,7 @@ export type RipplesConnection = {
 
 export type Scope = {
   __typename?: 'Scope';
+  basis?: Maybe<Scalars['String']['output']>;
   considerations: Array<Consideration>;
   considerationsAggregate?: Maybe<ScopeConsiderationConsiderationsAggregationSelection>;
   considerationsConnection: ScopeConsiderationsConnection;
@@ -4041,6 +4074,7 @@ export type ScopeScopesConnectionArgs = {
 
 export type ScopeAggregateSelection = {
   __typename?: 'ScopeAggregateSelection';
+  basis: StringAggregateSelectionNullable;
   count: Scalars['Int']['output'];
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
@@ -4229,6 +4263,7 @@ export type ScopeConsiderationsUpdateFieldInput = {
 };
 
 export type ScopeCreateInput = {
+  basis?: InputMaybe<Scalars['String']['input']>;
   considerations?: InputMaybe<ScopeConsiderationsFieldInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
@@ -4259,6 +4294,7 @@ export type ScopeEdge = {
 };
 
 export type ScopeOnCreateInput = {
+  basis?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   verified?: Scalars['Boolean']['input'];
@@ -4742,6 +4778,7 @@ export type ScopeScopeScopesAggregationSelection = {
 
 export type ScopeScopeScopesNodeAggregateSelection = {
   __typename?: 'ScopeScopeScopesNodeAggregateSelection';
+  basis: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -4819,6 +4856,21 @@ export type ScopeScopesNodeAggregationWhereInput = {
   AND?: InputMaybe<Array<ScopeScopesNodeAggregationWhereInput>>;
   NOT?: InputMaybe<ScopeScopesNodeAggregationWhereInput>;
   OR?: InputMaybe<Array<ScopeScopesNodeAggregationWhereInput>>;
+  basis_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  basis_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  basis_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  basis_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  basis_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  basis_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  basis_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  basis_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  basis_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  basis_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  basis_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
   createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
   createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
   createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
@@ -4893,6 +4945,7 @@ export type ScopeScopesUpdateFieldInput = {
 
 /** Fields to sort Scopes by. The order in which sorts are applied is not guaranteed when specifying many fields in one ScopeSort object. */
 export type ScopeSort = {
+  basis?: InputMaybe<SortDirection>;
   createdAt?: InputMaybe<SortDirection>;
   description?: InputMaybe<SortDirection>;
   id?: InputMaybe<SortDirection>;
@@ -4907,6 +4960,7 @@ export type ScopeUniqueWhere = {
 };
 
 export type ScopeUpdateInput = {
+  basis?: InputMaybe<Scalars['String']['input']>;
   considerations?: InputMaybe<Array<ScopeConsiderationsUpdateFieldInput>>;
   description?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
@@ -4920,6 +4974,11 @@ export type ScopeWhere = {
   AND?: InputMaybe<Array<ScopeWhere>>;
   NOT?: InputMaybe<ScopeWhere>;
   OR?: InputMaybe<Array<ScopeWhere>>;
+  basis?: InputMaybe<Scalars['String']['input']>;
+  basis_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  basis_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  basis_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  basis_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
   considerationsAggregate?: InputMaybe<ScopeConsiderationsAggregateInput>;
   /** Return Scopes where all of the related ScopeConsiderationsConnections match this filter */
   considerationsConnection_ALL?: InputMaybe<ScopeConsiderationsConnectionWhere>;
@@ -5803,6 +5862,13 @@ export type UpdateProjectsMutationVariables = Exact<{
 
 export type UpdateProjectsMutation = { __typename?: 'Mutation', updateProjects: { __typename?: 'UpdateProjectsMutationResponse', projects: Array<{ __typename?: 'Project', id: string, name: string, considerations: Array<{ __typename?: 'Consideration', id: string, name?: string | null, details: string }>, statuses: Array<{ __typename?: 'ProjectStatus', name: ProjectStatusName }>, scopesConnection: { __typename?: 'ProjectScopesConnection', edges: Array<{ __typename?: 'ProjectScopesRelationship', aspect: string, reason: string, node: { __typename?: 'Scope', name: string, description?: string | null, considerations: Array<{ __typename?: 'Consideration', name?: string | null, details: string }> } }> } }> } };
 
+export type CreateScopesMutationVariables = Exact<{
+  input: Array<ScopeCreateInput> | ScopeCreateInput;
+}>;
+
+
+export type CreateScopesMutation = { __typename?: 'Mutation', createScopes: { __typename?: 'CreateScopesMutationResponse', scopes: Array<{ __typename?: 'Scope', id: string, name: string, description?: string | null, basis?: string | null }> } };
+
 export type ScopesQueryVariables = Exact<{
   where?: InputMaybe<ScopeWhere>;
 }>;
@@ -5813,4 +5879,5 @@ export type ScopesQuery = { __typename?: 'Query', scopes: Array<{ __typename?: '
 
 export const CreateProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateProjects"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createProjects"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"details"}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateProjectsMutation, CreateProjectsMutationVariables>;
 export const UpdateProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateProjects"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectConnectOrCreateInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"create"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectRelationInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProjects"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"create"},"value":{"kind":"Variable","name":{"kind":"Name","value":"create"}}},{"kind":"Argument","name":{"kind":"Name","value":"connectOrCreate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"details"}}]}},{"kind":"Field","name":{"kind":"Name","value":"statuses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"scopesConnection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"aspect"}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"details"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateProjectsMutation, UpdateProjectsMutationVariables>;
+export const CreateScopesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateScopes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ScopeCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createScopes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"scopes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"basis"}}]}}]}}]}}]} as unknown as DocumentNode<CreateScopesMutation, CreateScopesMutationVariables>;
 export const ScopesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Scopes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ScopeWhere"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"scopes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"verified"}}]}}]}}]} as unknown as DocumentNode<ScopesQuery, ScopesQueryVariables>;
