@@ -19,41 +19,41 @@ const freshwater: ScopeCreateInput = {
   
         Water-efficient technologies and practices are implemented to optimize water use and reduce wastage, demonstrating a commitment to responsible water management. Additionally, the initiative establishes a robust system to assess and monitor the impact of its activities on local freshwater levels and water quality, ensuring a holistic approach to water stewardship.
         `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Water Resource Authorities',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Water Resource Authorities',
+            brief:
+              'Government agencies responsible for managing and regulating water resources.',
+            description: `Collaboration with water resource authorities is crucial to ensure compliance with regulations and sustainable water management practices.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Environmental Consultants',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Environmental Consultants',
+            brief:
+              'Experts in environmental consulting, specializing in water management and sustainability.',
+            description: `Environmental consultants provide expertise in water management and sustainability, contributing valuable insights and guidance to the initiative.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Water Resource Authorities',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Water Resource Authorities',
-              brief:
-                'Government agencies responsible for managing and regulating water resources.',
-              description: `Collaboration with water resource authorities is crucial to ensure compliance with regulations and sustainable water management practices.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Environmental Consultants',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Environmental Consultants',
-              brief:
-                'Experts in environmental consulting, specializing in water management and sustainability.',
-              description: `Environmental consultants provide expertise in water management and sustainability, contributing valuable insights and guidance to the initiative.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

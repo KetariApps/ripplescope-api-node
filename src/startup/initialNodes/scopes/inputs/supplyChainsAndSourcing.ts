@@ -19,41 +19,41 @@ const supplyChainsAndSourcing: ScopeCreateInput = {
   
         Engaging with consumers, stakeholders, and local communities is a core component of the initiative's approach to raise awareness about its commitment to sustainable sourcing, responsible practices, and the positive social and environmental impacts of its activities. Sustainability is viewed as a shared journey for all, and transparency is a key driver of trust and accountability.
         `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Supplier Organizations',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Supplier Organizations',
+            brief:
+              'Organizations that supply materials and resources to the initiative.',
+            description: `Supplier organizations are crucial stakeholders in this initiative, as they play a vital role in ensuring ethical and responsible sourcing practices.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Environmental and Social Standards Organizations',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Environmental and Social Standards Organizations',
+            brief:
+              'Organizations that set and promote environmental and social standards.',
+            description: `Environmental and social standards organizations collaborate with this initiative to ensure that suppliers adhere to established standards.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Supplier Organizations',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Supplier Organizations',
-              brief:
-                'Organizations that supply materials and resources to the initiative.',
-              description: `Supplier organizations are crucial stakeholders in this initiative, as they play a vital role in ensuring ethical and responsible sourcing practices.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Environmental and Social Standards Organizations',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Environmental and Social Standards Organizations',
-              brief:
-                'Organizations that set and promote environmental and social standards.',
-              description: `Environmental and social standards organizations collaborate with this initiative to ensure that suppliers adhere to established standards.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

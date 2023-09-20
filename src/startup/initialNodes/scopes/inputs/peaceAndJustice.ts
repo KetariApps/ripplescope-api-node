@@ -15,53 +15,53 @@ const peaceJustice: ScopeCreateInput = {
     - Clarifying affiliations or associations with political, religious, or other groups and their potential impact on peace and justice.
     
     This initiative's approach reflects its commitment to fostering peaceful coexistence, addressing conflicts, and upholding justice within the community.`,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Local Leaders',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Local Leaders',
+            brief: 'Key figures within the local community.',
+            description: `Engaging with local leaders is crucial for peace and justice initiatives.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Conflict Resolution Experts',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Conflict Resolution Experts',
+            brief: 'Professionals specializing in conflict resolution.',
+            description: `Collaborating with conflict resolution experts enhances conflict-sensitive approaches.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Community Members',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Community Members',
+            brief: 'Residents of the local community.',
+            description: `Community members' involvement is critical for understanding and addressing peace and justice issues.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Local Leaders',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Local Leaders',
-              brief: 'Key figures within the local community.',
-              description: `Engaging with local leaders is crucial for peace and justice initiatives.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Conflict Resolution Experts',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Conflict Resolution Experts',
-              brief: 'Professionals specializing in conflict resolution.',
-              description: `Collaborating with conflict resolution experts enhances conflict-sensitive approaches.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Community Members',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Community Members',
-              brief: 'Residents of the local community.',
-              description: `Community members' involvement is critical for understanding and addressing peace and justice issues.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

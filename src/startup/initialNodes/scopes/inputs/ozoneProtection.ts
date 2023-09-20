@@ -21,43 +21,43 @@ const ozoneProtection: ScopeCreateInput = {
       of an initiative. Lastly, the initiative should be adaptive, constantly evolving based on new information 
       and technological advancements to ensure the responsible use of ozone.
       `,
-  considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'ENVIRONMENTAL PROTECTION AGENCIES',
-            },
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'ENVIRONMENTAL PROTECTION AGENCIES',
           },
-          onCreate: {
-            node: {
-              name: 'ENVIRONMENTAL PROTECTION AGENCIES',
-              brief:
-                'Organizations dedicated to protecting the environment, including the ozone layer.',
-              description: `Environmental protection agencies are organizations committed to safeguarding the environment, 
+        },
+        onCreate: {
+          node: {
+            name: 'ENVIRONMENTAL PROTECTION AGENCIES',
+            brief:
+              'Organizations dedicated to protecting the environment, including the ozone layer.',
+            description: `Environmental protection agencies are organizations committed to safeguarding the environment, 
                 with a particular focus on the ozone layer. They advocate for ozone layer protection, enforce regulations, 
                 and collaborate with other stakeholders to prevent ozone depletion.`,
-            },
           },
         },
-        {
-          where: {
-            node: {
-              name: 'OZONE ADVOCATES',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'OZONE ADVOCATES',
-              brief: `Advocates and experts dedicated to ozone layer preservation.`,
-              description:
-                'Ozone advocates are individuals and groups with expertise in ozone layer preservation. They play a crucial role in raising awareness, advocating for policies, and supporting initiatives to prevent ozone depletion.',
-            },
+      },
+      {
+        where: {
+          node: {
+            name: 'OZONE ADVOCATES',
           },
         },
-      ],
-    },
+        onCreate: {
+          node: {
+            name: 'OZONE ADVOCATES',
+            brief: `Advocates and experts dedicated to ozone layer preservation.`,
+            description:
+              'Ozone advocates are individuals and groups with expertise in ozone layer preservation. They play a crucial role in raising awareness, advocating for policies, and supporting initiatives to prevent ozone depletion.',
+          },
+        },
+      },
+    ],
+  },
+  considerations: {
     Question: {
       create: [
         {

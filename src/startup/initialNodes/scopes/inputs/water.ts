@@ -29,40 +29,40 @@ const waterQualityInitiative: ScopeCreateInput = {
   
         Community Education: Engaging in water conservation education and awareness programs for the community promotes responsible water use and preservation.
         `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Water Management Agencies',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Water Management Agencies',
+            brief:
+              'Entities responsible for managing water resources in the region.',
+            description: `Collaboration with water management agencies is crucial for addressing water scarcity and quality challenges.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Community Leaders',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Community Leaders',
+            brief: 'Local leaders representing community interests.',
+            description: `Engaging with community leaders ensures alignment with local water-related concerns and priorities.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Water Management Agencies',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Water Management Agencies',
-              brief:
-                'Entities responsible for managing water resources in the region.',
-              description: `Collaboration with water management agencies is crucial for addressing water scarcity and quality challenges.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Community Leaders',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Community Leaders',
-              brief: 'Local leaders representing community interests.',
-              description: `Engaging with community leaders ensures alignment with local water-related concerns and priorities.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

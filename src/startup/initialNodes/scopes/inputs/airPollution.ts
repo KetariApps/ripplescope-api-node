@@ -28,49 +28,49 @@ const airPollution: ScopeCreateInput = {
     actively addressing concerns from the community or authorities not only builds trust but ensures that 
     the organization remains accountable and adaptable to emerging air quality challenges.
     `,
-  considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'ENVIRONMENTAL AGENCIES',
-            },
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'ENVIRONMENTAL AGENCIES',
           },
-          onCreate: {
-            node: {
-              name: 'ENVIRONMENTAL AGENCIES',
-              brief:
-                'Organizations that advocate for environmental conservation.',
-              description: `Environmental agencies are organizations that play a crucial role in the protection, 
+        },
+        onCreate: {
+          node: {
+            name: 'ENVIRONMENTAL AGENCIES',
+            brief:
+              'Organizations that advocate for environmental conservation.',
+            description: `Environmental agencies are organizations that play a crucial role in the protection, 
               management, and regulation of environmental resources and issues. They serve as stakeholders by 
               advocating for environmental conservation, setting and enforcing environmental policies and standards, 
               conducting research, and often acting as intermediaries between government, industry, and the public to 
               ensure sustainable and responsible environmental practices.`,
-            },
           },
         },
-        {
-          where: {
-            node: {
-              name: 'PUBLIC HEALTH EXPERTS',
-            },
+      },
+      {
+        where: {
+          node: {
+            name: 'PUBLIC HEALTH EXPERTS',
           },
-          onCreate: {
-            node: {
-              name: 'PUBLIC HEALTH EXPERTS',
-              brief: `Experts who possess specialized knowledge and expertise in the field of public health.",
+        },
+        onCreate: {
+          node: {
+            name: 'PUBLIC HEALTH EXPERTS',
+            brief: `Experts who possess specialized knowledge and expertise in the field of public health.",
               description: "They play a crucial role in shaping and influencing policies, programs, and initiatives 
               aimed at safeguarding and improving the health of communities and populations. Public health experts 
               contribute by conducting research, providing evidence-based recommendations, and guiding strategies to 
               address public health challenges such as disease prevention, health promotion, healthcare access, and health equity. 
               Their insights and guidance are instrumental in making informed decisions and implementing effective 
               interventions to protect and enhance the well-being of societies.`,
-            },
           },
         },
-      ],
-    },
+      },
+    ],
+  },
+  considerations: {
     Question: {
       create: [
         {

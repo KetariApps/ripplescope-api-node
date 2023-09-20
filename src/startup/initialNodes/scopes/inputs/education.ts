@@ -19,39 +19,39 @@ const education: ScopeCreateInput = {
     
     This initiative's commitment to education and skill development reflects its dedication to sustainable development for its operations and the broader community.
     `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Local Schools',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Local Schools',
+            brief: 'Educational institutions within the community.',
+            description: `Collaboration with local schools is essential for enhancing educational opportunities.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Education Advocates',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Education Advocates',
+            brief: 'Advocates for educational improvement and access.',
+            description: `Engaging with education advocates contributes to the initiative's educational goals.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Local Schools',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Local Schools',
-              brief: 'Educational institutions within the community.',
-              description: `Collaboration with local schools is essential for enhancing educational opportunities.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Education Advocates',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Education Advocates',
-              brief: 'Advocates for educational improvement and access.',
-              description: `Engaging with education advocates contributes to the initiative's educational goals.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

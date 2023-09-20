@@ -16,39 +16,39 @@ const health: ScopeCreateInput = {
     - Providing mental health services to reduce workplace stress.
     
     This initiative's approach reflects its values and long-term vision, emphasizing the well-being of employees and the community.`,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Health Clinics',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Health Clinics',
+            brief: 'Local healthcare facilities.',
+            description: `Collaboration with health clinics is vital for promoting health and well-being.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Medical Professionals',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Medical Professionals',
+            brief: 'Healthcare experts and practitioners.',
+            description: `Engaging with medical professionals contributes to the initiative's healthcare goals.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Health Clinics',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Health Clinics',
-              brief: 'Local healthcare facilities.',
-              description: `Collaboration with health clinics is vital for promoting health and well-being.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Medical Professionals',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Medical Professionals',
-              brief: 'Healthcare experts and practitioners.',
-              description: `Engaging with medical professionals contributes to the initiative's healthcare goals.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

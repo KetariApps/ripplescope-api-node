@@ -37,6 +37,12 @@ export type CreateInfo = {
   relationshipsCreated: Scalars['Int']['output'];
 };
 
+export type CreateMiscsMutationResponse = {
+  __typename?: 'CreateMiscsMutationResponse';
+  info: CreateInfo;
+  miscs: Array<Misc>;
+};
+
 export type CreateOrganizationStatusesMutationResponse = {
   __typename?: 'CreateOrganizationStatusesMutationResponse';
   info: CreateInfo;
@@ -47,6 +53,12 @@ export type CreateOrganizationsMutationResponse = {
   __typename?: 'CreateOrganizationsMutationResponse';
   info: CreateInfo;
   organizations: Array<Organization>;
+};
+
+export type CreateProblemsMutationResponse = {
+  __typename?: 'CreateProblemsMutationResponse';
+  info: CreateInfo;
+  problems: Array<Problem>;
 };
 
 export type CreateQuestionsMutationResponse = {
@@ -65,6 +77,12 @@ export type CreateScopesMutationResponse = {
   __typename?: 'CreateScopesMutationResponse';
   info: CreateInfo;
   scopes: Array<Scope>;
+};
+
+export type CreateSolutionsMutationResponse = {
+  __typename?: 'CreateSolutionsMutationResponse';
+  info: CreateInfo;
+  solutions: Array<Solution>;
 };
 
 export type CreateStakeholdersMutationResponse = {
@@ -746,15 +764,23 @@ export type FloatAggregateSelectionNonNullable = {
   sum: Scalars['Float']['output'];
 };
 
+export type FloatAggregateSelectionNullable = {
+  __typename?: 'FloatAggregateSelectionNullable';
+  average?: Maybe<Scalars['Float']['output']>;
+  max?: Maybe<Scalars['Float']['output']>;
+  min?: Maybe<Scalars['Float']['output']>;
+  sum?: Maybe<Scalars['Float']['output']>;
+};
+
 export type Geographic = {
   __typename?: 'Geographic';
   brief?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['DateTime']['output'];
   description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  organizations: Array<Organization>;
-  organizationsAggregate?: Maybe<GeographicOrganizationOrganizationsAggregationSelection>;
-  organizationsConnection: GeographicOrganizationsConnection;
+  organization: Organization;
+  organizationAggregate?: Maybe<GeographicOrganizationOrganizationAggregationSelection>;
+  organizationConnection: GeographicOrganizationConnection;
   users: Array<User>;
   usersAggregate?: Maybe<GeographicUserUsersAggregationSelection>;
   usersConnection: GeographicUsersConnection;
@@ -762,25 +788,25 @@ export type Geographic = {
 };
 
 
-export type GeographicOrganizationsArgs = {
+export type GeographicOrganizationArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<OrganizationOptions>;
   where?: InputMaybe<OrganizationWhere>;
 };
 
 
-export type GeographicOrganizationsAggregateArgs = {
+export type GeographicOrganizationAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<OrganizationWhere>;
 };
 
 
-export type GeographicOrganizationsConnectionArgs = {
+export type GeographicOrganizationConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<GeographicOrganizationsConnectionSort>>;
-  where?: InputMaybe<GeographicOrganizationsConnectionWhere>;
+  sort?: InputMaybe<Array<GeographicOrganizationConnectionSort>>;
+  where?: InputMaybe<GeographicOrganizationConnectionWhere>;
 };
 
 
@@ -815,12 +841,12 @@ export type GeographicAggregateSelection = {
 };
 
 export type GeographicConnectInput = {
-  organizations?: InputMaybe<Array<GeographicOrganizationsConnectFieldInput>>;
+  organization?: InputMaybe<GeographicOrganizationConnectFieldInput>;
   users?: InputMaybe<Array<GeographicUsersConnectFieldInput>>;
 };
 
 export type GeographicConnectOrCreateInput = {
-  organizations?: InputMaybe<Array<GeographicOrganizationsConnectOrCreateFieldInput>>;
+  organization?: InputMaybe<GeographicOrganizationConnectOrCreateFieldInput>;
   users?: InputMaybe<Array<GeographicUsersConnectOrCreateFieldInput>>;
 };
 
@@ -835,18 +861,18 @@ export type GeographicConnectWhere = {
 export type GeographicCreateInput = {
   brief?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  organizations?: InputMaybe<GeographicOrganizationsFieldInput>;
+  organization?: InputMaybe<GeographicOrganizationFieldInput>;
   users?: InputMaybe<GeographicUsersFieldInput>;
   verified?: Scalars['Boolean']['input'];
 };
 
 export type GeographicDeleteInput = {
-  organizations?: InputMaybe<Array<GeographicOrganizationsDeleteFieldInput>>;
+  organization?: InputMaybe<GeographicOrganizationDeleteFieldInput>;
   users?: InputMaybe<Array<GeographicUsersDeleteFieldInput>>;
 };
 
 export type GeographicDisconnectInput = {
-  organizations?: InputMaybe<Array<GeographicOrganizationsDisconnectFieldInput>>;
+  organization?: InputMaybe<GeographicOrganizationDisconnectFieldInput>;
   users?: InputMaybe<Array<GeographicUsersDisconnectFieldInput>>;
 };
 
@@ -869,92 +895,76 @@ export type GeographicOptions = {
   sort?: InputMaybe<Array<GeographicSort>>;
 };
 
-export type GeographicOrganizationOrganizationsAggregationSelection = {
-  __typename?: 'GeographicOrganizationOrganizationsAggregationSelection';
-  count: Scalars['Int']['output'];
-  node?: Maybe<GeographicOrganizationOrganizationsNodeAggregateSelection>;
-};
-
-export type GeographicOrganizationOrganizationsNodeAggregateSelection = {
-  __typename?: 'GeographicOrganizationOrganizationsNodeAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
-  createdAt: DateTimeAggregateSelectionNonNullable;
-  description: StringAggregateSelectionNullable;
-  id: IdAggregateSelectionNonNullable;
-  name: StringAggregateSelectionNonNullable;
-  website: StringAggregateSelectionNonNullable;
-};
-
-export type GeographicOrganizationsAggregateInput = {
-  AND?: InputMaybe<Array<GeographicOrganizationsAggregateInput>>;
-  NOT?: InputMaybe<GeographicOrganizationsAggregateInput>;
-  OR?: InputMaybe<Array<GeographicOrganizationsAggregateInput>>;
+export type GeographicOrganizationAggregateInput = {
+  AND?: InputMaybe<Array<GeographicOrganizationAggregateInput>>;
+  NOT?: InputMaybe<GeographicOrganizationAggregateInput>;
+  OR?: InputMaybe<Array<GeographicOrganizationAggregateInput>>;
   count?: InputMaybe<Scalars['Int']['input']>;
   count_GT?: InputMaybe<Scalars['Int']['input']>;
   count_GTE?: InputMaybe<Scalars['Int']['input']>;
   count_LT?: InputMaybe<Scalars['Int']['input']>;
   count_LTE?: InputMaybe<Scalars['Int']['input']>;
-  node?: InputMaybe<GeographicOrganizationsNodeAggregationWhereInput>;
+  node?: InputMaybe<GeographicOrganizationNodeAggregationWhereInput>;
 };
 
-export type GeographicOrganizationsConnectFieldInput = {
-  connect?: InputMaybe<Array<OrganizationConnectInput>>;
+export type GeographicOrganizationConnectFieldInput = {
+  connect?: InputMaybe<OrganizationConnectInput>;
   /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
   overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<OrganizationConnectWhere>;
 };
 
-export type GeographicOrganizationsConnectOrCreateFieldInput = {
-  onCreate: GeographicOrganizationsConnectOrCreateFieldInputOnCreate;
+export type GeographicOrganizationConnectOrCreateFieldInput = {
+  onCreate: GeographicOrganizationConnectOrCreateFieldInputOnCreate;
   where: OrganizationConnectOrCreateWhere;
 };
 
-export type GeographicOrganizationsConnectOrCreateFieldInputOnCreate = {
+export type GeographicOrganizationConnectOrCreateFieldInputOnCreate = {
   node: OrganizationOnCreateInput;
 };
 
-export type GeographicOrganizationsConnection = {
-  __typename?: 'GeographicOrganizationsConnection';
-  edges: Array<GeographicOrganizationsRelationship>;
+export type GeographicOrganizationConnection = {
+  __typename?: 'GeographicOrganizationConnection';
+  edges: Array<GeographicOrganizationRelationship>;
   pageInfo: PageInfo;
   totalCount: Scalars['Int']['output'];
 };
 
-export type GeographicOrganizationsConnectionSort = {
+export type GeographicOrganizationConnectionSort = {
   node?: InputMaybe<OrganizationSort>;
 };
 
-export type GeographicOrganizationsConnectionWhere = {
-  AND?: InputMaybe<Array<GeographicOrganizationsConnectionWhere>>;
-  NOT?: InputMaybe<GeographicOrganizationsConnectionWhere>;
-  OR?: InputMaybe<Array<GeographicOrganizationsConnectionWhere>>;
+export type GeographicOrganizationConnectionWhere = {
+  AND?: InputMaybe<Array<GeographicOrganizationConnectionWhere>>;
+  NOT?: InputMaybe<GeographicOrganizationConnectionWhere>;
+  OR?: InputMaybe<Array<GeographicOrganizationConnectionWhere>>;
   node?: InputMaybe<OrganizationWhere>;
 };
 
-export type GeographicOrganizationsCreateFieldInput = {
+export type GeographicOrganizationCreateFieldInput = {
   node: OrganizationCreateInput;
 };
 
-export type GeographicOrganizationsDeleteFieldInput = {
+export type GeographicOrganizationDeleteFieldInput = {
   delete?: InputMaybe<OrganizationDeleteInput>;
-  where?: InputMaybe<GeographicOrganizationsConnectionWhere>;
+  where?: InputMaybe<GeographicOrganizationConnectionWhere>;
 };
 
-export type GeographicOrganizationsDisconnectFieldInput = {
+export type GeographicOrganizationDisconnectFieldInput = {
   disconnect?: InputMaybe<OrganizationDisconnectInput>;
-  where?: InputMaybe<GeographicOrganizationsConnectionWhere>;
+  where?: InputMaybe<GeographicOrganizationConnectionWhere>;
 };
 
-export type GeographicOrganizationsFieldInput = {
-  connect?: InputMaybe<Array<GeographicOrganizationsConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<GeographicOrganizationsConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<GeographicOrganizationsCreateFieldInput>>;
+export type GeographicOrganizationFieldInput = {
+  connect?: InputMaybe<GeographicOrganizationConnectFieldInput>;
+  connectOrCreate?: InputMaybe<GeographicOrganizationConnectOrCreateFieldInput>;
+  create?: InputMaybe<GeographicOrganizationCreateFieldInput>;
 };
 
-export type GeographicOrganizationsNodeAggregationWhereInput = {
-  AND?: InputMaybe<Array<GeographicOrganizationsNodeAggregationWhereInput>>;
-  NOT?: InputMaybe<GeographicOrganizationsNodeAggregationWhereInput>;
-  OR?: InputMaybe<Array<GeographicOrganizationsNodeAggregationWhereInput>>;
+export type GeographicOrganizationNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<GeographicOrganizationNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<GeographicOrganizationNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<GeographicOrganizationNodeAggregationWhereInput>>;
   brief_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
   brief_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
   brief_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
@@ -1027,28 +1037,44 @@ export type GeographicOrganizationsNodeAggregationWhereInput = {
   website_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type GeographicOrganizationsRelationship = {
-  __typename?: 'GeographicOrganizationsRelationship';
+export type GeographicOrganizationOrganizationAggregationSelection = {
+  __typename?: 'GeographicOrganizationOrganizationAggregationSelection';
+  count: Scalars['Int']['output'];
+  node?: Maybe<GeographicOrganizationOrganizationNodeAggregateSelection>;
+};
+
+export type GeographicOrganizationOrganizationNodeAggregateSelection = {
+  __typename?: 'GeographicOrganizationOrganizationNodeAggregateSelection';
+  brief: StringAggregateSelectionNonNullable;
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+  name: StringAggregateSelectionNonNullable;
+  website: StringAggregateSelectionNonNullable;
+};
+
+export type GeographicOrganizationRelationship = {
+  __typename?: 'GeographicOrganizationRelationship';
   cursor: Scalars['String']['output'];
   node: Organization;
 };
 
-export type GeographicOrganizationsUpdateConnectionInput = {
+export type GeographicOrganizationUpdateConnectionInput = {
   node?: InputMaybe<OrganizationUpdateInput>;
 };
 
-export type GeographicOrganizationsUpdateFieldInput = {
-  connect?: InputMaybe<Array<GeographicOrganizationsConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<GeographicOrganizationsConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<GeographicOrganizationsCreateFieldInput>>;
-  delete?: InputMaybe<Array<GeographicOrganizationsDeleteFieldInput>>;
-  disconnect?: InputMaybe<Array<GeographicOrganizationsDisconnectFieldInput>>;
-  update?: InputMaybe<GeographicOrganizationsUpdateConnectionInput>;
-  where?: InputMaybe<GeographicOrganizationsConnectionWhere>;
+export type GeographicOrganizationUpdateFieldInput = {
+  connect?: InputMaybe<GeographicOrganizationConnectFieldInput>;
+  connectOrCreate?: InputMaybe<GeographicOrganizationConnectOrCreateFieldInput>;
+  create?: InputMaybe<GeographicOrganizationCreateFieldInput>;
+  delete?: InputMaybe<GeographicOrganizationDeleteFieldInput>;
+  disconnect?: InputMaybe<GeographicOrganizationDisconnectFieldInput>;
+  update?: InputMaybe<GeographicOrganizationUpdateConnectionInput>;
+  where?: InputMaybe<GeographicOrganizationConnectionWhere>;
 };
 
 export type GeographicRelationInput = {
-  organizations?: InputMaybe<Array<GeographicOrganizationsCreateFieldInput>>;
+  organization?: InputMaybe<GeographicOrganizationCreateFieldInput>;
   users?: InputMaybe<Array<GeographicUsersCreateFieldInput>>;
 };
 
@@ -1068,7 +1094,7 @@ export type GeographicUniqueWhere = {
 export type GeographicUpdateInput = {
   brief?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  organizations?: InputMaybe<Array<GeographicOrganizationsUpdateFieldInput>>;
+  organization?: InputMaybe<GeographicOrganizationUpdateFieldInput>;
   users?: InputMaybe<Array<GeographicUsersUpdateFieldInput>>;
   verified?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -1325,23 +1351,11 @@ export type GeographicWhere = {
   id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
   id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
   id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
-  organizationsAggregate?: InputMaybe<GeographicOrganizationsAggregateInput>;
-  /** Return Geographics where all of the related GeographicOrganizationsConnections match this filter */
-  organizationsConnection_ALL?: InputMaybe<GeographicOrganizationsConnectionWhere>;
-  /** Return Geographics where none of the related GeographicOrganizationsConnections match this filter */
-  organizationsConnection_NONE?: InputMaybe<GeographicOrganizationsConnectionWhere>;
-  /** Return Geographics where one of the related GeographicOrganizationsConnections match this filter */
-  organizationsConnection_SINGLE?: InputMaybe<GeographicOrganizationsConnectionWhere>;
-  /** Return Geographics where some of the related GeographicOrganizationsConnections match this filter */
-  organizationsConnection_SOME?: InputMaybe<GeographicOrganizationsConnectionWhere>;
-  /** Return Geographics where all of the related Organizations match this filter */
-  organizations_ALL?: InputMaybe<OrganizationWhere>;
-  /** Return Geographics where none of the related Organizations match this filter */
-  organizations_NONE?: InputMaybe<OrganizationWhere>;
-  /** Return Geographics where one of the related Organizations match this filter */
-  organizations_SINGLE?: InputMaybe<OrganizationWhere>;
-  /** Return Geographics where some of the related Organizations match this filter */
-  organizations_SOME?: InputMaybe<OrganizationWhere>;
+  organization?: InputMaybe<OrganizationWhere>;
+  organizationAggregate?: InputMaybe<GeographicOrganizationAggregateInput>;
+  organizationConnection?: InputMaybe<GeographicOrganizationConnectionWhere>;
+  organizationConnection_NOT?: InputMaybe<GeographicOrganizationConnectionWhere>;
+  organization_NOT?: InputMaybe<OrganizationWhere>;
   usersAggregate?: InputMaybe<GeographicUsersAggregateInput>;
   /** Return Geographics where all of the related GeographicUsersConnections match this filter */
   usersConnection_ALL?: InputMaybe<GeographicUsersConnectionWhere>;
@@ -1375,53 +1389,664 @@ export type IdAggregateSelectionNonNullable = {
   shortest: Scalars['ID']['output'];
 };
 
-export type Interactable = Example | Geographic | Organization | OrganizationStatus | Question | Ripple | Scope | Stakeholder | Team | User | WebDump;
+export type Interactable = Example | Geographic | Organization | OrganizationStatus | Problem | Question | Ripple | Scope | Solution | Stakeholder | Team | User | WebDump;
 
 export type InteractableWhere = {
   Example?: InputMaybe<ExampleWhere>;
   Geographic?: InputMaybe<GeographicWhere>;
   Organization?: InputMaybe<OrganizationWhere>;
   OrganizationStatus?: InputMaybe<OrganizationStatusWhere>;
+  Problem?: InputMaybe<ProblemWhere>;
   Question?: InputMaybe<QuestionWhere>;
   Ripple?: InputMaybe<RippleWhere>;
   Scope?: InputMaybe<ScopeWhere>;
+  Solution?: InputMaybe<SolutionWhere>;
   Stakeholder?: InputMaybe<StakeholderWhere>;
   Team?: InputMaybe<TeamWhere>;
   User?: InputMaybe<UserWhere>;
   WebDump?: InputMaybe<WebDumpWhere>;
 };
 
+export type Misc = {
+  __typename?: 'Misc';
+  content: Scalars['String']['output'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  organization: Organization;
+  organizationAggregate?: Maybe<MiscOrganizationOrganizationAggregationSelection>;
+  organizationConnection: MiscOrganizationConnection;
+  users: Array<User>;
+  usersAggregate?: Maybe<MiscUserUsersAggregationSelection>;
+  usersConnection: MiscUsersConnection;
+  verified: Scalars['Boolean']['output'];
+};
+
+
+export type MiscOrganizationArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<OrganizationOptions>;
+  where?: InputMaybe<OrganizationWhere>;
+};
+
+
+export type MiscOrganizationAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<OrganizationWhere>;
+};
+
+
+export type MiscOrganizationConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<MiscOrganizationConnectionSort>>;
+  where?: InputMaybe<MiscOrganizationConnectionWhere>;
+};
+
+
+export type MiscUsersArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<UserOptions>;
+  where?: InputMaybe<UserWhere>;
+};
+
+
+export type MiscUsersAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<UserWhere>;
+};
+
+
+export type MiscUsersConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<MiscUsersConnectionSort>>;
+  where?: InputMaybe<MiscUsersConnectionWhere>;
+};
+
+export type MiscAggregateSelection = {
+  __typename?: 'MiscAggregateSelection';
+  content: StringAggregateSelectionNonNullable;
+  count: Scalars['Int']['output'];
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  id: IdAggregateSelectionNonNullable;
+};
+
+export type MiscConnectInput = {
+  organization?: InputMaybe<MiscOrganizationConnectFieldInput>;
+  users?: InputMaybe<Array<MiscUsersConnectFieldInput>>;
+};
+
+export type MiscConnectOrCreateInput = {
+  organization?: InputMaybe<MiscOrganizationConnectOrCreateFieldInput>;
+  users?: InputMaybe<Array<MiscUsersConnectOrCreateFieldInput>>;
+};
+
+export type MiscConnectOrCreateWhere = {
+  node: MiscUniqueWhere;
+};
+
+export type MiscConnectWhere = {
+  node: MiscWhere;
+};
+
+export type MiscCreateInput = {
+  content: Scalars['String']['input'];
+  organization?: InputMaybe<MiscOrganizationFieldInput>;
+  users?: InputMaybe<MiscUsersFieldInput>;
+  verified?: Scalars['Boolean']['input'];
+};
+
+export type MiscDeleteInput = {
+  organization?: InputMaybe<MiscOrganizationDeleteFieldInput>;
+  users?: InputMaybe<Array<MiscUsersDeleteFieldInput>>;
+};
+
+export type MiscDisconnectInput = {
+  organization?: InputMaybe<MiscOrganizationDisconnectFieldInput>;
+  users?: InputMaybe<Array<MiscUsersDisconnectFieldInput>>;
+};
+
+export type MiscEdge = {
+  __typename?: 'MiscEdge';
+  cursor: Scalars['String']['output'];
+  node: Misc;
+};
+
+export type MiscOnCreateInput = {
+  content: Scalars['String']['input'];
+  verified?: Scalars['Boolean']['input'];
+};
+
+export type MiscOptions = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  /** Specify one or more MiscSort objects to sort Miscs by. The sorts will be applied in the order in which they are arranged in the array. */
+  sort?: InputMaybe<Array<MiscSort>>;
+};
+
+export type MiscOrganizationAggregateInput = {
+  AND?: InputMaybe<Array<MiscOrganizationAggregateInput>>;
+  NOT?: InputMaybe<MiscOrganizationAggregateInput>;
+  OR?: InputMaybe<Array<MiscOrganizationAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  node?: InputMaybe<MiscOrganizationNodeAggregationWhereInput>;
+};
+
+export type MiscOrganizationConnectFieldInput = {
+  connect?: InputMaybe<OrganizationConnectInput>;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<OrganizationConnectWhere>;
+};
+
+export type MiscOrganizationConnectOrCreateFieldInput = {
+  onCreate: MiscOrganizationConnectOrCreateFieldInputOnCreate;
+  where: OrganizationConnectOrCreateWhere;
+};
+
+export type MiscOrganizationConnectOrCreateFieldInputOnCreate = {
+  node: OrganizationOnCreateInput;
+};
+
+export type MiscOrganizationConnection = {
+  __typename?: 'MiscOrganizationConnection';
+  edges: Array<MiscOrganizationRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type MiscOrganizationConnectionSort = {
+  node?: InputMaybe<OrganizationSort>;
+};
+
+export type MiscOrganizationConnectionWhere = {
+  AND?: InputMaybe<Array<MiscOrganizationConnectionWhere>>;
+  NOT?: InputMaybe<MiscOrganizationConnectionWhere>;
+  OR?: InputMaybe<Array<MiscOrganizationConnectionWhere>>;
+  node?: InputMaybe<OrganizationWhere>;
+};
+
+export type MiscOrganizationCreateFieldInput = {
+  node: OrganizationCreateInput;
+};
+
+export type MiscOrganizationDeleteFieldInput = {
+  delete?: InputMaybe<OrganizationDeleteInput>;
+  where?: InputMaybe<MiscOrganizationConnectionWhere>;
+};
+
+export type MiscOrganizationDisconnectFieldInput = {
+  disconnect?: InputMaybe<OrganizationDisconnectInput>;
+  where?: InputMaybe<MiscOrganizationConnectionWhere>;
+};
+
+export type MiscOrganizationFieldInput = {
+  connect?: InputMaybe<MiscOrganizationConnectFieldInput>;
+  connectOrCreate?: InputMaybe<MiscOrganizationConnectOrCreateFieldInput>;
+  create?: InputMaybe<MiscOrganizationCreateFieldInput>;
+};
+
+export type MiscOrganizationNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<MiscOrganizationNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<MiscOrganizationNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<MiscOrganizationNodeAggregationWhereInput>>;
+  brief_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  website_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  website_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type MiscOrganizationOrganizationAggregationSelection = {
+  __typename?: 'MiscOrganizationOrganizationAggregationSelection';
+  count: Scalars['Int']['output'];
+  node?: Maybe<MiscOrganizationOrganizationNodeAggregateSelection>;
+};
+
+export type MiscOrganizationOrganizationNodeAggregateSelection = {
+  __typename?: 'MiscOrganizationOrganizationNodeAggregateSelection';
+  brief: StringAggregateSelectionNonNullable;
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+  name: StringAggregateSelectionNonNullable;
+  website: StringAggregateSelectionNonNullable;
+};
+
+export type MiscOrganizationRelationship = {
+  __typename?: 'MiscOrganizationRelationship';
+  cursor: Scalars['String']['output'];
+  node: Organization;
+};
+
+export type MiscOrganizationUpdateConnectionInput = {
+  node?: InputMaybe<OrganizationUpdateInput>;
+};
+
+export type MiscOrganizationUpdateFieldInput = {
+  connect?: InputMaybe<MiscOrganizationConnectFieldInput>;
+  connectOrCreate?: InputMaybe<MiscOrganizationConnectOrCreateFieldInput>;
+  create?: InputMaybe<MiscOrganizationCreateFieldInput>;
+  delete?: InputMaybe<MiscOrganizationDeleteFieldInput>;
+  disconnect?: InputMaybe<MiscOrganizationDisconnectFieldInput>;
+  update?: InputMaybe<MiscOrganizationUpdateConnectionInput>;
+  where?: InputMaybe<MiscOrganizationConnectionWhere>;
+};
+
+export type MiscRelationInput = {
+  organization?: InputMaybe<MiscOrganizationCreateFieldInput>;
+  users?: InputMaybe<Array<MiscUsersCreateFieldInput>>;
+};
+
+/** Fields to sort Miscs by. The order in which sorts are applied is not guaranteed when specifying many fields in one MiscSort object. */
+export type MiscSort = {
+  content?: InputMaybe<SortDirection>;
+  createdAt?: InputMaybe<SortDirection>;
+  id?: InputMaybe<SortDirection>;
+  verified?: InputMaybe<SortDirection>;
+};
+
+export type MiscUniqueWhere = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type MiscUpdateInput = {
+  content?: InputMaybe<Scalars['String']['input']>;
+  organization?: InputMaybe<MiscOrganizationUpdateFieldInput>;
+  users?: InputMaybe<Array<MiscUsersUpdateFieldInput>>;
+  verified?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type MiscUserUsersAggregationSelection = {
+  __typename?: 'MiscUserUsersAggregationSelection';
+  count: Scalars['Int']['output'];
+  edge?: Maybe<MiscUserUsersEdgeAggregateSelection>;
+  node?: Maybe<MiscUserUsersNodeAggregateSelection>;
+};
+
+export type MiscUserUsersEdgeAggregateSelection = {
+  __typename?: 'MiscUserUsersEdgeAggregateSelection';
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  dump: StringAggregateSelectionNullable;
+  message: StringAggregateSelectionNullable;
+};
+
+export type MiscUserUsersNodeAggregateSelection = {
+  __typename?: 'MiscUserUsersNodeAggregateSelection';
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  email: StringAggregateSelectionNonNullable;
+  familyName: StringAggregateSelectionNullable;
+  givenName: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+};
+
+export type MiscUsersAggregateInput = {
+  AND?: InputMaybe<Array<MiscUsersAggregateInput>>;
+  NOT?: InputMaybe<MiscUsersAggregateInput>;
+  OR?: InputMaybe<Array<MiscUsersAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  edge?: InputMaybe<MiscUsersEdgeAggregationWhereInput>;
+  node?: InputMaybe<MiscUsersNodeAggregationWhereInput>;
+};
+
+export type MiscUsersConnectFieldInput = {
+  connect?: InputMaybe<Array<UserConnectInput>>;
+  edge: UserInteractsWithCreateInput;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<UserConnectWhere>;
+};
+
+export type MiscUsersConnectOrCreateFieldInput = {
+  onCreate: MiscUsersConnectOrCreateFieldInputOnCreate;
+  where: UserConnectOrCreateWhere;
+};
+
+export type MiscUsersConnectOrCreateFieldInputOnCreate = {
+  edge: UserInteractsWithCreateInput;
+  node: UserOnCreateInput;
+};
+
+export type MiscUsersConnection = {
+  __typename?: 'MiscUsersConnection';
+  edges: Array<MiscUsersRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type MiscUsersConnectionSort = {
+  edge?: InputMaybe<UserInteractsWithSort>;
+  node?: InputMaybe<UserSort>;
+};
+
+export type MiscUsersConnectionWhere = {
+  AND?: InputMaybe<Array<MiscUsersConnectionWhere>>;
+  NOT?: InputMaybe<MiscUsersConnectionWhere>;
+  OR?: InputMaybe<Array<MiscUsersConnectionWhere>>;
+  edge?: InputMaybe<UserInteractsWithWhere>;
+  node?: InputMaybe<UserWhere>;
+};
+
+export type MiscUsersCreateFieldInput = {
+  edge: UserInteractsWithCreateInput;
+  node: UserCreateInput;
+};
+
+export type MiscUsersDeleteFieldInput = {
+  delete?: InputMaybe<UserDeleteInput>;
+  where?: InputMaybe<MiscUsersConnectionWhere>;
+};
+
+export type MiscUsersDisconnectFieldInput = {
+  disconnect?: InputMaybe<UserDisconnectInput>;
+  where?: InputMaybe<MiscUsersConnectionWhere>;
+};
+
+export type MiscUsersEdgeAggregationWhereInput = {
+  AND?: InputMaybe<Array<MiscUsersEdgeAggregationWhereInput>>;
+  NOT?: InputMaybe<MiscUsersEdgeAggregationWhereInput>;
+  OR?: InputMaybe<Array<MiscUsersEdgeAggregationWhereInput>>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  dump_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  dump_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  dump_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  dump_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  dump_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  dump_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  dump_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  dump_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  dump_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  dump_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  message_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  message_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type MiscUsersFieldInput = {
+  connect?: InputMaybe<Array<MiscUsersConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<MiscUsersConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<MiscUsersCreateFieldInput>>;
+};
+
+export type MiscUsersNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<MiscUsersNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<MiscUsersNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<MiscUsersNodeAggregationWhereInput>>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  familyName_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  familyName_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  familyName_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  familyName_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  familyName_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  familyName_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  familyName_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  familyName_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  familyName_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  familyName_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  givenName_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  givenName_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  givenName_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  givenName_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  givenName_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  givenName_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  givenName_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  givenName_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  givenName_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  givenName_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type MiscUsersRelationship = UserInteractsWith & {
+  __typename?: 'MiscUsersRelationship';
+  createdAt: Scalars['DateTime']['output'];
+  cursor: Scalars['String']['output'];
+  dump?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
+  node: User;
+  type: UserInteractionName;
+};
+
+export type MiscUsersUpdateConnectionInput = {
+  edge?: InputMaybe<UserInteractsWithUpdateInput>;
+  node?: InputMaybe<UserUpdateInput>;
+};
+
+export type MiscUsersUpdateFieldInput = {
+  connect?: InputMaybe<Array<MiscUsersConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<MiscUsersConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<MiscUsersCreateFieldInput>>;
+  delete?: InputMaybe<Array<MiscUsersDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<MiscUsersDisconnectFieldInput>>;
+  update?: InputMaybe<MiscUsersUpdateConnectionInput>;
+  where?: InputMaybe<MiscUsersConnectionWhere>;
+};
+
+export type MiscWhere = {
+  AND?: InputMaybe<Array<MiscWhere>>;
+  NOT?: InputMaybe<MiscWhere>;
+  OR?: InputMaybe<Array<MiscWhere>>;
+  content?: InputMaybe<Scalars['String']['input']>;
+  content_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  content_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  content_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  content_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  organization?: InputMaybe<OrganizationWhere>;
+  organizationAggregate?: InputMaybe<MiscOrganizationAggregateInput>;
+  organizationConnection?: InputMaybe<MiscOrganizationConnectionWhere>;
+  organizationConnection_NOT?: InputMaybe<MiscOrganizationConnectionWhere>;
+  organization_NOT?: InputMaybe<OrganizationWhere>;
+  usersAggregate?: InputMaybe<MiscUsersAggregateInput>;
+  /** Return Miscs where all of the related MiscUsersConnections match this filter */
+  usersConnection_ALL?: InputMaybe<MiscUsersConnectionWhere>;
+  /** Return Miscs where none of the related MiscUsersConnections match this filter */
+  usersConnection_NONE?: InputMaybe<MiscUsersConnectionWhere>;
+  /** Return Miscs where one of the related MiscUsersConnections match this filter */
+  usersConnection_SINGLE?: InputMaybe<MiscUsersConnectionWhere>;
+  /** Return Miscs where some of the related MiscUsersConnections match this filter */
+  usersConnection_SOME?: InputMaybe<MiscUsersConnectionWhere>;
+  /** Return Miscs where all of the related Users match this filter */
+  users_ALL?: InputMaybe<UserWhere>;
+  /** Return Miscs where none of the related Users match this filter */
+  users_NONE?: InputMaybe<UserWhere>;
+  /** Return Miscs where one of the related Users match this filter */
+  users_SINGLE?: InputMaybe<UserWhere>;
+  /** Return Miscs where some of the related Users match this filter */
+  users_SOME?: InputMaybe<UserWhere>;
+  verified?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type MiscsConnection = {
+  __typename?: 'MiscsConnection';
+  edges: Array<MiscEdge>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createExamples: CreateExamplesMutationResponse;
   createGeographics: CreateGeographicsMutationResponse;
+  createMiscs: CreateMiscsMutationResponse;
   createOrganizationStatuses: CreateOrganizationStatusesMutationResponse;
   createOrganizations: CreateOrganizationsMutationResponse;
+  createProblems: CreateProblemsMutationResponse;
   createQuestions: CreateQuestionsMutationResponse;
   createRipples: CreateRipplesMutationResponse;
   createScopes: CreateScopesMutationResponse;
+  createSolutions: CreateSolutionsMutationResponse;
   createStakeholders: CreateStakeholdersMutationResponse;
   createTeams: CreateTeamsMutationResponse;
   createUsers: CreateUsersMutationResponse;
   createWebDumps: CreateWebDumpsMutationResponse;
   deleteExamples: DeleteInfo;
   deleteGeographics: DeleteInfo;
+  deleteMiscs: DeleteInfo;
   deleteOrganizationStatuses: DeleteInfo;
   deleteOrganizations: DeleteInfo;
+  deleteProblems: DeleteInfo;
   deleteQuestions: DeleteInfo;
   deleteRipples: DeleteInfo;
   deleteScopes: DeleteInfo;
+  deleteSolutions: DeleteInfo;
   deleteStakeholders: DeleteInfo;
   deleteTeams: DeleteInfo;
   deleteUsers: DeleteInfo;
   deleteWebDumps: DeleteInfo;
   updateExamples: UpdateExamplesMutationResponse;
   updateGeographics: UpdateGeographicsMutationResponse;
+  updateMiscs: UpdateMiscsMutationResponse;
   updateOrganizationStatuses: UpdateOrganizationStatusesMutationResponse;
   updateOrganizations: UpdateOrganizationsMutationResponse;
+  updateProblems: UpdateProblemsMutationResponse;
   updateQuestions: UpdateQuestionsMutationResponse;
   updateRipples: UpdateRipplesMutationResponse;
   updateScopes: UpdateScopesMutationResponse;
+  updateSolutions: UpdateSolutionsMutationResponse;
   updateStakeholders: UpdateStakeholdersMutationResponse;
   updateTeams: UpdateTeamsMutationResponse;
   updateUsers: UpdateUsersMutationResponse;
@@ -1439,6 +2064,11 @@ export type MutationCreateGeographicsArgs = {
 };
 
 
+export type MutationCreateMiscsArgs = {
+  input: Array<MiscCreateInput>;
+};
+
+
 export type MutationCreateOrganizationStatusesArgs = {
   input: Array<OrganizationStatusCreateInput>;
 };
@@ -1446,6 +2076,11 @@ export type MutationCreateOrganizationStatusesArgs = {
 
 export type MutationCreateOrganizationsArgs = {
   input: Array<OrganizationCreateInput>;
+};
+
+
+export type MutationCreateProblemsArgs = {
+  input: Array<ProblemCreateInput>;
 };
 
 
@@ -1461,6 +2096,11 @@ export type MutationCreateRipplesArgs = {
 
 export type MutationCreateScopesArgs = {
   input: Array<ScopeCreateInput>;
+};
+
+
+export type MutationCreateSolutionsArgs = {
+  input: Array<SolutionCreateInput>;
 };
 
 
@@ -1496,6 +2136,12 @@ export type MutationDeleteGeographicsArgs = {
 };
 
 
+export type MutationDeleteMiscsArgs = {
+  delete?: InputMaybe<MiscDeleteInput>;
+  where?: InputMaybe<MiscWhere>;
+};
+
+
 export type MutationDeleteOrganizationStatusesArgs = {
   delete?: InputMaybe<OrganizationStatusDeleteInput>;
   where?: InputMaybe<OrganizationStatusWhere>;
@@ -1505,6 +2151,12 @@ export type MutationDeleteOrganizationStatusesArgs = {
 export type MutationDeleteOrganizationsArgs = {
   delete?: InputMaybe<OrganizationDeleteInput>;
   where?: InputMaybe<OrganizationWhere>;
+};
+
+
+export type MutationDeleteProblemsArgs = {
+  delete?: InputMaybe<ProblemDeleteInput>;
+  where?: InputMaybe<ProblemWhere>;
 };
 
 
@@ -1523,6 +2175,12 @@ export type MutationDeleteRipplesArgs = {
 export type MutationDeleteScopesArgs = {
   delete?: InputMaybe<ScopeDeleteInput>;
   where?: InputMaybe<ScopeWhere>;
+};
+
+
+export type MutationDeleteSolutionsArgs = {
+  delete?: InputMaybe<SolutionDeleteInput>;
+  where?: InputMaybe<SolutionWhere>;
 };
 
 
@@ -1572,6 +2230,17 @@ export type MutationUpdateGeographicsArgs = {
 };
 
 
+export type MutationUpdateMiscsArgs = {
+  connect?: InputMaybe<MiscConnectInput>;
+  connectOrCreate?: InputMaybe<MiscConnectOrCreateInput>;
+  create?: InputMaybe<MiscRelationInput>;
+  delete?: InputMaybe<MiscDeleteInput>;
+  disconnect?: InputMaybe<MiscDisconnectInput>;
+  update?: InputMaybe<MiscUpdateInput>;
+  where?: InputMaybe<MiscWhere>;
+};
+
+
 export type MutationUpdateOrganizationStatusesArgs = {
   connect?: InputMaybe<OrganizationStatusConnectInput>;
   connectOrCreate?: InputMaybe<OrganizationStatusConnectOrCreateInput>;
@@ -1591,6 +2260,17 @@ export type MutationUpdateOrganizationsArgs = {
   disconnect?: InputMaybe<OrganizationDisconnectInput>;
   update?: InputMaybe<OrganizationUpdateInput>;
   where?: InputMaybe<OrganizationWhere>;
+};
+
+
+export type MutationUpdateProblemsArgs = {
+  connect?: InputMaybe<ProblemConnectInput>;
+  connectOrCreate?: InputMaybe<ProblemConnectOrCreateInput>;
+  create?: InputMaybe<ProblemRelationInput>;
+  delete?: InputMaybe<ProblemDeleteInput>;
+  disconnect?: InputMaybe<ProblemDisconnectInput>;
+  update?: InputMaybe<ProblemUpdateInput>;
+  where?: InputMaybe<ProblemWhere>;
 };
 
 
@@ -1624,6 +2304,17 @@ export type MutationUpdateScopesArgs = {
   disconnect?: InputMaybe<ScopeDisconnectInput>;
   update?: InputMaybe<ScopeUpdateInput>;
   where?: InputMaybe<ScopeWhere>;
+};
+
+
+export type MutationUpdateSolutionsArgs = {
+  connect?: InputMaybe<SolutionConnectInput>;
+  connectOrCreate?: InputMaybe<SolutionConnectOrCreateInput>;
+  create?: InputMaybe<SolutionRelationInput>;
+  delete?: InputMaybe<SolutionDeleteInput>;
+  disconnect?: InputMaybe<SolutionDisconnectInput>;
+  update?: InputMaybe<SolutionUpdateInput>;
+  where?: InputMaybe<SolutionWhere>;
 };
 
 
@@ -1679,12 +2370,18 @@ export type Organization = {
   description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
+  problems: Array<Problem>;
+  problemsAggregate?: Maybe<OrganizationProblemProblemsAggregationSelection>;
+  problemsConnection: OrganizationProblemsConnection;
   ripples: Array<Ripple>;
   ripplesAggregate?: Maybe<OrganizationRippleRipplesAggregationSelection>;
   ripplesConnection: OrganizationRipplesConnection;
   scopes: Array<Scope>;
   scopesAggregate?: Maybe<OrganizationScopeScopesAggregationSelection>;
   scopesConnection: OrganizationScopesConnection;
+  solutions: Array<Solution>;
+  solutionsAggregate?: Maybe<OrganizationSolutionSolutionsAggregationSelection>;
+  solutionsConnection: OrganizationSolutionsConnection;
   statuses: Array<OrganizationStatus>;
   statusesAggregate?: Maybe<OrganizationOrganizationStatusStatusesAggregationSelection>;
   statusesConnection: OrganizationStatusesConnection;
@@ -1708,6 +2405,28 @@ export type OrganizationConsiderationsConnectionArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<OrganizationConsiderationsConnectionWhere>;
+};
+
+
+export type OrganizationProblemsArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<ProblemOptions>;
+  where?: InputMaybe<ProblemWhere>;
+};
+
+
+export type OrganizationProblemsAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<ProblemWhere>;
+};
+
+
+export type OrganizationProblemsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<OrganizationProblemsConnectionSort>>;
+  where?: InputMaybe<OrganizationProblemsConnectionWhere>;
 };
 
 
@@ -1752,6 +2471,28 @@ export type OrganizationScopesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<OrganizationScopesConnectionSort>>;
   where?: InputMaybe<OrganizationScopesConnectionWhere>;
+};
+
+
+export type OrganizationSolutionsArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<SolutionOptions>;
+  where?: InputMaybe<SolutionWhere>;
+};
+
+
+export type OrganizationSolutionsAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<SolutionWhere>;
+};
+
+
+export type OrganizationSolutionsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<OrganizationSolutionsConnectionSort>>;
+  where?: InputMaybe<OrganizationSolutionsConnectionWhere>;
 };
 
 
@@ -1811,16 +2552,20 @@ export type OrganizationAggregateSelection = {
 
 export type OrganizationConnectInput = {
   considerations?: InputMaybe<OrganizationConsiderationsConnectInput>;
+  problems?: InputMaybe<Array<OrganizationProblemsConnectFieldInput>>;
   ripples?: InputMaybe<Array<OrganizationRipplesConnectFieldInput>>;
   scopes?: InputMaybe<Array<OrganizationScopesConnectFieldInput>>;
+  solutions?: InputMaybe<Array<OrganizationSolutionsConnectFieldInput>>;
   statuses?: InputMaybe<Array<OrganizationStatusesConnectFieldInput>>;
   users?: InputMaybe<Array<OrganizationUsersConnectFieldInput>>;
 };
 
 export type OrganizationConnectOrCreateInput = {
   considerations?: InputMaybe<OrganizationConsiderationsConnectOrCreateInput>;
+  problems?: InputMaybe<Array<OrganizationProblemsConnectOrCreateFieldInput>>;
   ripples?: InputMaybe<Array<OrganizationRipplesConnectOrCreateFieldInput>>;
   scopes?: InputMaybe<Array<OrganizationScopesConnectOrCreateFieldInput>>;
+  solutions?: InputMaybe<Array<OrganizationSolutionsConnectOrCreateFieldInput>>;
   statuses?: InputMaybe<Array<OrganizationStatusesConnectOrCreateFieldInput>>;
   users?: InputMaybe<Array<OrganizationUsersConnectOrCreateFieldInput>>;
 };
@@ -1833,25 +2578,25 @@ export type OrganizationConnectWhere = {
   node: OrganizationWhere;
 };
 
-export type OrganizationConsideration = Geographic | Stakeholder | Team | WebDump;
+export type OrganizationConsideration = Geographic | Misc | Team | WebDump;
 
 export type OrganizationConsiderationWhere = {
   Geographic?: InputMaybe<GeographicWhere>;
-  Stakeholder?: InputMaybe<StakeholderWhere>;
+  Misc?: InputMaybe<MiscWhere>;
   Team?: InputMaybe<TeamWhere>;
   WebDump?: InputMaybe<WebDumpWhere>;
 };
 
 export type OrganizationConsiderationsConnectInput = {
   Geographic?: InputMaybe<Array<OrganizationConsiderationsGeographicConnectFieldInput>>;
-  Stakeholder?: InputMaybe<Array<OrganizationConsiderationsStakeholderConnectFieldInput>>;
+  Misc?: InputMaybe<Array<OrganizationConsiderationsMiscConnectFieldInput>>;
   Team?: InputMaybe<Array<OrganizationConsiderationsTeamConnectFieldInput>>;
   WebDump?: InputMaybe<Array<OrganizationConsiderationsWebDumpConnectFieldInput>>;
 };
 
 export type OrganizationConsiderationsConnectOrCreateInput = {
   Geographic?: InputMaybe<Array<OrganizationConsiderationsGeographicConnectOrCreateFieldInput>>;
-  Stakeholder?: InputMaybe<Array<OrganizationConsiderationsStakeholderConnectOrCreateFieldInput>>;
+  Misc?: InputMaybe<Array<OrganizationConsiderationsMiscConnectOrCreateFieldInput>>;
   Team?: InputMaybe<Array<OrganizationConsiderationsTeamConnectOrCreateFieldInput>>;
   WebDump?: InputMaybe<Array<OrganizationConsiderationsWebDumpConnectOrCreateFieldInput>>;
 };
@@ -1865,35 +2610,35 @@ export type OrganizationConsiderationsConnection = {
 
 export type OrganizationConsiderationsConnectionWhere = {
   Geographic?: InputMaybe<OrganizationConsiderationsGeographicConnectionWhere>;
-  Stakeholder?: InputMaybe<OrganizationConsiderationsStakeholderConnectionWhere>;
+  Misc?: InputMaybe<OrganizationConsiderationsMiscConnectionWhere>;
   Team?: InputMaybe<OrganizationConsiderationsTeamConnectionWhere>;
   WebDump?: InputMaybe<OrganizationConsiderationsWebDumpConnectionWhere>;
 };
 
 export type OrganizationConsiderationsCreateFieldInput = {
   Geographic?: InputMaybe<Array<OrganizationConsiderationsGeographicCreateFieldInput>>;
-  Stakeholder?: InputMaybe<Array<OrganizationConsiderationsStakeholderCreateFieldInput>>;
+  Misc?: InputMaybe<Array<OrganizationConsiderationsMiscCreateFieldInput>>;
   Team?: InputMaybe<Array<OrganizationConsiderationsTeamCreateFieldInput>>;
   WebDump?: InputMaybe<Array<OrganizationConsiderationsWebDumpCreateFieldInput>>;
 };
 
 export type OrganizationConsiderationsCreateInput = {
   Geographic?: InputMaybe<OrganizationConsiderationsGeographicFieldInput>;
-  Stakeholder?: InputMaybe<OrganizationConsiderationsStakeholderFieldInput>;
+  Misc?: InputMaybe<OrganizationConsiderationsMiscFieldInput>;
   Team?: InputMaybe<OrganizationConsiderationsTeamFieldInput>;
   WebDump?: InputMaybe<OrganizationConsiderationsWebDumpFieldInput>;
 };
 
 export type OrganizationConsiderationsDeleteInput = {
   Geographic?: InputMaybe<Array<OrganizationConsiderationsGeographicDeleteFieldInput>>;
-  Stakeholder?: InputMaybe<Array<OrganizationConsiderationsStakeholderDeleteFieldInput>>;
+  Misc?: InputMaybe<Array<OrganizationConsiderationsMiscDeleteFieldInput>>;
   Team?: InputMaybe<Array<OrganizationConsiderationsTeamDeleteFieldInput>>;
   WebDump?: InputMaybe<Array<OrganizationConsiderationsWebDumpDeleteFieldInput>>;
 };
 
 export type OrganizationConsiderationsDisconnectInput = {
   Geographic?: InputMaybe<Array<OrganizationConsiderationsGeographicDisconnectFieldInput>>;
-  Stakeholder?: InputMaybe<Array<OrganizationConsiderationsStakeholderDisconnectFieldInput>>;
+  Misc?: InputMaybe<Array<OrganizationConsiderationsMiscDisconnectFieldInput>>;
   Team?: InputMaybe<Array<OrganizationConsiderationsTeamDisconnectFieldInput>>;
   WebDump?: InputMaybe<Array<OrganizationConsiderationsWebDumpDisconnectFieldInput>>;
 };
@@ -1953,65 +2698,65 @@ export type OrganizationConsiderationsGeographicUpdateFieldInput = {
   where?: InputMaybe<OrganizationConsiderationsGeographicConnectionWhere>;
 };
 
+export type OrganizationConsiderationsMiscConnectFieldInput = {
+  connect?: InputMaybe<Array<MiscConnectInput>>;
+  where?: InputMaybe<MiscConnectWhere>;
+};
+
+export type OrganizationConsiderationsMiscConnectOrCreateFieldInput = {
+  onCreate: OrganizationConsiderationsMiscConnectOrCreateFieldInputOnCreate;
+  where: MiscConnectOrCreateWhere;
+};
+
+export type OrganizationConsiderationsMiscConnectOrCreateFieldInputOnCreate = {
+  node: MiscOnCreateInput;
+};
+
+export type OrganizationConsiderationsMiscConnectionWhere = {
+  AND?: InputMaybe<Array<OrganizationConsiderationsMiscConnectionWhere>>;
+  NOT?: InputMaybe<OrganizationConsiderationsMiscConnectionWhere>;
+  OR?: InputMaybe<Array<OrganizationConsiderationsMiscConnectionWhere>>;
+  node?: InputMaybe<MiscWhere>;
+};
+
+export type OrganizationConsiderationsMiscCreateFieldInput = {
+  node: MiscCreateInput;
+};
+
+export type OrganizationConsiderationsMiscDeleteFieldInput = {
+  delete?: InputMaybe<MiscDeleteInput>;
+  where?: InputMaybe<OrganizationConsiderationsMiscConnectionWhere>;
+};
+
+export type OrganizationConsiderationsMiscDisconnectFieldInput = {
+  disconnect?: InputMaybe<MiscDisconnectInput>;
+  where?: InputMaybe<OrganizationConsiderationsMiscConnectionWhere>;
+};
+
+export type OrganizationConsiderationsMiscFieldInput = {
+  connect?: InputMaybe<Array<OrganizationConsiderationsMiscConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<OrganizationConsiderationsMiscConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<OrganizationConsiderationsMiscCreateFieldInput>>;
+};
+
+export type OrganizationConsiderationsMiscUpdateConnectionInput = {
+  node?: InputMaybe<MiscUpdateInput>;
+};
+
+export type OrganizationConsiderationsMiscUpdateFieldInput = {
+  connect?: InputMaybe<Array<OrganizationConsiderationsMiscConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<OrganizationConsiderationsMiscConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<OrganizationConsiderationsMiscCreateFieldInput>>;
+  delete?: InputMaybe<Array<OrganizationConsiderationsMiscDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<OrganizationConsiderationsMiscDisconnectFieldInput>>;
+  update?: InputMaybe<OrganizationConsiderationsMiscUpdateConnectionInput>;
+  where?: InputMaybe<OrganizationConsiderationsMiscConnectionWhere>;
+};
+
 export type OrganizationConsiderationsRelationship = {
   __typename?: 'OrganizationConsiderationsRelationship';
   cursor: Scalars['String']['output'];
   node: OrganizationConsideration;
-};
-
-export type OrganizationConsiderationsStakeholderConnectFieldInput = {
-  connect?: InputMaybe<Array<StakeholderConnectInput>>;
-  where?: InputMaybe<StakeholderConnectWhere>;
-};
-
-export type OrganizationConsiderationsStakeholderConnectOrCreateFieldInput = {
-  onCreate: OrganizationConsiderationsStakeholderConnectOrCreateFieldInputOnCreate;
-  where: StakeholderConnectOrCreateWhere;
-};
-
-export type OrganizationConsiderationsStakeholderConnectOrCreateFieldInputOnCreate = {
-  node: StakeholderOnCreateInput;
-};
-
-export type OrganizationConsiderationsStakeholderConnectionWhere = {
-  AND?: InputMaybe<Array<OrganizationConsiderationsStakeholderConnectionWhere>>;
-  NOT?: InputMaybe<OrganizationConsiderationsStakeholderConnectionWhere>;
-  OR?: InputMaybe<Array<OrganizationConsiderationsStakeholderConnectionWhere>>;
-  node?: InputMaybe<StakeholderWhere>;
-};
-
-export type OrganizationConsiderationsStakeholderCreateFieldInput = {
-  node: StakeholderCreateInput;
-};
-
-export type OrganizationConsiderationsStakeholderDeleteFieldInput = {
-  delete?: InputMaybe<StakeholderDeleteInput>;
-  where?: InputMaybe<OrganizationConsiderationsStakeholderConnectionWhere>;
-};
-
-export type OrganizationConsiderationsStakeholderDisconnectFieldInput = {
-  disconnect?: InputMaybe<StakeholderDisconnectInput>;
-  where?: InputMaybe<OrganizationConsiderationsStakeholderConnectionWhere>;
-};
-
-export type OrganizationConsiderationsStakeholderFieldInput = {
-  connect?: InputMaybe<Array<OrganizationConsiderationsStakeholderConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<OrganizationConsiderationsStakeholderConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<OrganizationConsiderationsStakeholderCreateFieldInput>>;
-};
-
-export type OrganizationConsiderationsStakeholderUpdateConnectionInput = {
-  node?: InputMaybe<StakeholderUpdateInput>;
-};
-
-export type OrganizationConsiderationsStakeholderUpdateFieldInput = {
-  connect?: InputMaybe<Array<OrganizationConsiderationsStakeholderConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<OrganizationConsiderationsStakeholderConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<OrganizationConsiderationsStakeholderCreateFieldInput>>;
-  delete?: InputMaybe<Array<OrganizationConsiderationsStakeholderDeleteFieldInput>>;
-  disconnect?: InputMaybe<Array<OrganizationConsiderationsStakeholderDisconnectFieldInput>>;
-  update?: InputMaybe<OrganizationConsiderationsStakeholderUpdateConnectionInput>;
-  where?: InputMaybe<OrganizationConsiderationsStakeholderConnectionWhere>;
 };
 
 export type OrganizationConsiderationsTeamConnectFieldInput = {
@@ -2071,7 +2816,7 @@ export type OrganizationConsiderationsTeamUpdateFieldInput = {
 
 export type OrganizationConsiderationsUpdateInput = {
   Geographic?: InputMaybe<Array<OrganizationConsiderationsGeographicUpdateFieldInput>>;
-  Stakeholder?: InputMaybe<Array<OrganizationConsiderationsStakeholderUpdateFieldInput>>;
+  Misc?: InputMaybe<Array<OrganizationConsiderationsMiscUpdateFieldInput>>;
   Team?: InputMaybe<Array<OrganizationConsiderationsTeamUpdateFieldInput>>;
   WebDump?: InputMaybe<Array<OrganizationConsiderationsWebDumpUpdateFieldInput>>;
 };
@@ -2136,8 +2881,10 @@ export type OrganizationCreateInput = {
   considerations?: InputMaybe<OrganizationConsiderationsCreateInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
+  problems?: InputMaybe<OrganizationProblemsFieldInput>;
   ripples?: InputMaybe<OrganizationRipplesFieldInput>;
   scopes?: InputMaybe<OrganizationScopesFieldInput>;
+  solutions?: InputMaybe<OrganizationSolutionsFieldInput>;
   statuses?: InputMaybe<OrganizationStatusesFieldInput>;
   users?: InputMaybe<OrganizationUsersFieldInput>;
   verified?: Scalars['Boolean']['input'];
@@ -2195,16 +2942,20 @@ export type OrganizationCreatesWhere = {
 
 export type OrganizationDeleteInput = {
   considerations?: InputMaybe<OrganizationConsiderationsDeleteInput>;
+  problems?: InputMaybe<Array<OrganizationProblemsDeleteFieldInput>>;
   ripples?: InputMaybe<Array<OrganizationRipplesDeleteFieldInput>>;
   scopes?: InputMaybe<Array<OrganizationScopesDeleteFieldInput>>;
+  solutions?: InputMaybe<Array<OrganizationSolutionsDeleteFieldInput>>;
   statuses?: InputMaybe<Array<OrganizationStatusesDeleteFieldInput>>;
   users?: InputMaybe<Array<OrganizationUsersDeleteFieldInput>>;
 };
 
 export type OrganizationDisconnectInput = {
   considerations?: InputMaybe<OrganizationConsiderationsDisconnectInput>;
+  problems?: InputMaybe<Array<OrganizationProblemsDisconnectFieldInput>>;
   ripples?: InputMaybe<Array<OrganizationRipplesDisconnectFieldInput>>;
   scopes?: InputMaybe<Array<OrganizationScopesDisconnectFieldInput>>;
+  solutions?: InputMaybe<Array<OrganizationSolutionsDisconnectFieldInput>>;
   statuses?: InputMaybe<Array<OrganizationStatusesDisconnectFieldInput>>;
   users?: InputMaybe<Array<OrganizationUsersDisconnectFieldInput>>;
 };
@@ -2294,10 +3045,158 @@ export type OrganizationOrganizationStatusStatusesNodeAggregateSelection = {
   id: IdAggregateSelectionNonNullable;
 };
 
+export type OrganizationProblemProblemsAggregationSelection = {
+  __typename?: 'OrganizationProblemProblemsAggregationSelection';
+  count: Scalars['Int']['output'];
+  node?: Maybe<OrganizationProblemProblemsNodeAggregateSelection>;
+};
+
+export type OrganizationProblemProblemsNodeAggregateSelection = {
+  __typename?: 'OrganizationProblemProblemsNodeAggregateSelection';
+  brief: StringAggregateSelectionNullable;
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+};
+
+export type OrganizationProblemsAggregateInput = {
+  AND?: InputMaybe<Array<OrganizationProblemsAggregateInput>>;
+  NOT?: InputMaybe<OrganizationProblemsAggregateInput>;
+  OR?: InputMaybe<Array<OrganizationProblemsAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  node?: InputMaybe<OrganizationProblemsNodeAggregationWhereInput>;
+};
+
+export type OrganizationProblemsConnectFieldInput = {
+  connect?: InputMaybe<Array<ProblemConnectInput>>;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<ProblemConnectWhere>;
+};
+
+export type OrganizationProblemsConnectOrCreateFieldInput = {
+  onCreate: OrganizationProblemsConnectOrCreateFieldInputOnCreate;
+  where: ProblemConnectOrCreateWhere;
+};
+
+export type OrganizationProblemsConnectOrCreateFieldInputOnCreate = {
+  node: ProblemOnCreateInput;
+};
+
+export type OrganizationProblemsConnection = {
+  __typename?: 'OrganizationProblemsConnection';
+  edges: Array<OrganizationProblemsRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type OrganizationProblemsConnectionSort = {
+  node?: InputMaybe<ProblemSort>;
+};
+
+export type OrganizationProblemsConnectionWhere = {
+  AND?: InputMaybe<Array<OrganizationProblemsConnectionWhere>>;
+  NOT?: InputMaybe<OrganizationProblemsConnectionWhere>;
+  OR?: InputMaybe<Array<OrganizationProblemsConnectionWhere>>;
+  node?: InputMaybe<ProblemWhere>;
+};
+
+export type OrganizationProblemsCreateFieldInput = {
+  node: ProblemCreateInput;
+};
+
+export type OrganizationProblemsDeleteFieldInput = {
+  delete?: InputMaybe<ProblemDeleteInput>;
+  where?: InputMaybe<OrganizationProblemsConnectionWhere>;
+};
+
+export type OrganizationProblemsDisconnectFieldInput = {
+  disconnect?: InputMaybe<ProblemDisconnectInput>;
+  where?: InputMaybe<OrganizationProblemsConnectionWhere>;
+};
+
+export type OrganizationProblemsFieldInput = {
+  connect?: InputMaybe<Array<OrganizationProblemsConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<OrganizationProblemsConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<OrganizationProblemsCreateFieldInput>>;
+};
+
+export type OrganizationProblemsNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<OrganizationProblemsNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<OrganizationProblemsNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<OrganizationProblemsNodeAggregationWhereInput>>;
+  brief_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type OrganizationProblemsRelationship = {
+  __typename?: 'OrganizationProblemsRelationship';
+  cursor: Scalars['String']['output'];
+  node: Problem;
+};
+
+export type OrganizationProblemsUpdateConnectionInput = {
+  node?: InputMaybe<ProblemUpdateInput>;
+};
+
+export type OrganizationProblemsUpdateFieldInput = {
+  connect?: InputMaybe<Array<OrganizationProblemsConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<OrganizationProblemsConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<OrganizationProblemsCreateFieldInput>>;
+  delete?: InputMaybe<Array<OrganizationProblemsDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<OrganizationProblemsDisconnectFieldInput>>;
+  update?: InputMaybe<OrganizationProblemsUpdateConnectionInput>;
+  where?: InputMaybe<OrganizationProblemsConnectionWhere>;
+};
+
 export type OrganizationRelationInput = {
   considerations?: InputMaybe<OrganizationConsiderationsCreateFieldInput>;
+  problems?: InputMaybe<Array<OrganizationProblemsCreateFieldInput>>;
   ripples?: InputMaybe<Array<OrganizationRipplesCreateFieldInput>>;
   scopes?: InputMaybe<Array<OrganizationScopesCreateFieldInput>>;
+  solutions?: InputMaybe<Array<OrganizationSolutionsCreateFieldInput>>;
   statuses?: InputMaybe<Array<OrganizationStatusesCreateFieldInput>>;
   users?: InputMaybe<Array<OrganizationUsersCreateFieldInput>>;
 };
@@ -2770,6 +3669,152 @@ export type OrganizationScopesUpdateFieldInput = {
   disconnect?: InputMaybe<Array<OrganizationScopesDisconnectFieldInput>>;
   update?: InputMaybe<OrganizationScopesUpdateConnectionInput>;
   where?: InputMaybe<OrganizationScopesConnectionWhere>;
+};
+
+export type OrganizationSolutionSolutionsAggregationSelection = {
+  __typename?: 'OrganizationSolutionSolutionsAggregationSelection';
+  count: Scalars['Int']['output'];
+  node?: Maybe<OrganizationSolutionSolutionsNodeAggregateSelection>;
+};
+
+export type OrganizationSolutionSolutionsNodeAggregateSelection = {
+  __typename?: 'OrganizationSolutionSolutionsNodeAggregateSelection';
+  brief: StringAggregateSelectionNullable;
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+};
+
+export type OrganizationSolutionsAggregateInput = {
+  AND?: InputMaybe<Array<OrganizationSolutionsAggregateInput>>;
+  NOT?: InputMaybe<OrganizationSolutionsAggregateInput>;
+  OR?: InputMaybe<Array<OrganizationSolutionsAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  node?: InputMaybe<OrganizationSolutionsNodeAggregationWhereInput>;
+};
+
+export type OrganizationSolutionsConnectFieldInput = {
+  connect?: InputMaybe<Array<SolutionConnectInput>>;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<SolutionConnectWhere>;
+};
+
+export type OrganizationSolutionsConnectOrCreateFieldInput = {
+  onCreate: OrganizationSolutionsConnectOrCreateFieldInputOnCreate;
+  where: SolutionConnectOrCreateWhere;
+};
+
+export type OrganizationSolutionsConnectOrCreateFieldInputOnCreate = {
+  node: SolutionOnCreateInput;
+};
+
+export type OrganizationSolutionsConnection = {
+  __typename?: 'OrganizationSolutionsConnection';
+  edges: Array<OrganizationSolutionsRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type OrganizationSolutionsConnectionSort = {
+  node?: InputMaybe<SolutionSort>;
+};
+
+export type OrganizationSolutionsConnectionWhere = {
+  AND?: InputMaybe<Array<OrganizationSolutionsConnectionWhere>>;
+  NOT?: InputMaybe<OrganizationSolutionsConnectionWhere>;
+  OR?: InputMaybe<Array<OrganizationSolutionsConnectionWhere>>;
+  node?: InputMaybe<SolutionWhere>;
+};
+
+export type OrganizationSolutionsCreateFieldInput = {
+  node: SolutionCreateInput;
+};
+
+export type OrganizationSolutionsDeleteFieldInput = {
+  delete?: InputMaybe<SolutionDeleteInput>;
+  where?: InputMaybe<OrganizationSolutionsConnectionWhere>;
+};
+
+export type OrganizationSolutionsDisconnectFieldInput = {
+  disconnect?: InputMaybe<SolutionDisconnectInput>;
+  where?: InputMaybe<OrganizationSolutionsConnectionWhere>;
+};
+
+export type OrganizationSolutionsFieldInput = {
+  connect?: InputMaybe<Array<OrganizationSolutionsConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<OrganizationSolutionsConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<OrganizationSolutionsCreateFieldInput>>;
+};
+
+export type OrganizationSolutionsNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<OrganizationSolutionsNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<OrganizationSolutionsNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<OrganizationSolutionsNodeAggregationWhereInput>>;
+  brief_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type OrganizationSolutionsRelationship = {
+  __typename?: 'OrganizationSolutionsRelationship';
+  cursor: Scalars['String']['output'];
+  node: Solution;
+};
+
+export type OrganizationSolutionsUpdateConnectionInput = {
+  node?: InputMaybe<SolutionUpdateInput>;
+};
+
+export type OrganizationSolutionsUpdateFieldInput = {
+  connect?: InputMaybe<Array<OrganizationSolutionsConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<OrganizationSolutionsConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<OrganizationSolutionsCreateFieldInput>>;
+  delete?: InputMaybe<Array<OrganizationSolutionsDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<OrganizationSolutionsDisconnectFieldInput>>;
+  update?: InputMaybe<OrganizationSolutionsUpdateConnectionInput>;
+  where?: InputMaybe<OrganizationSolutionsConnectionWhere>;
 };
 
 /** Fields to sort Organizations by. The order in which sorts are applied is not guaranteed when specifying many fields in one OrganizationSort object. */
@@ -3395,8 +4440,10 @@ export type OrganizationUpdateInput = {
   considerations?: InputMaybe<OrganizationConsiderationsUpdateInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
+  problems?: InputMaybe<Array<OrganizationProblemsUpdateFieldInput>>;
   ripples?: InputMaybe<Array<OrganizationRipplesUpdateFieldInput>>;
   scopes?: InputMaybe<Array<OrganizationScopesUpdateFieldInput>>;
+  solutions?: InputMaybe<Array<OrganizationSolutionsUpdateFieldInput>>;
   statuses?: InputMaybe<Array<OrganizationStatusesUpdateFieldInput>>;
   users?: InputMaybe<Array<OrganizationUsersUpdateFieldInput>>;
   verified?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3668,6 +4715,23 @@ export type OrganizationWhere = {
   name_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
   name_IN?: InputMaybe<Array<Scalars['String']['input']>>;
   name_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  problemsAggregate?: InputMaybe<OrganizationProblemsAggregateInput>;
+  /** Return Organizations where all of the related OrganizationProblemsConnections match this filter */
+  problemsConnection_ALL?: InputMaybe<OrganizationProblemsConnectionWhere>;
+  /** Return Organizations where none of the related OrganizationProblemsConnections match this filter */
+  problemsConnection_NONE?: InputMaybe<OrganizationProblemsConnectionWhere>;
+  /** Return Organizations where one of the related OrganizationProblemsConnections match this filter */
+  problemsConnection_SINGLE?: InputMaybe<OrganizationProblemsConnectionWhere>;
+  /** Return Organizations where some of the related OrganizationProblemsConnections match this filter */
+  problemsConnection_SOME?: InputMaybe<OrganizationProblemsConnectionWhere>;
+  /** Return Organizations where all of the related Problems match this filter */
+  problems_ALL?: InputMaybe<ProblemWhere>;
+  /** Return Organizations where none of the related Problems match this filter */
+  problems_NONE?: InputMaybe<ProblemWhere>;
+  /** Return Organizations where one of the related Problems match this filter */
+  problems_SINGLE?: InputMaybe<ProblemWhere>;
+  /** Return Organizations where some of the related Problems match this filter */
+  problems_SOME?: InputMaybe<ProblemWhere>;
   ripplesAggregate?: InputMaybe<OrganizationRipplesAggregateInput>;
   /** Return Organizations where all of the related OrganizationRipplesConnections match this filter */
   ripplesConnection_ALL?: InputMaybe<OrganizationRipplesConnectionWhere>;
@@ -3702,6 +4766,23 @@ export type OrganizationWhere = {
   scopes_SINGLE?: InputMaybe<ScopeWhere>;
   /** Return Organizations where some of the related Scopes match this filter */
   scopes_SOME?: InputMaybe<ScopeWhere>;
+  solutionsAggregate?: InputMaybe<OrganizationSolutionsAggregateInput>;
+  /** Return Organizations where all of the related OrganizationSolutionsConnections match this filter */
+  solutionsConnection_ALL?: InputMaybe<OrganizationSolutionsConnectionWhere>;
+  /** Return Organizations where none of the related OrganizationSolutionsConnections match this filter */
+  solutionsConnection_NONE?: InputMaybe<OrganizationSolutionsConnectionWhere>;
+  /** Return Organizations where one of the related OrganizationSolutionsConnections match this filter */
+  solutionsConnection_SINGLE?: InputMaybe<OrganizationSolutionsConnectionWhere>;
+  /** Return Organizations where some of the related OrganizationSolutionsConnections match this filter */
+  solutionsConnection_SOME?: InputMaybe<OrganizationSolutionsConnectionWhere>;
+  /** Return Organizations where all of the related Solutions match this filter */
+  solutions_ALL?: InputMaybe<SolutionWhere>;
+  /** Return Organizations where none of the related Solutions match this filter */
+  solutions_NONE?: InputMaybe<SolutionWhere>;
+  /** Return Organizations where one of the related Solutions match this filter */
+  solutions_SINGLE?: InputMaybe<SolutionWhere>;
+  /** Return Organizations where some of the related Solutions match this filter */
+  solutions_SOME?: InputMaybe<SolutionWhere>;
   statusesAggregate?: InputMaybe<OrganizationStatusesAggregateInput>;
   /** Return Organizations where all of the related OrganizationStatusesConnections match this filter */
   statusesConnection_ALL?: InputMaybe<OrganizationStatusesConnectionWhere>;
@@ -3760,6 +4841,1186 @@ export type PageInfo = {
   startCursor?: Maybe<Scalars['String']['output']>;
 };
 
+export type Problem = {
+  __typename?: 'Problem';
+  brief?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  organization: Array<Organization>;
+  organizationAggregate?: Maybe<ProblemOrganizationOrganizationAggregationSelection>;
+  organizationConnection: ProblemOrganizationConnection;
+  solutions: Array<Solution>;
+  solutionsAggregate?: Maybe<ProblemSolutionSolutionsAggregationSelection>;
+  solutionsConnection: ProblemSolutionsConnection;
+  stakeholders: Array<Stakeholder>;
+  stakeholdersAggregate?: Maybe<ProblemStakeholderStakeholdersAggregationSelection>;
+  stakeholdersConnection: ProblemStakeholdersConnection;
+  users: Array<User>;
+  usersAggregate?: Maybe<ProblemUserUsersAggregationSelection>;
+  usersConnection: ProblemUsersConnection;
+  verified: Scalars['Boolean']['output'];
+};
+
+
+export type ProblemOrganizationArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<OrganizationOptions>;
+  where?: InputMaybe<OrganizationWhere>;
+};
+
+
+export type ProblemOrganizationAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<OrganizationWhere>;
+};
+
+
+export type ProblemOrganizationConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<ProblemOrganizationConnectionSort>>;
+  where?: InputMaybe<ProblemOrganizationConnectionWhere>;
+};
+
+
+export type ProblemSolutionsArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<SolutionOptions>;
+  where?: InputMaybe<SolutionWhere>;
+};
+
+
+export type ProblemSolutionsAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<SolutionWhere>;
+};
+
+
+export type ProblemSolutionsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<ProblemSolutionsConnectionSort>>;
+  where?: InputMaybe<ProblemSolutionsConnectionWhere>;
+};
+
+
+export type ProblemStakeholdersArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<StakeholderOptions>;
+  where?: InputMaybe<StakeholderWhere>;
+};
+
+
+export type ProblemStakeholdersAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<StakeholderWhere>;
+};
+
+
+export type ProblemStakeholdersConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<ProblemStakeholdersConnectionSort>>;
+  where?: InputMaybe<ProblemStakeholdersConnectionWhere>;
+};
+
+
+export type ProblemUsersArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<UserOptions>;
+  where?: InputMaybe<UserWhere>;
+};
+
+
+export type ProblemUsersAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<UserWhere>;
+};
+
+
+export type ProblemUsersConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<ProblemUsersConnectionSort>>;
+  where?: InputMaybe<ProblemUsersConnectionWhere>;
+};
+
+export type ProblemAggregateSelection = {
+  __typename?: 'ProblemAggregateSelection';
+  brief: StringAggregateSelectionNullable;
+  count: Scalars['Int']['output'];
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+};
+
+export type ProblemConnectInput = {
+  organization?: InputMaybe<Array<ProblemOrganizationConnectFieldInput>>;
+  solutions?: InputMaybe<Array<ProblemSolutionsConnectFieldInput>>;
+  stakeholders?: InputMaybe<Array<ProblemStakeholdersConnectFieldInput>>;
+  users?: InputMaybe<Array<ProblemUsersConnectFieldInput>>;
+};
+
+export type ProblemConnectOrCreateInput = {
+  organization?: InputMaybe<Array<ProblemOrganizationConnectOrCreateFieldInput>>;
+  solutions?: InputMaybe<Array<ProblemSolutionsConnectOrCreateFieldInput>>;
+  stakeholders?: InputMaybe<Array<ProblemStakeholdersConnectOrCreateFieldInput>>;
+  users?: InputMaybe<Array<ProblemUsersConnectOrCreateFieldInput>>;
+};
+
+export type ProblemConnectOrCreateWhere = {
+  node: ProblemUniqueWhere;
+};
+
+export type ProblemConnectWhere = {
+  node: ProblemWhere;
+};
+
+export type ProblemCreateInput = {
+  brief?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  organization?: InputMaybe<ProblemOrganizationFieldInput>;
+  solutions?: InputMaybe<ProblemSolutionsFieldInput>;
+  stakeholders?: InputMaybe<ProblemStakeholdersFieldInput>;
+  users?: InputMaybe<ProblemUsersFieldInput>;
+  verified?: Scalars['Boolean']['input'];
+};
+
+export type ProblemDeleteInput = {
+  organization?: InputMaybe<Array<ProblemOrganizationDeleteFieldInput>>;
+  solutions?: InputMaybe<Array<ProblemSolutionsDeleteFieldInput>>;
+  stakeholders?: InputMaybe<Array<ProblemStakeholdersDeleteFieldInput>>;
+  users?: InputMaybe<Array<ProblemUsersDeleteFieldInput>>;
+};
+
+export type ProblemDisconnectInput = {
+  organization?: InputMaybe<Array<ProblemOrganizationDisconnectFieldInput>>;
+  solutions?: InputMaybe<Array<ProblemSolutionsDisconnectFieldInput>>;
+  stakeholders?: InputMaybe<Array<ProblemStakeholdersDisconnectFieldInput>>;
+  users?: InputMaybe<Array<ProblemUsersDisconnectFieldInput>>;
+};
+
+export type ProblemEdge = {
+  __typename?: 'ProblemEdge';
+  cursor: Scalars['String']['output'];
+  node: Problem;
+};
+
+export type ProblemOnCreateInput = {
+  brief?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  verified?: Scalars['Boolean']['input'];
+};
+
+export type ProblemOptions = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  /** Specify one or more ProblemSort objects to sort Problems by. The sorts will be applied in the order in which they are arranged in the array. */
+  sort?: InputMaybe<Array<ProblemSort>>;
+};
+
+export type ProblemOrganizationAggregateInput = {
+  AND?: InputMaybe<Array<ProblemOrganizationAggregateInput>>;
+  NOT?: InputMaybe<ProblemOrganizationAggregateInput>;
+  OR?: InputMaybe<Array<ProblemOrganizationAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  node?: InputMaybe<ProblemOrganizationNodeAggregationWhereInput>;
+};
+
+export type ProblemOrganizationConnectFieldInput = {
+  connect?: InputMaybe<Array<OrganizationConnectInput>>;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<OrganizationConnectWhere>;
+};
+
+export type ProblemOrganizationConnectOrCreateFieldInput = {
+  onCreate: ProblemOrganizationConnectOrCreateFieldInputOnCreate;
+  where: OrganizationConnectOrCreateWhere;
+};
+
+export type ProblemOrganizationConnectOrCreateFieldInputOnCreate = {
+  node: OrganizationOnCreateInput;
+};
+
+export type ProblemOrganizationConnection = {
+  __typename?: 'ProblemOrganizationConnection';
+  edges: Array<ProblemOrganizationRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type ProblemOrganizationConnectionSort = {
+  node?: InputMaybe<OrganizationSort>;
+};
+
+export type ProblemOrganizationConnectionWhere = {
+  AND?: InputMaybe<Array<ProblemOrganizationConnectionWhere>>;
+  NOT?: InputMaybe<ProblemOrganizationConnectionWhere>;
+  OR?: InputMaybe<Array<ProblemOrganizationConnectionWhere>>;
+  node?: InputMaybe<OrganizationWhere>;
+};
+
+export type ProblemOrganizationCreateFieldInput = {
+  node: OrganizationCreateInput;
+};
+
+export type ProblemOrganizationDeleteFieldInput = {
+  delete?: InputMaybe<OrganizationDeleteInput>;
+  where?: InputMaybe<ProblemOrganizationConnectionWhere>;
+};
+
+export type ProblemOrganizationDisconnectFieldInput = {
+  disconnect?: InputMaybe<OrganizationDisconnectInput>;
+  where?: InputMaybe<ProblemOrganizationConnectionWhere>;
+};
+
+export type ProblemOrganizationFieldInput = {
+  connect?: InputMaybe<Array<ProblemOrganizationConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<ProblemOrganizationConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<ProblemOrganizationCreateFieldInput>>;
+};
+
+export type ProblemOrganizationNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<ProblemOrganizationNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<ProblemOrganizationNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<ProblemOrganizationNodeAggregationWhereInput>>;
+  brief_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  website_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  website_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type ProblemOrganizationOrganizationAggregationSelection = {
+  __typename?: 'ProblemOrganizationOrganizationAggregationSelection';
+  count: Scalars['Int']['output'];
+  node?: Maybe<ProblemOrganizationOrganizationNodeAggregateSelection>;
+};
+
+export type ProblemOrganizationOrganizationNodeAggregateSelection = {
+  __typename?: 'ProblemOrganizationOrganizationNodeAggregateSelection';
+  brief: StringAggregateSelectionNonNullable;
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+  name: StringAggregateSelectionNonNullable;
+  website: StringAggregateSelectionNonNullable;
+};
+
+export type ProblemOrganizationRelationship = {
+  __typename?: 'ProblemOrganizationRelationship';
+  cursor: Scalars['String']['output'];
+  node: Organization;
+};
+
+export type ProblemOrganizationUpdateConnectionInput = {
+  node?: InputMaybe<OrganizationUpdateInput>;
+};
+
+export type ProblemOrganizationUpdateFieldInput = {
+  connect?: InputMaybe<Array<ProblemOrganizationConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<ProblemOrganizationConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<ProblemOrganizationCreateFieldInput>>;
+  delete?: InputMaybe<Array<ProblemOrganizationDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<ProblemOrganizationDisconnectFieldInput>>;
+  update?: InputMaybe<ProblemOrganizationUpdateConnectionInput>;
+  where?: InputMaybe<ProblemOrganizationConnectionWhere>;
+};
+
+export type ProblemRelationInput = {
+  organization?: InputMaybe<Array<ProblemOrganizationCreateFieldInput>>;
+  solutions?: InputMaybe<Array<ProblemSolutionsCreateFieldInput>>;
+  stakeholders?: InputMaybe<Array<ProblemStakeholdersCreateFieldInput>>;
+  users?: InputMaybe<Array<ProblemUsersCreateFieldInput>>;
+};
+
+export type ProblemSolution = {
+  createdAt: Scalars['DateTime']['output'];
+  effectiveness?: Maybe<Scalars['Float']['output']>;
+  verified: Scalars['Boolean']['output'];
+};
+
+export type ProblemSolutionCreateInput = {
+  effectiveness?: InputMaybe<Scalars['Float']['input']>;
+  verified?: Scalars['Boolean']['input'];
+};
+
+export type ProblemSolutionSolutionsAggregationSelection = {
+  __typename?: 'ProblemSolutionSolutionsAggregationSelection';
+  count: Scalars['Int']['output'];
+  edge?: Maybe<ProblemSolutionSolutionsEdgeAggregateSelection>;
+  node?: Maybe<ProblemSolutionSolutionsNodeAggregateSelection>;
+};
+
+export type ProblemSolutionSolutionsEdgeAggregateSelection = {
+  __typename?: 'ProblemSolutionSolutionsEdgeAggregateSelection';
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  effectiveness: FloatAggregateSelectionNullable;
+};
+
+export type ProblemSolutionSolutionsNodeAggregateSelection = {
+  __typename?: 'ProblemSolutionSolutionsNodeAggregateSelection';
+  brief: StringAggregateSelectionNullable;
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+};
+
+export type ProblemSolutionSort = {
+  createdAt?: InputMaybe<SortDirection>;
+  effectiveness?: InputMaybe<SortDirection>;
+  verified?: InputMaybe<SortDirection>;
+};
+
+export type ProblemSolutionUpdateInput = {
+  effectiveness?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_ADD?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_DIVIDE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MULTIPLY?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_SUBTRACT?: InputMaybe<Scalars['Float']['input']>;
+  verified?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ProblemSolutionWhere = {
+  AND?: InputMaybe<Array<ProblemSolutionWhere>>;
+  NOT?: InputMaybe<ProblemSolutionWhere>;
+  OR?: InputMaybe<Array<ProblemSolutionWhere>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  effectiveness?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_GT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_GTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_IN?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+  effectiveness_LT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_LTE?: InputMaybe<Scalars['Float']['input']>;
+  verified?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ProblemSolutionsAggregateInput = {
+  AND?: InputMaybe<Array<ProblemSolutionsAggregateInput>>;
+  NOT?: InputMaybe<ProblemSolutionsAggregateInput>;
+  OR?: InputMaybe<Array<ProblemSolutionsAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  edge?: InputMaybe<ProblemSolutionsEdgeAggregationWhereInput>;
+  node?: InputMaybe<ProblemSolutionsNodeAggregationWhereInput>;
+};
+
+export type ProblemSolutionsConnectFieldInput = {
+  connect?: InputMaybe<Array<SolutionConnectInput>>;
+  edge: ProblemSolutionCreateInput;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<SolutionConnectWhere>;
+};
+
+export type ProblemSolutionsConnectOrCreateFieldInput = {
+  onCreate: ProblemSolutionsConnectOrCreateFieldInputOnCreate;
+  where: SolutionConnectOrCreateWhere;
+};
+
+export type ProblemSolutionsConnectOrCreateFieldInputOnCreate = {
+  edge: ProblemSolutionCreateInput;
+  node: SolutionOnCreateInput;
+};
+
+export type ProblemSolutionsConnection = {
+  __typename?: 'ProblemSolutionsConnection';
+  edges: Array<ProblemSolutionsRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type ProblemSolutionsConnectionSort = {
+  edge?: InputMaybe<ProblemSolutionSort>;
+  node?: InputMaybe<SolutionSort>;
+};
+
+export type ProblemSolutionsConnectionWhere = {
+  AND?: InputMaybe<Array<ProblemSolutionsConnectionWhere>>;
+  NOT?: InputMaybe<ProblemSolutionsConnectionWhere>;
+  OR?: InputMaybe<Array<ProblemSolutionsConnectionWhere>>;
+  edge?: InputMaybe<ProblemSolutionWhere>;
+  node?: InputMaybe<SolutionWhere>;
+};
+
+export type ProblemSolutionsCreateFieldInput = {
+  edge: ProblemSolutionCreateInput;
+  node: SolutionCreateInput;
+};
+
+export type ProblemSolutionsDeleteFieldInput = {
+  delete?: InputMaybe<SolutionDeleteInput>;
+  where?: InputMaybe<ProblemSolutionsConnectionWhere>;
+};
+
+export type ProblemSolutionsDisconnectFieldInput = {
+  disconnect?: InputMaybe<SolutionDisconnectInput>;
+  where?: InputMaybe<ProblemSolutionsConnectionWhere>;
+};
+
+export type ProblemSolutionsEdgeAggregationWhereInput = {
+  AND?: InputMaybe<Array<ProblemSolutionsEdgeAggregationWhereInput>>;
+  NOT?: InputMaybe<ProblemSolutionsEdgeAggregationWhereInput>;
+  OR?: InputMaybe<Array<ProblemSolutionsEdgeAggregationWhereInput>>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  effectiveness_AVERAGE_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_AVERAGE_GT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_AVERAGE_GTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_AVERAGE_LT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_AVERAGE_LTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MAX_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MAX_GT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MAX_GTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MAX_LT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MAX_LTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MIN_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MIN_GT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MIN_GTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MIN_LT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MIN_LTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_SUM_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_SUM_GT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_SUM_GTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_SUM_LT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_SUM_LTE?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type ProblemSolutionsFieldInput = {
+  connect?: InputMaybe<Array<ProblemSolutionsConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<ProblemSolutionsConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<ProblemSolutionsCreateFieldInput>>;
+};
+
+export type ProblemSolutionsNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<ProblemSolutionsNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<ProblemSolutionsNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<ProblemSolutionsNodeAggregationWhereInput>>;
+  brief_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type ProblemSolutionsRelationship = ProblemSolution & {
+  __typename?: 'ProblemSolutionsRelationship';
+  createdAt: Scalars['DateTime']['output'];
+  cursor: Scalars['String']['output'];
+  effectiveness?: Maybe<Scalars['Float']['output']>;
+  node: Solution;
+  verified: Scalars['Boolean']['output'];
+};
+
+export type ProblemSolutionsUpdateConnectionInput = {
+  edge?: InputMaybe<ProblemSolutionUpdateInput>;
+  node?: InputMaybe<SolutionUpdateInput>;
+};
+
+export type ProblemSolutionsUpdateFieldInput = {
+  connect?: InputMaybe<Array<ProblemSolutionsConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<ProblemSolutionsConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<ProblemSolutionsCreateFieldInput>>;
+  delete?: InputMaybe<Array<ProblemSolutionsDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<ProblemSolutionsDisconnectFieldInput>>;
+  update?: InputMaybe<ProblemSolutionsUpdateConnectionInput>;
+  where?: InputMaybe<ProblemSolutionsConnectionWhere>;
+};
+
+/** Fields to sort Problems by. The order in which sorts are applied is not guaranteed when specifying many fields in one ProblemSort object. */
+export type ProblemSort = {
+  brief?: InputMaybe<SortDirection>;
+  createdAt?: InputMaybe<SortDirection>;
+  description?: InputMaybe<SortDirection>;
+  id?: InputMaybe<SortDirection>;
+  verified?: InputMaybe<SortDirection>;
+};
+
+export type ProblemStakeholderStakeholdersAggregationSelection = {
+  __typename?: 'ProblemStakeholderStakeholdersAggregationSelection';
+  count: Scalars['Int']['output'];
+  edge?: Maybe<ProblemStakeholderStakeholdersEdgeAggregateSelection>;
+  node?: Maybe<ProblemStakeholderStakeholdersNodeAggregateSelection>;
+};
+
+export type ProblemStakeholderStakeholdersEdgeAggregateSelection = {
+  __typename?: 'ProblemStakeholderStakeholdersEdgeAggregateSelection';
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  severity: FloatAggregateSelectionNullable;
+};
+
+export type ProblemStakeholderStakeholdersNodeAggregateSelection = {
+  __typename?: 'ProblemStakeholderStakeholdersNodeAggregateSelection';
+  brief: StringAggregateSelectionNonNullable;
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+  name: StringAggregateSelectionNonNullable;
+};
+
+export type ProblemStakeholdersAggregateInput = {
+  AND?: InputMaybe<Array<ProblemStakeholdersAggregateInput>>;
+  NOT?: InputMaybe<ProblemStakeholdersAggregateInput>;
+  OR?: InputMaybe<Array<ProblemStakeholdersAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  edge?: InputMaybe<ProblemStakeholdersEdgeAggregationWhereInput>;
+  node?: InputMaybe<ProblemStakeholdersNodeAggregationWhereInput>;
+};
+
+export type ProblemStakeholdersConnectFieldInput = {
+  connect?: InputMaybe<Array<StakeholderConnectInput>>;
+  edge: StakeholderProblemCreateInput;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<StakeholderConnectWhere>;
+};
+
+export type ProblemStakeholdersConnectOrCreateFieldInput = {
+  onCreate: ProblemStakeholdersConnectOrCreateFieldInputOnCreate;
+  where: StakeholderConnectOrCreateWhere;
+};
+
+export type ProblemStakeholdersConnectOrCreateFieldInputOnCreate = {
+  edge: StakeholderProblemCreateInput;
+  node: StakeholderOnCreateInput;
+};
+
+export type ProblemStakeholdersConnection = {
+  __typename?: 'ProblemStakeholdersConnection';
+  edges: Array<ProblemStakeholdersRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type ProblemStakeholdersConnectionSort = {
+  edge?: InputMaybe<StakeholderProblemSort>;
+  node?: InputMaybe<StakeholderSort>;
+};
+
+export type ProblemStakeholdersConnectionWhere = {
+  AND?: InputMaybe<Array<ProblemStakeholdersConnectionWhere>>;
+  NOT?: InputMaybe<ProblemStakeholdersConnectionWhere>;
+  OR?: InputMaybe<Array<ProblemStakeholdersConnectionWhere>>;
+  edge?: InputMaybe<StakeholderProblemWhere>;
+  node?: InputMaybe<StakeholderWhere>;
+};
+
+export type ProblemStakeholdersCreateFieldInput = {
+  edge: StakeholderProblemCreateInput;
+  node: StakeholderCreateInput;
+};
+
+export type ProblemStakeholdersDeleteFieldInput = {
+  delete?: InputMaybe<StakeholderDeleteInput>;
+  where?: InputMaybe<ProblemStakeholdersConnectionWhere>;
+};
+
+export type ProblemStakeholdersDisconnectFieldInput = {
+  disconnect?: InputMaybe<StakeholderDisconnectInput>;
+  where?: InputMaybe<ProblemStakeholdersConnectionWhere>;
+};
+
+export type ProblemStakeholdersEdgeAggregationWhereInput = {
+  AND?: InputMaybe<Array<ProblemStakeholdersEdgeAggregationWhereInput>>;
+  NOT?: InputMaybe<ProblemStakeholdersEdgeAggregationWhereInput>;
+  OR?: InputMaybe<Array<ProblemStakeholdersEdgeAggregationWhereInput>>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  severity_AVERAGE_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  severity_AVERAGE_GT?: InputMaybe<Scalars['Float']['input']>;
+  severity_AVERAGE_GTE?: InputMaybe<Scalars['Float']['input']>;
+  severity_AVERAGE_LT?: InputMaybe<Scalars['Float']['input']>;
+  severity_AVERAGE_LTE?: InputMaybe<Scalars['Float']['input']>;
+  severity_MAX_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  severity_MAX_GT?: InputMaybe<Scalars['Float']['input']>;
+  severity_MAX_GTE?: InputMaybe<Scalars['Float']['input']>;
+  severity_MAX_LT?: InputMaybe<Scalars['Float']['input']>;
+  severity_MAX_LTE?: InputMaybe<Scalars['Float']['input']>;
+  severity_MIN_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  severity_MIN_GT?: InputMaybe<Scalars['Float']['input']>;
+  severity_MIN_GTE?: InputMaybe<Scalars['Float']['input']>;
+  severity_MIN_LT?: InputMaybe<Scalars['Float']['input']>;
+  severity_MIN_LTE?: InputMaybe<Scalars['Float']['input']>;
+  severity_SUM_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  severity_SUM_GT?: InputMaybe<Scalars['Float']['input']>;
+  severity_SUM_GTE?: InputMaybe<Scalars['Float']['input']>;
+  severity_SUM_LT?: InputMaybe<Scalars['Float']['input']>;
+  severity_SUM_LTE?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type ProblemStakeholdersFieldInput = {
+  connect?: InputMaybe<Array<ProblemStakeholdersConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<ProblemStakeholdersConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<ProblemStakeholdersCreateFieldInput>>;
+};
+
+export type ProblemStakeholdersNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<ProblemStakeholdersNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<ProblemStakeholdersNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<ProblemStakeholdersNodeAggregationWhereInput>>;
+  brief_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type ProblemStakeholdersRelationship = StakeholderProblem & {
+  __typename?: 'ProblemStakeholdersRelationship';
+  createdAt: Scalars['DateTime']['output'];
+  cursor: Scalars['String']['output'];
+  node: Stakeholder;
+  severity?: Maybe<Scalars['Float']['output']>;
+  verified: Scalars['Boolean']['output'];
+};
+
+export type ProblemStakeholdersUpdateConnectionInput = {
+  edge?: InputMaybe<StakeholderProblemUpdateInput>;
+  node?: InputMaybe<StakeholderUpdateInput>;
+};
+
+export type ProblemStakeholdersUpdateFieldInput = {
+  connect?: InputMaybe<Array<ProblemStakeholdersConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<ProblemStakeholdersConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<ProblemStakeholdersCreateFieldInput>>;
+  delete?: InputMaybe<Array<ProblemStakeholdersDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<ProblemStakeholdersDisconnectFieldInput>>;
+  update?: InputMaybe<ProblemStakeholdersUpdateConnectionInput>;
+  where?: InputMaybe<ProblemStakeholdersConnectionWhere>;
+};
+
+export type ProblemUniqueWhere = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type ProblemUpdateInput = {
+  brief?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  organization?: InputMaybe<Array<ProblemOrganizationUpdateFieldInput>>;
+  solutions?: InputMaybe<Array<ProblemSolutionsUpdateFieldInput>>;
+  stakeholders?: InputMaybe<Array<ProblemStakeholdersUpdateFieldInput>>;
+  users?: InputMaybe<Array<ProblemUsersUpdateFieldInput>>;
+  verified?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ProblemUserUsersAggregationSelection = {
+  __typename?: 'ProblemUserUsersAggregationSelection';
+  count: Scalars['Int']['output'];
+  edge?: Maybe<ProblemUserUsersEdgeAggregateSelection>;
+  node?: Maybe<ProblemUserUsersNodeAggregateSelection>;
+};
+
+export type ProblemUserUsersEdgeAggregateSelection = {
+  __typename?: 'ProblemUserUsersEdgeAggregateSelection';
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  dump: StringAggregateSelectionNullable;
+  message: StringAggregateSelectionNullable;
+};
+
+export type ProblemUserUsersNodeAggregateSelection = {
+  __typename?: 'ProblemUserUsersNodeAggregateSelection';
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  email: StringAggregateSelectionNonNullable;
+  familyName: StringAggregateSelectionNullable;
+  givenName: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+};
+
+export type ProblemUsersAggregateInput = {
+  AND?: InputMaybe<Array<ProblemUsersAggregateInput>>;
+  NOT?: InputMaybe<ProblemUsersAggregateInput>;
+  OR?: InputMaybe<Array<ProblemUsersAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  edge?: InputMaybe<ProblemUsersEdgeAggregationWhereInput>;
+  node?: InputMaybe<ProblemUsersNodeAggregationWhereInput>;
+};
+
+export type ProblemUsersConnectFieldInput = {
+  connect?: InputMaybe<Array<UserConnectInput>>;
+  edge: UserInteractsWithCreateInput;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<UserConnectWhere>;
+};
+
+export type ProblemUsersConnectOrCreateFieldInput = {
+  onCreate: ProblemUsersConnectOrCreateFieldInputOnCreate;
+  where: UserConnectOrCreateWhere;
+};
+
+export type ProblemUsersConnectOrCreateFieldInputOnCreate = {
+  edge: UserInteractsWithCreateInput;
+  node: UserOnCreateInput;
+};
+
+export type ProblemUsersConnection = {
+  __typename?: 'ProblemUsersConnection';
+  edges: Array<ProblemUsersRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type ProblemUsersConnectionSort = {
+  edge?: InputMaybe<UserInteractsWithSort>;
+  node?: InputMaybe<UserSort>;
+};
+
+export type ProblemUsersConnectionWhere = {
+  AND?: InputMaybe<Array<ProblemUsersConnectionWhere>>;
+  NOT?: InputMaybe<ProblemUsersConnectionWhere>;
+  OR?: InputMaybe<Array<ProblemUsersConnectionWhere>>;
+  edge?: InputMaybe<UserInteractsWithWhere>;
+  node?: InputMaybe<UserWhere>;
+};
+
+export type ProblemUsersCreateFieldInput = {
+  edge: UserInteractsWithCreateInput;
+  node: UserCreateInput;
+};
+
+export type ProblemUsersDeleteFieldInput = {
+  delete?: InputMaybe<UserDeleteInput>;
+  where?: InputMaybe<ProblemUsersConnectionWhere>;
+};
+
+export type ProblemUsersDisconnectFieldInput = {
+  disconnect?: InputMaybe<UserDisconnectInput>;
+  where?: InputMaybe<ProblemUsersConnectionWhere>;
+};
+
+export type ProblemUsersEdgeAggregationWhereInput = {
+  AND?: InputMaybe<Array<ProblemUsersEdgeAggregationWhereInput>>;
+  NOT?: InputMaybe<ProblemUsersEdgeAggregationWhereInput>;
+  OR?: InputMaybe<Array<ProblemUsersEdgeAggregationWhereInput>>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  dump_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  dump_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  dump_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  dump_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  dump_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  dump_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  dump_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  dump_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  dump_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  dump_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  message_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  message_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type ProblemUsersFieldInput = {
+  connect?: InputMaybe<Array<ProblemUsersConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<ProblemUsersConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<ProblemUsersCreateFieldInput>>;
+};
+
+export type ProblemUsersNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<ProblemUsersNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<ProblemUsersNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<ProblemUsersNodeAggregationWhereInput>>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  familyName_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  familyName_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  familyName_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  familyName_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  familyName_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  familyName_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  familyName_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  familyName_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  familyName_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  familyName_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  givenName_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  givenName_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  givenName_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  givenName_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  givenName_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  givenName_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  givenName_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  givenName_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  givenName_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  givenName_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type ProblemUsersRelationship = UserInteractsWith & {
+  __typename?: 'ProblemUsersRelationship';
+  createdAt: Scalars['DateTime']['output'];
+  cursor: Scalars['String']['output'];
+  dump?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
+  node: User;
+  type: UserInteractionName;
+};
+
+export type ProblemUsersUpdateConnectionInput = {
+  edge?: InputMaybe<UserInteractsWithUpdateInput>;
+  node?: InputMaybe<UserUpdateInput>;
+};
+
+export type ProblemUsersUpdateFieldInput = {
+  connect?: InputMaybe<Array<ProblemUsersConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<ProblemUsersConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<ProblemUsersCreateFieldInput>>;
+  delete?: InputMaybe<Array<ProblemUsersDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<ProblemUsersDisconnectFieldInput>>;
+  update?: InputMaybe<ProblemUsersUpdateConnectionInput>;
+  where?: InputMaybe<ProblemUsersConnectionWhere>;
+};
+
+export type ProblemWhere = {
+  AND?: InputMaybe<Array<ProblemWhere>>;
+  NOT?: InputMaybe<ProblemWhere>;
+  OR?: InputMaybe<Array<ProblemWhere>>;
+  brief?: InputMaybe<Scalars['String']['input']>;
+  brief_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  brief_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  brief_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  brief_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  description_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  description_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  description_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  organizationAggregate?: InputMaybe<ProblemOrganizationAggregateInput>;
+  /** Return Problems where all of the related ProblemOrganizationConnections match this filter */
+  organizationConnection_ALL?: InputMaybe<ProblemOrganizationConnectionWhere>;
+  /** Return Problems where none of the related ProblemOrganizationConnections match this filter */
+  organizationConnection_NONE?: InputMaybe<ProblemOrganizationConnectionWhere>;
+  /** Return Problems where one of the related ProblemOrganizationConnections match this filter */
+  organizationConnection_SINGLE?: InputMaybe<ProblemOrganizationConnectionWhere>;
+  /** Return Problems where some of the related ProblemOrganizationConnections match this filter */
+  organizationConnection_SOME?: InputMaybe<ProblemOrganizationConnectionWhere>;
+  /** Return Problems where all of the related Organizations match this filter */
+  organization_ALL?: InputMaybe<OrganizationWhere>;
+  /** Return Problems where none of the related Organizations match this filter */
+  organization_NONE?: InputMaybe<OrganizationWhere>;
+  /** Return Problems where one of the related Organizations match this filter */
+  organization_SINGLE?: InputMaybe<OrganizationWhere>;
+  /** Return Problems where some of the related Organizations match this filter */
+  organization_SOME?: InputMaybe<OrganizationWhere>;
+  solutionsAggregate?: InputMaybe<ProblemSolutionsAggregateInput>;
+  /** Return Problems where all of the related ProblemSolutionsConnections match this filter */
+  solutionsConnection_ALL?: InputMaybe<ProblemSolutionsConnectionWhere>;
+  /** Return Problems where none of the related ProblemSolutionsConnections match this filter */
+  solutionsConnection_NONE?: InputMaybe<ProblemSolutionsConnectionWhere>;
+  /** Return Problems where one of the related ProblemSolutionsConnections match this filter */
+  solutionsConnection_SINGLE?: InputMaybe<ProblemSolutionsConnectionWhere>;
+  /** Return Problems where some of the related ProblemSolutionsConnections match this filter */
+  solutionsConnection_SOME?: InputMaybe<ProblemSolutionsConnectionWhere>;
+  /** Return Problems where all of the related Solutions match this filter */
+  solutions_ALL?: InputMaybe<SolutionWhere>;
+  /** Return Problems where none of the related Solutions match this filter */
+  solutions_NONE?: InputMaybe<SolutionWhere>;
+  /** Return Problems where one of the related Solutions match this filter */
+  solutions_SINGLE?: InputMaybe<SolutionWhere>;
+  /** Return Problems where some of the related Solutions match this filter */
+  solutions_SOME?: InputMaybe<SolutionWhere>;
+  stakeholdersAggregate?: InputMaybe<ProblemStakeholdersAggregateInput>;
+  /** Return Problems where all of the related ProblemStakeholdersConnections match this filter */
+  stakeholdersConnection_ALL?: InputMaybe<ProblemStakeholdersConnectionWhere>;
+  /** Return Problems where none of the related ProblemStakeholdersConnections match this filter */
+  stakeholdersConnection_NONE?: InputMaybe<ProblemStakeholdersConnectionWhere>;
+  /** Return Problems where one of the related ProblemStakeholdersConnections match this filter */
+  stakeholdersConnection_SINGLE?: InputMaybe<ProblemStakeholdersConnectionWhere>;
+  /** Return Problems where some of the related ProblemStakeholdersConnections match this filter */
+  stakeholdersConnection_SOME?: InputMaybe<ProblemStakeholdersConnectionWhere>;
+  /** Return Problems where all of the related Stakeholders match this filter */
+  stakeholders_ALL?: InputMaybe<StakeholderWhere>;
+  /** Return Problems where none of the related Stakeholders match this filter */
+  stakeholders_NONE?: InputMaybe<StakeholderWhere>;
+  /** Return Problems where one of the related Stakeholders match this filter */
+  stakeholders_SINGLE?: InputMaybe<StakeholderWhere>;
+  /** Return Problems where some of the related Stakeholders match this filter */
+  stakeholders_SOME?: InputMaybe<StakeholderWhere>;
+  usersAggregate?: InputMaybe<ProblemUsersAggregateInput>;
+  /** Return Problems where all of the related ProblemUsersConnections match this filter */
+  usersConnection_ALL?: InputMaybe<ProblemUsersConnectionWhere>;
+  /** Return Problems where none of the related ProblemUsersConnections match this filter */
+  usersConnection_NONE?: InputMaybe<ProblemUsersConnectionWhere>;
+  /** Return Problems where one of the related ProblemUsersConnections match this filter */
+  usersConnection_SINGLE?: InputMaybe<ProblemUsersConnectionWhere>;
+  /** Return Problems where some of the related ProblemUsersConnections match this filter */
+  usersConnection_SOME?: InputMaybe<ProblemUsersConnectionWhere>;
+  /** Return Problems where all of the related Users match this filter */
+  users_ALL?: InputMaybe<UserWhere>;
+  /** Return Problems where none of the related Users match this filter */
+  users_NONE?: InputMaybe<UserWhere>;
+  /** Return Problems where one of the related Users match this filter */
+  users_SINGLE?: InputMaybe<UserWhere>;
+  /** Return Problems where some of the related Users match this filter */
+  users_SOME?: InputMaybe<UserWhere>;
+  verified?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ProblemsConnection = {
+  __typename?: 'ProblemsConnection';
+  edges: Array<ProblemEdge>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
 export type Query = {
   __typename?: 'Query';
   examples: Array<Example>;
@@ -3768,12 +6029,18 @@ export type Query = {
   geographics: Array<Geographic>;
   geographicsAggregate: GeographicAggregateSelection;
   geographicsConnection: GeographicsConnection;
+  miscs: Array<Misc>;
+  miscsAggregate: MiscAggregateSelection;
+  miscsConnection: MiscsConnection;
   organizationStatuses: Array<OrganizationStatus>;
   organizationStatusesAggregate: OrganizationStatusAggregateSelection;
   organizationStatusesConnection: OrganizationStatusesConnection;
   organizations: Array<Organization>;
   organizationsAggregate: OrganizationAggregateSelection;
   organizationsConnection: OrganizationsConnection;
+  problems: Array<Problem>;
+  problemsAggregate: ProblemAggregateSelection;
+  problemsConnection: ProblemsConnection;
   questions: Array<Question>;
   questionsAggregate: QuestionAggregateSelection;
   questionsConnection: QuestionsConnection;
@@ -3783,6 +6050,9 @@ export type Query = {
   scopes: Array<Scope>;
   scopesAggregate: ScopeAggregateSelection;
   scopesConnection: ScopesConnection;
+  solutions: Array<Solution>;
+  solutionsAggregate: SolutionAggregateSelection;
+  solutionsConnection: SolutionsConnection;
   stakeholders: Array<Stakeholder>;
   stakeholdersAggregate: StakeholderAggregateSelection;
   stakeholdersConnection: StakeholdersConnection;
@@ -3836,6 +6106,25 @@ export type QueryGeographicsConnectionArgs = {
 };
 
 
+export type QueryMiscsArgs = {
+  options?: InputMaybe<MiscOptions>;
+  where?: InputMaybe<MiscWhere>;
+};
+
+
+export type QueryMiscsAggregateArgs = {
+  where?: InputMaybe<MiscWhere>;
+};
+
+
+export type QueryMiscsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<MiscSort>>>;
+  where?: InputMaybe<MiscWhere>;
+};
+
+
 export type QueryOrganizationStatusesArgs = {
   options?: InputMaybe<OrganizationStatusOptions>;
   where?: InputMaybe<OrganizationStatusWhere>;
@@ -3871,6 +6160,25 @@ export type QueryOrganizationsConnectionArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<InputMaybe<OrganizationSort>>>;
   where?: InputMaybe<OrganizationWhere>;
+};
+
+
+export type QueryProblemsArgs = {
+  options?: InputMaybe<ProblemOptions>;
+  where?: InputMaybe<ProblemWhere>;
+};
+
+
+export type QueryProblemsAggregateArgs = {
+  where?: InputMaybe<ProblemWhere>;
+};
+
+
+export type QueryProblemsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<ProblemSort>>>;
+  where?: InputMaybe<ProblemWhere>;
 };
 
 
@@ -3928,6 +6236,25 @@ export type QueryScopesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<InputMaybe<ScopeSort>>>;
   where?: InputMaybe<ScopeWhere>;
+};
+
+
+export type QuerySolutionsArgs = {
+  options?: InputMaybe<SolutionOptions>;
+  where?: InputMaybe<SolutionWhere>;
+};
+
+
+export type QuerySolutionsAggregateArgs = {
+  where?: InputMaybe<SolutionWhere>;
+};
+
+
+export type QuerySolutionsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<InputMaybe<SolutionSort>>>;
+  where?: InputMaybe<SolutionWhere>;
 };
 
 
@@ -4017,9 +6344,9 @@ export type Question = {
   createdAt: Scalars['DateTime']['output'];
   description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  scopes: Array<Scope>;
-  scopesAggregate?: Maybe<QuestionScopeScopesAggregationSelection>;
-  scopesConnection: QuestionScopesConnection;
+  scope: Scope;
+  scopeAggregate?: Maybe<QuestionScopeScopeAggregationSelection>;
+  scopeConnection: QuestionScopeConnection;
   users: Array<User>;
   usersAggregate?: Maybe<QuestionUserUsersAggregationSelection>;
   usersConnection: QuestionUsersConnection;
@@ -4027,25 +6354,25 @@ export type Question = {
 };
 
 
-export type QuestionScopesArgs = {
+export type QuestionScopeArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<ScopeOptions>;
   where?: InputMaybe<ScopeWhere>;
 };
 
 
-export type QuestionScopesAggregateArgs = {
+export type QuestionScopeAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<ScopeWhere>;
 };
 
 
-export type QuestionScopesConnectionArgs = {
+export type QuestionScopeConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<QuestionScopesConnectionSort>>;
-  where?: InputMaybe<QuestionScopesConnectionWhere>;
+  sort?: InputMaybe<Array<QuestionScopeConnectionSort>>;
+  where?: InputMaybe<QuestionScopeConnectionWhere>;
 };
 
 
@@ -4080,12 +6407,12 @@ export type QuestionAggregateSelection = {
 };
 
 export type QuestionConnectInput = {
-  scopes?: InputMaybe<Array<QuestionScopesConnectFieldInput>>;
+  scope?: InputMaybe<QuestionScopeConnectFieldInput>;
   users?: InputMaybe<Array<QuestionUsersConnectFieldInput>>;
 };
 
 export type QuestionConnectOrCreateInput = {
-  scopes?: InputMaybe<Array<QuestionScopesConnectOrCreateFieldInput>>;
+  scope?: InputMaybe<QuestionScopeConnectOrCreateFieldInput>;
   users?: InputMaybe<Array<QuestionUsersConnectOrCreateFieldInput>>;
 };
 
@@ -4100,18 +6427,18 @@ export type QuestionConnectWhere = {
 export type QuestionCreateInput = {
   brief: Scalars['String']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
-  scopes?: InputMaybe<QuestionScopesFieldInput>;
+  scope?: InputMaybe<QuestionScopeFieldInput>;
   users?: InputMaybe<QuestionUsersFieldInput>;
   verified?: Scalars['Boolean']['input'];
 };
 
 export type QuestionDeleteInput = {
-  scopes?: InputMaybe<Array<QuestionScopesDeleteFieldInput>>;
+  scope?: InputMaybe<QuestionScopeDeleteFieldInput>;
   users?: InputMaybe<Array<QuestionUsersDeleteFieldInput>>;
 };
 
 export type QuestionDisconnectInput = {
-  scopes?: InputMaybe<Array<QuestionScopesDisconnectFieldInput>>;
+  scope?: InputMaybe<QuestionScopeDisconnectFieldInput>;
   users?: InputMaybe<Array<QuestionUsersDisconnectFieldInput>>;
 };
 
@@ -4135,96 +6462,80 @@ export type QuestionOptions = {
 };
 
 export type QuestionRelationInput = {
-  scopes?: InputMaybe<Array<QuestionScopesCreateFieldInput>>;
+  scope?: InputMaybe<QuestionScopeCreateFieldInput>;
   users?: InputMaybe<Array<QuestionUsersCreateFieldInput>>;
 };
 
-export type QuestionScopeScopesAggregationSelection = {
-  __typename?: 'QuestionScopeScopesAggregationSelection';
-  count: Scalars['Int']['output'];
-  node?: Maybe<QuestionScopeScopesNodeAggregateSelection>;
-};
-
-export type QuestionScopeScopesNodeAggregateSelection = {
-  __typename?: 'QuestionScopeScopesNodeAggregateSelection';
-  basis: StringAggregateSelectionNullable;
-  brief: StringAggregateSelectionNonNullable;
-  createdAt: DateTimeAggregateSelectionNonNullable;
-  description: StringAggregateSelectionNullable;
-  id: IdAggregateSelectionNonNullable;
-  name: StringAggregateSelectionNonNullable;
-};
-
-export type QuestionScopesAggregateInput = {
-  AND?: InputMaybe<Array<QuestionScopesAggregateInput>>;
-  NOT?: InputMaybe<QuestionScopesAggregateInput>;
-  OR?: InputMaybe<Array<QuestionScopesAggregateInput>>;
+export type QuestionScopeAggregateInput = {
+  AND?: InputMaybe<Array<QuestionScopeAggregateInput>>;
+  NOT?: InputMaybe<QuestionScopeAggregateInput>;
+  OR?: InputMaybe<Array<QuestionScopeAggregateInput>>;
   count?: InputMaybe<Scalars['Int']['input']>;
   count_GT?: InputMaybe<Scalars['Int']['input']>;
   count_GTE?: InputMaybe<Scalars['Int']['input']>;
   count_LT?: InputMaybe<Scalars['Int']['input']>;
   count_LTE?: InputMaybe<Scalars['Int']['input']>;
-  node?: InputMaybe<QuestionScopesNodeAggregationWhereInput>;
+  node?: InputMaybe<QuestionScopeNodeAggregationWhereInput>;
 };
 
-export type QuestionScopesConnectFieldInput = {
-  connect?: InputMaybe<Array<ScopeConnectInput>>;
+export type QuestionScopeConnectFieldInput = {
+  connect?: InputMaybe<ScopeConnectInput>;
   /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
   overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<ScopeConnectWhere>;
 };
 
-export type QuestionScopesConnectOrCreateFieldInput = {
-  onCreate: QuestionScopesConnectOrCreateFieldInputOnCreate;
+export type QuestionScopeConnectOrCreateFieldInput = {
+  onCreate: QuestionScopeConnectOrCreateFieldInputOnCreate;
   where: ScopeConnectOrCreateWhere;
 };
 
-export type QuestionScopesConnectOrCreateFieldInputOnCreate = {
+export type QuestionScopeConnectOrCreateFieldInputOnCreate = {
   node: ScopeOnCreateInput;
 };
 
-export type QuestionScopesConnection = {
-  __typename?: 'QuestionScopesConnection';
-  edges: Array<QuestionScopesRelationship>;
+export type QuestionScopeConnection = {
+  __typename?: 'QuestionScopeConnection';
+  edges: Array<QuestionScopeRelationship>;
   pageInfo: PageInfo;
   totalCount: Scalars['Int']['output'];
 };
 
-export type QuestionScopesConnectionSort = {
+export type QuestionScopeConnectionSort = {
   node?: InputMaybe<ScopeSort>;
 };
 
-export type QuestionScopesConnectionWhere = {
-  AND?: InputMaybe<Array<QuestionScopesConnectionWhere>>;
-  NOT?: InputMaybe<QuestionScopesConnectionWhere>;
-  OR?: InputMaybe<Array<QuestionScopesConnectionWhere>>;
+export type QuestionScopeConnectionWhere = {
+  AND?: InputMaybe<Array<QuestionScopeConnectionWhere>>;
+  NOT?: InputMaybe<QuestionScopeConnectionWhere>;
+  OR?: InputMaybe<Array<QuestionScopeConnectionWhere>>;
   node?: InputMaybe<ScopeWhere>;
 };
 
-export type QuestionScopesCreateFieldInput = {
+export type QuestionScopeCreateFieldInput = {
   node: ScopeCreateInput;
 };
 
-export type QuestionScopesDeleteFieldInput = {
+export type QuestionScopeDeleteFieldInput = {
   delete?: InputMaybe<ScopeDeleteInput>;
-  where?: InputMaybe<QuestionScopesConnectionWhere>;
+  where?: InputMaybe<QuestionScopeConnectionWhere>;
 };
 
-export type QuestionScopesDisconnectFieldInput = {
+export type QuestionScopeDisconnectFieldInput = {
   disconnect?: InputMaybe<ScopeDisconnectInput>;
-  where?: InputMaybe<QuestionScopesConnectionWhere>;
+  where?: InputMaybe<QuestionScopeConnectionWhere>;
 };
 
-export type QuestionScopesFieldInput = {
-  connect?: InputMaybe<Array<QuestionScopesConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<QuestionScopesConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<QuestionScopesCreateFieldInput>>;
+export type QuestionScopeFieldInput = {
+  connect?: InputMaybe<QuestionScopeConnectFieldInput>;
+  connectOrCreate?: InputMaybe<QuestionScopeConnectOrCreateFieldInput>;
+  create?: InputMaybe<QuestionScopeCreateFieldInput>;
 };
 
-export type QuestionScopesNodeAggregationWhereInput = {
-  AND?: InputMaybe<Array<QuestionScopesNodeAggregationWhereInput>>;
-  NOT?: InputMaybe<QuestionScopesNodeAggregationWhereInput>;
-  OR?: InputMaybe<Array<QuestionScopesNodeAggregationWhereInput>>;
+export type QuestionScopeNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<QuestionScopeNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<QuestionScopeNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<QuestionScopeNodeAggregationWhereInput>>;
   basis_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
   basis_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
   basis_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
@@ -4297,24 +6608,40 @@ export type QuestionScopesNodeAggregationWhereInput = {
   name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type QuestionScopesRelationship = {
-  __typename?: 'QuestionScopesRelationship';
+export type QuestionScopeRelationship = {
+  __typename?: 'QuestionScopeRelationship';
   cursor: Scalars['String']['output'];
   node: Scope;
 };
 
-export type QuestionScopesUpdateConnectionInput = {
+export type QuestionScopeScopeAggregationSelection = {
+  __typename?: 'QuestionScopeScopeAggregationSelection';
+  count: Scalars['Int']['output'];
+  node?: Maybe<QuestionScopeScopeNodeAggregateSelection>;
+};
+
+export type QuestionScopeScopeNodeAggregateSelection = {
+  __typename?: 'QuestionScopeScopeNodeAggregateSelection';
+  basis: StringAggregateSelectionNullable;
+  brief: StringAggregateSelectionNonNullable;
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+  name: StringAggregateSelectionNonNullable;
+};
+
+export type QuestionScopeUpdateConnectionInput = {
   node?: InputMaybe<ScopeUpdateInput>;
 };
 
-export type QuestionScopesUpdateFieldInput = {
-  connect?: InputMaybe<Array<QuestionScopesConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<QuestionScopesConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<QuestionScopesCreateFieldInput>>;
-  delete?: InputMaybe<Array<QuestionScopesDeleteFieldInput>>;
-  disconnect?: InputMaybe<Array<QuestionScopesDisconnectFieldInput>>;
-  update?: InputMaybe<QuestionScopesUpdateConnectionInput>;
-  where?: InputMaybe<QuestionScopesConnectionWhere>;
+export type QuestionScopeUpdateFieldInput = {
+  connect?: InputMaybe<QuestionScopeConnectFieldInput>;
+  connectOrCreate?: InputMaybe<QuestionScopeConnectOrCreateFieldInput>;
+  create?: InputMaybe<QuestionScopeCreateFieldInput>;
+  delete?: InputMaybe<QuestionScopeDeleteFieldInput>;
+  disconnect?: InputMaybe<QuestionScopeDisconnectFieldInput>;
+  update?: InputMaybe<QuestionScopeUpdateConnectionInput>;
+  where?: InputMaybe<QuestionScopeConnectionWhere>;
 };
 
 /** Fields to sort Questions by. The order in which sorts are applied is not guaranteed when specifying many fields in one QuestionSort object. */
@@ -4333,7 +6660,7 @@ export type QuestionUniqueWhere = {
 export type QuestionUpdateInput = {
   brief?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  scopes?: InputMaybe<Array<QuestionScopesUpdateFieldInput>>;
+  scope?: InputMaybe<QuestionScopeUpdateFieldInput>;
   users?: InputMaybe<Array<QuestionUsersUpdateFieldInput>>;
   verified?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -4590,23 +6917,11 @@ export type QuestionWhere = {
   id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
   id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
   id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
-  scopesAggregate?: InputMaybe<QuestionScopesAggregateInput>;
-  /** Return Questions where all of the related QuestionScopesConnections match this filter */
-  scopesConnection_ALL?: InputMaybe<QuestionScopesConnectionWhere>;
-  /** Return Questions where none of the related QuestionScopesConnections match this filter */
-  scopesConnection_NONE?: InputMaybe<QuestionScopesConnectionWhere>;
-  /** Return Questions where one of the related QuestionScopesConnections match this filter */
-  scopesConnection_SINGLE?: InputMaybe<QuestionScopesConnectionWhere>;
-  /** Return Questions where some of the related QuestionScopesConnections match this filter */
-  scopesConnection_SOME?: InputMaybe<QuestionScopesConnectionWhere>;
-  /** Return Questions where all of the related Scopes match this filter */
-  scopes_ALL?: InputMaybe<ScopeWhere>;
-  /** Return Questions where none of the related Scopes match this filter */
-  scopes_NONE?: InputMaybe<ScopeWhere>;
-  /** Return Questions where one of the related Scopes match this filter */
-  scopes_SINGLE?: InputMaybe<ScopeWhere>;
-  /** Return Questions where some of the related Scopes match this filter */
-  scopes_SOME?: InputMaybe<ScopeWhere>;
+  scope?: InputMaybe<ScopeWhere>;
+  scopeAggregate?: InputMaybe<QuestionScopeAggregateInput>;
+  scopeConnection?: InputMaybe<QuestionScopeConnectionWhere>;
+  scopeConnection_NOT?: InputMaybe<QuestionScopeConnectionWhere>;
+  scope_NOT?: InputMaybe<ScopeWhere>;
   usersAggregate?: InputMaybe<QuestionUsersAggregateInput>;
   /** Return Questions where all of the related QuestionUsersConnections match this filter */
   usersConnection_ALL?: InputMaybe<QuestionUsersConnectionWhere>;
@@ -5677,6 +7992,9 @@ export type Scope = {
   scopes: Array<Scope>;
   scopesAggregate?: Maybe<ScopeScopeScopesAggregationSelection>;
   scopesConnection: ScopeScopesConnection;
+  stakeholders: Array<Stakeholder>;
+  stakeholdersAggregate?: Maybe<ScopeStakeholderStakeholdersAggregationSelection>;
+  stakeholdersConnection: ScopeStakeholdersConnection;
   users: Array<User>;
   usersAggregate?: Maybe<ScopeUserUsersAggregationSelection>;
   usersConnection: ScopeUsersConnection;
@@ -5765,6 +8083,28 @@ export type ScopeScopesConnectionArgs = {
 };
 
 
+export type ScopeStakeholdersArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<StakeholderOptions>;
+  where?: InputMaybe<StakeholderWhere>;
+};
+
+
+export type ScopeStakeholdersAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<StakeholderWhere>;
+};
+
+
+export type ScopeStakeholdersConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<ScopeStakeholdersConnectionSort>>;
+  where?: InputMaybe<ScopeStakeholdersConnectionWhere>;
+};
+
+
 export type ScopeUsersArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<UserOptions>;
@@ -5802,6 +8142,7 @@ export type ScopeConnectInput = {
   organizations?: InputMaybe<Array<ScopeOrganizationsConnectFieldInput>>;
   ripples?: InputMaybe<Array<ScopeRipplesConnectFieldInput>>;
   scopes?: InputMaybe<Array<ScopeScopesConnectFieldInput>>;
+  stakeholders?: InputMaybe<Array<ScopeStakeholdersConnectFieldInput>>;
   users?: InputMaybe<Array<ScopeUsersConnectFieldInput>>;
 };
 
@@ -5810,6 +8151,7 @@ export type ScopeConnectOrCreateInput = {
   organizations?: InputMaybe<Array<ScopeOrganizationsConnectOrCreateFieldInput>>;
   ripples?: InputMaybe<Array<ScopeRipplesConnectOrCreateFieldInput>>;
   scopes?: InputMaybe<Array<ScopeScopesConnectOrCreateFieldInput>>;
+  stakeholders?: InputMaybe<Array<ScopeStakeholdersConnectOrCreateFieldInput>>;
   users?: InputMaybe<Array<ScopeUsersConnectOrCreateFieldInput>>;
 };
 
@@ -5821,24 +8163,21 @@ export type ScopeConnectWhere = {
   node: ScopeWhere;
 };
 
-export type ScopeConsideration = Example | Question | Stakeholder;
+export type ScopeConsideration = Example | Question;
 
 export type ScopeConsiderationWhere = {
   Example?: InputMaybe<ExampleWhere>;
   Question?: InputMaybe<QuestionWhere>;
-  Stakeholder?: InputMaybe<StakeholderWhere>;
 };
 
 export type ScopeConsiderationsConnectInput = {
   Example?: InputMaybe<Array<ScopeConsiderationsExampleConnectFieldInput>>;
   Question?: InputMaybe<Array<ScopeConsiderationsQuestionConnectFieldInput>>;
-  Stakeholder?: InputMaybe<Array<ScopeConsiderationsStakeholderConnectFieldInput>>;
 };
 
 export type ScopeConsiderationsConnectOrCreateInput = {
   Example?: InputMaybe<Array<ScopeConsiderationsExampleConnectOrCreateFieldInput>>;
   Question?: InputMaybe<Array<ScopeConsiderationsQuestionConnectOrCreateFieldInput>>;
-  Stakeholder?: InputMaybe<Array<ScopeConsiderationsStakeholderConnectOrCreateFieldInput>>;
 };
 
 export type ScopeConsiderationsConnection = {
@@ -5851,31 +8190,26 @@ export type ScopeConsiderationsConnection = {
 export type ScopeConsiderationsConnectionWhere = {
   Example?: InputMaybe<ScopeConsiderationsExampleConnectionWhere>;
   Question?: InputMaybe<ScopeConsiderationsQuestionConnectionWhere>;
-  Stakeholder?: InputMaybe<ScopeConsiderationsStakeholderConnectionWhere>;
 };
 
 export type ScopeConsiderationsCreateFieldInput = {
   Example?: InputMaybe<Array<ScopeConsiderationsExampleCreateFieldInput>>;
   Question?: InputMaybe<Array<ScopeConsiderationsQuestionCreateFieldInput>>;
-  Stakeholder?: InputMaybe<Array<ScopeConsiderationsStakeholderCreateFieldInput>>;
 };
 
 export type ScopeConsiderationsCreateInput = {
   Example?: InputMaybe<ScopeConsiderationsExampleFieldInput>;
   Question?: InputMaybe<ScopeConsiderationsQuestionFieldInput>;
-  Stakeholder?: InputMaybe<ScopeConsiderationsStakeholderFieldInput>;
 };
 
 export type ScopeConsiderationsDeleteInput = {
   Example?: InputMaybe<Array<ScopeConsiderationsExampleDeleteFieldInput>>;
   Question?: InputMaybe<Array<ScopeConsiderationsQuestionDeleteFieldInput>>;
-  Stakeholder?: InputMaybe<Array<ScopeConsiderationsStakeholderDeleteFieldInput>>;
 };
 
 export type ScopeConsiderationsDisconnectInput = {
   Example?: InputMaybe<Array<ScopeConsiderationsExampleDisconnectFieldInput>>;
   Question?: InputMaybe<Array<ScopeConsiderationsQuestionDisconnectFieldInput>>;
-  Stakeholder?: InputMaybe<Array<ScopeConsiderationsStakeholderDisconnectFieldInput>>;
 };
 
 export type ScopeConsiderationsExampleConnectFieldInput = {
@@ -5994,65 +8328,9 @@ export type ScopeConsiderationsRelationship = {
   node: ScopeConsideration;
 };
 
-export type ScopeConsiderationsStakeholderConnectFieldInput = {
-  connect?: InputMaybe<Array<StakeholderConnectInput>>;
-  where?: InputMaybe<StakeholderConnectWhere>;
-};
-
-export type ScopeConsiderationsStakeholderConnectOrCreateFieldInput = {
-  onCreate: ScopeConsiderationsStakeholderConnectOrCreateFieldInputOnCreate;
-  where: StakeholderConnectOrCreateWhere;
-};
-
-export type ScopeConsiderationsStakeholderConnectOrCreateFieldInputOnCreate = {
-  node: StakeholderOnCreateInput;
-};
-
-export type ScopeConsiderationsStakeholderConnectionWhere = {
-  AND?: InputMaybe<Array<ScopeConsiderationsStakeholderConnectionWhere>>;
-  NOT?: InputMaybe<ScopeConsiderationsStakeholderConnectionWhere>;
-  OR?: InputMaybe<Array<ScopeConsiderationsStakeholderConnectionWhere>>;
-  node?: InputMaybe<StakeholderWhere>;
-};
-
-export type ScopeConsiderationsStakeholderCreateFieldInput = {
-  node: StakeholderCreateInput;
-};
-
-export type ScopeConsiderationsStakeholderDeleteFieldInput = {
-  delete?: InputMaybe<StakeholderDeleteInput>;
-  where?: InputMaybe<ScopeConsiderationsStakeholderConnectionWhere>;
-};
-
-export type ScopeConsiderationsStakeholderDisconnectFieldInput = {
-  disconnect?: InputMaybe<StakeholderDisconnectInput>;
-  where?: InputMaybe<ScopeConsiderationsStakeholderConnectionWhere>;
-};
-
-export type ScopeConsiderationsStakeholderFieldInput = {
-  connect?: InputMaybe<Array<ScopeConsiderationsStakeholderConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<ScopeConsiderationsStakeholderConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<ScopeConsiderationsStakeholderCreateFieldInput>>;
-};
-
-export type ScopeConsiderationsStakeholderUpdateConnectionInput = {
-  node?: InputMaybe<StakeholderUpdateInput>;
-};
-
-export type ScopeConsiderationsStakeholderUpdateFieldInput = {
-  connect?: InputMaybe<Array<ScopeConsiderationsStakeholderConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<ScopeConsiderationsStakeholderConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<ScopeConsiderationsStakeholderCreateFieldInput>>;
-  delete?: InputMaybe<Array<ScopeConsiderationsStakeholderDeleteFieldInput>>;
-  disconnect?: InputMaybe<Array<ScopeConsiderationsStakeholderDisconnectFieldInput>>;
-  update?: InputMaybe<ScopeConsiderationsStakeholderUpdateConnectionInput>;
-  where?: InputMaybe<ScopeConsiderationsStakeholderConnectionWhere>;
-};
-
 export type ScopeConsiderationsUpdateInput = {
   Example?: InputMaybe<Array<ScopeConsiderationsExampleUpdateFieldInput>>;
   Question?: InputMaybe<Array<ScopeConsiderationsQuestionUpdateFieldInput>>;
-  Stakeholder?: InputMaybe<Array<ScopeConsiderationsStakeholderUpdateFieldInput>>;
 };
 
 export type ScopeCreateInput = {
@@ -6064,6 +8342,7 @@ export type ScopeCreateInput = {
   organizations?: InputMaybe<ScopeOrganizationsFieldInput>;
   ripples?: InputMaybe<ScopeRipplesFieldInput>;
   scopes?: InputMaybe<ScopeScopesFieldInput>;
+  stakeholders?: InputMaybe<ScopeStakeholdersFieldInput>;
   users?: InputMaybe<ScopeUsersFieldInput>;
   verified?: Scalars['Boolean']['input'];
 };
@@ -6073,6 +8352,7 @@ export type ScopeDeleteInput = {
   organizations?: InputMaybe<Array<ScopeOrganizationsDeleteFieldInput>>;
   ripples?: InputMaybe<Array<ScopeRipplesDeleteFieldInput>>;
   scopes?: InputMaybe<Array<ScopeScopesDeleteFieldInput>>;
+  stakeholders?: InputMaybe<Array<ScopeStakeholdersDeleteFieldInput>>;
   users?: InputMaybe<Array<ScopeUsersDeleteFieldInput>>;
 };
 
@@ -6081,6 +8361,7 @@ export type ScopeDisconnectInput = {
   organizations?: InputMaybe<Array<ScopeOrganizationsDisconnectFieldInput>>;
   ripples?: InputMaybe<Array<ScopeRipplesDisconnectFieldInput>>;
   scopes?: InputMaybe<Array<ScopeScopesDisconnectFieldInput>>;
+  stakeholders?: InputMaybe<Array<ScopeStakeholdersDisconnectFieldInput>>;
   users?: InputMaybe<Array<ScopeUsersDisconnectFieldInput>>;
 };
 
@@ -6353,6 +8634,7 @@ export type ScopeRelationInput = {
   organizations?: InputMaybe<Array<ScopeOrganizationsCreateFieldInput>>;
   ripples?: InputMaybe<Array<ScopeRipplesCreateFieldInput>>;
   scopes?: InputMaybe<Array<ScopeScopesCreateFieldInput>>;
+  stakeholders?: InputMaybe<Array<ScopeStakeholdersCreateFieldInput>>;
   users?: InputMaybe<Array<ScopeUsersCreateFieldInput>>;
 };
 
@@ -6761,6 +9043,168 @@ export type ScopeSort = {
   verified?: InputMaybe<SortDirection>;
 };
 
+export type ScopeStakeholderStakeholdersAggregationSelection = {
+  __typename?: 'ScopeStakeholderStakeholdersAggregationSelection';
+  count: Scalars['Int']['output'];
+  node?: Maybe<ScopeStakeholderStakeholdersNodeAggregateSelection>;
+};
+
+export type ScopeStakeholderStakeholdersNodeAggregateSelection = {
+  __typename?: 'ScopeStakeholderStakeholdersNodeAggregateSelection';
+  brief: StringAggregateSelectionNonNullable;
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+  name: StringAggregateSelectionNonNullable;
+};
+
+export type ScopeStakeholdersAggregateInput = {
+  AND?: InputMaybe<Array<ScopeStakeholdersAggregateInput>>;
+  NOT?: InputMaybe<ScopeStakeholdersAggregateInput>;
+  OR?: InputMaybe<Array<ScopeStakeholdersAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  node?: InputMaybe<ScopeStakeholdersNodeAggregationWhereInput>;
+};
+
+export type ScopeStakeholdersConnectFieldInput = {
+  connect?: InputMaybe<Array<StakeholderConnectInput>>;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<StakeholderConnectWhere>;
+};
+
+export type ScopeStakeholdersConnectOrCreateFieldInput = {
+  onCreate: ScopeStakeholdersConnectOrCreateFieldInputOnCreate;
+  where: StakeholderConnectOrCreateWhere;
+};
+
+export type ScopeStakeholdersConnectOrCreateFieldInputOnCreate = {
+  node: StakeholderOnCreateInput;
+};
+
+export type ScopeStakeholdersConnection = {
+  __typename?: 'ScopeStakeholdersConnection';
+  edges: Array<ScopeStakeholdersRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type ScopeStakeholdersConnectionSort = {
+  node?: InputMaybe<StakeholderSort>;
+};
+
+export type ScopeStakeholdersConnectionWhere = {
+  AND?: InputMaybe<Array<ScopeStakeholdersConnectionWhere>>;
+  NOT?: InputMaybe<ScopeStakeholdersConnectionWhere>;
+  OR?: InputMaybe<Array<ScopeStakeholdersConnectionWhere>>;
+  node?: InputMaybe<StakeholderWhere>;
+};
+
+export type ScopeStakeholdersCreateFieldInput = {
+  node: StakeholderCreateInput;
+};
+
+export type ScopeStakeholdersDeleteFieldInput = {
+  delete?: InputMaybe<StakeholderDeleteInput>;
+  where?: InputMaybe<ScopeStakeholdersConnectionWhere>;
+};
+
+export type ScopeStakeholdersDisconnectFieldInput = {
+  disconnect?: InputMaybe<StakeholderDisconnectInput>;
+  where?: InputMaybe<ScopeStakeholdersConnectionWhere>;
+};
+
+export type ScopeStakeholdersFieldInput = {
+  connect?: InputMaybe<Array<ScopeStakeholdersConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<ScopeStakeholdersConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<ScopeStakeholdersCreateFieldInput>>;
+};
+
+export type ScopeStakeholdersNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<ScopeStakeholdersNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<ScopeStakeholdersNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<ScopeStakeholdersNodeAggregationWhereInput>>;
+  brief_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type ScopeStakeholdersRelationship = {
+  __typename?: 'ScopeStakeholdersRelationship';
+  cursor: Scalars['String']['output'];
+  node: Stakeholder;
+};
+
+export type ScopeStakeholdersUpdateConnectionInput = {
+  node?: InputMaybe<StakeholderUpdateInput>;
+};
+
+export type ScopeStakeholdersUpdateFieldInput = {
+  connect?: InputMaybe<Array<ScopeStakeholdersConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<ScopeStakeholdersConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<ScopeStakeholdersCreateFieldInput>>;
+  delete?: InputMaybe<Array<ScopeStakeholdersDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<ScopeStakeholdersDisconnectFieldInput>>;
+  update?: InputMaybe<ScopeStakeholdersUpdateConnectionInput>;
+  where?: InputMaybe<ScopeStakeholdersConnectionWhere>;
+};
+
 export type ScopeUniqueWhere = {
   id?: InputMaybe<Scalars['ID']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
@@ -6775,6 +9219,7 @@ export type ScopeUpdateInput = {
   organizations?: InputMaybe<Array<ScopeOrganizationsUpdateFieldInput>>;
   ripples?: InputMaybe<Array<ScopeRipplesUpdateFieldInput>>;
   scopes?: InputMaybe<Array<ScopeScopesUpdateFieldInput>>;
+  stakeholders?: InputMaybe<Array<ScopeStakeholdersUpdateFieldInput>>;
   users?: InputMaybe<Array<ScopeUsersUpdateFieldInput>>;
   verified?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -7100,6 +9545,23 @@ export type ScopeWhere = {
   scopes_SINGLE?: InputMaybe<ScopeWhere>;
   /** Return Scopes where some of the related Scopes match this filter */
   scopes_SOME?: InputMaybe<ScopeWhere>;
+  stakeholdersAggregate?: InputMaybe<ScopeStakeholdersAggregateInput>;
+  /** Return Scopes where all of the related ScopeStakeholdersConnections match this filter */
+  stakeholdersConnection_ALL?: InputMaybe<ScopeStakeholdersConnectionWhere>;
+  /** Return Scopes where none of the related ScopeStakeholdersConnections match this filter */
+  stakeholdersConnection_NONE?: InputMaybe<ScopeStakeholdersConnectionWhere>;
+  /** Return Scopes where one of the related ScopeStakeholdersConnections match this filter */
+  stakeholdersConnection_SINGLE?: InputMaybe<ScopeStakeholdersConnectionWhere>;
+  /** Return Scopes where some of the related ScopeStakeholdersConnections match this filter */
+  stakeholdersConnection_SOME?: InputMaybe<ScopeStakeholdersConnectionWhere>;
+  /** Return Scopes where all of the related Stakeholders match this filter */
+  stakeholders_ALL?: InputMaybe<StakeholderWhere>;
+  /** Return Scopes where none of the related Stakeholders match this filter */
+  stakeholders_NONE?: InputMaybe<StakeholderWhere>;
+  /** Return Scopes where one of the related Stakeholders match this filter */
+  stakeholders_SINGLE?: InputMaybe<StakeholderWhere>;
+  /** Return Scopes where some of the related Stakeholders match this filter */
+  stakeholders_SOME?: InputMaybe<StakeholderWhere>;
   usersAggregate?: InputMaybe<ScopeUsersAggregateInput>;
   /** Return Scopes where all of the related ScopeUsersConnections match this filter */
   usersConnection_ALL?: InputMaybe<ScopeUsersConnectionWhere>;
@@ -7127,6 +9589,877 @@ export type ScopesConnection = {
   totalCount: Scalars['Int']['output'];
 };
 
+export type Solution = {
+  __typename?: 'Solution';
+  brief?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  organization: Array<Organization>;
+  organizationAggregate?: Maybe<SolutionOrganizationOrganizationAggregationSelection>;
+  organizationConnection: SolutionOrganizationConnection;
+  problems: Array<Problem>;
+  problemsAggregate?: Maybe<SolutionProblemProblemsAggregationSelection>;
+  problemsConnection: SolutionProblemsConnection;
+  users: Array<User>;
+  usersAggregate?: Maybe<SolutionUserUsersAggregationSelection>;
+  usersConnection: SolutionUsersConnection;
+  verified: Scalars['Boolean']['output'];
+};
+
+
+export type SolutionOrganizationArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<OrganizationOptions>;
+  where?: InputMaybe<OrganizationWhere>;
+};
+
+
+export type SolutionOrganizationAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<OrganizationWhere>;
+};
+
+
+export type SolutionOrganizationConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<SolutionOrganizationConnectionSort>>;
+  where?: InputMaybe<SolutionOrganizationConnectionWhere>;
+};
+
+
+export type SolutionProblemsArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<ProblemOptions>;
+  where?: InputMaybe<ProblemWhere>;
+};
+
+
+export type SolutionProblemsAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<ProblemWhere>;
+};
+
+
+export type SolutionProblemsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<SolutionProblemsConnectionSort>>;
+  where?: InputMaybe<SolutionProblemsConnectionWhere>;
+};
+
+
+export type SolutionUsersArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<UserOptions>;
+  where?: InputMaybe<UserWhere>;
+};
+
+
+export type SolutionUsersAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<UserWhere>;
+};
+
+
+export type SolutionUsersConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<SolutionUsersConnectionSort>>;
+  where?: InputMaybe<SolutionUsersConnectionWhere>;
+};
+
+export type SolutionAggregateSelection = {
+  __typename?: 'SolutionAggregateSelection';
+  brief: StringAggregateSelectionNullable;
+  count: Scalars['Int']['output'];
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+};
+
+export type SolutionConnectInput = {
+  organization?: InputMaybe<Array<SolutionOrganizationConnectFieldInput>>;
+  problems?: InputMaybe<Array<SolutionProblemsConnectFieldInput>>;
+  users?: InputMaybe<Array<SolutionUsersConnectFieldInput>>;
+};
+
+export type SolutionConnectOrCreateInput = {
+  organization?: InputMaybe<Array<SolutionOrganizationConnectOrCreateFieldInput>>;
+  problems?: InputMaybe<Array<SolutionProblemsConnectOrCreateFieldInput>>;
+  users?: InputMaybe<Array<SolutionUsersConnectOrCreateFieldInput>>;
+};
+
+export type SolutionConnectOrCreateWhere = {
+  node: SolutionUniqueWhere;
+};
+
+export type SolutionConnectWhere = {
+  node: SolutionWhere;
+};
+
+export type SolutionCreateInput = {
+  brief?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  organization?: InputMaybe<SolutionOrganizationFieldInput>;
+  problems?: InputMaybe<SolutionProblemsFieldInput>;
+  users?: InputMaybe<SolutionUsersFieldInput>;
+  verified?: Scalars['Boolean']['input'];
+};
+
+export type SolutionDeleteInput = {
+  organization?: InputMaybe<Array<SolutionOrganizationDeleteFieldInput>>;
+  problems?: InputMaybe<Array<SolutionProblemsDeleteFieldInput>>;
+  users?: InputMaybe<Array<SolutionUsersDeleteFieldInput>>;
+};
+
+export type SolutionDisconnectInput = {
+  organization?: InputMaybe<Array<SolutionOrganizationDisconnectFieldInput>>;
+  problems?: InputMaybe<Array<SolutionProblemsDisconnectFieldInput>>;
+  users?: InputMaybe<Array<SolutionUsersDisconnectFieldInput>>;
+};
+
+export type SolutionEdge = {
+  __typename?: 'SolutionEdge';
+  cursor: Scalars['String']['output'];
+  node: Solution;
+};
+
+export type SolutionOnCreateInput = {
+  brief?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  verified?: Scalars['Boolean']['input'];
+};
+
+export type SolutionOptions = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+  /** Specify one or more SolutionSort objects to sort Solutions by. The sorts will be applied in the order in which they are arranged in the array. */
+  sort?: InputMaybe<Array<SolutionSort>>;
+};
+
+export type SolutionOrganizationAggregateInput = {
+  AND?: InputMaybe<Array<SolutionOrganizationAggregateInput>>;
+  NOT?: InputMaybe<SolutionOrganizationAggregateInput>;
+  OR?: InputMaybe<Array<SolutionOrganizationAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  node?: InputMaybe<SolutionOrganizationNodeAggregationWhereInput>;
+};
+
+export type SolutionOrganizationConnectFieldInput = {
+  connect?: InputMaybe<Array<OrganizationConnectInput>>;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<OrganizationConnectWhere>;
+};
+
+export type SolutionOrganizationConnectOrCreateFieldInput = {
+  onCreate: SolutionOrganizationConnectOrCreateFieldInputOnCreate;
+  where: OrganizationConnectOrCreateWhere;
+};
+
+export type SolutionOrganizationConnectOrCreateFieldInputOnCreate = {
+  node: OrganizationOnCreateInput;
+};
+
+export type SolutionOrganizationConnection = {
+  __typename?: 'SolutionOrganizationConnection';
+  edges: Array<SolutionOrganizationRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type SolutionOrganizationConnectionSort = {
+  node?: InputMaybe<OrganizationSort>;
+};
+
+export type SolutionOrganizationConnectionWhere = {
+  AND?: InputMaybe<Array<SolutionOrganizationConnectionWhere>>;
+  NOT?: InputMaybe<SolutionOrganizationConnectionWhere>;
+  OR?: InputMaybe<Array<SolutionOrganizationConnectionWhere>>;
+  node?: InputMaybe<OrganizationWhere>;
+};
+
+export type SolutionOrganizationCreateFieldInput = {
+  node: OrganizationCreateInput;
+};
+
+export type SolutionOrganizationDeleteFieldInput = {
+  delete?: InputMaybe<OrganizationDeleteInput>;
+  where?: InputMaybe<SolutionOrganizationConnectionWhere>;
+};
+
+export type SolutionOrganizationDisconnectFieldInput = {
+  disconnect?: InputMaybe<OrganizationDisconnectInput>;
+  where?: InputMaybe<SolutionOrganizationConnectionWhere>;
+};
+
+export type SolutionOrganizationFieldInput = {
+  connect?: InputMaybe<Array<SolutionOrganizationConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<SolutionOrganizationConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<SolutionOrganizationCreateFieldInput>>;
+};
+
+export type SolutionOrganizationNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<SolutionOrganizationNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<SolutionOrganizationNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<SolutionOrganizationNodeAggregationWhereInput>>;
+  brief_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  name_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  name_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  name_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  website_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  website_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  website_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  website_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  website_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type SolutionOrganizationOrganizationAggregationSelection = {
+  __typename?: 'SolutionOrganizationOrganizationAggregationSelection';
+  count: Scalars['Int']['output'];
+  node?: Maybe<SolutionOrganizationOrganizationNodeAggregateSelection>;
+};
+
+export type SolutionOrganizationOrganizationNodeAggregateSelection = {
+  __typename?: 'SolutionOrganizationOrganizationNodeAggregateSelection';
+  brief: StringAggregateSelectionNonNullable;
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+  name: StringAggregateSelectionNonNullable;
+  website: StringAggregateSelectionNonNullable;
+};
+
+export type SolutionOrganizationRelationship = {
+  __typename?: 'SolutionOrganizationRelationship';
+  cursor: Scalars['String']['output'];
+  node: Organization;
+};
+
+export type SolutionOrganizationUpdateConnectionInput = {
+  node?: InputMaybe<OrganizationUpdateInput>;
+};
+
+export type SolutionOrganizationUpdateFieldInput = {
+  connect?: InputMaybe<Array<SolutionOrganizationConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<SolutionOrganizationConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<SolutionOrganizationCreateFieldInput>>;
+  delete?: InputMaybe<Array<SolutionOrganizationDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<SolutionOrganizationDisconnectFieldInput>>;
+  update?: InputMaybe<SolutionOrganizationUpdateConnectionInput>;
+  where?: InputMaybe<SolutionOrganizationConnectionWhere>;
+};
+
+export type SolutionProblemProblemsAggregationSelection = {
+  __typename?: 'SolutionProblemProblemsAggregationSelection';
+  count: Scalars['Int']['output'];
+  edge?: Maybe<SolutionProblemProblemsEdgeAggregateSelection>;
+  node?: Maybe<SolutionProblemProblemsNodeAggregateSelection>;
+};
+
+export type SolutionProblemProblemsEdgeAggregateSelection = {
+  __typename?: 'SolutionProblemProblemsEdgeAggregateSelection';
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  effectiveness: FloatAggregateSelectionNullable;
+};
+
+export type SolutionProblemProblemsNodeAggregateSelection = {
+  __typename?: 'SolutionProblemProblemsNodeAggregateSelection';
+  brief: StringAggregateSelectionNullable;
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+};
+
+export type SolutionProblemsAggregateInput = {
+  AND?: InputMaybe<Array<SolutionProblemsAggregateInput>>;
+  NOT?: InputMaybe<SolutionProblemsAggregateInput>;
+  OR?: InputMaybe<Array<SolutionProblemsAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  edge?: InputMaybe<SolutionProblemsEdgeAggregationWhereInput>;
+  node?: InputMaybe<SolutionProblemsNodeAggregationWhereInput>;
+};
+
+export type SolutionProblemsConnectFieldInput = {
+  connect?: InputMaybe<Array<ProblemConnectInput>>;
+  edge: ProblemSolutionCreateInput;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<ProblemConnectWhere>;
+};
+
+export type SolutionProblemsConnectOrCreateFieldInput = {
+  onCreate: SolutionProblemsConnectOrCreateFieldInputOnCreate;
+  where: ProblemConnectOrCreateWhere;
+};
+
+export type SolutionProblemsConnectOrCreateFieldInputOnCreate = {
+  edge: ProblemSolutionCreateInput;
+  node: ProblemOnCreateInput;
+};
+
+export type SolutionProblemsConnection = {
+  __typename?: 'SolutionProblemsConnection';
+  edges: Array<SolutionProblemsRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type SolutionProblemsConnectionSort = {
+  edge?: InputMaybe<ProblemSolutionSort>;
+  node?: InputMaybe<ProblemSort>;
+};
+
+export type SolutionProblemsConnectionWhere = {
+  AND?: InputMaybe<Array<SolutionProblemsConnectionWhere>>;
+  NOT?: InputMaybe<SolutionProblemsConnectionWhere>;
+  OR?: InputMaybe<Array<SolutionProblemsConnectionWhere>>;
+  edge?: InputMaybe<ProblemSolutionWhere>;
+  node?: InputMaybe<ProblemWhere>;
+};
+
+export type SolutionProblemsCreateFieldInput = {
+  edge: ProblemSolutionCreateInput;
+  node: ProblemCreateInput;
+};
+
+export type SolutionProblemsDeleteFieldInput = {
+  delete?: InputMaybe<ProblemDeleteInput>;
+  where?: InputMaybe<SolutionProblemsConnectionWhere>;
+};
+
+export type SolutionProblemsDisconnectFieldInput = {
+  disconnect?: InputMaybe<ProblemDisconnectInput>;
+  where?: InputMaybe<SolutionProblemsConnectionWhere>;
+};
+
+export type SolutionProblemsEdgeAggregationWhereInput = {
+  AND?: InputMaybe<Array<SolutionProblemsEdgeAggregationWhereInput>>;
+  NOT?: InputMaybe<SolutionProblemsEdgeAggregationWhereInput>;
+  OR?: InputMaybe<Array<SolutionProblemsEdgeAggregationWhereInput>>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  effectiveness_AVERAGE_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_AVERAGE_GT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_AVERAGE_GTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_AVERAGE_LT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_AVERAGE_LTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MAX_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MAX_GT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MAX_GTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MAX_LT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MAX_LTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MIN_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MIN_GT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MIN_GTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MIN_LT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_MIN_LTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_SUM_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_SUM_GT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_SUM_GTE?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_SUM_LT?: InputMaybe<Scalars['Float']['input']>;
+  effectiveness_SUM_LTE?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type SolutionProblemsFieldInput = {
+  connect?: InputMaybe<Array<SolutionProblemsConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<SolutionProblemsConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<SolutionProblemsCreateFieldInput>>;
+};
+
+export type SolutionProblemsNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<SolutionProblemsNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<SolutionProblemsNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<SolutionProblemsNodeAggregationWhereInput>>;
+  brief_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type SolutionProblemsRelationship = ProblemSolution & {
+  __typename?: 'SolutionProblemsRelationship';
+  createdAt: Scalars['DateTime']['output'];
+  cursor: Scalars['String']['output'];
+  effectiveness?: Maybe<Scalars['Float']['output']>;
+  node: Problem;
+  verified: Scalars['Boolean']['output'];
+};
+
+export type SolutionProblemsUpdateConnectionInput = {
+  edge?: InputMaybe<ProblemSolutionUpdateInput>;
+  node?: InputMaybe<ProblemUpdateInput>;
+};
+
+export type SolutionProblemsUpdateFieldInput = {
+  connect?: InputMaybe<Array<SolutionProblemsConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<SolutionProblemsConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<SolutionProblemsCreateFieldInput>>;
+  delete?: InputMaybe<Array<SolutionProblemsDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<SolutionProblemsDisconnectFieldInput>>;
+  update?: InputMaybe<SolutionProblemsUpdateConnectionInput>;
+  where?: InputMaybe<SolutionProblemsConnectionWhere>;
+};
+
+export type SolutionRelationInput = {
+  organization?: InputMaybe<Array<SolutionOrganizationCreateFieldInput>>;
+  problems?: InputMaybe<Array<SolutionProblemsCreateFieldInput>>;
+  users?: InputMaybe<Array<SolutionUsersCreateFieldInput>>;
+};
+
+/** Fields to sort Solutions by. The order in which sorts are applied is not guaranteed when specifying many fields in one SolutionSort object. */
+export type SolutionSort = {
+  brief?: InputMaybe<SortDirection>;
+  createdAt?: InputMaybe<SortDirection>;
+  description?: InputMaybe<SortDirection>;
+  id?: InputMaybe<SortDirection>;
+  verified?: InputMaybe<SortDirection>;
+};
+
+export type SolutionUniqueWhere = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type SolutionUpdateInput = {
+  brief?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  organization?: InputMaybe<Array<SolutionOrganizationUpdateFieldInput>>;
+  problems?: InputMaybe<Array<SolutionProblemsUpdateFieldInput>>;
+  users?: InputMaybe<Array<SolutionUsersUpdateFieldInput>>;
+  verified?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type SolutionUserUsersAggregationSelection = {
+  __typename?: 'SolutionUserUsersAggregationSelection';
+  count: Scalars['Int']['output'];
+  edge?: Maybe<SolutionUserUsersEdgeAggregateSelection>;
+  node?: Maybe<SolutionUserUsersNodeAggregateSelection>;
+};
+
+export type SolutionUserUsersEdgeAggregateSelection = {
+  __typename?: 'SolutionUserUsersEdgeAggregateSelection';
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  dump: StringAggregateSelectionNullable;
+  message: StringAggregateSelectionNullable;
+};
+
+export type SolutionUserUsersNodeAggregateSelection = {
+  __typename?: 'SolutionUserUsersNodeAggregateSelection';
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  email: StringAggregateSelectionNonNullable;
+  familyName: StringAggregateSelectionNullable;
+  givenName: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+};
+
+export type SolutionUsersAggregateInput = {
+  AND?: InputMaybe<Array<SolutionUsersAggregateInput>>;
+  NOT?: InputMaybe<SolutionUsersAggregateInput>;
+  OR?: InputMaybe<Array<SolutionUsersAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  edge?: InputMaybe<SolutionUsersEdgeAggregationWhereInput>;
+  node?: InputMaybe<SolutionUsersNodeAggregationWhereInput>;
+};
+
+export type SolutionUsersConnectFieldInput = {
+  connect?: InputMaybe<Array<UserConnectInput>>;
+  edge: UserInteractsWithCreateInput;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<UserConnectWhere>;
+};
+
+export type SolutionUsersConnectOrCreateFieldInput = {
+  onCreate: SolutionUsersConnectOrCreateFieldInputOnCreate;
+  where: UserConnectOrCreateWhere;
+};
+
+export type SolutionUsersConnectOrCreateFieldInputOnCreate = {
+  edge: UserInteractsWithCreateInput;
+  node: UserOnCreateInput;
+};
+
+export type SolutionUsersConnection = {
+  __typename?: 'SolutionUsersConnection';
+  edges: Array<SolutionUsersRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type SolutionUsersConnectionSort = {
+  edge?: InputMaybe<UserInteractsWithSort>;
+  node?: InputMaybe<UserSort>;
+};
+
+export type SolutionUsersConnectionWhere = {
+  AND?: InputMaybe<Array<SolutionUsersConnectionWhere>>;
+  NOT?: InputMaybe<SolutionUsersConnectionWhere>;
+  OR?: InputMaybe<Array<SolutionUsersConnectionWhere>>;
+  edge?: InputMaybe<UserInteractsWithWhere>;
+  node?: InputMaybe<UserWhere>;
+};
+
+export type SolutionUsersCreateFieldInput = {
+  edge: UserInteractsWithCreateInput;
+  node: UserCreateInput;
+};
+
+export type SolutionUsersDeleteFieldInput = {
+  delete?: InputMaybe<UserDeleteInput>;
+  where?: InputMaybe<SolutionUsersConnectionWhere>;
+};
+
+export type SolutionUsersDisconnectFieldInput = {
+  disconnect?: InputMaybe<UserDisconnectInput>;
+  where?: InputMaybe<SolutionUsersConnectionWhere>;
+};
+
+export type SolutionUsersEdgeAggregationWhereInput = {
+  AND?: InputMaybe<Array<SolutionUsersEdgeAggregationWhereInput>>;
+  NOT?: InputMaybe<SolutionUsersEdgeAggregationWhereInput>;
+  OR?: InputMaybe<Array<SolutionUsersEdgeAggregationWhereInput>>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  dump_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  dump_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  dump_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  dump_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  dump_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  dump_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  dump_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  dump_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  dump_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  dump_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  dump_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  message_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  message_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  message_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  message_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  message_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type SolutionUsersFieldInput = {
+  connect?: InputMaybe<Array<SolutionUsersConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<SolutionUsersConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<SolutionUsersCreateFieldInput>>;
+};
+
+export type SolutionUsersNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<SolutionUsersNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<SolutionUsersNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<SolutionUsersNodeAggregationWhereInput>>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  email_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  email_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  email_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  email_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  familyName_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  familyName_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  familyName_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  familyName_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  familyName_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  familyName_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  familyName_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  familyName_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  familyName_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  familyName_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  familyName_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  givenName_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  givenName_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  givenName_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  givenName_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  givenName_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  givenName_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  givenName_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  givenName_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  givenName_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  givenName_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  givenName_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type SolutionUsersRelationship = UserInteractsWith & {
+  __typename?: 'SolutionUsersRelationship';
+  createdAt: Scalars['DateTime']['output'];
+  cursor: Scalars['String']['output'];
+  dump?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
+  node: User;
+  type: UserInteractionName;
+};
+
+export type SolutionUsersUpdateConnectionInput = {
+  edge?: InputMaybe<UserInteractsWithUpdateInput>;
+  node?: InputMaybe<UserUpdateInput>;
+};
+
+export type SolutionUsersUpdateFieldInput = {
+  connect?: InputMaybe<Array<SolutionUsersConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<SolutionUsersConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<SolutionUsersCreateFieldInput>>;
+  delete?: InputMaybe<Array<SolutionUsersDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<SolutionUsersDisconnectFieldInput>>;
+  update?: InputMaybe<SolutionUsersUpdateConnectionInput>;
+  where?: InputMaybe<SolutionUsersConnectionWhere>;
+};
+
+export type SolutionWhere = {
+  AND?: InputMaybe<Array<SolutionWhere>>;
+  NOT?: InputMaybe<SolutionWhere>;
+  OR?: InputMaybe<Array<SolutionWhere>>;
+  brief?: InputMaybe<Scalars['String']['input']>;
+  brief_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  brief_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  brief_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  brief_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  description_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  description_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  description_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_CONTAINS?: InputMaybe<Scalars['ID']['input']>;
+  id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  organizationAggregate?: InputMaybe<SolutionOrganizationAggregateInput>;
+  /** Return Solutions where all of the related SolutionOrganizationConnections match this filter */
+  organizationConnection_ALL?: InputMaybe<SolutionOrganizationConnectionWhere>;
+  /** Return Solutions where none of the related SolutionOrganizationConnections match this filter */
+  organizationConnection_NONE?: InputMaybe<SolutionOrganizationConnectionWhere>;
+  /** Return Solutions where one of the related SolutionOrganizationConnections match this filter */
+  organizationConnection_SINGLE?: InputMaybe<SolutionOrganizationConnectionWhere>;
+  /** Return Solutions where some of the related SolutionOrganizationConnections match this filter */
+  organizationConnection_SOME?: InputMaybe<SolutionOrganizationConnectionWhere>;
+  /** Return Solutions where all of the related Organizations match this filter */
+  organization_ALL?: InputMaybe<OrganizationWhere>;
+  /** Return Solutions where none of the related Organizations match this filter */
+  organization_NONE?: InputMaybe<OrganizationWhere>;
+  /** Return Solutions where one of the related Organizations match this filter */
+  organization_SINGLE?: InputMaybe<OrganizationWhere>;
+  /** Return Solutions where some of the related Organizations match this filter */
+  organization_SOME?: InputMaybe<OrganizationWhere>;
+  problemsAggregate?: InputMaybe<SolutionProblemsAggregateInput>;
+  /** Return Solutions where all of the related SolutionProblemsConnections match this filter */
+  problemsConnection_ALL?: InputMaybe<SolutionProblemsConnectionWhere>;
+  /** Return Solutions where none of the related SolutionProblemsConnections match this filter */
+  problemsConnection_NONE?: InputMaybe<SolutionProblemsConnectionWhere>;
+  /** Return Solutions where one of the related SolutionProblemsConnections match this filter */
+  problemsConnection_SINGLE?: InputMaybe<SolutionProblemsConnectionWhere>;
+  /** Return Solutions where some of the related SolutionProblemsConnections match this filter */
+  problemsConnection_SOME?: InputMaybe<SolutionProblemsConnectionWhere>;
+  /** Return Solutions where all of the related Problems match this filter */
+  problems_ALL?: InputMaybe<ProblemWhere>;
+  /** Return Solutions where none of the related Problems match this filter */
+  problems_NONE?: InputMaybe<ProblemWhere>;
+  /** Return Solutions where one of the related Problems match this filter */
+  problems_SINGLE?: InputMaybe<ProblemWhere>;
+  /** Return Solutions where some of the related Problems match this filter */
+  problems_SOME?: InputMaybe<ProblemWhere>;
+  usersAggregate?: InputMaybe<SolutionUsersAggregateInput>;
+  /** Return Solutions where all of the related SolutionUsersConnections match this filter */
+  usersConnection_ALL?: InputMaybe<SolutionUsersConnectionWhere>;
+  /** Return Solutions where none of the related SolutionUsersConnections match this filter */
+  usersConnection_NONE?: InputMaybe<SolutionUsersConnectionWhere>;
+  /** Return Solutions where one of the related SolutionUsersConnections match this filter */
+  usersConnection_SINGLE?: InputMaybe<SolutionUsersConnectionWhere>;
+  /** Return Solutions where some of the related SolutionUsersConnections match this filter */
+  usersConnection_SOME?: InputMaybe<SolutionUsersConnectionWhere>;
+  /** Return Solutions where all of the related Users match this filter */
+  users_ALL?: InputMaybe<UserWhere>;
+  /** Return Solutions where none of the related Users match this filter */
+  users_NONE?: InputMaybe<UserWhere>;
+  /** Return Solutions where one of the related Users match this filter */
+  users_SINGLE?: InputMaybe<UserWhere>;
+  /** Return Solutions where some of the related Users match this filter */
+  users_SOME?: InputMaybe<UserWhere>;
+  verified?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type SolutionsConnection = {
+  __typename?: 'SolutionsConnection';
+  edges: Array<SolutionEdge>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
 export enum SortDirection {
   /** Sort by field values in ascending order. */
   Asc = 'ASC',
@@ -7144,6 +10477,9 @@ export type Stakeholder = {
   organizations: Array<Organization>;
   organizationsAggregate?: Maybe<StakeholderOrganizationOrganizationsAggregationSelection>;
   organizationsConnection: StakeholderOrganizationsConnection;
+  problems: Array<Problem>;
+  problemsAggregate?: Maybe<StakeholderProblemProblemsAggregationSelection>;
+  problemsConnection: StakeholderProblemsConnection;
   scopes: Array<Scope>;
   scopesAggregate?: Maybe<StakeholderScopeScopesAggregationSelection>;
   scopesConnection: StakeholderScopesConnection;
@@ -7173,6 +10509,28 @@ export type StakeholderOrganizationsConnectionArgs = {
   first?: InputMaybe<Scalars['Int']['input']>;
   sort?: InputMaybe<Array<StakeholderOrganizationsConnectionSort>>;
   where?: InputMaybe<StakeholderOrganizationsConnectionWhere>;
+};
+
+
+export type StakeholderProblemsArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  options?: InputMaybe<ProblemOptions>;
+  where?: InputMaybe<ProblemWhere>;
+};
+
+
+export type StakeholderProblemsAggregateArgs = {
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<ProblemWhere>;
+};
+
+
+export type StakeholderProblemsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  directed?: InputMaybe<Scalars['Boolean']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  sort?: InputMaybe<Array<StakeholderProblemsConnectionSort>>;
+  where?: InputMaybe<StakeholderProblemsConnectionWhere>;
 };
 
 
@@ -7231,12 +10589,14 @@ export type StakeholderAggregateSelection = {
 
 export type StakeholderConnectInput = {
   organizations?: InputMaybe<Array<StakeholderOrganizationsConnectFieldInput>>;
+  problems?: InputMaybe<Array<StakeholderProblemsConnectFieldInput>>;
   scopes?: InputMaybe<Array<StakeholderScopesConnectFieldInput>>;
   users?: InputMaybe<Array<StakeholderUsersConnectFieldInput>>;
 };
 
 export type StakeholderConnectOrCreateInput = {
   organizations?: InputMaybe<Array<StakeholderOrganizationsConnectOrCreateFieldInput>>;
+  problems?: InputMaybe<Array<StakeholderProblemsConnectOrCreateFieldInput>>;
   scopes?: InputMaybe<Array<StakeholderScopesConnectOrCreateFieldInput>>;
   users?: InputMaybe<Array<StakeholderUsersConnectOrCreateFieldInput>>;
 };
@@ -7254,6 +10614,7 @@ export type StakeholderCreateInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   organizations?: InputMaybe<StakeholderOrganizationsFieldInput>;
+  problems?: InputMaybe<StakeholderProblemsFieldInput>;
   scopes?: InputMaybe<StakeholderScopesFieldInput>;
   users?: InputMaybe<StakeholderUsersFieldInput>;
   verified?: Scalars['Boolean']['input'];
@@ -7261,12 +10622,14 @@ export type StakeholderCreateInput = {
 
 export type StakeholderDeleteInput = {
   organizations?: InputMaybe<Array<StakeholderOrganizationsDeleteFieldInput>>;
+  problems?: InputMaybe<Array<StakeholderProblemsDeleteFieldInput>>;
   scopes?: InputMaybe<Array<StakeholderScopesDeleteFieldInput>>;
   users?: InputMaybe<Array<StakeholderUsersDeleteFieldInput>>;
 };
 
 export type StakeholderDisconnectInput = {
   organizations?: InputMaybe<Array<StakeholderOrganizationsDisconnectFieldInput>>;
+  problems?: InputMaybe<Array<StakeholderProblemsDisconnectFieldInput>>;
   scopes?: InputMaybe<Array<StakeholderScopesDisconnectFieldInput>>;
   users?: InputMaybe<Array<StakeholderUsersDisconnectFieldInput>>;
 };
@@ -7469,8 +10832,200 @@ export type StakeholderOrganizationsUpdateFieldInput = {
   where?: InputMaybe<StakeholderOrganizationsConnectionWhere>;
 };
 
+export type StakeholderProblem = {
+  createdAt: Scalars['DateTime']['output'];
+  severity?: Maybe<Scalars['Float']['output']>;
+  verified: Scalars['Boolean']['output'];
+};
+
+export type StakeholderProblemCreateInput = {
+  severity?: InputMaybe<Scalars['Float']['input']>;
+  verified?: Scalars['Boolean']['input'];
+};
+
+export type StakeholderProblemProblemsAggregationSelection = {
+  __typename?: 'StakeholderProblemProblemsAggregationSelection';
+  count: Scalars['Int']['output'];
+  node?: Maybe<StakeholderProblemProblemsNodeAggregateSelection>;
+};
+
+export type StakeholderProblemProblemsNodeAggregateSelection = {
+  __typename?: 'StakeholderProblemProblemsNodeAggregateSelection';
+  brief: StringAggregateSelectionNullable;
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+};
+
+export type StakeholderProblemSort = {
+  createdAt?: InputMaybe<SortDirection>;
+  severity?: InputMaybe<SortDirection>;
+  verified?: InputMaybe<SortDirection>;
+};
+
+export type StakeholderProblemUpdateInput = {
+  severity?: InputMaybe<Scalars['Float']['input']>;
+  severity_ADD?: InputMaybe<Scalars['Float']['input']>;
+  severity_DIVIDE?: InputMaybe<Scalars['Float']['input']>;
+  severity_MULTIPLY?: InputMaybe<Scalars['Float']['input']>;
+  severity_SUBTRACT?: InputMaybe<Scalars['Float']['input']>;
+  verified?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type StakeholderProblemWhere = {
+  AND?: InputMaybe<Array<StakeholderProblemWhere>>;
+  NOT?: InputMaybe<StakeholderProblemWhere>;
+  OR?: InputMaybe<Array<StakeholderProblemWhere>>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_IN?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  createdAt_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  severity?: InputMaybe<Scalars['Float']['input']>;
+  severity_GT?: InputMaybe<Scalars['Float']['input']>;
+  severity_GTE?: InputMaybe<Scalars['Float']['input']>;
+  severity_IN?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+  severity_LT?: InputMaybe<Scalars['Float']['input']>;
+  severity_LTE?: InputMaybe<Scalars['Float']['input']>;
+  verified?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type StakeholderProblemsAggregateInput = {
+  AND?: InputMaybe<Array<StakeholderProblemsAggregateInput>>;
+  NOT?: InputMaybe<StakeholderProblemsAggregateInput>;
+  OR?: InputMaybe<Array<StakeholderProblemsAggregateInput>>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  count_GT?: InputMaybe<Scalars['Int']['input']>;
+  count_GTE?: InputMaybe<Scalars['Int']['input']>;
+  count_LT?: InputMaybe<Scalars['Int']['input']>;
+  count_LTE?: InputMaybe<Scalars['Int']['input']>;
+  node?: InputMaybe<StakeholderProblemsNodeAggregationWhereInput>;
+};
+
+export type StakeholderProblemsConnectFieldInput = {
+  connect?: InputMaybe<Array<ProblemConnectInput>>;
+  /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
+  overwrite?: Scalars['Boolean']['input'];
+  where?: InputMaybe<ProblemConnectWhere>;
+};
+
+export type StakeholderProblemsConnectOrCreateFieldInput = {
+  onCreate: StakeholderProblemsConnectOrCreateFieldInputOnCreate;
+  where: ProblemConnectOrCreateWhere;
+};
+
+export type StakeholderProblemsConnectOrCreateFieldInputOnCreate = {
+  node: ProblemOnCreateInput;
+};
+
+export type StakeholderProblemsConnection = {
+  __typename?: 'StakeholderProblemsConnection';
+  edges: Array<StakeholderProblemsRelationship>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type StakeholderProblemsConnectionSort = {
+  node?: InputMaybe<ProblemSort>;
+};
+
+export type StakeholderProblemsConnectionWhere = {
+  AND?: InputMaybe<Array<StakeholderProblemsConnectionWhere>>;
+  NOT?: InputMaybe<StakeholderProblemsConnectionWhere>;
+  OR?: InputMaybe<Array<StakeholderProblemsConnectionWhere>>;
+  node?: InputMaybe<ProblemWhere>;
+};
+
+export type StakeholderProblemsCreateFieldInput = {
+  node: ProblemCreateInput;
+};
+
+export type StakeholderProblemsDeleteFieldInput = {
+  delete?: InputMaybe<ProblemDeleteInput>;
+  where?: InputMaybe<StakeholderProblemsConnectionWhere>;
+};
+
+export type StakeholderProblemsDisconnectFieldInput = {
+  disconnect?: InputMaybe<ProblemDisconnectInput>;
+  where?: InputMaybe<StakeholderProblemsConnectionWhere>;
+};
+
+export type StakeholderProblemsFieldInput = {
+  connect?: InputMaybe<Array<StakeholderProblemsConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<StakeholderProblemsConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<StakeholderProblemsCreateFieldInput>>;
+};
+
+export type StakeholderProblemsNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<StakeholderProblemsNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<StakeholderProblemsNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<StakeholderProblemsNodeAggregationWhereInput>>;
+  brief_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  brief_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  brief_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  brief_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MAX_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_GTE?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LT?: InputMaybe<Scalars['DateTime']['input']>;
+  createdAt_MIN_LTE?: InputMaybe<Scalars['DateTime']['input']>;
+  description_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  description_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  description_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  description_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type StakeholderProblemsRelationship = {
+  __typename?: 'StakeholderProblemsRelationship';
+  cursor: Scalars['String']['output'];
+  node: Problem;
+};
+
+export type StakeholderProblemsUpdateConnectionInput = {
+  node?: InputMaybe<ProblemUpdateInput>;
+};
+
+export type StakeholderProblemsUpdateFieldInput = {
+  connect?: InputMaybe<Array<StakeholderProblemsConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<StakeholderProblemsConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<StakeholderProblemsCreateFieldInput>>;
+  delete?: InputMaybe<Array<StakeholderProblemsDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<StakeholderProblemsDisconnectFieldInput>>;
+  update?: InputMaybe<StakeholderProblemsUpdateConnectionInput>;
+  where?: InputMaybe<StakeholderProblemsConnectionWhere>;
+};
+
 export type StakeholderRelationInput = {
   organizations?: InputMaybe<Array<StakeholderOrganizationsCreateFieldInput>>;
+  problems?: InputMaybe<Array<StakeholderProblemsCreateFieldInput>>;
   scopes?: InputMaybe<Array<StakeholderScopesCreateFieldInput>>;
   users?: InputMaybe<Array<StakeholderUsersCreateFieldInput>>;
 };
@@ -7673,6 +11228,7 @@ export type StakeholderUpdateInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   organizations?: InputMaybe<Array<StakeholderOrganizationsUpdateFieldInput>>;
+  problems?: InputMaybe<Array<StakeholderProblemsUpdateFieldInput>>;
   scopes?: InputMaybe<Array<StakeholderScopesUpdateFieldInput>>;
   users?: InputMaybe<Array<StakeholderUsersUpdateFieldInput>>;
   verified?: InputMaybe<Scalars['Boolean']['input']>;
@@ -7952,6 +11508,23 @@ export type StakeholderWhere = {
   organizations_SINGLE?: InputMaybe<OrganizationWhere>;
   /** Return Stakeholders where some of the related Organizations match this filter */
   organizations_SOME?: InputMaybe<OrganizationWhere>;
+  problemsAggregate?: InputMaybe<StakeholderProblemsAggregateInput>;
+  /** Return Stakeholders where all of the related StakeholderProblemsConnections match this filter */
+  problemsConnection_ALL?: InputMaybe<StakeholderProblemsConnectionWhere>;
+  /** Return Stakeholders where none of the related StakeholderProblemsConnections match this filter */
+  problemsConnection_NONE?: InputMaybe<StakeholderProblemsConnectionWhere>;
+  /** Return Stakeholders where one of the related StakeholderProblemsConnections match this filter */
+  problemsConnection_SINGLE?: InputMaybe<StakeholderProblemsConnectionWhere>;
+  /** Return Stakeholders where some of the related StakeholderProblemsConnections match this filter */
+  problemsConnection_SOME?: InputMaybe<StakeholderProblemsConnectionWhere>;
+  /** Return Stakeholders where all of the related Problems match this filter */
+  problems_ALL?: InputMaybe<ProblemWhere>;
+  /** Return Stakeholders where none of the related Problems match this filter */
+  problems_NONE?: InputMaybe<ProblemWhere>;
+  /** Return Stakeholders where one of the related Problems match this filter */
+  problems_SINGLE?: InputMaybe<ProblemWhere>;
+  /** Return Stakeholders where some of the related Problems match this filter */
+  problems_SOME?: InputMaybe<ProblemWhere>;
   scopesAggregate?: InputMaybe<StakeholderScopesAggregateInput>;
   /** Return Stakeholders where all of the related StakeholderScopesConnections match this filter */
   scopesConnection_ALL?: InputMaybe<StakeholderScopesConnectionWhere>;
@@ -8014,7 +11587,7 @@ export type Team = {
   createdAt: Scalars['DateTime']['output'];
   description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  organization: Array<Organization>;
+  organization: Organization;
   organizationAggregate?: Maybe<TeamOrganizationOrganizationAggregationSelection>;
   organizationConnection: TeamOrganizationConnection;
   users: Array<User>;
@@ -8077,12 +11650,12 @@ export type TeamAggregateSelection = {
 };
 
 export type TeamConnectInput = {
-  organization?: InputMaybe<Array<TeamOrganizationConnectFieldInput>>;
+  organization?: InputMaybe<TeamOrganizationConnectFieldInput>;
   users?: InputMaybe<Array<TeamUsersConnectFieldInput>>;
 };
 
 export type TeamConnectOrCreateInput = {
-  organization?: InputMaybe<Array<TeamOrganizationConnectOrCreateFieldInput>>;
+  organization?: InputMaybe<TeamOrganizationConnectOrCreateFieldInput>;
   users?: InputMaybe<Array<TeamUsersConnectOrCreateFieldInput>>;
 };
 
@@ -8103,12 +11676,12 @@ export type TeamCreateInput = {
 };
 
 export type TeamDeleteInput = {
-  organization?: InputMaybe<Array<TeamOrganizationDeleteFieldInput>>;
+  organization?: InputMaybe<TeamOrganizationDeleteFieldInput>;
   users?: InputMaybe<Array<TeamUsersDeleteFieldInput>>;
 };
 
 export type TeamDisconnectInput = {
-  organization?: InputMaybe<Array<TeamOrganizationDisconnectFieldInput>>;
+  organization?: InputMaybe<TeamOrganizationDisconnectFieldInput>;
   users?: InputMaybe<Array<TeamUsersDisconnectFieldInput>>;
 };
 
@@ -8144,7 +11717,7 @@ export type TeamOrganizationAggregateInput = {
 };
 
 export type TeamOrganizationConnectFieldInput = {
-  connect?: InputMaybe<Array<OrganizationConnectInput>>;
+  connect?: InputMaybe<OrganizationConnectInput>;
   /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
   overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<OrganizationConnectWhere>;
@@ -8192,9 +11765,9 @@ export type TeamOrganizationDisconnectFieldInput = {
 };
 
 export type TeamOrganizationFieldInput = {
-  connect?: InputMaybe<Array<TeamOrganizationConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<TeamOrganizationConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<TeamOrganizationCreateFieldInput>>;
+  connect?: InputMaybe<TeamOrganizationConnectFieldInput>;
+  connectOrCreate?: InputMaybe<TeamOrganizationConnectOrCreateFieldInput>;
+  create?: InputMaybe<TeamOrganizationCreateFieldInput>;
 };
 
 export type TeamOrganizationNodeAggregationWhereInput = {
@@ -8300,17 +11873,17 @@ export type TeamOrganizationUpdateConnectionInput = {
 };
 
 export type TeamOrganizationUpdateFieldInput = {
-  connect?: InputMaybe<Array<TeamOrganizationConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<TeamOrganizationConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<TeamOrganizationCreateFieldInput>>;
-  delete?: InputMaybe<Array<TeamOrganizationDeleteFieldInput>>;
-  disconnect?: InputMaybe<Array<TeamOrganizationDisconnectFieldInput>>;
+  connect?: InputMaybe<TeamOrganizationConnectFieldInput>;
+  connectOrCreate?: InputMaybe<TeamOrganizationConnectOrCreateFieldInput>;
+  create?: InputMaybe<TeamOrganizationCreateFieldInput>;
+  delete?: InputMaybe<TeamOrganizationDeleteFieldInput>;
+  disconnect?: InputMaybe<TeamOrganizationDisconnectFieldInput>;
   update?: InputMaybe<TeamOrganizationUpdateConnectionInput>;
   where?: InputMaybe<TeamOrganizationConnectionWhere>;
 };
 
 export type TeamRelationInput = {
-  organization?: InputMaybe<Array<TeamOrganizationCreateFieldInput>>;
+  organization?: InputMaybe<TeamOrganizationCreateFieldInput>;
   users?: InputMaybe<Array<TeamUsersCreateFieldInput>>;
 };
 
@@ -8330,7 +11903,7 @@ export type TeamUniqueWhere = {
 export type TeamUpdateInput = {
   brief?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  organization?: InputMaybe<Array<TeamOrganizationUpdateFieldInput>>;
+  organization?: InputMaybe<TeamOrganizationUpdateFieldInput>;
   users?: InputMaybe<Array<TeamUsersUpdateFieldInput>>;
   verified?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -8587,23 +12160,11 @@ export type TeamWhere = {
   id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
   id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
   id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
+  organization?: InputMaybe<OrganizationWhere>;
   organizationAggregate?: InputMaybe<TeamOrganizationAggregateInput>;
-  /** Return Teams where all of the related TeamOrganizationConnections match this filter */
-  organizationConnection_ALL?: InputMaybe<TeamOrganizationConnectionWhere>;
-  /** Return Teams where none of the related TeamOrganizationConnections match this filter */
-  organizationConnection_NONE?: InputMaybe<TeamOrganizationConnectionWhere>;
-  /** Return Teams where one of the related TeamOrganizationConnections match this filter */
-  organizationConnection_SINGLE?: InputMaybe<TeamOrganizationConnectionWhere>;
-  /** Return Teams where some of the related TeamOrganizationConnections match this filter */
-  organizationConnection_SOME?: InputMaybe<TeamOrganizationConnectionWhere>;
-  /** Return Teams where all of the related Organizations match this filter */
-  organization_ALL?: InputMaybe<OrganizationWhere>;
-  /** Return Teams where none of the related Organizations match this filter */
-  organization_NONE?: InputMaybe<OrganizationWhere>;
-  /** Return Teams where one of the related Organizations match this filter */
-  organization_SINGLE?: InputMaybe<OrganizationWhere>;
-  /** Return Teams where some of the related Organizations match this filter */
-  organization_SOME?: InputMaybe<OrganizationWhere>;
+  organizationConnection?: InputMaybe<TeamOrganizationConnectionWhere>;
+  organizationConnection_NOT?: InputMaybe<TeamOrganizationConnectionWhere>;
+  organization_NOT?: InputMaybe<OrganizationWhere>;
   usersAggregate?: InputMaybe<TeamUsersAggregateInput>;
   /** Return Teams where all of the related TeamUsersConnections match this filter */
   usersConnection_ALL?: InputMaybe<TeamUsersConnectionWhere>;
@@ -8652,6 +12213,12 @@ export type UpdateInfo = {
   relationshipsDeleted: Scalars['Int']['output'];
 };
 
+export type UpdateMiscsMutationResponse = {
+  __typename?: 'UpdateMiscsMutationResponse';
+  info: UpdateInfo;
+  miscs: Array<Misc>;
+};
+
 export type UpdateOrganizationStatusesMutationResponse = {
   __typename?: 'UpdateOrganizationStatusesMutationResponse';
   info: UpdateInfo;
@@ -8662,6 +12229,12 @@ export type UpdateOrganizationsMutationResponse = {
   __typename?: 'UpdateOrganizationsMutationResponse';
   info: UpdateInfo;
   organizations: Array<Organization>;
+};
+
+export type UpdateProblemsMutationResponse = {
+  __typename?: 'UpdateProblemsMutationResponse';
+  info: UpdateInfo;
+  problems: Array<Problem>;
 };
 
 export type UpdateQuestionsMutationResponse = {
@@ -8680,6 +12253,12 @@ export type UpdateScopesMutationResponse = {
   __typename?: 'UpdateScopesMutationResponse';
   info: UpdateInfo;
   scopes: Array<Scope>;
+};
+
+export type UpdateSolutionsMutationResponse = {
+  __typename?: 'UpdateSolutionsMutationResponse';
+  info: UpdateInfo;
+  solutions: Array<Solution>;
 };
 
 export type UpdateStakeholdersMutationResponse = {
@@ -8797,9 +12376,11 @@ export type UserInteractionsConnectInput = {
   Geographic?: InputMaybe<Array<UserInteractionsGeographicConnectFieldInput>>;
   Organization?: InputMaybe<Array<UserInteractionsOrganizationConnectFieldInput>>;
   OrganizationStatus?: InputMaybe<Array<UserInteractionsOrganizationStatusConnectFieldInput>>;
+  Problem?: InputMaybe<Array<UserInteractionsProblemConnectFieldInput>>;
   Question?: InputMaybe<Array<UserInteractionsQuestionConnectFieldInput>>;
   Ripple?: InputMaybe<Array<UserInteractionsRippleConnectFieldInput>>;
   Scope?: InputMaybe<Array<UserInteractionsScopeConnectFieldInput>>;
+  Solution?: InputMaybe<Array<UserInteractionsSolutionConnectFieldInput>>;
   Stakeholder?: InputMaybe<Array<UserInteractionsStakeholderConnectFieldInput>>;
   Team?: InputMaybe<Array<UserInteractionsTeamConnectFieldInput>>;
   User?: InputMaybe<Array<UserInteractionsUserConnectFieldInput>>;
@@ -8811,9 +12392,11 @@ export type UserInteractionsConnectOrCreateInput = {
   Geographic?: InputMaybe<Array<UserInteractionsGeographicConnectOrCreateFieldInput>>;
   Organization?: InputMaybe<Array<UserInteractionsOrganizationConnectOrCreateFieldInput>>;
   OrganizationStatus?: InputMaybe<Array<UserInteractionsOrganizationStatusConnectOrCreateFieldInput>>;
+  Problem?: InputMaybe<Array<UserInteractionsProblemConnectOrCreateFieldInput>>;
   Question?: InputMaybe<Array<UserInteractionsQuestionConnectOrCreateFieldInput>>;
   Ripple?: InputMaybe<Array<UserInteractionsRippleConnectOrCreateFieldInput>>;
   Scope?: InputMaybe<Array<UserInteractionsScopeConnectOrCreateFieldInput>>;
+  Solution?: InputMaybe<Array<UserInteractionsSolutionConnectOrCreateFieldInput>>;
   Stakeholder?: InputMaybe<Array<UserInteractionsStakeholderConnectOrCreateFieldInput>>;
   Team?: InputMaybe<Array<UserInteractionsTeamConnectOrCreateFieldInput>>;
   User?: InputMaybe<Array<UserInteractionsUserConnectOrCreateFieldInput>>;
@@ -8836,9 +12419,11 @@ export type UserInteractionsConnectionWhere = {
   Geographic?: InputMaybe<UserInteractionsGeographicConnectionWhere>;
   Organization?: InputMaybe<UserInteractionsOrganizationConnectionWhere>;
   OrganizationStatus?: InputMaybe<UserInteractionsOrganizationStatusConnectionWhere>;
+  Problem?: InputMaybe<UserInteractionsProblemConnectionWhere>;
   Question?: InputMaybe<UserInteractionsQuestionConnectionWhere>;
   Ripple?: InputMaybe<UserInteractionsRippleConnectionWhere>;
   Scope?: InputMaybe<UserInteractionsScopeConnectionWhere>;
+  Solution?: InputMaybe<UserInteractionsSolutionConnectionWhere>;
   Stakeholder?: InputMaybe<UserInteractionsStakeholderConnectionWhere>;
   Team?: InputMaybe<UserInteractionsTeamConnectionWhere>;
   User?: InputMaybe<UserInteractionsUserConnectionWhere>;
@@ -8850,9 +12435,11 @@ export type UserInteractionsCreateFieldInput = {
   Geographic?: InputMaybe<Array<UserInteractionsGeographicCreateFieldInput>>;
   Organization?: InputMaybe<Array<UserInteractionsOrganizationCreateFieldInput>>;
   OrganizationStatus?: InputMaybe<Array<UserInteractionsOrganizationStatusCreateFieldInput>>;
+  Problem?: InputMaybe<Array<UserInteractionsProblemCreateFieldInput>>;
   Question?: InputMaybe<Array<UserInteractionsQuestionCreateFieldInput>>;
   Ripple?: InputMaybe<Array<UserInteractionsRippleCreateFieldInput>>;
   Scope?: InputMaybe<Array<UserInteractionsScopeCreateFieldInput>>;
+  Solution?: InputMaybe<Array<UserInteractionsSolutionCreateFieldInput>>;
   Stakeholder?: InputMaybe<Array<UserInteractionsStakeholderCreateFieldInput>>;
   Team?: InputMaybe<Array<UserInteractionsTeamCreateFieldInput>>;
   User?: InputMaybe<Array<UserInteractionsUserCreateFieldInput>>;
@@ -8864,9 +12451,11 @@ export type UserInteractionsCreateInput = {
   Geographic?: InputMaybe<UserInteractionsGeographicFieldInput>;
   Organization?: InputMaybe<UserInteractionsOrganizationFieldInput>;
   OrganizationStatus?: InputMaybe<UserInteractionsOrganizationStatusFieldInput>;
+  Problem?: InputMaybe<UserInteractionsProblemFieldInput>;
   Question?: InputMaybe<UserInteractionsQuestionFieldInput>;
   Ripple?: InputMaybe<UserInteractionsRippleFieldInput>;
   Scope?: InputMaybe<UserInteractionsScopeFieldInput>;
+  Solution?: InputMaybe<UserInteractionsSolutionFieldInput>;
   Stakeholder?: InputMaybe<UserInteractionsStakeholderFieldInput>;
   Team?: InputMaybe<UserInteractionsTeamFieldInput>;
   User?: InputMaybe<UserInteractionsUserFieldInput>;
@@ -8878,9 +12467,11 @@ export type UserInteractionsDeleteInput = {
   Geographic?: InputMaybe<Array<UserInteractionsGeographicDeleteFieldInput>>;
   Organization?: InputMaybe<Array<UserInteractionsOrganizationDeleteFieldInput>>;
   OrganizationStatus?: InputMaybe<Array<UserInteractionsOrganizationStatusDeleteFieldInput>>;
+  Problem?: InputMaybe<Array<UserInteractionsProblemDeleteFieldInput>>;
   Question?: InputMaybe<Array<UserInteractionsQuestionDeleteFieldInput>>;
   Ripple?: InputMaybe<Array<UserInteractionsRippleDeleteFieldInput>>;
   Scope?: InputMaybe<Array<UserInteractionsScopeDeleteFieldInput>>;
+  Solution?: InputMaybe<Array<UserInteractionsSolutionDeleteFieldInput>>;
   Stakeholder?: InputMaybe<Array<UserInteractionsStakeholderDeleteFieldInput>>;
   Team?: InputMaybe<Array<UserInteractionsTeamDeleteFieldInput>>;
   User?: InputMaybe<Array<UserInteractionsUserDeleteFieldInput>>;
@@ -8892,9 +12483,11 @@ export type UserInteractionsDisconnectInput = {
   Geographic?: InputMaybe<Array<UserInteractionsGeographicDisconnectFieldInput>>;
   Organization?: InputMaybe<Array<UserInteractionsOrganizationDisconnectFieldInput>>;
   OrganizationStatus?: InputMaybe<Array<UserInteractionsOrganizationStatusDisconnectFieldInput>>;
+  Problem?: InputMaybe<Array<UserInteractionsProblemDisconnectFieldInput>>;
   Question?: InputMaybe<Array<UserInteractionsQuestionDisconnectFieldInput>>;
   Ripple?: InputMaybe<Array<UserInteractionsRippleDisconnectFieldInput>>;
   Scope?: InputMaybe<Array<UserInteractionsScopeDisconnectFieldInput>>;
+  Solution?: InputMaybe<Array<UserInteractionsSolutionDisconnectFieldInput>>;
   Stakeholder?: InputMaybe<Array<UserInteractionsStakeholderDisconnectFieldInput>>;
   Team?: InputMaybe<Array<UserInteractionsTeamDisconnectFieldInput>>;
   User?: InputMaybe<Array<UserInteractionsUserDisconnectFieldInput>>;
@@ -9141,6 +12734,66 @@ export type UserInteractionsOrganizationUpdateFieldInput = {
   where?: InputMaybe<UserInteractionsOrganizationConnectionWhere>;
 };
 
+export type UserInteractionsProblemConnectFieldInput = {
+  connect?: InputMaybe<Array<ProblemConnectInput>>;
+  edge: UserInteractsWithCreateInput;
+  where?: InputMaybe<ProblemConnectWhere>;
+};
+
+export type UserInteractionsProblemConnectOrCreateFieldInput = {
+  onCreate: UserInteractionsProblemConnectOrCreateFieldInputOnCreate;
+  where: ProblemConnectOrCreateWhere;
+};
+
+export type UserInteractionsProblemConnectOrCreateFieldInputOnCreate = {
+  edge: UserInteractsWithCreateInput;
+  node: ProblemOnCreateInput;
+};
+
+export type UserInteractionsProblemConnectionWhere = {
+  AND?: InputMaybe<Array<UserInteractionsProblemConnectionWhere>>;
+  NOT?: InputMaybe<UserInteractionsProblemConnectionWhere>;
+  OR?: InputMaybe<Array<UserInteractionsProblemConnectionWhere>>;
+  edge?: InputMaybe<UserInteractsWithWhere>;
+  node?: InputMaybe<ProblemWhere>;
+};
+
+export type UserInteractionsProblemCreateFieldInput = {
+  edge: UserInteractsWithCreateInput;
+  node: ProblemCreateInput;
+};
+
+export type UserInteractionsProblemDeleteFieldInput = {
+  delete?: InputMaybe<ProblemDeleteInput>;
+  where?: InputMaybe<UserInteractionsProblemConnectionWhere>;
+};
+
+export type UserInteractionsProblemDisconnectFieldInput = {
+  disconnect?: InputMaybe<ProblemDisconnectInput>;
+  where?: InputMaybe<UserInteractionsProblemConnectionWhere>;
+};
+
+export type UserInteractionsProblemFieldInput = {
+  connect?: InputMaybe<Array<UserInteractionsProblemConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<UserInteractionsProblemConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<UserInteractionsProblemCreateFieldInput>>;
+};
+
+export type UserInteractionsProblemUpdateConnectionInput = {
+  edge?: InputMaybe<UserInteractsWithUpdateInput>;
+  node?: InputMaybe<ProblemUpdateInput>;
+};
+
+export type UserInteractionsProblemUpdateFieldInput = {
+  connect?: InputMaybe<Array<UserInteractionsProblemConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<UserInteractionsProblemConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<UserInteractionsProblemCreateFieldInput>>;
+  delete?: InputMaybe<Array<UserInteractionsProblemDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<UserInteractionsProblemDisconnectFieldInput>>;
+  update?: InputMaybe<UserInteractionsProblemUpdateConnectionInput>;
+  where?: InputMaybe<UserInteractionsProblemConnectionWhere>;
+};
+
 export type UserInteractionsQuestionConnectFieldInput = {
   connect?: InputMaybe<Array<QuestionConnectInput>>;
   edge: UserInteractsWithCreateInput;
@@ -9331,6 +12984,66 @@ export type UserInteractionsScopeUpdateFieldInput = {
   where?: InputMaybe<UserInteractionsScopeConnectionWhere>;
 };
 
+export type UserInteractionsSolutionConnectFieldInput = {
+  connect?: InputMaybe<Array<SolutionConnectInput>>;
+  edge: UserInteractsWithCreateInput;
+  where?: InputMaybe<SolutionConnectWhere>;
+};
+
+export type UserInteractionsSolutionConnectOrCreateFieldInput = {
+  onCreate: UserInteractionsSolutionConnectOrCreateFieldInputOnCreate;
+  where: SolutionConnectOrCreateWhere;
+};
+
+export type UserInteractionsSolutionConnectOrCreateFieldInputOnCreate = {
+  edge: UserInteractsWithCreateInput;
+  node: SolutionOnCreateInput;
+};
+
+export type UserInteractionsSolutionConnectionWhere = {
+  AND?: InputMaybe<Array<UserInteractionsSolutionConnectionWhere>>;
+  NOT?: InputMaybe<UserInteractionsSolutionConnectionWhere>;
+  OR?: InputMaybe<Array<UserInteractionsSolutionConnectionWhere>>;
+  edge?: InputMaybe<UserInteractsWithWhere>;
+  node?: InputMaybe<SolutionWhere>;
+};
+
+export type UserInteractionsSolutionCreateFieldInput = {
+  edge: UserInteractsWithCreateInput;
+  node: SolutionCreateInput;
+};
+
+export type UserInteractionsSolutionDeleteFieldInput = {
+  delete?: InputMaybe<SolutionDeleteInput>;
+  where?: InputMaybe<UserInteractionsSolutionConnectionWhere>;
+};
+
+export type UserInteractionsSolutionDisconnectFieldInput = {
+  disconnect?: InputMaybe<SolutionDisconnectInput>;
+  where?: InputMaybe<UserInteractionsSolutionConnectionWhere>;
+};
+
+export type UserInteractionsSolutionFieldInput = {
+  connect?: InputMaybe<Array<UserInteractionsSolutionConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<UserInteractionsSolutionConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<UserInteractionsSolutionCreateFieldInput>>;
+};
+
+export type UserInteractionsSolutionUpdateConnectionInput = {
+  edge?: InputMaybe<UserInteractsWithUpdateInput>;
+  node?: InputMaybe<SolutionUpdateInput>;
+};
+
+export type UserInteractionsSolutionUpdateFieldInput = {
+  connect?: InputMaybe<Array<UserInteractionsSolutionConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<UserInteractionsSolutionConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<UserInteractionsSolutionCreateFieldInput>>;
+  delete?: InputMaybe<Array<UserInteractionsSolutionDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<UserInteractionsSolutionDisconnectFieldInput>>;
+  update?: InputMaybe<UserInteractionsSolutionUpdateConnectionInput>;
+  where?: InputMaybe<UserInteractionsSolutionConnectionWhere>;
+};
+
 export type UserInteractionsStakeholderConnectFieldInput = {
   connect?: InputMaybe<Array<StakeholderConnectInput>>;
   edge: UserInteractsWithCreateInput;
@@ -9456,9 +13169,11 @@ export type UserInteractionsUpdateInput = {
   Geographic?: InputMaybe<Array<UserInteractionsGeographicUpdateFieldInput>>;
   Organization?: InputMaybe<Array<UserInteractionsOrganizationUpdateFieldInput>>;
   OrganizationStatus?: InputMaybe<Array<UserInteractionsOrganizationStatusUpdateFieldInput>>;
+  Problem?: InputMaybe<Array<UserInteractionsProblemUpdateFieldInput>>;
   Question?: InputMaybe<Array<UserInteractionsQuestionUpdateFieldInput>>;
   Ripple?: InputMaybe<Array<UserInteractionsRippleUpdateFieldInput>>;
   Scope?: InputMaybe<Array<UserInteractionsScopeUpdateFieldInput>>;
+  Solution?: InputMaybe<Array<UserInteractionsSolutionUpdateFieldInput>>;
   Stakeholder?: InputMaybe<Array<UserInteractionsStakeholderUpdateFieldInput>>;
   Team?: InputMaybe<Array<UserInteractionsTeamUpdateFieldInput>>;
   User?: InputMaybe<Array<UserInteractionsUserUpdateFieldInput>>;
@@ -9729,9 +13444,9 @@ export type WebDump = {
   content: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['ID']['output'];
-  organizations: Array<Organization>;
-  organizationsAggregate?: Maybe<WebDumpOrganizationOrganizationsAggregationSelection>;
-  organizationsConnection: WebDumpOrganizationsConnection;
+  organization: Organization;
+  organizationAggregate?: Maybe<WebDumpOrganizationOrganizationAggregationSelection>;
+  organizationConnection: WebDumpOrganizationConnection;
   users: Array<User>;
   usersAggregate?: Maybe<WebDumpUserUsersAggregationSelection>;
   usersConnection: WebDumpUsersConnection;
@@ -9739,25 +13454,25 @@ export type WebDump = {
 };
 
 
-export type WebDumpOrganizationsArgs = {
+export type WebDumpOrganizationArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<OrganizationOptions>;
   where?: InputMaybe<OrganizationWhere>;
 };
 
 
-export type WebDumpOrganizationsAggregateArgs = {
+export type WebDumpOrganizationAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<OrganizationWhere>;
 };
 
 
-export type WebDumpOrganizationsConnectionArgs = {
+export type WebDumpOrganizationConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<WebDumpOrganizationsConnectionSort>>;
-  where?: InputMaybe<WebDumpOrganizationsConnectionWhere>;
+  sort?: InputMaybe<Array<WebDumpOrganizationConnectionSort>>;
+  where?: InputMaybe<WebDumpOrganizationConnectionWhere>;
 };
 
 
@@ -9791,12 +13506,12 @@ export type WebDumpAggregateSelection = {
 };
 
 export type WebDumpConnectInput = {
-  organizations?: InputMaybe<Array<WebDumpOrganizationsConnectFieldInput>>;
+  organization?: InputMaybe<WebDumpOrganizationConnectFieldInput>;
   users?: InputMaybe<Array<WebDumpUsersConnectFieldInput>>;
 };
 
 export type WebDumpConnectOrCreateInput = {
-  organizations?: InputMaybe<Array<WebDumpOrganizationsConnectOrCreateFieldInput>>;
+  organization?: InputMaybe<WebDumpOrganizationConnectOrCreateFieldInput>;
   users?: InputMaybe<Array<WebDumpUsersConnectOrCreateFieldInput>>;
 };
 
@@ -9810,18 +13525,18 @@ export type WebDumpConnectWhere = {
 
 export type WebDumpCreateInput = {
   content: Scalars['String']['input'];
-  organizations?: InputMaybe<WebDumpOrganizationsFieldInput>;
+  organization?: InputMaybe<WebDumpOrganizationFieldInput>;
   users?: InputMaybe<WebDumpUsersFieldInput>;
   verified?: Scalars['Boolean']['input'];
 };
 
 export type WebDumpDeleteInput = {
-  organizations?: InputMaybe<Array<WebDumpOrganizationsDeleteFieldInput>>;
+  organization?: InputMaybe<WebDumpOrganizationDeleteFieldInput>;
   users?: InputMaybe<Array<WebDumpUsersDeleteFieldInput>>;
 };
 
 export type WebDumpDisconnectInput = {
-  organizations?: InputMaybe<Array<WebDumpOrganizationsDisconnectFieldInput>>;
+  organization?: InputMaybe<WebDumpOrganizationDisconnectFieldInput>;
   users?: InputMaybe<Array<WebDumpUsersDisconnectFieldInput>>;
 };
 
@@ -9843,92 +13558,76 @@ export type WebDumpOptions = {
   sort?: InputMaybe<Array<WebDumpSort>>;
 };
 
-export type WebDumpOrganizationOrganizationsAggregationSelection = {
-  __typename?: 'WebDumpOrganizationOrganizationsAggregationSelection';
-  count: Scalars['Int']['output'];
-  node?: Maybe<WebDumpOrganizationOrganizationsNodeAggregateSelection>;
-};
-
-export type WebDumpOrganizationOrganizationsNodeAggregateSelection = {
-  __typename?: 'WebDumpOrganizationOrganizationsNodeAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
-  createdAt: DateTimeAggregateSelectionNonNullable;
-  description: StringAggregateSelectionNullable;
-  id: IdAggregateSelectionNonNullable;
-  name: StringAggregateSelectionNonNullable;
-  website: StringAggregateSelectionNonNullable;
-};
-
-export type WebDumpOrganizationsAggregateInput = {
-  AND?: InputMaybe<Array<WebDumpOrganizationsAggregateInput>>;
-  NOT?: InputMaybe<WebDumpOrganizationsAggregateInput>;
-  OR?: InputMaybe<Array<WebDumpOrganizationsAggregateInput>>;
+export type WebDumpOrganizationAggregateInput = {
+  AND?: InputMaybe<Array<WebDumpOrganizationAggregateInput>>;
+  NOT?: InputMaybe<WebDumpOrganizationAggregateInput>;
+  OR?: InputMaybe<Array<WebDumpOrganizationAggregateInput>>;
   count?: InputMaybe<Scalars['Int']['input']>;
   count_GT?: InputMaybe<Scalars['Int']['input']>;
   count_GTE?: InputMaybe<Scalars['Int']['input']>;
   count_LT?: InputMaybe<Scalars['Int']['input']>;
   count_LTE?: InputMaybe<Scalars['Int']['input']>;
-  node?: InputMaybe<WebDumpOrganizationsNodeAggregationWhereInput>;
+  node?: InputMaybe<WebDumpOrganizationNodeAggregationWhereInput>;
 };
 
-export type WebDumpOrganizationsConnectFieldInput = {
-  connect?: InputMaybe<Array<OrganizationConnectInput>>;
+export type WebDumpOrganizationConnectFieldInput = {
+  connect?: InputMaybe<OrganizationConnectInput>;
   /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
   overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<OrganizationConnectWhere>;
 };
 
-export type WebDumpOrganizationsConnectOrCreateFieldInput = {
-  onCreate: WebDumpOrganizationsConnectOrCreateFieldInputOnCreate;
+export type WebDumpOrganizationConnectOrCreateFieldInput = {
+  onCreate: WebDumpOrganizationConnectOrCreateFieldInputOnCreate;
   where: OrganizationConnectOrCreateWhere;
 };
 
-export type WebDumpOrganizationsConnectOrCreateFieldInputOnCreate = {
+export type WebDumpOrganizationConnectOrCreateFieldInputOnCreate = {
   node: OrganizationOnCreateInput;
 };
 
-export type WebDumpOrganizationsConnection = {
-  __typename?: 'WebDumpOrganizationsConnection';
-  edges: Array<WebDumpOrganizationsRelationship>;
+export type WebDumpOrganizationConnection = {
+  __typename?: 'WebDumpOrganizationConnection';
+  edges: Array<WebDumpOrganizationRelationship>;
   pageInfo: PageInfo;
   totalCount: Scalars['Int']['output'];
 };
 
-export type WebDumpOrganizationsConnectionSort = {
+export type WebDumpOrganizationConnectionSort = {
   node?: InputMaybe<OrganizationSort>;
 };
 
-export type WebDumpOrganizationsConnectionWhere = {
-  AND?: InputMaybe<Array<WebDumpOrganizationsConnectionWhere>>;
-  NOT?: InputMaybe<WebDumpOrganizationsConnectionWhere>;
-  OR?: InputMaybe<Array<WebDumpOrganizationsConnectionWhere>>;
+export type WebDumpOrganizationConnectionWhere = {
+  AND?: InputMaybe<Array<WebDumpOrganizationConnectionWhere>>;
+  NOT?: InputMaybe<WebDumpOrganizationConnectionWhere>;
+  OR?: InputMaybe<Array<WebDumpOrganizationConnectionWhere>>;
   node?: InputMaybe<OrganizationWhere>;
 };
 
-export type WebDumpOrganizationsCreateFieldInput = {
+export type WebDumpOrganizationCreateFieldInput = {
   node: OrganizationCreateInput;
 };
 
-export type WebDumpOrganizationsDeleteFieldInput = {
+export type WebDumpOrganizationDeleteFieldInput = {
   delete?: InputMaybe<OrganizationDeleteInput>;
-  where?: InputMaybe<WebDumpOrganizationsConnectionWhere>;
+  where?: InputMaybe<WebDumpOrganizationConnectionWhere>;
 };
 
-export type WebDumpOrganizationsDisconnectFieldInput = {
+export type WebDumpOrganizationDisconnectFieldInput = {
   disconnect?: InputMaybe<OrganizationDisconnectInput>;
-  where?: InputMaybe<WebDumpOrganizationsConnectionWhere>;
+  where?: InputMaybe<WebDumpOrganizationConnectionWhere>;
 };
 
-export type WebDumpOrganizationsFieldInput = {
-  connect?: InputMaybe<Array<WebDumpOrganizationsConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<WebDumpOrganizationsConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<WebDumpOrganizationsCreateFieldInput>>;
+export type WebDumpOrganizationFieldInput = {
+  connect?: InputMaybe<WebDumpOrganizationConnectFieldInput>;
+  connectOrCreate?: InputMaybe<WebDumpOrganizationConnectOrCreateFieldInput>;
+  create?: InputMaybe<WebDumpOrganizationCreateFieldInput>;
 };
 
-export type WebDumpOrganizationsNodeAggregationWhereInput = {
-  AND?: InputMaybe<Array<WebDumpOrganizationsNodeAggregationWhereInput>>;
-  NOT?: InputMaybe<WebDumpOrganizationsNodeAggregationWhereInput>;
-  OR?: InputMaybe<Array<WebDumpOrganizationsNodeAggregationWhereInput>>;
+export type WebDumpOrganizationNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<WebDumpOrganizationNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<WebDumpOrganizationNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<WebDumpOrganizationNodeAggregationWhereInput>>;
   brief_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
   brief_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
   brief_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
@@ -10001,28 +13700,44 @@ export type WebDumpOrganizationsNodeAggregationWhereInput = {
   website_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type WebDumpOrganizationsRelationship = {
-  __typename?: 'WebDumpOrganizationsRelationship';
+export type WebDumpOrganizationOrganizationAggregationSelection = {
+  __typename?: 'WebDumpOrganizationOrganizationAggregationSelection';
+  count: Scalars['Int']['output'];
+  node?: Maybe<WebDumpOrganizationOrganizationNodeAggregateSelection>;
+};
+
+export type WebDumpOrganizationOrganizationNodeAggregateSelection = {
+  __typename?: 'WebDumpOrganizationOrganizationNodeAggregateSelection';
+  brief: StringAggregateSelectionNonNullable;
+  createdAt: DateTimeAggregateSelectionNonNullable;
+  description: StringAggregateSelectionNullable;
+  id: IdAggregateSelectionNonNullable;
+  name: StringAggregateSelectionNonNullable;
+  website: StringAggregateSelectionNonNullable;
+};
+
+export type WebDumpOrganizationRelationship = {
+  __typename?: 'WebDumpOrganizationRelationship';
   cursor: Scalars['String']['output'];
   node: Organization;
 };
 
-export type WebDumpOrganizationsUpdateConnectionInput = {
+export type WebDumpOrganizationUpdateConnectionInput = {
   node?: InputMaybe<OrganizationUpdateInput>;
 };
 
-export type WebDumpOrganizationsUpdateFieldInput = {
-  connect?: InputMaybe<Array<WebDumpOrganizationsConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<WebDumpOrganizationsConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<WebDumpOrganizationsCreateFieldInput>>;
-  delete?: InputMaybe<Array<WebDumpOrganizationsDeleteFieldInput>>;
-  disconnect?: InputMaybe<Array<WebDumpOrganizationsDisconnectFieldInput>>;
-  update?: InputMaybe<WebDumpOrganizationsUpdateConnectionInput>;
-  where?: InputMaybe<WebDumpOrganizationsConnectionWhere>;
+export type WebDumpOrganizationUpdateFieldInput = {
+  connect?: InputMaybe<WebDumpOrganizationConnectFieldInput>;
+  connectOrCreate?: InputMaybe<WebDumpOrganizationConnectOrCreateFieldInput>;
+  create?: InputMaybe<WebDumpOrganizationCreateFieldInput>;
+  delete?: InputMaybe<WebDumpOrganizationDeleteFieldInput>;
+  disconnect?: InputMaybe<WebDumpOrganizationDisconnectFieldInput>;
+  update?: InputMaybe<WebDumpOrganizationUpdateConnectionInput>;
+  where?: InputMaybe<WebDumpOrganizationConnectionWhere>;
 };
 
 export type WebDumpRelationInput = {
-  organizations?: InputMaybe<Array<WebDumpOrganizationsCreateFieldInput>>;
+  organization?: InputMaybe<WebDumpOrganizationCreateFieldInput>;
   users?: InputMaybe<Array<WebDumpUsersCreateFieldInput>>;
 };
 
@@ -10040,7 +13755,7 @@ export type WebDumpUniqueWhere = {
 
 export type WebDumpUpdateInput = {
   content?: InputMaybe<Scalars['String']['input']>;
-  organizations?: InputMaybe<Array<WebDumpOrganizationsUpdateFieldInput>>;
+  organization?: InputMaybe<WebDumpOrganizationUpdateFieldInput>;
   users?: InputMaybe<Array<WebDumpUsersUpdateFieldInput>>;
   verified?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -10292,23 +14007,11 @@ export type WebDumpWhere = {
   id_ENDS_WITH?: InputMaybe<Scalars['ID']['input']>;
   id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
   id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
-  organizationsAggregate?: InputMaybe<WebDumpOrganizationsAggregateInput>;
-  /** Return WebDumps where all of the related WebDumpOrganizationsConnections match this filter */
-  organizationsConnection_ALL?: InputMaybe<WebDumpOrganizationsConnectionWhere>;
-  /** Return WebDumps where none of the related WebDumpOrganizationsConnections match this filter */
-  organizationsConnection_NONE?: InputMaybe<WebDumpOrganizationsConnectionWhere>;
-  /** Return WebDumps where one of the related WebDumpOrganizationsConnections match this filter */
-  organizationsConnection_SINGLE?: InputMaybe<WebDumpOrganizationsConnectionWhere>;
-  /** Return WebDumps where some of the related WebDumpOrganizationsConnections match this filter */
-  organizationsConnection_SOME?: InputMaybe<WebDumpOrganizationsConnectionWhere>;
-  /** Return WebDumps where all of the related Organizations match this filter */
-  organizations_ALL?: InputMaybe<OrganizationWhere>;
-  /** Return WebDumps where none of the related Organizations match this filter */
-  organizations_NONE?: InputMaybe<OrganizationWhere>;
-  /** Return WebDumps where one of the related Organizations match this filter */
-  organizations_SINGLE?: InputMaybe<OrganizationWhere>;
-  /** Return WebDumps where some of the related Organizations match this filter */
-  organizations_SOME?: InputMaybe<OrganizationWhere>;
+  organization?: InputMaybe<OrganizationWhere>;
+  organizationAggregate?: InputMaybe<WebDumpOrganizationAggregateInput>;
+  organizationConnection?: InputMaybe<WebDumpOrganizationConnectionWhere>;
+  organizationConnection_NOT?: InputMaybe<WebDumpOrganizationConnectionWhere>;
+  organization_NOT?: InputMaybe<OrganizationWhere>;
   usersAggregate?: InputMaybe<WebDumpUsersAggregateInput>;
   /** Return WebDumps where all of the related WebDumpUsersConnections match this filter */
   usersConnection_ALL?: InputMaybe<WebDumpUsersConnectionWhere>;
@@ -10341,7 +14044,7 @@ export type CreateOrganizationsMutationVariables = Exact<{
 }>;
 
 
-export type CreateOrganizationsMutation = { __typename?: 'Mutation', createOrganizations: { __typename?: 'CreateOrganizationsMutationResponse', organizations: Array<{ __typename?: 'Organization', id: string, name: string, considerations: Array<{ __typename?: 'Geographic', brief?: string | null } | { __typename?: 'Stakeholder', name: string, stakeholderBreif: string } | { __typename?: 'Team', brief?: string | null } | { __typename?: 'WebDump', content: string }> }> } };
+export type CreateOrganizationsMutation = { __typename?: 'Mutation', createOrganizations: { __typename?: 'CreateOrganizationsMutationResponse', organizations: Array<{ __typename?: 'Organization', id: string, name: string, solutions: Array<{ __typename?: 'Solution', id: string, brief?: string | null, problems: Array<{ __typename?: 'Problem', id: string, brief?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', id: string, name: string }> }> }>, considerations: Array<{ __typename?: 'Geographic', brief?: string | null } | { __typename?: 'Misc', content: string } | { __typename?: 'Team', brief?: string | null } | { __typename?: 'WebDump', content: string }> }> } };
 
 export type UpdateOrganizationsMutationVariables = Exact<{
   where?: InputMaybe<OrganizationWhere>;
@@ -10350,7 +14053,7 @@ export type UpdateOrganizationsMutationVariables = Exact<{
 }>;
 
 
-export type UpdateOrganizationsMutation = { __typename?: 'Mutation', updateOrganizations: { __typename?: 'UpdateOrganizationsMutationResponse', organizations: Array<{ __typename?: 'Organization', id: string, name: string, considerations: Array<{ __typename?: 'Geographic', brief?: string | null } | { __typename?: 'Stakeholder', name: string, stakeholderBreif: string } | { __typename?: 'Team', brief?: string | null } | { __typename?: 'WebDump', content: string }>, statuses: Array<{ __typename?: 'OrganizationStatus', name: OrganizationStatusName }>, scopesConnection: { __typename?: 'OrganizationScopesConnection', edges: Array<{ __typename?: 'OrganizationScopesRelationship', aspect: string, reason: string, node: { __typename?: 'Scope', name: string, brief: string, basis?: string | null, description?: string | null, considerations: Array<{ __typename?: 'Example', brief: string, description?: string | null } | { __typename?: 'Question', brief: string, description?: string | null } | { __typename?: 'Stakeholder', name: string, brief: string, description?: string | null }> } }> } }> } };
+export type UpdateOrganizationsMutation = { __typename?: 'Mutation', updateOrganizations: { __typename?: 'UpdateOrganizationsMutationResponse', organizations: Array<{ __typename?: 'Organization', id: string, name: string, solutions: Array<{ __typename?: 'Solution', id: string, brief?: string | null, problems: Array<{ __typename?: 'Problem', id: string, brief?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', id: string, name: string }> }> }>, considerations: Array<{ __typename?: 'Geographic', brief?: string | null } | { __typename?: 'Misc', content: string } | { __typename?: 'Team', brief?: string | null } | { __typename?: 'WebDump', content: string }>, statuses: Array<{ __typename?: 'OrganizationStatus', name: OrganizationStatusName }>, scopesConnection: { __typename?: 'OrganizationScopesConnection', edges: Array<{ __typename?: 'OrganizationScopesRelationship', aspect: string, reason: string, node: { __typename?: 'Scope', name: string, brief: string, basis?: string | null, description?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', name: string, brief: string, description?: string | null }>, considerations: Array<{ __typename?: 'Example', brief: string, description?: string | null } | { __typename?: 'Question', brief: string, description?: string | null }> } }> } }> } };
 
 export type CreateScopesMutationVariables = Exact<{
   input: Array<ScopeCreateInput> | ScopeCreateInput;
@@ -10374,8 +14077,8 @@ export type ScopesQueryVariables = Exact<{
 export type ScopesQuery = { __typename?: 'Query', scopes: Array<{ __typename?: 'Scope', name: string, brief: string, basis?: string | null }> };
 
 
-export const CreateOrganizationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateOrganizations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createOrganizations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Stakeholder"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","alias":{"kind":"Name","value":"stakeholderBreif"},"name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebDump"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Geographic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Team"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateOrganizationsMutation, CreateOrganizationsMutationVariables>;
-export const UpdateOrganizationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateOrganizations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationConnectOrCreateInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"create"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationRelationInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateOrganizations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"create"},"value":{"kind":"Variable","name":{"kind":"Name","value":"create"}}},{"kind":"Argument","name":{"kind":"Name","value":"connectOrCreate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Stakeholder"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","alias":{"kind":"Name","value":"stakeholderBreif"},"name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebDump"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Geographic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Team"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"statuses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"scopesConnection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"aspect"}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"basis"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Stakeholder"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Question"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Example"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateOrganizationsMutation, UpdateOrganizationsMutationVariables>;
+export const CreateOrganizationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateOrganizations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createOrganizations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"solutions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"problems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"stakeholders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Misc"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebDump"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Geographic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Team"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateOrganizationsMutation, CreateOrganizationsMutationVariables>;
+export const UpdateOrganizationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateOrganizations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationConnectOrCreateInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"create"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationRelationInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateOrganizations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"create"},"value":{"kind":"Variable","name":{"kind":"Name","value":"create"}}},{"kind":"Argument","name":{"kind":"Name","value":"connectOrCreate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"solutions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"problems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"stakeholders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Misc"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebDump"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Geographic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Team"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"statuses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"scopesConnection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"aspect"}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"basis"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"stakeholders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Question"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Example"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateOrganizationsMutation, UpdateOrganizationsMutationVariables>;
 export const CreateScopesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateScopes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ScopeCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createScopes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"scopes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"basis"}}]}}]}}]}}]} as unknown as DocumentNode<CreateScopesMutation, CreateScopesMutationVariables>;
 export const CountOrganizationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CountOrganizations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationWhere"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizationsAggregate"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"count"}}]}}]}}]} as unknown as DocumentNode<CountOrganizationsQuery, CountOrganizationsQueryVariables>;
 export const ScopesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Scopes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ScopeWhere"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"scopes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"basis"}}]}}]}}]} as unknown as DocumentNode<ScopesQuery, ScopesQueryVariables>;

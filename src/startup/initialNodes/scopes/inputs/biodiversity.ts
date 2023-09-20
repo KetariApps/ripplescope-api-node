@@ -23,41 +23,41 @@ const biodiversity: ScopeCreateInput = {
   
       Addressing potential indirect impacts on biodiversity, such as pollution, habitat fragmentation, and changes in local water bodies, is integral to the initiative's holistic approach to biodiversity conservation. By doing so, the initiative strives for a sustainable future where biodiversity thrives alongside human progress.
       `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Environmental NGOs',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Environmental NGOs',
+            brief:
+              'Non-governmental organizations dedicated to environmental protection and conservation.',
+            description: `Environmental NGOs play a pivotal role in this initiative, bringing expertise and advocacy to biodiversity conservation efforts.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Conservation Experts',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Conservation Experts',
+            brief:
+              'Experts with deep knowledge in biodiversity conservation and ecosystem management.',
+            description: `Conservation experts provide valuable insights and guidance to ensure the success of biodiversity conservation actions within this initiative.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Environmental NGOs',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Environmental NGOs',
-              brief:
-                'Non-governmental organizations dedicated to environmental protection and conservation.',
-              description: `Environmental NGOs play a pivotal role in this initiative, bringing expertise and advocacy to biodiversity conservation efforts.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Conservation Experts',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Conservation Experts',
-              brief:
-                'Experts with deep knowledge in biodiversity conservation and ecosystem management.',
-              description: `Conservation experts provide valuable insights and guidance to ensure the success of biodiversity conservation actions within this initiative.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

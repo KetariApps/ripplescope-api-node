@@ -19,41 +19,41 @@ const oceans: ScopeCreateInput = {
   
         This initiative takes practical actions to address marine and coastal conservation challenges, promoting sustainability and ethical practices at every stage of its activities.
         `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Coastal Communities',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Coastal Communities',
+            brief:
+              'Communities residing in coastal areas with a direct connection to marine ecosystems.',
+            description: `Coastal communities are vital stakeholders in this initiative, as their well-being is closely intertwined with the health of marine ecosystems.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Marine Scientists',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Marine Scientists',
+            brief:
+              'Experts and researchers specializing in marine biology and ecosystems.',
+            description: `Marine scientists provide valuable insights and expertise to ensure the effectiveness of this initiative in marine and coastal conservation.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Coastal Communities',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Coastal Communities',
-              brief:
-                'Communities residing in coastal areas with a direct connection to marine ecosystems.',
-              description: `Coastal communities are vital stakeholders in this initiative, as their well-being is closely intertwined with the health of marine ecosystems.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Marine Scientists',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Marine Scientists',
-              brief:
-                'Experts and researchers specializing in marine biology and ecosystems.',
-              description: `Marine scientists provide valuable insights and expertise to ensure the effectiveness of this initiative in marine and coastal conservation.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

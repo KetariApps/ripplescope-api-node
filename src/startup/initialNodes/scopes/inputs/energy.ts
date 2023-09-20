@@ -23,41 +23,40 @@ const energy: ScopeCreateInput = {
   
         Raising awareness about energy conservation and clean energy advantages among community members and stakeholders is a key strategy. Measuring and reporting progress toward community-focused clean energy goals ensures alignment with community aspirations.
         `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Energy Providers',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Energy Providers',
+            brief:
+              'Entities responsible for supplying energy services to the community.',
+            description: `Engagement with energy providers is crucial to understanding the energy landscape and addressing energy access and affordability challenges.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Community Members',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Community Members',
+            brief: 'Residents of the community affected by energy initiatives.',
+            description: `Engaging with community members ensures that the initiative aligns with their energy needs and aspirations.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Energy Providers',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Energy Providers',
-              brief:
-                'Entities responsible for supplying energy services to the community.',
-              description: `Engagement with energy providers is crucial to understanding the energy landscape and addressing energy access and affordability challenges.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Community Members',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Community Members',
-              brief:
-                'Residents of the community affected by energy initiatives.',
-              description: `Engaging with community members ensures that the initiative aligns with their energy needs and aspirations.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

@@ -19,39 +19,39 @@ const incomeWork: ScopeCreateInput = {
     - Supporting employees and community members in accessing financial resources.
     
     This initiative's approach reflects its commitment to economic justice, fair wages, and community well-being.`,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Local Businesses',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Local Businesses',
+            brief: 'Businesses within the local community.',
+            description: `Collaboration with local businesses is crucial for economic development.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Labor Organizations',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Labor Organizations',
+            brief: "Groups advocating for workers' rights.",
+            description: `Engaging with labor organizations contributes to fair labor practices.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Local Businesses',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Local Businesses',
-              brief: 'Businesses within the local community.',
-              description: `Collaboration with local businesses is crucial for economic development.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Labor Organizations',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Labor Organizations',
-              brief: "Groups advocating for workers' rights.",
-              description: `Engaging with labor organizations contributes to fair labor practices.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

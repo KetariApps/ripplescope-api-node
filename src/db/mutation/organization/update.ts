@@ -14,10 +14,21 @@ mutation UpdateOrganizations(
     organizations {
       id
       name
+      solutions {
+        id
+        brief
+        problems {
+          id
+          brief
+          stakeholders {
+            id
+            name
+          }
+        }
+      }
       considerations {
-        ... on Stakeholder {
-          name
-          stakeholderBreif: brief
+        ... on Misc {
+          content
         }
         ... on WebDump {
           content
@@ -41,12 +52,12 @@ mutation UpdateOrganizations(
             brief
             basis
             description
+            stakeholders {
+              name
+              brief
+              description
+            }
             considerations {
-              ... on Stakeholder {
-                name
-                brief
-                description
-              }
               ... on Question {
                 brief
                 description

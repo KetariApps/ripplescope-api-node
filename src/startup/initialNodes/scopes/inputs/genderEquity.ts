@@ -19,55 +19,54 @@ const genderEquity: ScopeCreateInput = {
   
         Integrating gender equity considerations within the framework of the organization/program is vital. This includes gender-focused strategies, gender-specific activities, discussions of gender dynamics, and gender-specific metrics in the monitoring and evaluation strategy.
         `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: "Women's Association",
+          },
+        },
+        onCreate: {
+          node: {
+            name: "Women's Association",
+            brief: "An organization focused on women's issues and empowerment.",
+            description: `Collaboration with women's associations is essential to advance gender equality and women's empowerment.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Gender Experts',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Gender Experts',
+            brief: 'Experts in gender-related issues and equity.',
+            description: `Engaging gender experts enhances the initiative's capacity to promote gender equity effectively.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Community Leaders',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Community Leaders',
+            brief:
+              'Leaders within the community who support gender equity initiatives.',
+            description: `Collaboration with community leaders committed to gender equity is vital for organization success.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: "Women's Association",
-            },
-          },
-          onCreate: {
-            node: {
-              name: "Women's Association",
-              brief:
-                "An organization focused on women's issues and empowerment.",
-              description: `Collaboration with women's associations is essential to advance gender equality and women's empowerment.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Gender Experts',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Gender Experts',
-              brief: 'Experts in gender-related issues and equity.',
-              description: `Engaging gender experts enhances the initiative's capacity to promote gender equity effectively.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Community Leaders',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Community Leaders',
-              brief:
-                'Leaders within the community who support gender equity initiatives.',
-              description: `Collaboration with community leaders committed to gender equity is vital for organization success.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

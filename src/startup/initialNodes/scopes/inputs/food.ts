@@ -19,40 +19,40 @@ const foodSecurity: ScopeCreateInput = {
         - Collaborating with local communities and stakeholders to design and implement organizations aligned with their food security and nutrition needs.
         - Collecting and monitoring data to assess the impact of the initiative on food security, nutrition, and agricultural practices in the region.
         `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Local Farmers',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Local Farmers',
+            brief: 'Local agricultural producers and stakeholders.',
+            description: `Engaging with local farmers is crucial for promoting sustainable agriculture and enhancing food security.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Food Distribution Networks',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Food Distribution Networks',
+            brief:
+              'Organizations involved in food distribution and supply chains.',
+            description: `Collaboration with food distribution networks ensures the efficient delivery of nutritious food to the community.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Local Farmers',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Local Farmers',
-              brief: 'Local agricultural producers and stakeholders.',
-              description: `Engaging with local farmers is crucial for promoting sustainable agriculture and enhancing food security.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Food Distribution Networks',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Food Distribution Networks',
-              brief:
-                'Organizations involved in food distribution and supply chains.',
-              description: `Collaboration with food distribution networks ensures the efficient delivery of nutritious food to the community.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

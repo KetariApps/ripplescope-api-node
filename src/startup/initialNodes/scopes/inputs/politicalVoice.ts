@@ -21,56 +21,56 @@ const politicalVoice: ScopeCreateInput = {
   
         Inclusivity is paramount, and the initiative implements measures to ensure the active participation of marginalized or underrepresented groups in decision-making processes. Safe spaces and targeted outreach strategies are utilized to achieve this goal.
         `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Community Leaders',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Community Leaders',
+            brief:
+              'Leaders within the community who are integral to political engagement.',
+            description: `Community leaders are pivotal in driving political engagement and representation within the community. Collaboration with them is essential.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Local Government',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Local Government',
+            brief:
+              'Local governing bodies that impact political processes at the community level.',
+            description: `Engaging with local government entities is crucial for promoting civic engagement and political participation.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Civil Society Organizations',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Civil Society Organizations',
+            brief:
+              'Non-governmental organizations focused on civil and political engagement.',
+            description: `Collaboration with civil society organizations enhances the initiative's efforts to foster political voice and representation.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Community Leaders',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Community Leaders',
-              brief:
-                'Leaders within the community who are integral to political engagement.',
-              description: `Community leaders are pivotal in driving political engagement and representation within the community. Collaboration with them is essential.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Local Government',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Local Government',
-              brief:
-                'Local governing bodies that impact political processes at the community level.',
-              description: `Engaging with local government entities is crucial for promoting civic engagement and political participation.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Civil Society Organizations',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Civil Society Organizations',
-              brief:
-                'Non-governmental organizations focused on civil and political engagement.',
-              description: `Collaboration with civil society organizations enhances the initiative's efforts to foster political voice and representation.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

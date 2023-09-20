@@ -21,40 +21,40 @@ const housing: ScopeCreateInput = {
   
         Community engagement is a cornerstone, involving employees, local communities, and stakeholders to understand housing needs and preferences. The initiative's commitment to hiring and training local staff strengthens its impact and long-term support.
         `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Local Residents',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Local Residents',
+            brief: 'Community members affected by housing improvements.',
+            description: `Engagement with local residents is crucial to understanding housing needs and ensuring the initiative's positive impact on the community.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Housing Authorities',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Housing Authorities',
+            brief:
+              'Government agencies or organizations responsible for housing policies and regulations.',
+            description: `Collaboration with housing authorities is essential to navigate housing policies, regulations, and sustainable housing development.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Local Residents',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Local Residents',
-              brief: 'Community members affected by housing improvements.',
-              description: `Engagement with local residents is crucial to understanding housing needs and ensuring the initiative's positive impact on the community.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Housing Authorities',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Housing Authorities',
-              brief:
-                'Government agencies or organizations responsible for housing policies and regulations.',
-              description: `Collaboration with housing authorities is essential to navigate housing policies, regulations, and sustainable housing development.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

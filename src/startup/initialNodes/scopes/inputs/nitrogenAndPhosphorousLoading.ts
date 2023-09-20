@@ -23,41 +23,40 @@ const nitrogenPhosphorusLoading: ScopeCreateInput = {
   
         Additionally, the initiative addresses the potential social and economic consequences of synthetic fertilizer use, such as impacts on local livelihoods and food security, to ensure that agricultural advancements do not compromise community welfare or food availability.
         `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Agricultural Communities',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Agricultural Communities',
+            brief: 'Communities involved in agriculture and farming practices.',
+            description: `Agricultural communities are vital stakeholders in this initiative, as they are directly impacted by synthetic fertilizer usage and its effects on soil and water quality.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Environmental Conservation Organizations',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Environmental Conservation Organizations',
+            brief:
+              'Organizations dedicated to conserving and protecting the environment.',
+            description: `Environmental conservation organizations collaborate with this initiative to promote responsible agricultural practices and mitigate environmental impacts.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Agricultural Communities',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Agricultural Communities',
-              brief:
-                'Communities involved in agriculture and farming practices.',
-              description: `Agricultural communities are vital stakeholders in this initiative, as they are directly impacted by synthetic fertilizer usage and its effects on soil and water quality.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Environmental Conservation Organizations',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Environmental Conservation Organizations',
-              brief:
-                'Organizations dedicated to conserving and protecting the environment.',
-              description: `Environmental conservation organizations collaborate with this initiative to promote responsible agricultural practices and mitigate environmental impacts.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

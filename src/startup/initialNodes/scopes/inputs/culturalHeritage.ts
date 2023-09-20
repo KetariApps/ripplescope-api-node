@@ -21,54 +21,54 @@ const culturalHeritage: ScopeCreateInput = {
     - Contribution to the economic empowerment and sustainability of local communities through cultural heritage preservation.
     
     This initiative's approach underscores the respect for cultural diversity, human rights, and the intergenerational transfer of wisdom.`,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Indigenous Communities',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Indigenous Communities',
+            brief: 'Local indigenous groups with unique cultural heritage.',
+            description: `Recognizing and safeguarding the rights and cultural heritage of indigenous communities is central to this initiative.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Cultural Heritage Experts',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Cultural Heritage Experts',
+            brief:
+              'Professionals specializing in cultural heritage preservation.',
+            description: `Collaboration with cultural heritage experts enhances cultural preservation efforts.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Local Historians',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Local Historians',
+            brief: 'Experts in local history and cultural traditions.',
+            description: `Engaging local historians contributes to the understanding and preservation of cultural heritage.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Indigenous Communities',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Indigenous Communities',
-              brief: 'Local indigenous groups with unique cultural heritage.',
-              description: `Recognizing and safeguarding the rights and cultural heritage of indigenous communities is central to this initiative.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Cultural Heritage Experts',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Cultural Heritage Experts',
-              brief:
-                'Professionals specializing in cultural heritage preservation.',
-              description: `Collaboration with cultural heritage experts enhances cultural preservation efforts.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Local Historians',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Local Historians',
-              brief: 'Experts in local history and cultural traditions.',
-              description: `Engaging local historians contributes to the understanding and preservation of cultural heritage.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

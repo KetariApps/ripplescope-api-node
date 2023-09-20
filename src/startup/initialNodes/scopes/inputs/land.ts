@@ -19,41 +19,41 @@ const land: ScopeCreateInput = {
   
       Overall, this initiative prioritizes an awareness of these factors and their integration into the organization's planning and operation. By doing so, it aims to achieve better environmental outcomes, benefiting both the local ecology and communities while ensuring the overall success of the initiative.
       `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Land Management Agencies',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Land Management Agencies',
+            brief:
+              'Government or non-governmental agencies responsible for land management and conservation.',
+            description: `Land management agencies play a critical role in this initiative, providing guidance and expertise in sustainable land management and conservation.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Local Landowners',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Local Landowners',
+            brief:
+              'Individuals or entities owning land within or adjacent to the initiative site.',
+            description: `Local landowners are important stakeholders in this initiative, as their cooperation and involvement are key to land conservation efforts.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Land Management Agencies',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Land Management Agencies',
-              brief:
-                'Government or non-governmental agencies responsible for land management and conservation.',
-              description: `Land management agencies play a critical role in this initiative, providing guidance and expertise in sustainable land management and conservation.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Local Landowners',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Local Landowners',
-              brief:
-                'Individuals or entities owning land within or adjacent to the initiative site.',
-              description: `Local landowners are important stakeholders in this initiative, as their cooperation and involvement are key to land conservation efforts.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

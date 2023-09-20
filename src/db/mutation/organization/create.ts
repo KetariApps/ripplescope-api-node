@@ -6,10 +6,21 @@ mutation CreateOrganizations($input: [OrganizationCreateInput!]!) {
       organizations {
         id
         name
+        solutions {
+          id
+          brief
+          problems {
+            id
+            brief
+            stakeholders {
+              id
+              name
+            }
+          }
+        }
         considerations {
-          ... on Stakeholder {
-            name
-            stakeholderBreif: brief
+          ... on Misc {
+            content
           }
           ... on WebDump {
             content

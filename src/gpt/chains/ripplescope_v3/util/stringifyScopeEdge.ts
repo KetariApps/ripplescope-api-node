@@ -1,13 +1,13 @@
 import { ConnectedScopeEdge } from '../types.js';
 
-const stringifyScopeEdge = (scopeEdge: ConnectedScopeEdge) =>
-  `Scope:\n${scopeEdge.node.name}\n${scopeEdge.node.brief}\n\n${
-    scopeEdge.node.basis
-  }\n\n${scopeEdge.node.description}\n\n${scopeEdge.aspect}\n${
-    scopeEdge.reason
-  }\n\n${
-    scopeEdge.node.considerations.length > 0
-      ? scopeEdge.node.considerations
+const stringifyScopeEdge = ({ aspect, reason, node }: ConnectedScopeEdge) =>
+  `Scope:\n${node.name}\n${node.brief}\n\n${node.basis}\n\n${
+    node.description
+  }\n\n${aspect}\n${reason}\n\n${node.stakeholders
+    .map(({ name }) => `Stakeholder: ${name}`)
+    .join('\n')}\n\n${
+    node.considerations.length > 0
+      ? node.considerations
           .map((consideration) => `${Object.values(consideration).join('\n')}`)
           .join('\n\n')
       : null

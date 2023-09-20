@@ -22,236 +22,237 @@ const recyclableMaterials: ScopeCreateInput = {
       Collaborating with specialist organizations or bodies related to waste reduction, reuse, or recycling enhances the initiative's waste management practices. This partnership amplifies the potential to develop advanced waste management solutions and stay at the forefront of sustainable practices.
   
       Initiatives to educate employees, stakeholders, and local communities about waste separation, recycling, and the importance of reducing waste generation refine internal operations and empower communities to join the effort. Continuous evaluation of waste management practices ensures adaptability and efficiency, securing a greener footprint for today and a healthier planet for the future.`,
+
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Initiative/Organization Team',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Initiative/Organization Team',
+            brief:
+              'The core team responsible for planning, implementing, and monitoring the waste management and recycling practices.',
+            description: `The core team plays a pivotal role in planning, implementing, and monitoring waste management and recycling practices within the initiative.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Employees',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Employees',
+            brief:
+              'Those working within the initiative who are directly involved in waste reduction, separation, recycling, and other related activities.',
+            description: `Employees directly involved in waste reduction, separation, recycling, and related activities are essential to the success of waste management initiatives.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Local Communities',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Local Communities',
+            brief:
+              "Residents living in the vicinity of the initiative's operations, who are directly impacted by waste management practices and who may benefit from education and awareness campaigns.",
+            description: `Local communities living near the initiative's operations are directly impacted by waste management practices and can benefit from education and awareness campaigns.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Customers/Clients',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Customers/Clients',
+            brief:
+              'Individuals or businesses that interact with the initiative, using its products or services and potentially being influenced by its waste management practices.',
+            description: `Customers and clients who interact with the initiative may be influenced by its waste management practices, making them important stakeholders.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Suppliers',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Suppliers',
+            brief:
+              'Companies or individuals providing materials, products, or services to the initiative, influencing the type and amount of waste generated upstream.',
+            description: `Suppliers providing materials, products, or services influence the type and amount of waste generated upstream, making them key stakeholders.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Regulatory Authorities',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Regulatory Authorities',
+            brief:
+              'Government agencies responsible for enforcing waste management and environmental regulations, ensuring compliance and proper waste disposal.',
+            description: `Regulatory authorities enforce waste management and environmental regulations, ensuring compliance and proper waste disposal.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Environmental Organizations',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Environmental Organizations',
+            brief:
+              'NGOs and advocacy groups focused on environmental conservation, sustainability, and waste reduction.',
+            description: `Environmental organizations are essential stakeholders, advocating for environmental conservation, sustainability, and waste reduction.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Waste Management Partners',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Waste Management Partners',
+            brief:
+              'Organizations or entities collaborating with the initiative on waste collection, recycling, and disposal.',
+            description: `Collaboration with waste management partners is essential for effective waste collection, recycling, and disposal.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Investors/Donors',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Investors/Donors',
+            brief:
+              'Individuals or entities providing financial support to the initiative and who may be interested in its environmental and social impact.',
+            description: `Investors and donors providing financial support may have an interest in the initiative's environmental and social impact.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Educational Institutions',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Educational Institutions',
+            brief:
+              'Schools, colleges, and universities that could collaborate with the initiative on educational programs related to waste management and recycling.',
+            description: `Educational institutions can collaborate with the initiative on educational programs related to waste management and recycling.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Media and Public',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Media and Public',
+            brief:
+              'Journalists, bloggers, and the general public who can influence public perception, awareness, and reputation of the initiative.',
+            description: `The media and the general public can influence public perception, awareness, and the reputation of the initiative.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Competitors',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Competitors',
+            brief:
+              'Other organizations in the same industry or sector who may also be working on waste management and recycling practices, potentially influencing industry standards and practices.',
+            description: `Competing organizations in the same industry or sector may influence industry standards and practices related to waste management and recycling.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Local Government',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Local Government',
+            brief:
+              'Municipal authorities and local officials who may collaborate with the initiative on waste management policies and initiatives.',
+            description: `Local government authorities and officials may collaborate with the initiative on waste management policies and initiatives.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Health and Safety Organizations',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Health and Safety Organizations',
+            brief:
+              'Groups concerned with the potential health and safety risks associated with waste handling and disposal.',
+            description: `Health and safety organizations are concerned with potential health and safety risks associated with waste handling and disposal.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Research and Innovation Partners',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Research and Innovation Partners',
+            brief:
+              'Academic institutions, research organizations, and technology providers contributing to the development of innovative waste management solutions.',
+            description: `Research and innovation partners, including academic institutions, research organizations, and technology providers, contribute to the development of innovative waste management solutions.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Initiative/Organization Team',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Initiative/Organization Team',
-              brief:
-                'The core team responsible for planning, implementing, and monitoring the waste management and recycling practices.',
-              description: `The core team plays a pivotal role in planning, implementing, and monitoring waste management and recycling practices within the initiative.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Employees',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Employees',
-              brief:
-                'Those working within the initiative who are directly involved in waste reduction, separation, recycling, and other related activities.',
-              description: `Employees directly involved in waste reduction, separation, recycling, and related activities are essential to the success of waste management initiatives.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Local Communities',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Local Communities',
-              brief:
-                "Residents living in the vicinity of the initiative's operations, who are directly impacted by waste management practices and who may benefit from education and awareness campaigns.",
-              description: `Local communities living near the initiative's operations are directly impacted by waste management practices and can benefit from education and awareness campaigns.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Customers/Clients',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Customers/Clients',
-              brief:
-                'Individuals or businesses that interact with the initiative, using its products or services and potentially being influenced by its waste management practices.',
-              description: `Customers and clients who interact with the initiative may be influenced by its waste management practices, making them important stakeholders.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Suppliers',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Suppliers',
-              brief:
-                'Companies or individuals providing materials, products, or services to the initiative, influencing the type and amount of waste generated upstream.',
-              description: `Suppliers providing materials, products, or services influence the type and amount of waste generated upstream, making them key stakeholders.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Regulatory Authorities',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Regulatory Authorities',
-              brief:
-                'Government agencies responsible for enforcing waste management and environmental regulations, ensuring compliance and proper waste disposal.',
-              description: `Regulatory authorities enforce waste management and environmental regulations, ensuring compliance and proper waste disposal.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Environmental Organizations',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Environmental Organizations',
-              brief:
-                'NGOs and advocacy groups focused on environmental conservation, sustainability, and waste reduction.',
-              description: `Environmental organizations are essential stakeholders, advocating for environmental conservation, sustainability, and waste reduction.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Waste Management Partners',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Waste Management Partners',
-              brief:
-                'Organizations or entities collaborating with the initiative on waste collection, recycling, and disposal.',
-              description: `Collaboration with waste management partners is essential for effective waste collection, recycling, and disposal.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Investors/Donors',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Investors/Donors',
-              brief:
-                'Individuals or entities providing financial support to the initiative and who may be interested in its environmental and social impact.',
-              description: `Investors and donors providing financial support may have an interest in the initiative's environmental and social impact.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Educational Institutions',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Educational Institutions',
-              brief:
-                'Schools, colleges, and universities that could collaborate with the initiative on educational programs related to waste management and recycling.',
-              description: `Educational institutions can collaborate with the initiative on educational programs related to waste management and recycling.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Media and Public',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Media and Public',
-              brief:
-                'Journalists, bloggers, and the general public who can influence public perception, awareness, and reputation of the initiative.',
-              description: `The media and the general public can influence public perception, awareness, and the reputation of the initiative.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Competitors',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Competitors',
-              brief:
-                'Other organizations in the same industry or sector who may also be working on waste management and recycling practices, potentially influencing industry standards and practices.',
-              description: `Competing organizations in the same industry or sector may influence industry standards and practices related to waste management and recycling.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Local Government',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Local Government',
-              brief:
-                'Municipal authorities and local officials who may collaborate with the initiative on waste management policies and initiatives.',
-              description: `Local government authorities and officials may collaborate with the initiative on waste management policies and initiatives.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Health and Safety Organizations',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Health and Safety Organizations',
-              brief:
-                'Groups concerned with the potential health and safety risks associated with waste handling and disposal.',
-              description: `Health and safety organizations are concerned with potential health and safety risks associated with waste handling and disposal.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Research and Innovation Partners',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Research and Innovation Partners',
-              brief:
-                'Academic institutions, research organizations, and technology providers contributing to the development of innovative waste management solutions.',
-              description: `Research and innovation partners, including academic institutions, research organizations, and technology providers, contribute to the development of innovative waste management solutions.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

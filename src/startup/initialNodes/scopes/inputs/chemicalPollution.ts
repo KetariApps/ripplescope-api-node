@@ -19,41 +19,41 @@ const chemicalPollution: ScopeCreateInput = {
   
         Collaborations with specialized organizations and experts in chemical management and environmental protection enhance best practices, providing valuable insights and expertise. The initiative also maintains transparency by tracking and reporting on the use and impact of hazardous materials, reinforcing its commitment to environmental and social responsibilities.
         `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Environmental Protection Agencies',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Environmental Protection Agencies',
+            brief:
+              'Organizations dedicated to protecting the environment and regulating chemical management.',
+            description: `Environmental protection agencies play a crucial role in overseeing and regulating chemical management practices. Collaboration with these agencies ensures compliance with environmental protection laws and standards.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Chemical Safety Experts',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Chemical Safety Experts',
+            brief:
+              'Experts in chemical management and safety, specializing in hazardous substance handling.',
+            description: `Chemical safety experts bring specialized knowledge in hazardous substance management. Their collaboration enhances safety protocols and risk management.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Environmental Protection Agencies',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Environmental Protection Agencies',
-              brief:
-                'Organizations dedicated to protecting the environment and regulating chemical management.',
-              description: `Environmental protection agencies play a crucial role in overseeing and regulating chemical management practices. Collaboration with these agencies ensures compliance with environmental protection laws and standards.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Chemical Safety Experts',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Chemical Safety Experts',
-              brief:
-                'Experts in chemical management and safety, specializing in hazardous substance handling.',
-              description: `Chemical safety experts bring specialized knowledge in hazardous substance management. Their collaboration enhances safety protocols and risk management.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

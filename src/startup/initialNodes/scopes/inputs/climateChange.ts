@@ -19,41 +19,41 @@ const climateChange: ScopeCreateInput = {
   
         Additionally, the initiative seeks to produce renewable solar energy, carbon-neutral fuels, and low-carbon energy while implementing strategies to reduce greenhouse gas emissions. Collaboration with relevant stakeholders and organizations keeps the initiative up-to-date with emerging climate-related technologies and best practices, further enhancing its efforts in minimizing its carbon footprint.
         `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Energy Providers',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Energy Providers',
+            brief:
+              'Companies and organizations involved in providing energy services, including renewable energy.',
+            description: `Energy providers play a crucial role in the transition to renewable energy sources. They are vital stakeholders in this initiative, contributing to the development and adoption of sustainable energy solutions.`,
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Renewable Energy Industry',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Renewable Energy Industry',
+            brief:
+              'Sector focused on the development and promotion of renewable energy technologies.',
+            description: `The renewable energy industry is at the forefront of combating climate change. Collaboration with this industry is essential for the successful transition to renewable energy sources.`,
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Energy Providers',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Energy Providers',
-              brief:
-                'Companies and organizations involved in providing energy services, including renewable energy.',
-              description: `Energy providers play a crucial role in the transition to renewable energy sources. They are vital stakeholders in this initiative, contributing to the development and adoption of sustainable energy solutions.`,
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Renewable Energy Industry',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Renewable Energy Industry',
-              brief:
-                'Sector focused on the development and promotion of renewable energy technologies.',
-              description: `The renewable energy industry is at the forefront of combating climate change. Collaboration with this industry is essential for the successful transition to renewable energy sources.`,
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {

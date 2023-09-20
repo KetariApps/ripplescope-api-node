@@ -25,56 +25,56 @@ const socialEquity: ScopeCreateInput = {
   
         Understanding the percentage of geographically secluded community members helps prevent the unintentional oversight or isolation of any population segment.
         `,
+  stakeholders: {
+    connectOrCreate: [
+      {
+        where: {
+          node: {
+            name: 'Community Members',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Community Members',
+            brief: 'Members of the local community.',
+            description:
+              'Engaging with community members is central to promoting social equity and inclusivity.',
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Equity Advocates',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Equity Advocates',
+            brief: 'Advocates for social equity and inclusivity.',
+            description:
+              "Collaborating with equity advocates strengthens the initiative's commitment to social equity.",
+          },
+        },
+      },
+      {
+        where: {
+          node: {
+            name: 'Local Businesses',
+          },
+        },
+        onCreate: {
+          node: {
+            name: 'Local Businesses',
+            brief: 'Businesses operating within the local community.',
+            description:
+              'Engaging with local businesses can enhance economic opportunities and inclusivity.',
+          },
+        },
+      },
+    ],
+  },
   considerations: {
-    Stakeholder: {
-      connectOrCreate: [
-        {
-          where: {
-            node: {
-              name: 'Community Members',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Community Members',
-              brief: 'Members of the local community.',
-              description:
-                'Engaging with community members is central to promoting social equity and inclusivity.',
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Equity Advocates',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Equity Advocates',
-              brief: 'Advocates for social equity and inclusivity.',
-              description:
-                "Collaborating with equity advocates strengthens the initiative's commitment to social equity.",
-            },
-          },
-        },
-        {
-          where: {
-            node: {
-              name: 'Local Businesses',
-            },
-          },
-          onCreate: {
-            node: {
-              name: 'Local Businesses',
-              brief: 'Businesses operating within the local community.',
-              description:
-                'Engaging with local businesses can enhance economic opportunities and inclusivity.',
-            },
-          },
-        },
-      ],
-    },
     Question: {
       create: [
         {
