@@ -47,7 +47,7 @@ export default async function connectScopes(
           },
           node: {
             name: scope.name,
-            description: scope.description,
+            brief: scope.description,
           },
         },
       })),
