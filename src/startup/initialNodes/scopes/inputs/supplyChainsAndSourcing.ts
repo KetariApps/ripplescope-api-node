@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const supplyChainsAndSourcing: ScopeCreateInput = {
+  verified: true,
   name: 'SUPPLY CHAINS AND SOURCING',
   brief:
     'Supply chain responsibility, including implementing ethical practices, fair labor conditions, and environmental considerations to harmonize economic activities with broader social and environmental goals.',

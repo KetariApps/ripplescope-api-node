@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const genderEquity: ScopeCreateInput = {
+  verified: true,
   name: 'GENDER EQUITY',
   brief:
     "Promoting gender equality and women's empowerment within the community and the initiative.",

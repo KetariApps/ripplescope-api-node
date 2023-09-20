@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const energy: ScopeCreateInput = {
+  verified: true,
   name: 'COMMUNITY ENERGY ACCESS & AFFORDABILITY',
   brief:
     'Improving energy access, affordability, and sustainability for the community.',

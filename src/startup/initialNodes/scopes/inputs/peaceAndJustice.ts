@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const peaceJustice: ScopeCreateInput = {
+  verified: true,
   name: 'PEACE AND JUSTICE',
   brief:
     'Fostering peaceful coexistence and addressing potential conflicts within the community.',

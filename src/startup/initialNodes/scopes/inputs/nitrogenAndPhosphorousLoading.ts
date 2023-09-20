@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const nitrogenPhosphorusLoading: ScopeCreateInput = {
+  verified: true,
   name: 'NITROGEN AND PHOSPHORUS LOADING',
   brief:
     'Managing synthetic fertilizer usage to mitigate nitrogen and phosphorus loading and promote responsible agriculture.',

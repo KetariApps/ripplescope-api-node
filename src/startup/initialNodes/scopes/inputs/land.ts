@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const land: ScopeCreateInput = {
+  verified: true,
   name: 'LAND',
   brief:
     'Avoiding overexploitation and degradation of land resources to maintain soil fertility and support agricultural productivity.',

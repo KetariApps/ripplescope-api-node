@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const incomeWork: ScopeCreateInput = {
+  verified: true,
   name: 'INCOME AND WORK',
   brief:
     'Promoting job creation and income generation while ensuring fair wages and worker benefits.',

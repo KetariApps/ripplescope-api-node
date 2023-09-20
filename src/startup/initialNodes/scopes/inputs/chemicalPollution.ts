@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const chemicalPollution: ScopeCreateInput = {
+  verified: true,
   name: 'CHEMICAL POLLUTION',
   brief:
     'The usage or production of herbicides, pesticides, volatile chemicals, organic compounds/pollutants, heavy metal compounds, and radioactive materials.',

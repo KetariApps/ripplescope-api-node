@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const freshwater: ScopeCreateInput = {
+  verified: true,
   name: 'FRESHWATER',
   brief:
     'Safeguarding freshwater resources to ensure availability for drinking, sanitation, agriculture, and ecosystems.',

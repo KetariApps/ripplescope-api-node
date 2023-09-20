@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const oceans: ScopeCreateInput = {
+  verified: true,
   name: 'OCEANS',
   brief:
     'The sustainable management and preservation of marine ecosystems and resources.',

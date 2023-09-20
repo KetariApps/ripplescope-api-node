@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const foodSecurity: ScopeCreateInput = {
+  verified: true,
   name: 'FOOD SECURITY AND NUTRITION',
   brief:
     'Enhancing food security and promoting better nutrition in the community.',

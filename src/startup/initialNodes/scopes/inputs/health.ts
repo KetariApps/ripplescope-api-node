@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const health: ScopeCreateInput = {
+  verified: true,
   name: 'HEALTH AND WELL-BEING',
   brief: 'Improving health and well-being for employees and the community.',
   basis:

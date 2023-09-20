@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const ozoneProtection: ScopeCreateInput = {
+  verified: true,
   name: 'OZONE PROTECTION',
   brief:
     'Protecting the ozone layer and preventing ozone depletion for environmental and social benefits.',

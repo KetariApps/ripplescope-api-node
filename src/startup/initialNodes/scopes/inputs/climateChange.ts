@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const climateChange: ScopeCreateInput = {
+  verified: true,
   name: 'CLIMATE CHANGE',
   brief:
     'Limiting global temperature rise and addressing the impacts of climate change to avoid severe disruptions to ecosystems and human societies.',

@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const airPollution: ScopeCreateInput = {
+  verified: true,
   name: 'AIR POLLUTION',
   brief:
     'Reducing harmful air pollutants that can have adverse effects on human health and ecosystems.',

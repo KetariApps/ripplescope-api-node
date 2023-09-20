@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const politicalVoice: ScopeCreateInput = {
+  verified: true,
   name: 'POLITICAL VOICE AND REPRESENTATION',
   brief:
     'Fostering civic engagement and political participation, particularly among marginalized community members.',

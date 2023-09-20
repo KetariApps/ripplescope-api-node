@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const socialEquity: ScopeCreateInput = {
+  verified: true,
   name: 'SOCIAL EQUITY AND INCLUSIVITY',
   brief:
     'Promoting social equity, inclusivity, and diversity within the initiative and community.',

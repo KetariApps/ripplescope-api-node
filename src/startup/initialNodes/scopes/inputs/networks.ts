@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const networks: ScopeCreateInput = {
+  verified: true,
   name: 'NETWORKS',
   brief:
     'Promoting participation in networks of relationships among people who live and work in a particular society, enabling that society to function effectively.',

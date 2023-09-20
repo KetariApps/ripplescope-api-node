@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const waterQualityInitiative: ScopeCreateInput = {
+  verified: true,
   name: 'WATER ACCESS & QUALITY',
   brief:
     'Ensuring reliable, safe, and sustainable water access while addressing water-related challenges in the community.',

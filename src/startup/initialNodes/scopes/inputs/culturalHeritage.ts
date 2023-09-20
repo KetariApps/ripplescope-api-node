@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const culturalHeritage: ScopeCreateInput = {
+  verified: true,
   name: 'CULTURAL PRESERVATION AND HERITAGE',
   brief:
     'Respecting and preserving the cultural heritage and rights of indigenous communities.',

@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const education: ScopeCreateInput = {
+  verified: true,
   name: 'EDUCATION',
   brief:
     'Enhancing educational opportunities and capacity-building efforts, particularly related to climate change and sustainability.',

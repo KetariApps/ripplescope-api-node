@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const housing: ScopeCreateInput = {
+  verified: true,
   name: 'HOUSING',
   brief:
     'Improving housing conditions for employees and addressing community housing needs.',

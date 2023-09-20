@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const recyclableMaterials: ScopeCreateInput = {
+  verified: true,
   name: 'RECYCLABLE MATERIAL MANAGEMENT',
   brief:
     'Promoting responsible waste management and recycling practices for a sustainable future.',

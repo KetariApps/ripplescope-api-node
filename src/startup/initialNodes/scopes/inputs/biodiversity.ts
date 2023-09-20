@@ -1,6 +1,7 @@
 import { ScopeCreateInput } from '../../../../__generated__/graphql.js';
 
 const biodiversity: ScopeCreateInput = {
+  verified: true,
   name: 'BIODIVERSITY',
   brief:
     'Preserving a variety of species and genetic diversity to ensure the resilience of ecosystems and their ability to adapt to changes.',
