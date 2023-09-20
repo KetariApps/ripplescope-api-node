@@ -10,18 +10,27 @@ export default async function ripplescope(
   client: GraphQLClient,
 ) {
   try {
-    const project = req.body as ProjectCreateInput;
-    const countProjectsQuery = await client.request(countProjects, {
-      where: { website: project.website },
-    });
-    if (countProjectsQuery.projectsAggregate.count > 0) {
-      // project does exist already, avoid recategorization
-      throw new Error(`Project already exists: ${project.website}`);
-    }
-    ripplescopeChain(project);
+    const { input } = req.body as
+      | { input: ProjectCreateInput }
+      | { input: Array<ProjectCreateInput> };
+    const inputArray = Array.isArray(input) ? input : [input];
+
+    Promise.allSettled(
+      inputArray.map(async (project) => {
+        const countProjectsQuery = await client.request(countProjects, {
+          where: { website: project.website },
+        });
+        if (countProjectsQuery.projectsAggregate.count > 0) {
+          // project does exist already, avoid recategorization
+          throw new Error(`Project already exists: ${project.website}`);
+        }
+        ripplescopeChain(project);
+      }),
+    );
+
     res.status(200).json({
-      message: 'Project already exists',
-      content: project.website,
+      message: 'Analyzing projects',
+      content: inputArray.map((project) => project.website),
     });
     res.end();
   } catch (error) {
