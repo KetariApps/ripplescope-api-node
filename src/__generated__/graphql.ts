@@ -882,7 +882,7 @@ export type GeographicProjectProjectsNodeAggregateSelection = {
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
   name: StringAggregateSelectionNonNullable;
-  website: StringAggregateSelectionNullable;
+  website: StringAggregateSelectionNonNullable;
 };
 
 export type GeographicProjectsAggregateInput = {
@@ -1701,7 +1701,7 @@ export type Project = {
   usersAggregate?: Maybe<ProjectUserUsersAggregationSelection>;
   usersConnection: ProjectUsersConnection;
   verified: Scalars['Boolean']['output'];
-  website?: Maybe<Scalars['String']['output']>;
+  website: Scalars['String']['output'];
 };
 
 
@@ -1815,7 +1815,7 @@ export type ProjectAggregateSelection = {
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
   name: StringAggregateSelectionNonNullable;
-  website: StringAggregateSelectionNullable;
+  website: StringAggregateSelectionNonNullable;
 };
 
 export type ProjectConnectInput = {
@@ -2150,7 +2150,7 @@ export type ProjectCreateInput = {
   statuses?: InputMaybe<ProjectStatusesFieldInput>;
   users?: InputMaybe<ProjectUsersFieldInput>;
   verified?: Scalars['Boolean']['input'];
-  website?: InputMaybe<Scalars['String']['input']>;
+  website: Scalars['String']['input'];
 };
 
 export type ProjectCreates = {
@@ -2273,7 +2273,7 @@ export type ProjectOnCreateInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   verified?: Scalars['Boolean']['input'];
-  website?: InputMaybe<Scalars['String']['input']>;
+  website: Scalars['String']['input'];
 };
 
 export type ProjectOptions = {
@@ -2915,7 +2915,7 @@ export type ProjectStatusProjectProjectsNodeAggregateSelection = {
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
   name: StringAggregateSelectionNonNullable;
-  website: StringAggregateSelectionNullable;
+  website: StringAggregateSelectionNonNullable;
 };
 
 export type ProjectStatusProjectsAggregateInput = {
@@ -3749,7 +3749,7 @@ export type ProjectWhere = {
   website?: InputMaybe<Scalars['String']['input']>;
   website_CONTAINS?: InputMaybe<Scalars['String']['input']>;
   website_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
-  website_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  website_IN?: InputMaybe<Array<Scalars['String']['input']>>;
   website_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -5057,7 +5057,7 @@ export type RippleProjectProjectNodeAggregateSelection = {
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
   name: StringAggregateSelectionNonNullable;
-  website: StringAggregateSelectionNullable;
+  website: StringAggregateSelectionNonNullable;
 };
 
 export type RippleProjectRelationship = ProjectCreates & {
@@ -6126,7 +6126,7 @@ export type ScopeProjectProjectsNodeAggregateSelection = {
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
   name: StringAggregateSelectionNonNullable;
-  website: StringAggregateSelectionNullable;
+  website: StringAggregateSelectionNonNullable;
 };
 
 export type ScopeProjectsAggregateInput = {
@@ -7304,7 +7304,7 @@ export type StakeholderProjectProjectsNodeAggregateSelection = {
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
   name: StringAggregateSelectionNonNullable;
-  website: StringAggregateSelectionNullable;
+  website: StringAggregateSelectionNonNullable;
 };
 
 export type StakeholderProjectsAggregateInput = {
@@ -9233,7 +9233,7 @@ export type WebDumpProjectProjectsNodeAggregateSelection = {
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
   name: StringAggregateSelectionNonNullable;
-  website: StringAggregateSelectionNullable;
+  website: StringAggregateSelectionNonNullable;
 };
 
 export type WebDumpProjectsAggregateInput = {
@@ -9856,7 +9856,7 @@ export type WorkersProjectProjectsNodeAggregateSelection = {
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
   name: StringAggregateSelectionNonNullable;
-  website: StringAggregateSelectionNullable;
+  website: StringAggregateSelectionNonNullable;
 };
 
 export type WorkersProjectsAggregateInput = {
@@ -10350,7 +10350,7 @@ export type UpdateProjectsMutationVariables = Exact<{
 }>;
 
 
-export type UpdateProjectsMutation = { __typename?: 'Mutation', updateProjects: { __typename?: 'UpdateProjectsMutationResponse', projects: Array<{ __typename?: 'Project', id: string, name: string, considerations: Array<{ __typename?: 'Geographic', brief?: string | null } | { __typename?: 'Stakeholder', name: string, stakeholderBreif: string } | { __typename?: 'WebDump', content: string } | { __typename?: 'Workers', brief?: string | null }>, statuses: Array<{ __typename?: 'ProjectStatus', name: ProjectStatusName }>, scopesConnection: { __typename?: 'ProjectScopesConnection', edges: Array<{ __typename?: 'ProjectScopesRelationship', aspect: string, reason: string, node: { __typename?: 'Scope', name: string, description?: string | null, considerations: Array<{ __typename?: 'Example', id: string, brief: string } | { __typename?: 'Question', id: string, brief: string } | { __typename?: 'Stakeholder', name: string, brief: string }> } }> } }> } };
+export type UpdateProjectsMutation = { __typename?: 'Mutation', updateProjects: { __typename?: 'UpdateProjectsMutationResponse', projects: Array<{ __typename?: 'Project', id: string, name: string, considerations: Array<{ __typename?: 'Geographic', brief?: string | null } | { __typename?: 'Stakeholder', name: string, stakeholderBreif: string } | { __typename?: 'WebDump', content: string } | { __typename?: 'Workers', brief?: string | null }>, statuses: Array<{ __typename?: 'ProjectStatus', name: ProjectStatusName }>, scopesConnection: { __typename?: 'ProjectScopesConnection', edges: Array<{ __typename?: 'ProjectScopesRelationship', aspect: string, reason: string, node: { __typename?: 'Scope', name: string, brief: string, basis?: string | null, description?: string | null, considerations: Array<{ __typename?: 'Example', brief: string, description?: string | null } | { __typename?: 'Question', brief: string, description?: string | null } | { __typename?: 'Stakeholder', name: string, brief: string, description?: string | null }> } }> } }> } };
 
 export type CreateScopesMutationVariables = Exact<{
   input: Array<ScopeCreateInput> | ScopeCreateInput;
@@ -10371,11 +10371,11 @@ export type ScopesQueryVariables = Exact<{
 }>;
 
 
-export type ScopesQuery = { __typename?: 'Query', scopes: Array<{ __typename?: 'Scope', id: string, name: string, description?: string | null, verified: boolean }> };
+export type ScopesQuery = { __typename?: 'Query', scopes: Array<{ __typename?: 'Scope', name: string, brief: string, basis?: string | null }> };
 
 
 export const CreateProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateProjects"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createProjects"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Stakeholder"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","alias":{"kind":"Name","value":"stakeholderBreif"},"name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebDump"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Geographic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Workers"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateProjectsMutation, CreateProjectsMutationVariables>;
-export const UpdateProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateProjects"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectConnectOrCreateInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"create"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectRelationInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProjects"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"create"},"value":{"kind":"Variable","name":{"kind":"Name","value":"create"}}},{"kind":"Argument","name":{"kind":"Name","value":"connectOrCreate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Stakeholder"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","alias":{"kind":"Name","value":"stakeholderBreif"},"name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebDump"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Geographic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Workers"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"statuses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"scopesConnection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"aspect"}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Stakeholder"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Question"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Example"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateProjectsMutation, UpdateProjectsMutationVariables>;
+export const UpdateProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateProjects"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectConnectOrCreateInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"create"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectRelationInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProjects"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"create"},"value":{"kind":"Variable","name":{"kind":"Name","value":"create"}}},{"kind":"Argument","name":{"kind":"Name","value":"connectOrCreate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Stakeholder"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","alias":{"kind":"Name","value":"stakeholderBreif"},"name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebDump"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Geographic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Workers"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"statuses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"scopesConnection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"aspect"}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"basis"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Stakeholder"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Question"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Example"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateProjectsMutation, UpdateProjectsMutationVariables>;
 export const CreateScopesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateScopes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ScopeCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createScopes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"scopes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"basis"}}]}}]}}]}}]} as unknown as DocumentNode<CreateScopesMutation, CreateScopesMutationVariables>;
 export const CountProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CountProjects"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ProjectWhere"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projectsAggregate"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"count"}}]}}]}}]} as unknown as DocumentNode<CountProjectsQuery, CountProjectsQueryVariables>;
-export const ScopesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Scopes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ScopeWhere"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"scopes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"verified"}}]}}]}}]} as unknown as DocumentNode<ScopesQuery, ScopesQueryVariables>;
+export const ScopesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Scopes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ScopeWhere"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"scopes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"basis"}}]}}]}}]} as unknown as DocumentNode<ScopesQuery, ScopesQueryVariables>;

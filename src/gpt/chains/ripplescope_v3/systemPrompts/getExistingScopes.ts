@@ -1,5 +1,5 @@
 import { GraphQLClient } from 'graphql-request';
-import { scopes } from '../../../../db/query/scopes.js';
+import { scopes } from '../../../../db/query/scope/scopes.js';
 import OpenAI from 'openai';
 
 export default async function getExistingScopes(
@@ -12,7 +12,7 @@ export default async function getExistingScopes(
   return {
     role: 'assistant',
     content: scopesQuery.scopes
-      .map(({ name, description }) => `${name}:\n${description}`)
+      .map(({ name, brief }) => `${name}:\n${brief}`)
       .join('\n\n'),
   };
 }

@@ -13,9 +13,8 @@ export default async function inferRipples(
   project: ProjectWithScopes,
   openai: OpenAI,
 ) {
-  const scopeEdges = project.scopesConnection.edges;
   const settled_GPT_RipplesResponse = await Promise.allSettled(
-    scopeEdges.map(async (scopeEdge, i, arr) => {
+    project.scopesConnection.edges.map(async (scopeEdge, i, arr) => {
       const decorator = `[${new Date().toUTCString()}][${project.name}][${
         i + 1
       }/${arr.length}][${scopeEdge.node.name}]`;

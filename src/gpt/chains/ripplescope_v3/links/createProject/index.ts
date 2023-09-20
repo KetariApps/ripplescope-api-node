@@ -6,11 +6,12 @@ export default async function createProject(
   projectDetails: ProjectCreateInput,
   client: GraphQLClient,
 ) {
-  const { name, website, brief, considerations } = projectDetails;
+  const { name, website, brief, considerations, description } = projectDetails;
   const input: ProjectCreateInput = {
     name,
     website,
     brief,
+    description,
     considerations,
   };
   const createProjectsMutation = await client.request(createProjects, {

@@ -5,6 +5,6 @@ const stringifyProject = (
 ) =>
   `Project:\n${project.name}\n${project.considerations
     .map((consideration) => `${Object.values(consideration).join('\n')}`)
-    .join('\n')}`;
+    .join('\n\n')}`;
 
 export default stringifyProject;

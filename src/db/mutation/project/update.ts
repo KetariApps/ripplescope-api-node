@@ -38,19 +38,22 @@ mutation UpdateProjects(
           reason
           node {
             name
+            brief
+            basis
             description
             considerations {
               ... on Stakeholder {
                 name
                 brief
+                description
               }
               ... on Question {
-                id
                 brief
+                description
               }
               ... on Example {
-                id
                 brief
+                description
               }
             }
           }

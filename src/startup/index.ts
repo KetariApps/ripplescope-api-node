@@ -1,8 +1,33 @@
 import { createScopes } from '../db/mutation/scope/create.js';
 import * as dotenv from 'dotenv';
 import { GraphQLClient } from 'graphql-request';
-import ecological from './initialNodes/scopes/ecological.js';
-import social from './initialNodes/scopes/social.js';
+
+import {
+  airPollution,
+  biodiversity,
+  chemicalPollution,
+  climateChange,
+  culturalHeritage,
+  education,
+  energy,
+  food,
+  freshwater,
+  genderEquity,
+  health,
+  housing,
+  incomeAndWork,
+  land,
+  networks,
+  nitrogenAndPhosphorousLoading,
+  oceans,
+  ozoneProtection,
+  peaceAndJustice,
+  politicalVoice,
+  recyclableMaterials,
+  socialEquity,
+  supplyChainsAndSourcing,
+  water,
+} from './initialNodes/scopes/index.js';
 
 (async () => {
   try {
@@ -14,8 +39,42 @@ import social from './initialNodes/scopes/social.js';
 
     // todo: verify scopes don't already exist -- this may run at every container startup
 
+    const scopes = [
+      airPollution,
+      biodiversity,
+      chemicalPollution,
+      climateChange,
+      culturalHeritage,
+      education,
+      energy,
+      food,
+      freshwater,
+      genderEquity,
+      health,
+      housing,
+      incomeAndWork,
+      land,
+      networks,
+      nitrogenAndPhosphorousLoading,
+      oceans,
+      ozoneProtection,
+      peaceAndJustice,
+      politicalVoice,
+      recyclableMaterials,
+      socialEquity,
+      supplyChainsAndSourcing,
+      water,
+    ];
     console.log('Creating initial scopes.');
-    await client.request(createScopes, { input: [...ecological, ...social] });
+    await Promise.all(
+      scopes.map(async (scope, i, arr) => {
+        console.log(`[${i + 1}/${arr.length}]: Sent`);
+        await client.request(createScopes, {
+          input: scope,
+        });
+        console.log(`[${i + 1}/${arr.length}]: Success`);
+      }),
+    );
     console.log('Created initial scopes.');
   } catch (error) {
     console.error(error);
