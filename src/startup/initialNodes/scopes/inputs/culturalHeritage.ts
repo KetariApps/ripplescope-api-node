@@ -10,7 +10,7 @@ const culturalHeritage: ScopeCreateInput = {
   description: `Cultural preservation and the protection of indigenous rights are central to this initiative, addressing the following key aspects:
   
     - Respecting and protecting the rights of indigenous communities, including their ownership of traditional knowledge and cultural expressions.
-    - Actively involving and consulting with indigenous communities in the planning, implementation, and decision-making processes of the project.
+    - Actively involving and consulting with indigenous communities in the planning, implementation, and decision-making processes of the organization.
     - Identifying and safeguarding cultural landmarks and sacred sites significant to local communities, including indigenous groups.
     - Measures to protect and preserve traditional knowledge, practices, and languages of indigenous communities.
     - Activities promoting and revitalizing local culture, arts, and traditions for future generations.
@@ -74,15 +74,15 @@ const culturalHeritage: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project respect and protect the rights of indigenous communities, including their ownership of traditional knowledge and cultural expressions?',
+              'How does the initiative/organization respect and protect the rights of indigenous communities, including their ownership of traditional knowledge and cultural expressions?',
             description:
-              "This question assesses the initiative/project's commitment to indigenous rights and cultural ownership.",
+              "This question assesses the initiative/organization's commitment to indigenous rights and cultural ownership.",
           },
         },
         {
           node: {
             brief:
-              'Are there any efforts in place to actively involve and consult with indigenous communities in the planning, implementation, and decision-making processes of the project to ensure their cultural heritage is preserved and respected?',
+              'Are there any efforts in place to actively involve and consult with indigenous communities in the planning, implementation, and decision-making processes of the organization to ensure their cultural heritage is preserved and respected?',
             description:
               'This question evaluates the level of involvement and consultation with indigenous communities.',
           },
@@ -90,7 +90,7 @@ const culturalHeritage: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project identify and safeguard cultural landmarks and sacred sites that hold significance for local communities, including indigenous groups?',
+              'How does the initiative/organization identify and safeguard cultural landmarks and sacred sites that hold significance for local communities, including indigenous groups?',
             description:
               'This question focuses on the protection of cultural landmarks and sacred sites.',
           },
@@ -98,7 +98,7 @@ const culturalHeritage: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Are there specific measures in place to protect and preserve traditional knowledge, practices, and languages of indigenous communities impacted by the project?',
+              'Are there specific measures in place to protect and preserve traditional knowledge, practices, and languages of indigenous communities impacted by the organization?',
             description:
               'This question addresses the preservation of traditional knowledge and practices.',
           },
@@ -114,7 +114,7 @@ const culturalHeritage: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does the initiative/project collaborate with local cultural institutions, heritage organizations, or tribal authorities to protect and promote cultural heritage and traditions?',
+              'Does the initiative/organization collaborate with local cultural institutions, heritage organizations, or tribal authorities to protect and promote cultural heritage and traditions?',
             description:
               'This question assesses collaboration for cultural heritage protection.',
           },
@@ -122,7 +122,7 @@ const culturalHeritage: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project consider the potential impacts on intangible cultural heritage and identity, and what steps are taken to mitigate negative effects?',
+              'How does the initiative/organization consider the potential impacts on intangible cultural heritage and identity, and what steps are taken to mitigate negative effects?',
             description:
               'This question examines the mitigation of impacts on cultural heritage and identity.',
           },
@@ -130,7 +130,7 @@ const culturalHeritage: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Are there any educational or awareness programs in place to inform project stakeholders, employees, and the public about the importance of cultural preservation and indigenous rights?',
+              'Are there any educational or awareness programs in place to inform organization stakeholders, employees, and the public about the importance of cultural preservation and indigenous rights?',
             description:
               'This question evaluates educational and awareness programs related to cultural preservation.',
           },
@@ -138,7 +138,7 @@ const culturalHeritage: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What measures does the initiative/project take to avoid cultural appropriation or misrepresentation of local cultures and traditions in its activities or promotions?',
+              'What measures does the initiative/organization take to avoid cultural appropriation or misrepresentation of local cultures and traditions in its activities or promotions?',
             description:
               'This question addresses measures to avoid cultural appropriation or misrepresentation.',
           },
@@ -146,9 +146,9 @@ const culturalHeritage: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project contribute to the economic empowerment and sustainability of local communities, ensuring that cultural heritage preservation aligns with social and economic development goals?',
+              'How does the initiative/organization contribute to the economic empowerment and sustainability of local communities, ensuring that cultural heritage preservation aligns with social and economic development goals?',
             description:
-              "This question explores the initiative/project's contribution to economic empowerment and sustainability through cultural heritage preservation.",
+              "This question explores the initiative/organization's contribution to economic empowerment and sustainability through cultural heritage preservation.",
           },
         },
       ],

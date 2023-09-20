@@ -9,7 +9,7 @@ const chemicalPollution: ScopeCreateInput = {
     'It assesses efforts to mitigate chemical pollution, recognizing its potential to harm ecosystems, human health, and overall well-being.',
   description: `Effective management of hazardous chemicals and pollutants is paramount for environmental sustainability and human well-being. This initiative rigorously assesses its interaction with various chemicals and compounds, including herbicides, pesticides, volatile chemicals, organic compounds/pollutants, heavy metal compounds, and radioactive materials.
   
-        The safe handling, storage, and disposal of these substances are non-negotiable principles. Stringent protocols are in place to prevent environmental contamination and protect human health. The initiative closely monitors and assesses the potential environmental and social impacts of using these substances throughout the project's lifecycle, ensuring that real-world effects align with theoretical assessments.
+        The safe handling, storage, and disposal of these substances are non-negotiable principles. Stringent protocols are in place to prevent environmental contamination and protect human health. The initiative closely monitors and assesses the potential environmental and social impacts of using these substances throughout the organization's lifecycle, ensuring that real-world effects align with theoretical assessments.
   
         In line with its commitment to sustainability, the initiative actively explores alternative, more environmentally friendly methods and technologies to reduce the reliance on hazardous chemicals and compounds. It prioritizes the use of safer, non-toxic alternatives whenever feasible.
   
@@ -59,7 +59,7 @@ const chemicalPollution: ScopeCreateInput = {
         {
           node: {
             brief:
-              'To what extent does the initiative/project employ or produce hazardous chemicals and compounds, including herbicides, pesticides, and radioactive materials?',
+              'To what extent does the initiative/organization employ or produce hazardous chemicals and compounds, including herbicides, pesticides, and radioactive materials?',
             description:
               'This question assesses the extent of hazardous chemical usage and production in the initiative.',
           },
@@ -75,7 +75,7 @@ const chemicalPollution: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What measures are in place to monitor and assess the potential environmental and social impacts of using hazardous substances throughout the project’s lifecycle?',
+              'What measures are in place to monitor and assess the potential environmental and social impacts of using hazardous substances throughout the organization’s lifecycle?',
             description:
               'This question focuses on monitoring and assessing the impacts of hazardous substances.',
           },
@@ -131,7 +131,7 @@ const chemicalPollution: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project track and report on the use and impact of hazardous materials to ensure transparency and accountability for its environmental and social responsibilities?',
+              'How does the initiative/organization track and report on the use and impact of hazardous materials to ensure transparency and accountability for its environmental and social responsibilities?',
             description:
               'This question focuses on tracking and reporting practices related to hazardous material use and impact.',
           },

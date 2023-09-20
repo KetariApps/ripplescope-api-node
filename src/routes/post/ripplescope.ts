@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { GraphQLClient } from 'graphql-request';
-import { ProjectCreateInput } from '../../__generated__/graphql.js';
+import { OrganizationCreateInput } from '../../__generated__/graphql.js';
 import ripplescopeChain from '../../gpt/chains/ripplescope_v3/index.js';
-import { countProjects } from '../../db/query/project/count.js';
+import { countOrganizations } from '../../db/query/organization/count.js';
 
 export default async function ripplescope(
   req: Request,
@@ -11,26 +11,31 @@ export default async function ripplescope(
 ) {
   try {
     const { input } = req.body as
-      | { input: ProjectCreateInput }
-      | { input: Array<ProjectCreateInput> };
+      | { input: OrganizationCreateInput }
+      | { input: Array<OrganizationCreateInput> };
     const inputArray = Array.isArray(input) ? input : [input];
 
     Promise.allSettled(
-      inputArray.map(async (project) => {
-        const countProjectsQuery = await client.request(countProjects, {
-          where: { website: project.website },
-        });
-        if (countProjectsQuery.projectsAggregate.count > 0) {
-          // project does exist already, avoid recategorization
-          throw new Error(`Project already exists: ${project.website}`);
+      inputArray.map(async (organization) => {
+        const countOrganizationsQuery = await client.request(
+          countOrganizations,
+          {
+            where: { website: organization.website },
+          },
+        );
+        if (countOrganizationsQuery.organizationsAggregate.count > 0) {
+          // organization does exist already, avoid recategorization
+          throw new Error(
+            `Organization already exists: ${organization.website}`,
+          );
         }
-        ripplescopeChain(project);
+        ripplescopeChain(organization);
       }),
     );
 
     res.status(200).json({
-      message: 'Analyzing projects',
-      content: inputArray.map((project) => project.website),
+      message: 'Analyzing organizations',
+      content: inputArray.map((organization) => organization.website),
     });
     res.end();
   } catch (error) {

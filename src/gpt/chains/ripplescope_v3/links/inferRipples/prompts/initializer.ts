@@ -1,14 +1,17 @@
 import OpenAI from 'openai';
-import { stringifyProject, stringifyScopeEdge } from '../../../util/index.js';
-import { ConnectedScopeEdge, ProjectWithScopes } from '../../../types.js';
+import {
+  stringifyOrganization,
+  stringifyScopeEdge,
+} from '../../../util/index.js';
+import { ConnectedScopeEdge, OrganizationWithScopes } from '../../../types.js';
 
 export default function initializer(
-  project: ProjectWithScopes,
+  organization: OrganizationWithScopes,
   scopeEdge: ConnectedScopeEdge,
 ): OpenAI.Chat.CreateChatCompletionRequestMessage[] {
-  const projectMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
+  const organizationMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
     role: 'assistant',
-    content: stringifyProject(project),
+    content: stringifyOrganization(organization),
   };
   const scopeMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
     role: 'assistant',
@@ -16,7 +19,7 @@ export default function initializer(
   };
   const userMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
     role: 'user',
-    content: `Infer the Ripples of this Project within this Scope.`,
+    content: `Infer the Ripples of this Organization within this Scope.`,
   };
-  return [userMessage, projectMessage, scopeMessage];
+  return [userMessage, organizationMessage, scopeMessage];
 }

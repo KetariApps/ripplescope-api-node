@@ -1,18 +1,18 @@
 import OpenAI from 'openai';
-import stringifyProject from '../../../util/stringifyProject.js';
-import { RecentlyCreatedProject } from '../../../types.js';
+import stringifyOrganization from '../../../util/stringifyOrganization.js';
+import { RecentlyCreatedOrganization } from '../../../types.js';
 
 const initializer = (
-  project: RecentlyCreatedProject,
+  organization: RecentlyCreatedOrganization,
 ): OpenAI.Chat.CreateChatCompletionRequestMessage => ({
   role: 'user',
-  content: `${project.name}
+  content: `${organization.name}
   
-  ${stringifyProject(project)}
+  ${stringifyOrganization(organization)}
   
     -------
   
-    Classify this project to one or more of the provided scopes. Suggest a new scope if it would be completely unique or it refines an existing scope by making it more specific.
+    Classify this organization to one or more of the provided scopes. Suggest a new scope if it would be completely unique or it refines an existing scope by making it more specific.
   `,
 });
 export default initializer;

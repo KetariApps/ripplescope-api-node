@@ -83,7 +83,7 @@ const freshwater: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What is the water consumption classification for this project?',
+              'What is the water consumption classification for this organization?',
             description:
               "This question categorizes the initiative's water consumption to assess its sustainability.",
           },
@@ -91,7 +91,7 @@ const freshwater: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How many Project/Program activities are aimed at improving water quality for consumption?',
+              'How many Organization/Program activities are aimed at improving water quality for consumption?',
             description:
               "This question measures the initiative's efforts to enhance water quality for consumption.",
           },
@@ -115,7 +115,7 @@ const freshwater: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project address water recycling, reuse, or rainwater harvesting to minimize freshwater consumption?',
+              'How does the initiative/organization address water recycling, reuse, or rainwater harvesting to minimize freshwater consumption?',
             description:
               "This question inquires about the initiative's practices to reduce freshwater consumption through responsible water management.",
           },
@@ -123,7 +123,7 @@ const freshwater: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What is the projected water demand and supply for the initiative, and how does it align with the availability of water resources in the region?',
+              'What is the organizationed water demand and supply for the initiative, and how does it align with the availability of water resources in the region?',
             description:
               'This question assesses the alignment of water demand and supply with regional water resources.',
           },
@@ -139,7 +139,7 @@ const freshwater: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project assess and monitor the impact of its activities on local freshwater levels and water quality?',
+              'How does the initiative/organization assess and monitor the impact of its activities on local freshwater levels and water quality?',
             description:
               "This question focuses on the monitoring and assessment of the initiative's impact on local freshwater resources and quality.",
           },

@@ -15,8 +15,8 @@
     "watch": "graphql-codegen -w",
     "codegen": "graphql-codegen --config codegen.ts",
     "pre-populate-database": "node build/startup/index.js",
-    "insert-single-project": "cd test && ./project.sh",
-    "insert-project-list": "cd test && ./project-list.sh"
+    "insert-single-organization": "cd test && ./organization.sh",
+    "insert-organization-list": "cd test && ./organization-list.sh"
   },
   "author": "Zach Garrett",
   "license": "ISC",

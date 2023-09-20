@@ -72,7 +72,7 @@ const incomeWork: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How many and what percentage of the local community are employed by the initiative/project?',
+              'How many and what percentage of the local community are employed by the initiative/organization?',
             description:
               'This question evaluates local employment opportunities.',
           },
@@ -80,7 +80,7 @@ const incomeWork: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How many and what percentage of the local community indirectly benefit financially through the initiative/project activities?',
+              'How many and what percentage of the local community indirectly benefit financially through the initiative/organization activities?',
             description:
               'This question explores indirect financial benefits to the community.',
           },
@@ -88,7 +88,7 @@ const incomeWork: ScopeCreateInput = {
         {
           node: {
             brief:
-              'In addition to job creation, what other positive impacts has the initiative/project had on its region and local community, including in community cohesion and structure?',
+              'In addition to job creation, what other positive impacts has the initiative/organization had on its region and local community, including in community cohesion and structure?',
             description:
               'This question assesses broader positive impacts beyond job creation.',
           },
@@ -104,7 +104,7 @@ const incomeWork: ScopeCreateInput = {
         {
           node: {
             brief:
-              "What is the status and extent of worker's benefits for the lowest earners in the initiative/project? For example, does the initiative offer paid time off, health insurance matching, retirement matching, transportation to work, mileage reimbursement, salary adjustments due to inflation, or other benefits?",
+              "What is the status and extent of worker's benefits for the lowest earners in the initiative/organization? For example, does the initiative offer paid time off, health insurance matching, retirement matching, transportation to work, mileage reimbursement, salary adjustments due to inflation, or other benefits?",
             description:
               'This question explores worker benefits, especially for low earners.',
           },
@@ -112,7 +112,7 @@ const incomeWork: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What percentage of initiative/project inputs are sourced from local businesses or community members? Is compensation for these inputs evaluated on a fair-trade basis?',
+              'What percentage of initiative/organization inputs are sourced from local businesses or community members? Is compensation for these inputs evaluated on a fair-trade basis?',
             description:
               'This question examines sourcing practices and fair compensation.',
           },
@@ -120,7 +120,7 @@ const incomeWork: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does the initiative/project support its employees or members of its communities in gaining access to financial resources, such as opening a bank account or accessing a loan?',
+              'Does the initiative/organization support its employees or members of its communities in gaining access to financial resources, such as opening a bank account or accessing a loan?',
             description:
               'This question addresses support for financial inclusion.',
           },

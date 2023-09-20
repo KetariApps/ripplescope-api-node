@@ -9,7 +9,7 @@ const housing: ScopeCreateInput = {
     'This initiative focuses on ensuring safe, secure, and affordable housing for employees while also addressing the housing situation in the community.',
   description: `Housing is a fundamental concern for this initiative, aiming to provide secure and affordable housing for employees and positively impact the community's housing situation. Several key considerations guide its approach:
   
-        The initiative evaluates the land requirements for its construction or implementation and its proximity to the project site. It assesses the percentage of staff living within specific distances and their housing conditions, ensuring access to basic amenities like electricity and security.
+        The initiative evaluates the land requirements for its construction or implementation and its proximity to the organization site. It assesses the percentage of staff living within specific distances and their housing conditions, ensuring access to basic amenities like electricity and security.
   
         Addressing housing needs includes assisting employees in adapting their homes to withstand extreme weather conditions and managing associated costs. This may involve infrastructure improvements to enhance resilience and reduce expenses.
   
@@ -60,7 +60,7 @@ const housing: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How many hectares of land will this initiative/project require your organization to buy or occupy for the construction or implementation of responsible housing?',
+              'How many hectares of land will this initiative/organization require your organization to buy or occupy for the construction or implementation of responsible housing?',
             description:
               'This question assesses the land requirements for housing construction or implementation.',
           },
@@ -68,23 +68,23 @@ const housing: ScopeCreateInput = {
         {
           node: {
             brief:
-              "What percentage of this initiative/project's staff lives within 50km of the project site?",
+              "What percentage of this initiative/organization's staff lives within 50km of the organization site?",
             description:
-              'This question evaluates the proximity of staff to the project site.',
+              'This question evaluates the proximity of staff to the organization site.',
           },
         },
         {
           node: {
             brief:
-              "What percentage of this initiative/project's staff lives within 10km of the project site?",
+              "What percentage of this initiative/organization's staff lives within 10km of the organization site?",
             description:
-              'This question further assesses the proximity of staff to the project site.',
+              'This question further assesses the proximity of staff to the organization site.',
           },
         },
         {
           node: {
             brief:
-              'Among the local staff (within 10 km of the project site), what percentage of employees are securely housed, in homes with electricity and other basic amenities?',
+              'Among the local staff (within 10 km of the organization site), what percentage of employees are securely housed, in homes with electricity and other basic amenities?',
             description:
               'This question examines the housing conditions of local staff.',
           },
@@ -108,7 +108,7 @@ const housing: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project consider architectural design and construction practices that adhere to green building standards and minimize environmental impact?',
+              'How does the initiative/organization consider architectural design and construction practices that adhere to green building standards and minimize environmental impact?',
             description:
               'This question focuses on eco-friendly architectural and construction practices.',
           },
@@ -116,7 +116,7 @@ const housing: ScopeCreateInput = {
         {
           node: {
             brief:
-              "How does the initiative/project prioritize affordability and accessibility for the local workforce, ensuring that it doesn't lead to gentrification or displacement of existing communities?",
+              "How does the initiative/organization prioritize affordability and accessibility for the local workforce, ensuring that it doesn't lead to gentrification or displacement of existing communities?",
             description:
               'This question explores affordability and accessibility measures and their impact on local communities.',
           },
@@ -124,7 +124,7 @@ const housing: ScopeCreateInput = {
         {
           node: {
             brief:
-              "What measures are in place to ensure that construction and maintenance relating to the initiative/project's activities adhere to environmental regulations and sustainability principles?",
+              "What measures are in place to ensure that construction and maintenance relating to the initiative/organization's activities adhere to environmental regulations and sustainability principles?",
             description:
               'This question addresses environmental compliance in construction and maintenance.',
           },
@@ -132,7 +132,7 @@ const housing: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does the initiative/project actively engage with employees, local communities and stakeholders to address their housing needs and preferences?',
+              'Does the initiative/organization actively engage with employees, local communities and stakeholders to address their housing needs and preferences?',
             description:
               'This question assesses the level of engagement with stakeholders to understand housing needs and preferences.',
           },

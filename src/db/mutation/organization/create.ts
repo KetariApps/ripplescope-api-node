@@ -1,9 +1,9 @@
 import { gql } from '../../../__generated__/gql.js';
 
-export const createProjects = gql(`
-mutation CreateProjects($input: [ProjectCreateInput!]!) {
-    createProjects(input: $input) {
-      projects {
+export const createOrganizations = gql(`
+mutation CreateOrganizations($input: [OrganizationCreateInput!]!) {
+    createOrganizations(input: $input) {
+      organizations {
         id
         name
         considerations {
@@ -17,7 +17,7 @@ mutation CreateProjects($input: [ProjectCreateInput!]!) {
           ... on Geographic {
             brief
           }
-          ... on Workers {
+          ... on Team {
             brief
           }
         }

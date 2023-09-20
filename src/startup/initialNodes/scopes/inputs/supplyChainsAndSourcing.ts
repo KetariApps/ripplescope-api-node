@@ -59,9 +59,9 @@ const supplyChainsAndSourcing: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project ensure supply chain responsibility, including implementing ethical practices, fair labor conditions, and environmental considerations across its supply chain?',
+              'How does the initiative/organization ensure supply chain responsibility, including implementing ethical practices, fair labor conditions, and environmental considerations across its supply chain?',
             description:
-              "This question explores the initiative/project's approach to supply chain responsibility and ethical practices.",
+              "This question explores the initiative/organization's approach to supply chain responsibility and ethical practices.",
           },
         },
         {
@@ -83,7 +83,7 @@ const supplyChainsAndSourcing: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project work to reduce transportation impacts within its supply chain, such as optimizing transportation routes, using low-carbon modes of transport, or supporting local sourcing?',
+              'How does the initiative/organization work to reduce transportation impacts within its supply chain, such as optimizing transportation routes, using low-carbon modes of transport, or supporting local sourcing?',
             description:
               'This question explores strategies to minimize transportation impacts within the supply chain.',
           },
@@ -91,7 +91,7 @@ const supplyChainsAndSourcing: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What strategies does the initiative/project employ to minimize resource utilization within its activities, such as efficient water management, reduced energy consumption, and waste reduction?',
+              'What strategies does the initiative/organization employ to minimize resource utilization within its activities, such as efficient water management, reduced energy consumption, and waste reduction?',
             description:
               'This question focuses on resource utilization and sustainability measures.',
           },
@@ -115,7 +115,7 @@ const supplyChainsAndSourcing: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project measure and track its progress in terms of sustainable sourcing of inputs, and what mechanisms are in place for continuous improvement?',
+              'How does the initiative/organization measure and track its progress in terms of sustainable sourcing of inputs, and what mechanisms are in place for continuous improvement?',
             description:
               'This question explores measurement, tracking, and continuous improvement mechanisms for sustainable sourcing.',
           },
@@ -131,7 +131,7 @@ const supplyChainsAndSourcing: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does the initiative/project invest in, or otherwise support the research/development of green technology or sustainable solutions at any point along its supply chain?',
+              'Does the initiative/organization invest in, or otherwise support the research/development of green technology or sustainable solutions at any point along its supply chain?',
             description:
               'This question explores investments in green technology and sustainable solutions within the supply chain.',
           },

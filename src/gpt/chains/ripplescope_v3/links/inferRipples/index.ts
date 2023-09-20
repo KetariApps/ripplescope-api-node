@@ -3,19 +3,19 @@ import getJSONString from '../../../../util/getJSONString.js';
 import {
   GPT_Ripple,
   GPT_RipplesResponse,
-  ProjectWithScopes,
+  OrganizationWithScopes,
 } from '../../types.js';
 import { definitions, raisonDetre } from '../../systemPrompts/index.js';
 import { initializer } from './prompts/index.js';
 import { connectScopes } from '../index.js';
 
 export default async function inferRipples(
-  project: ProjectWithScopes,
+  organization: OrganizationWithScopes,
   openai: OpenAI,
 ) {
   const settled_GPT_RipplesResponse = await Promise.allSettled(
-    project.scopesConnection.edges.map(async (scopeEdge, i, arr) => {
-      const decorator = `[${new Date().toUTCString()}][${project.name}][${
+    organization.scopesConnection.edges.map(async (scopeEdge, i, arr) => {
+      const decorator = `[${new Date().toUTCString()}][${organization.name}][${
         i + 1
       }/${arr.length}][${scopeEdge.node.name}]`;
 
@@ -24,7 +24,7 @@ export default async function inferRipples(
         messages: [
           definitions,
           raisonDetre,
-          ...initializer(project, scopeEdge),
+          ...initializer(organization, scopeEdge),
         ],
       });
 

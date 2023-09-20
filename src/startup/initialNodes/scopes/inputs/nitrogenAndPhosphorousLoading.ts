@@ -13,7 +13,7 @@ const nitrogenPhosphorusLoading: ScopeCreateInput = {
   
         Monitoring and measuring the amount of synthetic fertilizer used, as well as its potential runoff and impact on nearby water bodies or ecosystems, are integral components of the initiative's strategy. It prioritizes training and support for farmers and stakeholders to promote the appropriate and sustainable use of synthetic fertilizers, thereby enhancing soil health and reducing ecological risks.
   
-        The use of synthetic fertilizer aligns with the initiative's broader sustainability goals and commitment to environmental stewardship. Moreover, the initiative actively explores alternatives to synthetic fertilizers through research projects to reduce environmental impacts while maintaining productivity.
+        The use of synthetic fertilizer aligns with the initiative's broader sustainability goals and commitment to environmental stewardship. Moreover, the initiative actively explores alternatives to synthetic fertilizers through research organizations to reduce environmental impacts while maintaining productivity.
   
         Accessibility and affordability of sustainable fertilization practices are central considerations. The initiative ensures that small-scale farmers and economically disadvantaged communities can access and afford sustainable fertilization practices, thereby fostering inclusivity and empowerment.
   
@@ -103,7 +103,7 @@ const nitrogenPhosphorusLoading: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Are there any initiatives or research projects exploring alternatives to synthetic fertilizers that could reduce environmental impacts while maintaining productivity?',
+              'Are there any initiatives or research organizations exploring alternatives to synthetic fertilizers that could reduce environmental impacts while maintaining productivity?',
             description:
               'This question inquires about research into alternative fertilization methods.',
           },

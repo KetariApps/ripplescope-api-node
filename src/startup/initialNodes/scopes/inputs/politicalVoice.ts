@@ -100,7 +100,7 @@ const politicalVoice: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project address potential power imbalances between external stakeholders and the local community, and how is the decision-making process designed to be democratic and inclusive?',
+              'How does the initiative/organization address potential power imbalances between external stakeholders and the local community, and how is the decision-making process designed to be democratic and inclusive?',
             description:
               'This question focuses on addressing power imbalances and promoting inclusive decision-making.',
           },
@@ -108,23 +108,23 @@ const politicalVoice: ScopeCreateInput = {
         {
           node: {
             brief:
-              "Has the project worked extensively with community facilitators using participatory design techniques to determine the project's role and presence in the community?",
+              "Has the organization worked extensively with community facilitators using participatory design techniques to determine the organization's role and presence in the community?",
             description:
-              'This question assesses the use of participatory design techniques and community facilitators in project planning.',
+              'This question assesses the use of participatory design techniques and community facilitators in organization planning.',
           },
         },
         {
           node: {
             brief:
-              'Does the initiative/project engage local leadership and governance (contribution to more than 30% of efforts)?',
+              'Does the initiative/organization engage local leadership and governance (contribution to more than 30% of efforts)?',
             description:
-              'This question evaluates the level of engagement with local leadership and governance in project efforts.',
+              'This question evaluates the level of engagement with local leadership and governance in organization efforts.',
           },
         },
         {
           node: {
             brief:
-              "What measures does the initiative/project take to ensure the inclusion and active participation of marginalized or underrepresented groups in decision-making processes related to the project's goals and activities?",
+              "What measures does the initiative/organization take to ensure the inclusion and active participation of marginalized or underrepresented groups in decision-making processes related to the organization's goals and activities?",
             description:
               'This question addresses measures for the inclusion of marginalized groups in decision-making processes.',
           },

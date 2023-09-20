@@ -10,7 +10,7 @@ const peaceJustice: ScopeCreateInput = {
   description: `Peace and justice are at the core of this initiative, addressing the following key aspects:
   
     - Evaluating the status and extent of peace and conflict in the initiative's region.
-    - Ensuring equitable access to initiative/project administration HR services for local staff.
+    - Ensuring equitable access to initiative/organization administration HR services for local staff.
     - Implementing confidentiality and privacy measures for local staff.
     - Clarifying affiliations or associations with political, religious, or other groups and their potential impact on peace and justice.
     
@@ -75,7 +75,7 @@ const peaceJustice: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Can local staff access your initiative/project administration HR services to process local claims?',
+              'Can local staff access your initiative/organization administration HR services to process local claims?',
             description:
               'This question evaluates HR service accessibility for local staff.',
           },
@@ -83,7 +83,7 @@ const peaceJustice: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Do confidentiality and privacy clauses apply to local staff under the purview of this initiative/project?',
+              'Do confidentiality and privacy clauses apply to local staff under the purview of this initiative/organization?',
             description:
               'This question addresses data privacy and confidentiality for local staff.',
           },
@@ -91,7 +91,7 @@ const peaceJustice: ScopeCreateInput = {
         {
           node: {
             brief:
-              "Is the initiative/project affiliated with any particular political party, religious group, or other group or organization that may be viewed, correctly or incorrectly, as harmful in any way to the peace and justice of the initiative's region or local community?",
+              "Is the initiative/organization affiliated with any particular political party, religious group, or other group or organization that may be viewed, correctly or incorrectly, as harmful in any way to the peace and justice of the initiative's region or local community?",
             description:
               'This question explores affiliations and their potential impact on peace and justice.',
           },

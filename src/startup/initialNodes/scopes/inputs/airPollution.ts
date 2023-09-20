@@ -26,7 +26,7 @@ const airPollution: ScopeCreateInput = {
     
     Promoting air quality awareness among all involved parties fosters a culture of responsibility. Moreover, 
     actively addressing concerns from the community or authorities not only builds trust but ensures that 
-    the project remains accountable and adaptable to emerging air quality challenges.
+    the organization remains accountable and adaptable to emerging air quality challenges.
     `,
   considerations: {
     Stakeholder: {
@@ -124,7 +124,7 @@ const airPollution: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Are there any measures taken to mitigate the impact of transportation and logistics related to the project on air quality?',
+              'Are there any measures taken to mitigate the impact of transportation and logistics related to the organization on air quality?',
             description:
               'This question explores how the initiative addresses the air quality impact of its transportation and logistics activities.',
           },
@@ -140,7 +140,7 @@ const airPollution: ScopeCreateInput = {
         {
           node: {
             brief:
-              "What are the anticipated short-term and long-term effects of the initiative on local air quality and public health, and how are these addressed in the project's planning and implementation?",
+              "What are the anticipated short-term and long-term effects of the initiative on local air quality and public health, and how are these addressed in the organization's planning and implementation?",
             description:
               'This question focuses on understanding the expected impact of the initiative on air quality and public health and how it is addressed in planning.',
           },

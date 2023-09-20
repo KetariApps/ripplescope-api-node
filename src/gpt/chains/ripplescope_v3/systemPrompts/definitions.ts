@@ -1,11 +1,11 @@
 import OpenAI from 'openai';
 
 const scope = `Scope:
-A scope is a categorization of Ripples a project may have. Scopes are inspired by
+A scope is a categorization of Ripples a organization may have. Scopes are inspired by
   both Doughnut Economics categories and the UN Sustainable Development Goals.
-  With that in mind, scopes are specifically related to a project's potential for ethical and ecological impact.`;
+  With that in mind, scopes are specifically related to a organization's potential for ethical and ecological impact.`;
 const ripple = `Ripple:
-A Ripple is a discrete impact a project has within a scope. A Ripple may be positive or negative.`;
+A Ripple is a discrete impact a organization has within a scope. A Ripple may be positive or negative.`;
 const magnitude = `Magnitude:
 Magnitude is the intensity of a ripple within its scope from zero to one (zero = no impact, one = massive impact)`;
 const interference = `Interference:
@@ -20,8 +20,8 @@ const destructiveInterference = `Destructive Interference:
   Therefore, Destructive Interference may result in mitigation of risk (perhaps even eliminating risk entirely)
   or reduction of benefit (perhaps even eliminating benefit entirely).`;
 const ripplescope = `Ripplescope:
-Ripplescope is a system that assesses the overall impact of a project on the world,
-  including that project's interference with other projects via its Ripples.`;
+Ripplescope is a system that assesses the overall impact of a organization on the world,
+  including that organization's interference with other organizations via its Ripples.`;
 
 const definitions: OpenAI.Chat.CreateChatCompletionRequestMessage = {
   role: 'system',

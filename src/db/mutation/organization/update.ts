@@ -1,17 +1,17 @@
 import { gql } from '../../../__generated__/gql.js';
 
-export const updateProjects = gql(`
-mutation UpdateProjects(
-  $where: ProjectWhere,
-  $connectOrCreate: ProjectConnectOrCreateInput,
-  $create: ProjectRelationInput
+export const updateOrganizations = gql(`
+mutation UpdateOrganizations(
+  $where: OrganizationWhere,
+  $connectOrCreate: OrganizationConnectOrCreateInput,
+  $create: OrganizationRelationInput
   ) {
-  updateProjects(
+  updateOrganizations(
     where: $where,
     create: $create,
     connectOrCreate: $connectOrCreate
     ) {
-    projects {
+    organizations {
       id
       name
       considerations {
@@ -25,7 +25,7 @@ mutation UpdateProjects(
         ... on Geographic {
           brief
         }
-        ... on Workers {
+        ... on Team {
           brief
         }
       }

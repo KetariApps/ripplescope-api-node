@@ -81,7 +81,7 @@ const education: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does the initiative/project offer any on-the-job training, support certified courses, or other educational or opportunities?',
+              'Does the initiative/organization offer any on-the-job training, support certified courses, or other educational or opportunities?',
             description:
               'This question addresses on-the-job training and educational support for staff.',
           },
@@ -89,7 +89,7 @@ const education: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does the initiative/project offer employees management training?',
+              'Does the initiative/organization offer employees management training?',
             description:
               'This question focuses on management training for leadership development.',
           },
@@ -97,7 +97,7 @@ const education: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does this project (directly or indirectly) involve the establishment of local entities that will hire local staff, support of commercial entities, cooperatives, etc.?',
+              'Does this organization (directly or indirectly) involve the establishment of local entities that will hire local staff, support of commercial entities, cooperatives, etc.?',
             description:
               "This question explores the initiative's involvement in local economic development.",
           },
@@ -105,7 +105,7 @@ const education: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does the initiative/project offer any educational opportunities or benefits for non-employees in the local community?',
+              'Does the initiative/organization offer any educational opportunities or benefits for non-employees in the local community?',
             description:
               'This question examines educational benefits extended to the broader community.',
           },
@@ -113,7 +113,7 @@ const education: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How many non-employee community members does the initiative/project target?',
+              'How many non-employee community members does the initiative/organization target?',
             description:
               'This question quantifies the outreach to non-employee community members for educational benefits.',
           },

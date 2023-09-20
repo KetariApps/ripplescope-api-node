@@ -13,7 +13,7 @@ const climateChange: ScopeCreateInput = {
   
         Fuel consumption is regularly monitored, and measures are in place to reduce it over time. Sustainable practices like solar power electrification, water purification, and efficient agriculture are integrated into the initiative's activities.
   
-        The initiative utilizes Direct Air Capture technology for carbon removal, and its effectiveness and environmental impact are closely monitored and assessed. A substantial amount of CO2 removal is expected over the project's lifespan, with a focus on accurate measurement and reporting.
+        The initiative utilizes Direct Air Capture technology for carbon removal, and its effectiveness and environmental impact are closely monitored and assessed. A substantial amount of CO2 removal is expected over the organization's lifespan, with a focus on accurate measurement and reporting.
   
         Carbon removal and offsets are held to high standards, being real, measurable, permanent, additional, independently verified, and unique. This ensures that the initiative's climate benefits are credible and effective.
   
@@ -67,7 +67,7 @@ const climateChange: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does the initiative/project involve air or ground transport, and if so, what efforts are made to use low-carbon fuel and optimize transportation efficiency?',
+              'Does the initiative/organization involve air or ground transport, and if so, what efforts are made to use low-carbon fuel and optimize transportation efficiency?',
             description:
               'This question explores the transportation methods used by the initiative and their environmental considerations.',
           },
@@ -75,7 +75,7 @@ const climateChange: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How is fuel consumption tracked and reduced in the initiative/project, and what measures are in place to minimize fuel usage over time?',
+              'How is fuel consumption tracked and reduced in the initiative/organization, and what measures are in place to minimize fuel usage over time?',
             description:
               'This question focuses on fuel consumption monitoring and strategies for reducing fuel usage.',
           },
@@ -83,7 +83,7 @@ const climateChange: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How are sustainable practices integrated into the initiative/project activities, such as solar power electrification, water purification, and efficient agriculture?',
+              'How are sustainable practices integrated into the initiative/organization activities, such as solar power electrification, water purification, and efficient agriculture?',
             description:
               'This question inquires about the implementation of sustainable practices in the initiative.',
           },
@@ -99,7 +99,7 @@ const climateChange: ScopeCreateInput = {
         {
           node: {
             brief:
-              "What is the expected amount of CO2 removal over the project's lifespan, and how is accurate measurement and reporting ensured?",
+              "What is the expected amount of CO2 removal over the organization's lifespan, and how is accurate measurement and reporting ensured?",
             description:
               'This question focuses on the estimation, measurement, and reporting of CO2 removal.',
           },
@@ -107,7 +107,7 @@ const climateChange: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Are the carbon removal/offsets presented under this initiative/project real, measurable, permanent, additional, independently verified, and unique? Please indicate which characteristics apply.',
+              'Are the carbon removal/offsets presented under this initiative/organization real, measurable, permanent, additional, independently verified, and unique? Please indicate which characteristics apply.',
             description:
               "This question assesses the credibility and effectiveness of the initiative's carbon removal and offsets.",
           },
@@ -123,7 +123,7 @@ const climateChange: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What measures are in place to reduce greenhouse gas emissions associated with the initiative/project, such as energy-efficient technologies and waste reduction strategies?',
+              'What measures are in place to reduce greenhouse gas emissions associated with the initiative/organization, such as energy-efficient technologies and waste reduction strategies?',
             description:
               "This question addresses the initiative's efforts to reduce greenhouse gas emissions.",
           },
@@ -131,7 +131,7 @@ const climateChange: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project collaborate with relevant stakeholders and organizations to stay updated on emerging climate-related technologies and best practices for minimizing its carbon footprint?',
+              'How does the initiative/organization collaborate with relevant stakeholders and organizations to stay updated on emerging climate-related technologies and best practices for minimizing its carbon footprint?',
             description:
               "This question explores the initiative's collaboration with stakeholders and organizations for staying informed and adopting best practices.",
           },

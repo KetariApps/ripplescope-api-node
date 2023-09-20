@@ -79,7 +79,7 @@ const energy: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project support communities in measuring their energy consumption and carbon footprint?',
+              'How does the initiative/organization support communities in measuring their energy consumption and carbon footprint?',
             description:
               "This question explores the initiative's support for community energy measurement and carbon footprint assessment.",
           },

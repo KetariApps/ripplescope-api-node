@@ -9,9 +9,10 @@ const responseObject: GPT_RipplesResponse = {
       edge: {
         magnitude:
           'a number from zero and one which represents the intensity of this ripple within this scope',
-        aspect: 'The aspect of the project which is related to this scope.',
+        aspect:
+          'The aspect of the organization which is related to this scope.',
         reason:
-          'The reason the aspect of the project is related to this scope.',
+          'The reason the aspect of the organization is related to this scope.',
         sentiment: 'Either POSITIVE or NEGATIVE',
       },
     },

@@ -2,23 +2,26 @@ import OpenAI from 'openai';
 import getJSONString from '../../../../util/getJSONString.js';
 import { initializer, template } from './prompts/index.js';
 import { GraphQLClient } from 'graphql-request';
-import { GPT_ScopesResponse, RecentlyCreatedProject } from '../../types.js';
+import {
+  GPT_ScopesResponse,
+  RecentlyCreatedOrganization,
+} from '../../types.js';
 import {
   definitions,
   getExistingScopes,
   raisonDetre,
 } from '../../systemPrompts/index.js';
-import { CreateProjectsMutation } from '../../../../../__generated__/graphql.js';
+import { CreateOrganizationsMutation } from '../../../../../__generated__/graphql.js';
 
 export default async function inferScopes(
-  project: CreateProjectsMutation['createProjects']['projects'][0],
+  organization: CreateOrganizationsMutation['createOrganizations']['organizations'][0],
   openai: OpenAI,
   client: GraphQLClient,
 ) {
-  const decorator = `[${new Date().toUTCString()}][${project.name}]`;
+  const decorator = `[${new Date().toUTCString()}][${organization.name}]`;
 
   const existingScopes = await getExistingScopes(client);
-  const messages = [definitions, raisonDetre, initializer(project)];
+  const messages = [definitions, raisonDetre, initializer(organization)];
   if (existingScopes !== null) messages.push(existingScopes);
   messages.push(template);
 

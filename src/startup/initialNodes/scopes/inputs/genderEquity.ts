@@ -17,7 +17,7 @@ const genderEquity: ScopeCreateInput = {
   
         The gender representation across different levels of leadership within the initiative is assessed to ensure equitable access to leadership roles. Encouraging and supporting women and LGBTQI+ individuals in leadership positions is a key focus.
   
-        Integrating gender equity considerations within the framework of the project/program is vital. This includes gender-focused strategies, gender-specific activities, discussions of gender dynamics, and gender-specific metrics in the monitoring and evaluation strategy.
+        Integrating gender equity considerations within the framework of the organization/program is vital. This includes gender-focused strategies, gender-specific activities, discussions of gender dynamics, and gender-specific metrics in the monitoring and evaluation strategy.
         `,
   considerations: {
     Stakeholder: {
@@ -62,7 +62,7 @@ const genderEquity: ScopeCreateInput = {
               name: 'Community Leaders',
               brief:
                 'Leaders within the community who support gender equity initiatives.',
-              description: `Collaboration with community leaders committed to gender equity is vital for project success.`,
+              description: `Collaboration with community leaders committed to gender equity is vital for organization success.`,
             },
           },
         },
@@ -89,7 +89,7 @@ const genderEquity: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What is the extent to which the project/initiative offers a supportive, open environment for LGBTQI+ and non-male individuals?',
+              'What is the extent to which the organization/initiative offers a supportive, open environment for LGBTQI+ and non-male individuals?',
             description:
               'This question explores the inclusivity and supportiveness of the work environment for diverse gender identities and orientations.',
           },
@@ -97,7 +97,7 @@ const genderEquity: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What is the gender representation across different levels of leadership within the initiative/project?',
+              'What is the gender representation across different levels of leadership within the initiative/organization?',
             description:
               'This question assesses the gender balance in leadership positions within the initiative.',
           },
@@ -105,9 +105,9 @@ const genderEquity: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does the project/program integrate gender equity considerations in its framework?',
+              'Does the organization/program integrate gender equity considerations in its framework?',
             description:
-              'This question examines the incorporation of gender equity within the project or program.',
+              'This question examines the incorporation of gender equity within the organization or program.',
           },
         },
       ],

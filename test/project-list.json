@@ -1,5 +1,5 @@
 {
-  "Projects": [
+  "Organizations": [
     {
       "name": "Universe Energy Inc.",
       "locations": [
@@ -52,7 +52,7 @@
       "problem": "Collecting data for carbon credit creation and crop optimization.",
       "solution": "Digital agriculture ecosystem integrating smart farming technologies, transparent carbon credit trading, and MRV land management.",
       "employees": 24,
-      "context": "Provides comprehensive digital platform for agriculture, carbon projects, and technology providers."
+      "context": "Provides comprehensive digital platform for agriculture, carbon organizations, and technology providers."
     },
     {
       "name": "Allye",

@@ -2,17 +2,17 @@ import OpenAI from 'openai';
 import {
   connectRipples,
   connectScopes,
-  createProject,
+  createOrganization,
   inferRipples,
   inferScopes,
 } from './links/index.js';
 import ripplescopeError from './links/ripplescopeError/index.js';
 import * as dotenv from 'dotenv';
 import { GraphQLClient } from 'graphql-request';
-import { ProjectCreateInput } from '../../../__generated__/graphql.js';
+import { OrganizationCreateInput } from '../../../__generated__/graphql.js';
 
 export default async function ripplescopeChain(
-  projectDetails: ProjectCreateInput,
+  organizationDetails: OrganizationCreateInput,
 ) {
   dotenv.config();
   const { GRAPH_URI, OPENAI_API_KEY } = process.env;
@@ -22,13 +22,17 @@ export default async function ripplescopeChain(
   const client = new GraphQLClient(GRAPH_URI);
   const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
 
-  const project = await createProject(projectDetails, client);
+  const organization = await createOrganization(organizationDetails, client);
   try {
-    const scopes = await inferScopes(project, openai, client);
-    const projectWithScopes = await connectScopes(project, scopes, client);
-    const ripplesResponses = await inferRipples(projectWithScopes, openai);
-    await connectRipples(projectWithScopes, ripplesResponses, client);
+    const scopes = await inferScopes(organization, openai, client);
+    const organizationWithScopes = await connectScopes(
+      organization,
+      scopes,
+      client,
+    );
+    const ripplesResponses = await inferRipples(organizationWithScopes, openai);
+    await connectRipples(organizationWithScopes, ripplesResponses, client);
   } catch (error) {
-    await ripplescopeError(project, error, client);
+    await ripplescopeError(organization, error, client);
   }
 }

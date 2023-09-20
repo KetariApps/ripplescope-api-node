@@ -71,7 +71,7 @@ const ozoneProtection: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What is the primary objective of your ozone-related initiative/project, and how does it contribute to environmental and social benefits?',
+              'What is the primary objective of your ozone-related initiative/organization, and how does it contribute to environmental and social benefits?',
             description:
               'This question aims to understand the primary goals of the ozone-related initiative and how it benefits the environment and society.',
           },
@@ -79,7 +79,7 @@ const ozoneProtection: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does this project/program require the use of intensive cooling or a cold chain? If so, please detail the energy sources and their sustainability metrics.',
+              'Does this organization/program require the use of intensive cooling or a cold chain? If so, please detail the energy sources and their sustainability metrics.',
             description:
               'This question inquires about the cooling requirements of the initiative and the sustainability metrics of the energy sources used.',
           },

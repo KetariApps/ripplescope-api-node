@@ -17,13 +17,13 @@ const waterQualityInitiative: ScopeCreateInput = {
   
         Collaboration for Clean Water: In areas lacking clean drinking water or running water, the initiative collaborates with local government and stakeholders to ensure the installation and maintenance of essential services.
   
-        Water Purification and Distribution: The initiative may undertake water purification or distribution projects to enhance clean water availability.
+        Water Purification and Distribution: The initiative may undertake water purification or distribution organizations to enhance clean water availability.
   
         Responsible Water Use: Promoting responsible water use is a priority, extending to employees, stakeholders, and the local community, with the aim of conserving water resources.
   
         Water-Efficient Practices: The initiative incorporates water-efficient technologies and practices to minimize consumption and waste.
   
-        Sustainable Water Management: Initiatives and projects related to rainwater harvesting, water recycling, and sustainable water management practices are considered integral to responsible water use.
+        Sustainable Water Management: Initiatives and organizations related to rainwater harvesting, water recycling, and sustainable water management practices are considered integral to responsible water use.
   
         Water Pollution Prevention: Assessing and addressing potential water pollution or contamination resulting from its activities is a key concern, ensuring the protection of local water sources and ecosystems.
   
@@ -100,7 +100,7 @@ const waterQualityInitiative: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What other actions, if any, is the initiative taking to support clean drinking water in the region and the community, such as water purification or distribution projects?',
+              'What other actions, if any, is the initiative taking to support clean drinking water in the region and the community, such as water purification or distribution organizations?',
             description:
               'This question explores additional actions taken by the initiative to support clean drinking water access.',
           },
@@ -124,9 +124,9 @@ const waterQualityInitiative: ScopeCreateInput = {
         {
           node: {
             brief:
-              "Are there any initiatives or projects aimed at rainwater harvesting, water recycling, or other sustainable water management practices within the initiative's operations?",
+              "Are there any initiatives or organizations aimed at rainwater harvesting, water recycling, or other sustainable water management practices within the initiative's operations?",
             description:
-              'This question assesses the presence of initiatives or projects related to sustainable water management.',
+              'This question assesses the presence of initiatives or organizations related to sustainable water management.',
           },
         },
         {
@@ -151,10 +151,10 @@ const waterQualityInitiative: ScopeCreateInput = {
       create: [
         {
           node: {
-            brief: 'Clean Water Access Project',
+            brief: 'Clean Water Access Organization',
             description:
-              'Initiate a clean water access project to address water access challenges in the community.',
-            name: 'Clean Water Access Project',
+              'Initiate a clean water access organization to address water access challenges in the community.',
+            name: 'Clean Water Access Organization',
           },
         },
         {

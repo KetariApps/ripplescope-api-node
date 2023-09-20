@@ -61,7 +61,7 @@ const health: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does the project/initiative offer any medical insurance or assistance with paying employee medical bills?',
+              'Does the organization/initiative offer any medical insurance or assistance with paying employee medical bills?',
             description:
               'This question examines healthcare support for employees.',
           },
@@ -77,14 +77,14 @@ const health: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How many project/initiative activities invest or drive investments to healthcare infrastructure?',
+              'How many organization/initiative activities invest or drive investments to healthcare infrastructure?',
             description:
               'This question assesses investments in healthcare infrastructure.',
           },
         },
         {
           node: {
-            brief: 'How will this project support local public health?',
+            brief: 'How will this organization support local public health?',
             description:
               "This question focuses on the initiative's impact on public health.",
           },
@@ -100,7 +100,7 @@ const health: ScopeCreateInput = {
         {
           node: {
             brief:
-              'In terms of workplace conditions, what noise level are employees subjected to during project/initiative activities?',
+              'In terms of workplace conditions, what noise level are employees subjected to during organization/initiative activities?',
             description:
               'This question assesses noise levels in the workplace.',
           },
@@ -116,7 +116,7 @@ const health: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does the initiative/project offer any assistance to pregnant employees or new parents, e.g., paid maternity or paternity leave?',
+              'Does the initiative/organization offer any assistance to pregnant employees or new parents, e.g., paid maternity or paternity leave?',
             description:
               'This question addresses support for pregnant employees and new parents.',
           },
@@ -124,7 +124,7 @@ const health: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What mental health services does the initiative/project run to support employee well-being and reduce workplace stress?',
+              'What mental health services does the initiative/organization run to support employee well-being and reduce workplace stress?',
             description:
               'This question focuses on mental health support for employees.',
           },

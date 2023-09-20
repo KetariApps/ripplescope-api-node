@@ -7,9 +7,10 @@ const responseObject: GPT_ScopesResponse = {
       name: 'The name of the scope.',
       description: 'A description of the scope.',
       edge: {
-        aspect: 'The aspect of the project which is related to this scope.',
+        aspect:
+          'The aspect of the organization which is related to this scope.',
         reason:
-          'The reason the aspect of the project is related to this scope.',
+          'The reason the aspect of the organization is related to this scope.',
       },
     },
   ],

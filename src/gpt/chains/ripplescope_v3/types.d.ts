@@ -1,15 +1,17 @@
 import {
-  Project,
+  Organization,
   Ripple,
   Scope,
 } from '../../../../../__generated__/graphql.js';
 import { RippleScopesConnection } from '../../../__generated__/graphql.ts';
-import { connectScopes, createProject } from './links/index.ts';
+import { connectScopes, createOrganization } from './links/index.ts';
 
-export type RecentlyCreatedProject = Awaited<ReturnType<typeof createProject>>;
-export type ProjectWithScopes = Awaited<ReturnType<typeof connectScopes>>;
+export type RecentlyCreatedOrganization = Awaited<
+  ReturnType<typeof createOrganization>
+>;
+export type OrganizationWithScopes = Awaited<ReturnType<typeof connectScopes>>;
 export type ConnectedScopeEdge =
-  ProjectWithScopes['scopesConnection']['edges'][0];
+  OrganizationWithScopes['scopesConnection']['edges'][0];
 
 export type GPT_Ripple = Pick<Ripple, 'name' | 'description'> & {
   edge: {

@@ -16,7 +16,7 @@ const foodSecurity: ScopeCreateInput = {
         - Promoting sustainable agricultural practices like agroecology, permaculture, or organic farming to enhance food production while preserving the environment.
         - Engaging with local farmers and food producers to support their livelihoods and strengthen the local food system.
         - Incorporating climate-resilient crop varieties and agricultural techniques to adapt to changing environmental conditions.
-        - Collaborating with local communities and stakeholders to design and implement projects aligned with their food security and nutrition needs.
+        - Collaborating with local communities and stakeholders to design and implement organizations aligned with their food security and nutrition needs.
         - Collecting and monitoring data to assess the impact of the initiative on food security, nutrition, and agricultural practices in the region.
         `,
   considerations: {
@@ -74,15 +74,15 @@ const foodSecurity: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How many hectares of arable land will this project/initiative require your organization to buy or occupy?',
+              'How many hectares of arable land will this organization/initiative require your organization to buy or occupy?',
             description:
-              'This question addresses the land use requirements of the project and its impact on food production.',
+              'This question addresses the land use requirements of the organization and its impact on food production.',
           },
         },
         {
           node: {
             brief:
-              "In what ways could your project/initiative positively impact food security and nutritional security in the initiative's region and community?",
+              "In what ways could your organization/initiative positively impact food security and nutritional security in the initiative's region and community?",
             description:
               'This question explores the positive impacts and programs related to food and nutritional security.',
           },
@@ -90,7 +90,7 @@ const foodSecurity: ScopeCreateInput = {
         {
           node: {
             brief:
-              "In what ways could your project/initiative negatively impact food or nutritional security in the initiative's region and community?",
+              "In what ways could your organization/initiative negatively impact food or nutritional security in the initiative's region and community?",
             description:
               'This question assesses potential negative impacts and mitigation strategies.',
           },
@@ -98,7 +98,7 @@ const foodSecurity: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does the initiative/project promote sustainable agricultural practices?',
+              'Does the initiative/organization promote sustainable agricultural practices?',
             description:
               'This question focuses on the promotion of sustainable agricultural practices.',
           },
@@ -106,7 +106,7 @@ const foodSecurity: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How does the initiative/project engage with local farmers and food producers?',
+              'How does the initiative/organization engage with local farmers and food producers?',
             description:
               'This question explores the engagement with local agricultural stakeholders.',
           },
@@ -122,7 +122,7 @@ const foodSecurity: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does the initiative/project collaborate with local communities and relevant stakeholders?',
+              'Does the initiative/organization collaborate with local communities and relevant stakeholders?',
             description:
               'This question focuses on collaboration with communities for food security and nutrition initiatives.',
           },
@@ -130,7 +130,7 @@ const foodSecurity: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How is data collected and monitored to assess the impact of the initiative/project?',
+              'How is data collected and monitored to assess the impact of the initiative/organization?',
             description:
               'This question examines the data collection and monitoring processes for impact assessment.',
           },

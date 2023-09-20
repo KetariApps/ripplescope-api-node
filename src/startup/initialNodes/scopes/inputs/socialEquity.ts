@@ -88,7 +88,7 @@ const socialEquity: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What percentage of the initiative/project staff is over 35 years old?',
+              'What percentage of the initiative/organization staff is over 35 years old?',
             description:
               'This question evaluates the age diversity within the workforce.',
           },
@@ -96,7 +96,7 @@ const socialEquity: ScopeCreateInput = {
         {
           node: {
             brief:
-              "What percentage of the initiative/project staff is not a native speaker of the region's official language?",
+              "What percentage of the initiative/organization staff is not a native speaker of the region's official language?",
             description:
               'This question explores language diversity among staff members.',
           },
@@ -104,7 +104,7 @@ const socialEquity: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What percentage of the initiative/project has a registered disability?',
+              'What percentage of the initiative/organization has a registered disability?',
             description:
               'This question assesses the representation of employees with disabilities.',
           },
@@ -112,7 +112,7 @@ const socialEquity: ScopeCreateInput = {
         {
           node: {
             brief:
-              'Does the initiative/project have some form of DEI group/committee? If so, what percentage of the total employees and communities-served have their interests represented in the DEI group?',
+              'Does the initiative/organization have some form of DEI group/committee? If so, what percentage of the total employees and communities-served have their interests represented in the DEI group?',
             description:
               'This question examines the existence and representation of a DEI group or committee.',
           },
@@ -128,7 +128,7 @@ const socialEquity: ScopeCreateInput = {
         {
           node: {
             brief:
-              'How transparent is the initiative/project in sharing its diversity and inclusion metrics and progress with the public?',
+              'How transparent is the initiative/organization in sharing its diversity and inclusion metrics and progress with the public?',
             description:
               'This question assesses the transparency of the initiative in sharing diversity and inclusion metrics.',
           },
