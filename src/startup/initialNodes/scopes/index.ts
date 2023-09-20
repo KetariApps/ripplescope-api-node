@@ -12,7 +12,7 @@ export { default as health } from './inputs/health.js';
 export { default as housing } from './inputs/housing.js';
 export { default as incomeAndWork } from './inputs/incomeAndWork.js';
 export { default as land } from './inputs/land.js';
-export { default as networks } from './inputs/nitrogenAndPhosphorousLoading.js';
+export { default as networks } from './inputs/networks.js';
 export { default as nitrogenAndPhosphorousLoading } from './inputs/nitrogenAndPhosphorousLoading.js';
 export { default as oceans } from './inputs/oceans.js';
 export { default as ozoneProtection } from './inputs/ozoneProtection.js';
