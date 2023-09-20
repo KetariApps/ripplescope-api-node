@@ -11,7 +11,7 @@ const airPollution: ScopeCreateInput = {
   the environment and local inhabitants. Monitoring these emissions is essential not only for compliance 
   but for understanding and mitigating potential impacts.
 
-    Implementing controls and technologies to curb pollution showcases an initiative’s commitment to 
+    Implementing controls and technologies to curb pollution showcases an initiative\'s commitment to 
     ecological responsibility. Undertaking an air quality impact assessment further emphasizes proactive 
     measures to gauge and reduce potential harmful effects.
     
@@ -52,7 +52,7 @@ const airPollution: ScopeCreateInput = {
         {
           where: {
             node: {
-              name: null,
+              name: 'PUBLIC HEALTH EXPERTS',
             },
           },
           onCreate: {
