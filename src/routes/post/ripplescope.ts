@@ -1,50 +1,41 @@
-import { Request, Response } from "express";
-import { CategorizationRequest } from "../../types.js";
-import { GraphQLClient } from "graphql-request";
-import { getProjects } from "../../db/queries/getProjects.js";
-import dbName from "../../helpers/dbName.js";
-import chains from "../../gpt/chains/index.js";
+import { Request, Response } from 'express';
+import { GraphQLClient } from 'graphql-request';
+import { ProjectCreateInput } from '../../__generated__/graphql.js';
+import ripplescopeChain from '../../gpt/chains/ripplescope_v3/index.js';
+import { countProjects } from '../../db/query/project/count.js';
 
 export default async function ripplescope(
   req: Request,
   res: Response,
-  client: GraphQLClient
+  client: GraphQLClient,
 ) {
   try {
-    const categorizationRequest = req.body as CategorizationRequest;
-    console.log({
-      type: "categorization request",
-      content: categorizationRequest,
+    const { input } = req.body as
+      | { input: ProjectCreateInput }
+      | { input: Array<ProjectCreateInput> };
+    const inputArray = Array.isArray(input) ? input : [input];
+
+    Promise.allSettled(
+      inputArray.map(async (project) => {
+        const countProjectsQuery = await client.request(countProjects, {
+          where: { website: project.website },
+        });
+        if (countProjectsQuery.projectsAggregate.count > 0) {
+          // project does exist already, avoid recategorization
+          throw new Error(`Project already exists: ${project.website}`);
+        }
+        ripplescopeChain(project);
+      }),
+    );
+
+    res.status(200).json({
+      message: 'Analyzing projects',
+      content: inputArray.map((project) => project.website),
     });
-    const getProjectsQuery = await getProjects(client, {
-      where: {
-        uniqueName: dbName(categorizationRequest.project.name),
-      },
-      includeImpacts: false,
-      includeLocations: false,
-    });
-    if (getProjectsQuery.projects.length === 0) {
-      // the project does not exist -- create it
-      const maybeRipplescopeResponse = chains.ripplescope(
-        categorizationRequest.project,
-        client
-      );
-      res.status(200).json({
-        message: "Evaluating project",
-        content: dbName(categorizationRequest.project.name),
-      });
-      res.end(); // End the response
-    } else {
-      // project does exist already, this is a re-categorization
-      res.status(200).json({
-        message: "Project already exists",
-        content: dbName(categorizationRequest.project.name),
-      });
-      res.end(); // End the response
-    }
+    res.end();
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "An error occurred" });
-    res.end(); // Ensure the response is properly terminated
+    res.status(500).json({ error });
+    res.end();
   }
 }

@@ -10,11 +10,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf build && npx tsc",
-    "start": "npm run build && node build/index.js",
+    "start": "node build/index.js",
     "compile": "graphql-codegen",
     "watch": "graphql-codegen -w",
     "codegen": "graphql-codegen --config codegen.ts",
-    "insert-impacts": "GRAPH_URI='http://localhost:4100/graphql' node build/db/insertAllImpactAreas.js",
+    "pre-populate-database": "node build/startup/index.js",
     "insert-single-project": "cd test && ./project.sh",
     "insert-project-list": "cd test && ./project-list.sh"
   },
