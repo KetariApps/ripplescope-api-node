@@ -2,10 +2,7 @@ import OpenAI from 'openai';
 import getJSONString from '../../../../util/getJSONString.js';
 import { initializer, template } from './prompts/index.js';
 import { GraphQLClient } from 'graphql-request';
-import {
-  GPT_ScopesResponse,
-  RecentlyCreatedOrganization,
-} from '../../types.js';
+import { GPT_ScopesResponse } from '../../types.js';
 import {
   definitions,
   getExistingScopes,

@@ -9,10 +9,12 @@ import OpenAI from 'openai';
 import { createOrganization } from '../../gpt/chains/ripplescope_v3/links/index.js';
 import { v4 as uuid } from 'uuid';
 import ripplescopeChain from '../../gpt/chains/ripplescope_v3/index.js';
+import parseScrapedData, {
+  ParseScrapedDataProps,
+} from '../../gpt/util/parseScrapedData.js';
 
-export default async function ripplescope(req: Request, res: Response) {
+export default async function scraped(req: Request, res: Response) {
   try {
-    const { input } = req.body as { input: OrganizationCreateInput };
     dotenv.config();
     const { GRAPH_URI, OPENAI_API_KEY } = process.env;
     if (GRAPH_URI === undefined) throw new Error('GRAPH_URI is undefined');
@@ -20,9 +22,14 @@ export default async function ripplescope(req: Request, res: Response) {
       throw new Error('OPENAI_API_KEY is undefined');
     const client = new GraphQLClient(GRAPH_URI);
     const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
+
+    const data = req.body as ParseScrapedDataProps;
+    console.log(data);
+    const parsedInput = parseScrapedData(data);
+
     const processId = uuid();
     const inputWithStatus: OrganizationCreateInput = {
-      ...input,
+      ...parsedInput,
       statuses: {
         connectOrCreate: [
           {

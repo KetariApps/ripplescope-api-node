@@ -4,6 +4,7 @@ import cors from 'cors';
 // import neo4j, { Driver } from "neo4j-driver";
 import { GraphQLClient } from 'graphql-request';
 import ripplescope from './routes/post/ripplescope.js';
+import scraped from './routes/post/scraped.js';
 
 //// env stuff
 dotenv.config();
@@ -29,6 +30,7 @@ if (
 
     // set up the routes
     app.post('/ripplescope', (req, res) => ripplescope(req, res));
+    app.post('/ripplescope/scraped', (req, res) => scraped(req, res));
 
     // Start the server
     app.listen(PORT, () => {

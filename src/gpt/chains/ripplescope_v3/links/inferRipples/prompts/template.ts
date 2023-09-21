@@ -20,7 +20,7 @@ const responseObject: GPT_RipplesResponse = {
 };
 const template: OpenAI.Chat.CreateChatCompletionRequestMessage = {
   role: 'assistant',
-  content: `Return an answer in the following format:\n\n${JSON.stringify(
+  content: `Answer as a JSON object in the following format:\n\n${JSON.stringify(
     responseObject,
     undefined,
     2,

@@ -11,6 +11,7 @@ export default function getJSONString(str: string) {
     !str.includes('[') ||
     !str.includes(']')
   ) {
+    console.log(str);
     throw new Error('String did not contain valid JSON');
   }
 

@@ -6,7 +6,7 @@ import {
   OrganizationWithScopes,
 } from '../../types.js';
 import { definitions, raisonDetre } from '../../systemPrompts/index.js';
-import { initializer } from './prompts/index.js';
+import { initializer, template } from './prompts/index.js';
 import { connectScopes } from '../index.js';
 
 export default async function inferRipples(
@@ -25,6 +25,7 @@ export default async function inferRipples(
           definitions,
           raisonDetre,
           ...initializer(organization, scopeEdge),
+          template,
         ],
       });
 
@@ -69,9 +70,12 @@ export default async function inferRipples(
     if (result.status === 'fulfilled') {
       fulfilled_GPT_RipplesResponses.push(result.value);
     } else {
-      throw new Error(result.reason);
+      console.error(result.reason);
     }
   });
+  if (fulfilled_GPT_RipplesResponses.length === 0) {
+    throw new Error('Could not infer any ripples on organization.');
+  }
   const flat_fulfilled_GPT_RipplesResponses =
     fulfilled_GPT_RipplesResponses.flat();
   return flat_fulfilled_GPT_RipplesResponses;

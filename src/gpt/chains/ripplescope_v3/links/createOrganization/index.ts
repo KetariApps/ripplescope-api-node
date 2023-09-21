@@ -1,21 +1,22 @@
 import { GraphQLClient } from 'graphql-request';
 import { createOrganizations } from '../../../../../db/mutation/organization/create.js';
 import { OrganizationCreateInput } from '../../../../../__generated__/graphql.js';
-import { countOrganizations } from '../../../../../db/query/organization/count.js';
-import parseHostname from '../../../../util/parseHostname.js';
+import isWebsiteResponsive from './preflight/isWebsiteResponsive.js';
+import isWebsiteInDatabase from './preflight/isWebsiteInDatabase.js';
 
 export default async function createOrganization(
   organizationDetails: OrganizationCreateInput,
   client: GraphQLClient,
 ) {
-  const orgHostname = parseHostname(organizationDetails.website);
-  const { organizationsAggregate } = await client.request(countOrganizations, {
-    where: { website_CONTAINS: orgHostname || organizationDetails.website },
-  });
-  if (organizationsAggregate.count > 0) {
-    throw new Error(
-      `Error : DUPLICATE : This organization already exists. ${organizationDetails.name} | ${organizationDetails.website} | ${orgHostname}`,
-    );
+  const isWebsiteResponding = isWebsiteResponsive(organizationDetails.website);
+  const isNewOrganization = isWebsiteInDatabase(
+    organizationDetails.website,
+    client,
+  );
+  try {
+    await Promise.all([isWebsiteResponding, isNewOrganization]);
+  } catch (error) {
+    throw new Error(error as string);
   }
   const createOrganizationsMutation = await client.request(
     createOrganizations,

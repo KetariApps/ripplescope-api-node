@@ -1,8 +1,9 @@
-format this list into a a JSON object with this shape:  {Organizations: {
-    name: string;
-    locations: {nation: NationCode, city: string, state?:string}[];
-    problem: string (phrase as a problem statement);
-    solution: string (phrase as a solution statement);
-    employees?: int
-    context: string (any additional information that might help in analyzing the company's ethical and ethological impact)
-  }}
+Organizations: [{
+  name: the name of the company,
+  website: "the company's website",
+  problem: "the problem the company is solving",
+  solution: "the company's solution to the problem",
+  team: "any information about the company's team in paragraph form",
+  geographic: "a description of the geographic context in which the company operates and impacts through its operations in paragraph form",
+  misc?: Array<"Any additional context about the company and its operations that did not fit in the previous sections">,
+}]
