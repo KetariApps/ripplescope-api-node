@@ -1045,7 +1045,7 @@ export type GeographicOrganizationOrganizationAggregationSelection = {
 
 export type GeographicOrganizationOrganizationNodeAggregateSelection = {
   __typename?: 'GeographicOrganizationOrganizationNodeAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
+  brief: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -1676,7 +1676,7 @@ export type MiscOrganizationOrganizationAggregationSelection = {
 
 export type MiscOrganizationOrganizationNodeAggregateSelection = {
   __typename?: 'MiscOrganizationOrganizationNodeAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
+  brief: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -2363,7 +2363,7 @@ export type MutationUpdateWebDumpsArgs = {
 
 export type Organization = {
   __typename?: 'Organization';
-  brief: Scalars['String']['output'];
+  brief?: Maybe<Scalars['String']['output']>;
   considerations: Array<OrganizationConsideration>;
   considerationsConnection: OrganizationConsiderationsConnection;
   createdAt: Scalars['DateTime']['output'];
@@ -2541,7 +2541,7 @@ export type OrganizationUsersConnectionArgs = {
 
 export type OrganizationAggregateSelection = {
   __typename?: 'OrganizationAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
+  brief: StringAggregateSelectionNullable;
   count: Scalars['Int']['output'];
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
@@ -2877,7 +2877,7 @@ export type OrganizationConsiderationsWebDumpUpdateFieldInput = {
 };
 
 export type OrganizationCreateInput = {
-  brief: Scalars['String']['input'];
+  brief?: InputMaybe<Scalars['String']['input']>;
   considerations?: InputMaybe<OrganizationConsiderationsCreateInput>;
   description?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
@@ -2970,22 +2970,26 @@ export type OrganizationHasStatus = {
   createdAt: Scalars['DateTime']['output'];
   dump?: Maybe<Scalars['String']['output']>;
   message?: Maybe<Scalars['String']['output']>;
+  processId: Scalars['String']['output'];
 };
 
 export type OrganizationHasStatusCreateInput = {
   dump?: InputMaybe<Scalars['String']['input']>;
   message?: InputMaybe<Scalars['String']['input']>;
+  processId: Scalars['String']['input'];
 };
 
 export type OrganizationHasStatusSort = {
   createdAt?: InputMaybe<SortDirection>;
   dump?: InputMaybe<SortDirection>;
   message?: InputMaybe<SortDirection>;
+  processId?: InputMaybe<SortDirection>;
 };
 
 export type OrganizationHasStatusUpdateInput = {
   dump?: InputMaybe<Scalars['String']['input']>;
   message?: InputMaybe<Scalars['String']['input']>;
+  processId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type OrganizationHasStatusWhere = {
@@ -3008,10 +3012,15 @@ export type OrganizationHasStatusWhere = {
   message_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
   message_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   message_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
+  processId?: InputMaybe<Scalars['String']['input']>;
+  processId_CONTAINS?: InputMaybe<Scalars['String']['input']>;
+  processId_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
+  processId_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  processId_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type OrganizationOnCreateInput = {
-  brief: Scalars['String']['input'];
+  brief?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   verified?: Scalars['Boolean']['input'];
@@ -3037,6 +3046,7 @@ export type OrganizationOrganizationStatusStatusesEdgeAggregateSelection = {
   createdAt: DateTimeAggregateSelectionNonNullable;
   dump: StringAggregateSelectionNullable;
   message: StringAggregateSelectionNullable;
+  processId: StringAggregateSelectionNonNullable;
 };
 
 export type OrganizationOrganizationStatusStatusesNodeAggregateSelection = {
@@ -3942,11 +3952,12 @@ export type OrganizationStatusOrganizationOrganizationsEdgeAggregateSelection = 
   createdAt: DateTimeAggregateSelectionNonNullable;
   dump: StringAggregateSelectionNullable;
   message: StringAggregateSelectionNullable;
+  processId: StringAggregateSelectionNonNullable;
 };
 
 export type OrganizationStatusOrganizationOrganizationsNodeAggregateSelection = {
   __typename?: 'OrganizationStatusOrganizationOrganizationsNodeAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
+  brief: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -3969,7 +3980,7 @@ export type OrganizationStatusOrganizationsAggregateInput = {
 
 export type OrganizationStatusOrganizationsConnectFieldInput = {
   connect?: InputMaybe<Array<OrganizationConnectInput>>;
-  edge?: InputMaybe<OrganizationHasStatusCreateInput>;
+  edge: OrganizationHasStatusCreateInput;
   /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
   overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<OrganizationConnectWhere>;
@@ -3981,7 +3992,7 @@ export type OrganizationStatusOrganizationsConnectOrCreateFieldInput = {
 };
 
 export type OrganizationStatusOrganizationsConnectOrCreateFieldInputOnCreate = {
-  edge?: InputMaybe<OrganizationHasStatusCreateInput>;
+  edge: OrganizationHasStatusCreateInput;
   node: OrganizationOnCreateInput;
 };
 
@@ -4006,7 +4017,7 @@ export type OrganizationStatusOrganizationsConnectionWhere = {
 };
 
 export type OrganizationStatusOrganizationsCreateFieldInput = {
-  edge?: InputMaybe<OrganizationHasStatusCreateInput>;
+  edge: OrganizationHasStatusCreateInput;
   node: OrganizationCreateInput;
 };
 
@@ -4064,6 +4075,21 @@ export type OrganizationStatusOrganizationsEdgeAggregationWhereInput = {
   message_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
   message_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
   message_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  processId_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  processId_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  processId_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  processId_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  processId_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  processId_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  processId_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  processId_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  processId_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  processId_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  processId_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  processId_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  processId_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  processId_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  processId_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type OrganizationStatusOrganizationsFieldInput = {
@@ -4155,6 +4181,7 @@ export type OrganizationStatusOrganizationsRelationship = OrganizationHasStatus 
   dump?: Maybe<Scalars['String']['output']>;
   message?: Maybe<Scalars['String']['output']>;
   node: Organization;
+  processId: Scalars['String']['output'];
 };
 
 export type OrganizationStatusOrganizationsUpdateConnectionInput = {
@@ -4247,7 +4274,7 @@ export type OrganizationStatusesAggregateInput = {
 
 export type OrganizationStatusesConnectFieldInput = {
   connect?: InputMaybe<Array<OrganizationStatusConnectInput>>;
-  edge?: InputMaybe<OrganizationHasStatusCreateInput>;
+  edge: OrganizationHasStatusCreateInput;
   /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
   overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<OrganizationStatusConnectWhere>;
@@ -4259,7 +4286,7 @@ export type OrganizationStatusesConnectOrCreateFieldInput = {
 };
 
 export type OrganizationStatusesConnectOrCreateFieldInputOnCreate = {
-  edge?: InputMaybe<OrganizationHasStatusCreateInput>;
+  edge: OrganizationHasStatusCreateInput;
   node: OrganizationStatusOnCreateInput;
 };
 
@@ -4284,7 +4311,7 @@ export type OrganizationStatusesConnectionWhere = {
 };
 
 export type OrganizationStatusesCreateFieldInput = {
-  edge?: InputMaybe<OrganizationHasStatusCreateInput>;
+  edge: OrganizationHasStatusCreateInput;
   node: OrganizationStatusCreateInput;
 };
 
@@ -4342,6 +4369,21 @@ export type OrganizationStatusesEdgeAggregationWhereInput = {
   message_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
   message_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
   message_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  processId_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
+  processId_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
+  processId_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
+  processId_AVERAGE_LENGTH_LT?: InputMaybe<Scalars['Float']['input']>;
+  processId_AVERAGE_LENGTH_LTE?: InputMaybe<Scalars['Float']['input']>;
+  processId_LONGEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  processId_LONGEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  processId_LONGEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  processId_LONGEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  processId_LONGEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
+  processId_SHORTEST_LENGTH_EQUAL?: InputMaybe<Scalars['Int']['input']>;
+  processId_SHORTEST_LENGTH_GT?: InputMaybe<Scalars['Int']['input']>;
+  processId_SHORTEST_LENGTH_GTE?: InputMaybe<Scalars['Int']['input']>;
+  processId_SHORTEST_LENGTH_LT?: InputMaybe<Scalars['Int']['input']>;
+  processId_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type OrganizationStatusesFieldInput = {
@@ -4684,7 +4726,7 @@ export type OrganizationWhere = {
   brief?: InputMaybe<Scalars['String']['input']>;
   brief_CONTAINS?: InputMaybe<Scalars['String']['input']>;
   brief_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
-  brief_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  brief_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   brief_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
   /** Return Organizations where all of the related OrganizationConsiderationsConnections match this filter */
   considerationsConnection_ALL?: InputMaybe<OrganizationConsiderationsConnectionWhere>;
@@ -5174,7 +5216,7 @@ export type ProblemOrganizationOrganizationAggregationSelection = {
 
 export type ProblemOrganizationOrganizationNodeAggregateSelection = {
   __typename?: 'ProblemOrganizationOrganizationNodeAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
+  brief: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -7367,7 +7409,7 @@ export type RippleOrganizationOrganizationEdgeAggregateSelection = {
 
 export type RippleOrganizationOrganizationNodeAggregateSelection = {
   __typename?: 'RippleOrganizationOrganizationNodeAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
+  brief: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -8402,7 +8444,7 @@ export type ScopeOrganizationOrganizationsEdgeAggregateSelection = {
 
 export type ScopeOrganizationOrganizationsNodeAggregateSelection = {
   __typename?: 'ScopeOrganizationOrganizationsNodeAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
+  brief: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -9892,7 +9934,7 @@ export type SolutionOrganizationOrganizationAggregationSelection = {
 
 export type SolutionOrganizationOrganizationNodeAggregateSelection = {
   __typename?: 'SolutionOrganizationOrganizationNodeAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
+  brief: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -10662,7 +10704,7 @@ export type StakeholderOrganizationOrganizationsAggregationSelection = {
 
 export type StakeholderOrganizationOrganizationsNodeAggregateSelection = {
   __typename?: 'StakeholderOrganizationOrganizationsNodeAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
+  brief: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -11854,7 +11896,7 @@ export type TeamOrganizationOrganizationAggregationSelection = {
 
 export type TeamOrganizationOrganizationNodeAggregateSelection = {
   __typename?: 'TeamOrganizationOrganizationNodeAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
+  brief: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -13708,7 +13750,7 @@ export type WebDumpOrganizationOrganizationAggregationSelection = {
 
 export type WebDumpOrganizationOrganizationNodeAggregateSelection = {
   __typename?: 'WebDumpOrganizationOrganizationNodeAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
+  brief: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -14044,7 +14086,7 @@ export type CreateOrganizationsMutationVariables = Exact<{
 }>;
 
 
-export type CreateOrganizationsMutation = { __typename?: 'Mutation', createOrganizations: { __typename?: 'CreateOrganizationsMutationResponse', organizations: Array<{ __typename?: 'Organization', id: string, name: string, solutions: Array<{ __typename?: 'Solution', id: string, brief?: string | null, problems: Array<{ __typename?: 'Problem', id: string, brief?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', id: string, name: string }> }> }>, considerations: Array<{ __typename?: 'Geographic', brief?: string | null } | { __typename?: 'Misc', content: string } | { __typename?: 'Team', brief?: string | null } | { __typename?: 'WebDump', content: string }> }> } };
+export type CreateOrganizationsMutation = { __typename?: 'Mutation', createOrganizations: { __typename?: 'CreateOrganizationsMutationResponse', organizations: Array<{ __typename?: 'Organization', id: string, name: string, brief?: string | null, description?: string | null, solutions: Array<{ __typename?: 'Solution', id: string, brief?: string | null, description?: string | null, problems: Array<{ __typename?: 'Problem', id: string, brief?: string | null, description?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', id: string, name: string, description?: string | null }> }> }>, considerations: Array<{ __typename?: 'Geographic', brief?: string | null, description?: string | null } | { __typename?: 'Misc', content: string } | { __typename?: 'Team', brief?: string | null, description?: string | null } | { __typename?: 'WebDump', content: string }> }> } };
 
 export type UpdateOrganizationsMutationVariables = Exact<{
   where?: InputMaybe<OrganizationWhere>;
@@ -14069,6 +14111,13 @@ export type CountOrganizationsQueryVariables = Exact<{
 
 export type CountOrganizationsQuery = { __typename?: 'Query', organizationsAggregate: { __typename?: 'OrganizationAggregateSelection', count: number } };
 
+export type OrganizationsQuickQueryVariables = Exact<{
+  where?: InputMaybe<OrganizationWhere>;
+}>;
+
+
+export type OrganizationsQuickQuery = { __typename?: 'Query', organizations: Array<{ __typename?: 'Organization', name: string, id: string, website: string }> };
+
 export type ScopesQueryVariables = Exact<{
   where?: InputMaybe<ScopeWhere>;
 }>;
@@ -14077,8 +14126,9 @@ export type ScopesQueryVariables = Exact<{
 export type ScopesQuery = { __typename?: 'Query', scopes: Array<{ __typename?: 'Scope', name: string, brief: string, basis?: string | null }> };
 
 
-export const CreateOrganizationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateOrganizations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createOrganizations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"solutions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"problems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"stakeholders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Misc"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebDump"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Geographic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Team"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateOrganizationsMutation, CreateOrganizationsMutationVariables>;
+export const CreateOrganizationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateOrganizations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createOrganizations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"solutions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"problems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"stakeholders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Misc"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebDump"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Geographic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Team"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateOrganizationsMutation, CreateOrganizationsMutationVariables>;
 export const UpdateOrganizationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateOrganizations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationConnectOrCreateInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"create"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationRelationInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateOrganizations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"create"},"value":{"kind":"Variable","name":{"kind":"Name","value":"create"}}},{"kind":"Argument","name":{"kind":"Name","value":"connectOrCreate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"solutions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"problems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"stakeholders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Misc"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebDump"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Geographic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Team"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"statuses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"scopesConnection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"aspect"}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"basis"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"stakeholders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Question"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Example"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateOrganizationsMutation, UpdateOrganizationsMutationVariables>;
 export const CreateScopesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateScopes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ScopeCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createScopes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"scopes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"basis"}}]}}]}}]}}]} as unknown as DocumentNode<CreateScopesMutation, CreateScopesMutationVariables>;
 export const CountOrganizationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CountOrganizations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationWhere"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizationsAggregate"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"count"}}]}}]}}]} as unknown as DocumentNode<CountOrganizationsQuery, CountOrganizationsQueryVariables>;
+export const OrganizationsQuickDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"OrganizationsQuick"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationWhere"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"website"}}]}}]}}]} as unknown as DocumentNode<OrganizationsQuickQuery, OrganizationsQuickQueryVariables>;
 export const ScopesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Scopes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"ScopeWhere"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"scopes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"basis"}}]}}]}}]} as unknown as DocumentNode<ScopesQuery, ScopesQueryVariables>;

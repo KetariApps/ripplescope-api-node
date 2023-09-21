@@ -1,9 +1,10 @@
 import { GraphQLClient } from 'graphql-request';
-import { updateOrganizations } from '../../../../../db/mutation/organization/update.js';
 import { OrganizationStatusName } from '../../../../../__generated__/graphql.js';
 import { RecentlyCreatedOrganization } from '../../types.js';
+import { updateOrganizations } from '../../../../../db/mutation/organization/update.js';
 
 export default async function ripplescopeError(
+  processId: string,
   organization: RecentlyCreatedOrganization,
   error: any,
   client: GraphQLClient,
@@ -21,7 +22,7 @@ export default async function ripplescopeError(
             },
             onCreate: {
               node: { name: errorStatus },
-              edge: { dump: JSON.stringify(error) },
+              edge: { dump: JSON.stringify(error), processId },
             },
           },
         ],

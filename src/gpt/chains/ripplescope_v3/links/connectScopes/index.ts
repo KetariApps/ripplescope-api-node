@@ -7,6 +7,7 @@ import { GPT_ScopesResponse } from '../../types.js';
 import { updateOrganizations } from '../../../../../db/mutation/organization/update.js';
 
 export default async function connectScopes(
+  processId: string,
   organization: CreateOrganizationsMutation['createOrganizations']['organizations'][0],
   scopes: GPT_ScopesResponse['scopes'],
   client: GraphQLClient,
@@ -26,6 +27,7 @@ export default async function connectScopes(
             },
             onCreate: {
               node: { name: recentlyCompletedStep },
+              edge: { processId },
             },
           },
           {
@@ -34,6 +36,7 @@ export default async function connectScopes(
             },
             onCreate: {
               node: { name: nextStep },
+              edge: { processId },
             },
           },
         ],

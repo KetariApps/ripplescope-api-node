@@ -1,13 +1,14 @@
 import { GraphQLClient } from 'graphql-request';
-import { updateOrganizations } from '../../../../../db/mutation/organization/update.js';
 import inferRipples from '../inferRipples/index.js';
 import {
   OrganizationStatusName,
   RipplesSentiment,
 } from '../../../../../__generated__/graphql.js';
 import { OrganizationWithScopes } from '../../types.js';
+import { updateOrganizations } from '../../../../../db/mutation/organization/update.js';
 
 export default async function connectRipples(
+  processId: string,
   organization: OrganizationWithScopes,
   ripplesResponses: Awaited<ReturnType<typeof inferRipples>>,
   client: GraphQLClient,
@@ -27,6 +28,7 @@ export default async function connectRipples(
             },
             onCreate: {
               node: { name: recentlyCompletedStep },
+              edge: { processId },
             },
           },
           {
@@ -35,6 +37,7 @@ export default async function connectRipples(
             },
             onCreate: {
               node: { name: nextStep },
+              edge: { processId },
             },
           },
         ],

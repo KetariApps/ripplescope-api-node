@@ -6,15 +6,20 @@ mutation CreateOrganizations($input: [OrganizationCreateInput!]!) {
       organizations {
         id
         name
+        brief
+        description
         solutions {
           id
           brief
+          description
           problems {
             id
             brief
+            description
             stakeholders {
               id
               name
+              description
             }
           }
         }
@@ -27,9 +32,11 @@ mutation CreateOrganizations($input: [OrganizationCreateInput!]!) {
           }
           ... on Geographic {
             brief
+            description
           }
           ... on Team {
             brief
+            description
           }
         }
       }
