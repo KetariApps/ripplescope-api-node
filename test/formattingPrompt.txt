@@ -1,9 +1,11 @@
 Organizations: [{
-  name: the name of the company,
-  website: "the company's website",
-  problem: "the problem the company is solving",
-  solution: "the company's solution to the problem",
-  team: "any information about the company's team in paragraph form",
-  geographic: "a description of the geographic context in which the company operates and impacts through its operations in paragraph form",
-  misc?: Array<"Any additional context about the company and its operations that did not fit in the previous sections">,
+  name: “the name of the organization”,
+  brief: “a brief description of the organization,
+  description: “a detailed description of the organization”,
+  website: “the organization’s website”,
+  problem: “the problem the organization is solving”,
+  solution: “the organization’s solution to the problem”,
+  team: “any information about the organization’s team in paragraph form”,
+  geographic: “a description of the geographic context in which the organization operates and impacts through its operations in paragraph form”,
+  misc?: Array<“Any additional context about the organization and its operations that did not fit in the previous sections”>,
 }]

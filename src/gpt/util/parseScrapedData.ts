@@ -5,6 +5,8 @@ import {
 
 export interface ScrapedOrganizationData {
   name: string;
+  brief: string;
+  description: string;
   website: string;
   problem: string;
   solution: string;
@@ -20,8 +22,17 @@ export default function parseScrapedData({
   organization,
   userEmail,
 }: ParseScrapedDataProps) {
-  const { name, website, problem, solution, team, geographic, misc } =
-    organization;
+  const {
+    name,
+    brief,
+    description,
+    website,
+    problem,
+    solution,
+    team,
+    geographic,
+    misc,
+  } = organization;
   const userConnection = {
     connectOrCreate: [
       {
@@ -44,6 +55,8 @@ export default function parseScrapedData({
 
   const input: OrganizationCreateInput = {
     name,
+    brief,
+    description,
     website,
     users: userConnection,
     solutions: {
