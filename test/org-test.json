@@ -2,14 +2,16 @@
   "Organizations": [
     {
       "organization": {
-        "name": "Birdstop",
-        "website": "https://www.birdstop.io/",
-        "problem": "Companies in sectors ranging from energy to agriculture to telecommunications need to make mission critical decisions in near real-time. Humans can't always access these areas quickly.",
-        "solution": "Birdstop nodes sit in the field to deploy and command Unmanned Aerial Vehicles (UAVs) in conjunction with fixed sensors to acquire intel without requiring personnel onsite.",
-        "team": "The Birdstop team is brought together by a vision of building a new remote sensing platform using uncrewed aerial technology in low altitude airspace.",
-        "geographic": "Birdstop operates in Concord, California, United States, and impacts the remote sensing and data collection landscape in various industries globally.",
+        "name": "Andes",
+        "brief": "A company focused on removing CO2 from the atmosphere using minerals.",
+        "description": "Andes, located in Alameda, California, United States, employs 34 professionals to tackle the problem of atmospheric CO2. They use microorganisms to permanently remove CO2 by introducing beneficial microorganisms to the soil along with agricultural seeds. These microorganisms accelerate the conversion of CO2 into minerals, which move deep into the soil with rainfall, contributing to annual CO2 removal. This technology seamlessly integrates with existing farm operations, turning agricultural fields into carbon dioxide removal hubs while growing food. Andes offers an easy-to-adopt, low-cost solution for gigatonne-scale CO2 removal within years.",
+        "website": "https://www.andes.bio/",
+        "problem": "Removing CO2 from the atmosphere by way of minerals.",
+        "solution": "We use microorganisms to permanently remove CO₂ from the atmosphere. Andes beneficial microorganisms are added to the soil along with agricultural seeds, such as corn and wheat. These microorganisms grow with plant roots and accelerate the conversion of CO₂ into minerals. With rainfall, these minerals move deep into the soil, making room for annual CO₂ removal. Our microorganism technology integrates seamlessly with existing farm operations. These microorganisms enable agricultural fields to become mega-factories of carbon dioxide removal while growing food. Our easy-to-adopt technology results in low-cost, gigatonne-scale carbon dioxide removal in years, not decades. With science and technology, we harness what microorganisms have been doing for billions of years.",
+        "team": "The Andes team consists of 34 dedicated professionals with expertise in microbiology, agriculture, and sustainability.",
+        "geographic": "Andes operates in Alameda, California, United States, but their impact is global as they contribute to addressing climate change.",
         "misc": [
-          "Birdstop's vision is to effectively build a constellation of satellites that sit on the ground, collecting high fidelity data on demand. Join us in pioneering a new layer of Earth observation."
+          "The build-up of minerals in agricultural fields has positive effects on soil and plant health. Benefits of minerals include improved water drainage, higher nutrient content in the soil, and decreased likelihood of plant diseases. Additionally, minerals stabilize soil organic matter, benefiting the overall health of soil, plants, and communities that depend on agricultural systems. Female founder."
         ]
       },
       "userEmail": "matt.scouten@gmail.com"

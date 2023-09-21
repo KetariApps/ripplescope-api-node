@@ -12,7 +12,7 @@ const initializer = (
   
     -------
   
-    Classify this organization to all of the provided scopes where its operations have any impact.
+    Classify this organization to any of the provided scopes where its operations have any impact.
   `,
 });
 export default initializer;

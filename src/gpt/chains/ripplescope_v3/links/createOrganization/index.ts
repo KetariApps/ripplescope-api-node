@@ -8,13 +8,9 @@ export default async function createOrganization(
   organizationDetails: OrganizationCreateInput,
   client: GraphQLClient,
 ) {
-  const isWebsiteResponding = isWebsiteResponsive(organizationDetails.website);
-  const isNewOrganization = isWebsiteInDatabase(
-    organizationDetails.website,
-    client,
-  );
   try {
-    await Promise.all([isWebsiteResponding, isNewOrganization]);
+    await isWebsiteResponsive(organizationDetails.website);
+    await isWebsiteInDatabase(organizationDetails.website, client);
   } catch (error) {
     throw new Error(error as string);
   }
