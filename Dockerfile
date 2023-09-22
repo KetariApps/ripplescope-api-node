@@ -1,4 +1,5 @@
 FROM node:alpine
+ENV GRAPH_URI="https://ripplescope.com/api/graph/"
 WORKDIR /app
 COPY . .
 RUN npm install
