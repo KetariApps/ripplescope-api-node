@@ -12,7 +12,7 @@ const initializer = (
   
     -------
   
-    Classify this organization to any of the provided scopes where its operations have any impact.
+    Return any Scopes in which this Organization's operations cause Ripples, either by the primary operations or secondary effects of the Organization's operations. Use the provided scopes when applicable.
   `,
 });
 export default initializer;

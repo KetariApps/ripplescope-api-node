@@ -5,7 +5,9 @@ A scope is a categorization of Ripples a organization may have. Scopes are inspi
   both Doughnut Economics categories and the UN Sustainable Development Goals.
   With that in mind, scopes are specifically related to a organization's potential for ethical and ecological impact.`;
 const ripple = `Ripple:
-A Ripple is a discrete impact a organization has within a scope. A Ripple may be positive or negative.`;
+A Ripple is a positive or negative discrete impact a organization has within a scope.
+Ripples are inspired by the interaction between a falling object and a pool of water. In the same way, 
+an Organization's operations have a ripple effect within a Scope broader than its primary operations.`;
 const magnitude = `Magnitude:
 Magnitude is the intensity of a ripple within its scope from zero to one (zero = no impact, one = massive impact)`;
 const interference = `Interference:

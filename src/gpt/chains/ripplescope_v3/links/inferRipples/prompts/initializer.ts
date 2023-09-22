@@ -19,7 +19,9 @@ export default function initializer(
   };
   const userMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
     role: 'user',
-    content: `Infer the Ripples of this Organization within this Scope.`,
+    content: `Infer the positive and negative Ripples caused by ${
+      organization.name
+    } within the scope of ${scopeEdge.node.name.toLocaleLowerCase()}.`,
   };
   return [userMessage, organizationMessage, scopeMessage];
 }
