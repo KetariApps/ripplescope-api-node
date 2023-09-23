@@ -48,7 +48,8 @@ export default async function connectRipples(
             edge: { aspect: ripple.edge.aspect, reason: ripple.edge.reason },
             node: {
               name: ripple.name.toLocaleUpperCase(),
-              brief: ripple.description,
+              brief: ripple.brief,
+              bridescriptionef: ripple.description,
               scopes: {
                 connect: [
                   {

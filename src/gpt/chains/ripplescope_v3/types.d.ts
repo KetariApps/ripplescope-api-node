@@ -13,7 +13,7 @@ export type OrganizationWithScopes = Awaited<ReturnType<typeof connectScopes>>;
 export type ConnectedScopeEdge =
   OrganizationWithScopes['scopesConnection']['edges'][0];
 
-export type GPT_Ripple = Pick<Ripple, 'name' | 'description'> & {
+export type GPT_Ripple = Pick<Ripple, 'name' | 'description' | 'brief'> & {
   edge: {
     magnitude: string;
     aspect: string;

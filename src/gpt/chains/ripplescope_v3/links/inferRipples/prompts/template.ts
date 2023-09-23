@@ -5,7 +5,9 @@ const responseObject: GPT_RipplesResponse = {
   ripples: [
     {
       name: 'The name of the ripple.',
-      description: 'A description of the ripple.',
+      brief: 'A short summary of the ripple.',
+      description:
+        "A longer description of the ripple and how the organization's operations caused it on the Scope.",
       edge: {
         magnitude:
           'A number from zero to one which represents the intensity of this ripple within this scope',
