@@ -45,7 +45,11 @@ export default async function connectRipples(
       create: {
         ripples: ripplesResponses.map(({ scopeEdge, ripple }) => {
           return {
-            edge: { aspect: ripple.edge.aspect, reason: ripple.edge.reason },
+            edge: {
+              aspect: ripple.edge.aspect,
+              reason: ripple.edge.reason,
+              processId,
+            },
             node: {
               name: ripple.name.toLocaleUpperCase(),
               brief: ripple.brief,
@@ -59,6 +63,7 @@ export default async function connectRipples(
                       },
                     },
                     edge: {
+                      processId,
                       magnitude: Number(ripple.edge.magnitude),
                       sentiment:
                         ripple.edge.sentiment.toLocaleUpperCase() as RipplesSentiment,

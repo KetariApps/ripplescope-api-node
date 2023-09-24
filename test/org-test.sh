@@ -6,5 +6,5 @@ jq -c '.Organizations[]' org-test.json | while IFS= read -r formatted_organizati
   body=$formatted_organization
 
   # Send text to the ripplescope endpoint and retrieve SSE key
-  curl -X POST -H "Content-Type: application/json" -d "$body" http://localhost:4000/ripplescope/scraped 
+  curl -X POST -H "Content-Type: application/json" -d "$body" https://ripplescope.com/api/ripplescope/scraped 
 done

@@ -50,6 +50,7 @@ export default async function connectScopes(
             edge: {
               aspect: scope.edge.aspect,
               reason: scope.edge.reason,
+              processId,
             },
             node: {
               name: scope.name,

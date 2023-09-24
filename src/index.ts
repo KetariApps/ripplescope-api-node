@@ -2,7 +2,6 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
 // import neo4j, { Driver } from "neo4j-driver";
-import { GraphQLClient } from 'graphql-request';
 import ripplescope from './routes/post/ripplescope.js';
 import scraped from './routes/post/scraped.js';
 
