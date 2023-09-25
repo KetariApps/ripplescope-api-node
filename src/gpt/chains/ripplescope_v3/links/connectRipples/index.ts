@@ -1,6 +1,7 @@
 import { GraphQLClient } from 'graphql-request';
 import inferRipples from '../inferRipples/index.js';
 import {
+  OrganizationRelationInput,
   OrganizationStatusName,
   RipplesSentiment,
 } from '../../../../../__generated__/graphql.js';
@@ -16,6 +17,40 @@ export default async function connectRipples(
   const recentlyCompletedStep =
     OrganizationStatusName.RippleChainRipplesConnected;
   const nextStep = OrganizationStatusName.RippleChainDone;
+
+  const createInput: OrganizationRelationInput = {
+    ripples: ripplesResponses.map(({ scopeEdge, ripple }) => {
+      return {
+        edge: {
+          aspect: ripple.edge.aspect,
+          reason: ripple.edge.reason,
+          processId,
+        },
+        node: {
+          name: ripple.name.toLocaleUpperCase(),
+          brief: ripple.brief,
+          description: ripple.description,
+          scopes: {
+            connect: [
+              {
+                where: {
+                  node: {
+                    name: scopeEdge.node.name,
+                  },
+                },
+                edge: {
+                  processId,
+                  magnitude: Number(ripple.edge.magnitude),
+                  sentiment:
+                    ripple.edge.sentiment.toLocaleUpperCase() as RipplesSentiment,
+                },
+              },
+            ],
+          },
+        },
+      };
+    }),
+  };
   const updateOrganizationsMutation = await client.request(
     updateOrganizations,
     {
@@ -42,39 +77,7 @@ export default async function connectRipples(
           },
         ],
       },
-      create: {
-        ripples: ripplesResponses.map(({ scopeEdge, ripple }) => {
-          return {
-            edge: {
-              aspect: ripple.edge.aspect,
-              reason: ripple.edge.reason,
-              processId,
-            },
-            node: {
-              name: ripple.name.toLocaleUpperCase(),
-              brief: ripple.brief,
-              bridescriptionef: ripple.description,
-              scopes: {
-                connect: [
-                  {
-                    where: {
-                      node: {
-                        name: scopeEdge.node.name,
-                      },
-                    },
-                    edge: {
-                      processId,
-                      magnitude: Number(ripple.edge.magnitude),
-                      sentiment:
-                        ripple.edge.sentiment.toLocaleUpperCase() as RipplesSentiment,
-                    },
-                  },
-                ],
-              },
-            },
-          };
-        }),
-      },
+      create: createInput,
     },
   );
 
