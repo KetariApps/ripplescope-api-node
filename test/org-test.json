@@ -2,14 +2,14 @@
   "Organizations": [
     {
       "organization": {
-        "name": "Skycool Systems",
-        "website": "https://www.skycoolsystems.com/",
-        "problem": "Air conditioning and refrigeration systems consume close to 25% of electricity generated worldwide and are responsible for 7% of global greenhouse gas emissions.",
-        "solution": "SkyCool's vision is to improve the efficiency of all cooling systems by harnessing an untapped renewable resource: the sky. Our core innovation is a radiative cooling material that we've combined with a panel system to improve the efficiency of any vapor-compression based cooling system, saving our customers money and preventing the emissions of CO2 and other harmful greenhouse gases.",
-        "team": "Skycool Systems has a dedicated team of 14 employees working towards a sustainable and energy-efficient future.",
-        "geographic": "Skycool Systems operates in Mountain View, California, United States, and contributes to reducing energy consumption and greenhouse gas emissions globally.",
+        "name": "Birdstop",
+        "website": "https://www.birdstop.io/",
+        "problem": "Companies in sectors ranging from energy to agriculture to telecommunications need to make mission critical decisions in near real-time. Humans can't always access these areas quickly.",
+        "solution": "Birdstop nodes sit in the field to deploy and command Unmanned Aerial Vehicles (UAVs) in conjunction with fixed sensors to acquire intel without requiring personnel onsite.",
+        "team": "The Birdstop team is brought together by a vision of building a new remote sensing platform using uncrewed aerial technology in low altitude airspace.",
+        "geographic": "Birdstop operates in Concord, California, United States, and impacts the remote sensing and data collection landscape in various industries globally.",
         "misc": [
-          "SkyCool Panels passively cool fluids in air conditioning and refrigeration systems. Our panels are designed to connect into new and legacy cooling systems with minimal risk to the underlying system operation. Our panels achieve energy savings between 15% – 40% as a function of the application and number of panels deployed."
+          "Birdstop's vision is to effectively build a constellation of satellites that sit on the ground, collecting high fidelity data on demand. Join us in pioneering a new layer of Earth observation."
         ]
       },
       "userEmail": "matt.scouten@gmail.com"
