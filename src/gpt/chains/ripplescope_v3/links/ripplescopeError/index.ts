@@ -9,27 +9,31 @@ export default async function ripplescopeError(
   error: any,
   client: GraphQLClient,
 ) {
-  const errorStatus = OrganizationStatusName.RippleChainError;
-  const updateOrganizationsMutation = await client.request(
-    updateOrganizations,
-    {
-      where: { id: organization.id },
-      connectOrCreate: {
-        statuses: [
-          {
-            where: {
-              node: { name: errorStatus },
+  try {
+    const errorStatus = OrganizationStatusName.RippleChainError;
+    const updateOrganizationsMutation = await client.request(
+      updateOrganizations,
+      {
+        where: { id: organization.id },
+        connectOrCreate: {
+          statuses: [
+            {
+              where: {
+                node: { name: errorStatus },
+              },
+              onCreate: {
+                node: { name: errorStatus },
+                edge: { dump: JSON.stringify(error), processId },
+              },
             },
-            onCreate: {
-              node: { name: errorStatus },
-              edge: { dump: JSON.stringify(error), processId },
-            },
-          },
-        ],
+          ],
+        },
       },
-    },
-  );
-  const updatedOrganization =
-    updateOrganizationsMutation.updateOrganizations.organizations[0];
-  return updatedOrganization;
+    );
+    const updatedOrganization =
+      updateOrganizationsMutation.updateOrganizations.organizations[0];
+    return updatedOrganization;
+  } catch (error) {
+    console.error(`[${processId}]: Error: ${error}`);
+  }
 }
