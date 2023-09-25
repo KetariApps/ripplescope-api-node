@@ -11,16 +11,19 @@ import { v4 as uuid } from 'uuid';
 import ripplescopeChain from '../../gpt/chains/ripplescope_v3/index.js';
 
 export default async function ripplescope(req: Request, res: Response) {
+  const processId = uuid();
+  const decorator = `[${processId}]:`;
   try {
     const { input } = req.body as { input: OrganizationCreateInput };
+    console.debug(`${decorator} Received request: ${input}`);
     dotenv.config();
     const { GRAPH_URI, OPENAI_API_KEY } = process.env;
-    if (GRAPH_URI === undefined) throw new Error('GRAPH_URI is undefined');
+    if (GRAPH_URI === undefined)
+      throw new Error(`${decorator} GRAPH_URI is undefined`);
     if (OPENAI_API_KEY === undefined)
-      throw new Error('OPENAI_API_KEY is undefined');
+      throw new Error(`${decorator} OPENAI_API_KEY is undefined`);
     const client = new GraphQLClient(GRAPH_URI);
     const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
-    const processId = uuid();
     const inputWithStatus: OrganizationCreateInput = {
       ...input,
       statuses: {
@@ -38,7 +41,7 @@ export default async function ripplescope(req: Request, res: Response) {
       },
     };
     const organization = await createOrganization(inputWithStatus, client);
-    console.log(`[${processId}]: Created organization`);
+    console.log(`${decorator} Created organization`);
 
     ripplescopeChain(processId, organization, openai, client);
 
@@ -48,7 +51,7 @@ export default async function ripplescope(req: Request, res: Response) {
     });
     res.end();
   } catch (error) {
-    console.error(error);
+    console.error(`${decorator} ${error}`);
     res.status(500).json({ error });
     res.end();
   }
