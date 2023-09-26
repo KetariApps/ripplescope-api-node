@@ -75,8 +75,9 @@ export const insertScopes = async () => {
       }),
     );
     console.log('Created initial scopes.');
+    return null;
   } catch (error) {
     console.error(error);
-    throw new Error('An error occured while inserting scopes');
+    return null;
   }
 };

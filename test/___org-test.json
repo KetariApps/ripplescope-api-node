@@ -1,0 +1,18 @@
+{
+  "Organizations": [
+    {
+      "organization": {
+        "name": "Birdstop",
+        "website": "https://www.birdstop.io/",
+        "problem": "Companies in sectors ranging from energy to agriculture to telecommunications need to make mission critical decisions in near real-time. Humans can't always access these areas quickly.",
+        "solution": "Birdstop nodes sit in the field to deploy and command Unmanned Aerial Vehicles (UAVs) in conjunction with fixed sensors to acquire intel without requiring personnel onsite.",
+        "team": "The Birdstop team is brought together by a vision of building a new remote sensing platform using uncrewed aerial technology in low altitude airspace.",
+        "geography": "Birdstop operates in Concord, California, United States, and impacts the remote sensing and data collection landscape in various industries globally.",
+        "misc": [
+          "Birdstop's vision is to effectively build a constellation of satellites that sit on the ground, collecting high fidelity data on demand. Join us in pioneering a new layer of Earth observation."
+        ]
+      },
+      "userEmail": "matt.scouten@gmail.com"
+    }
+  ]
+}
