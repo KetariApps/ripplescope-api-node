@@ -33,3 +33,8 @@ export type GPT_Scope = {
 export interface GPT_ScopesResponse {
   scopes: Array<GPT_Scope>;
 }
+
+export interface GPT_DescriptionResponse {
+  description: string;
+  brief: string;
+}

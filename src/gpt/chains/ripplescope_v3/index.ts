@@ -1,6 +1,7 @@
 import {
-  connectRipples,
+  updateOrganization,
   connectScopes,
+  describeOrganization,
   inferRipples,
   inferScopes,
 } from './links/index.js';
@@ -25,15 +26,23 @@ export default async function ripplescopeChain(
       scopes,
       client,
     );
+    console.debug(`[${processId}]: Describing Organization`);
     console.debug(`[${processId}]: Inferring Ripples`);
-    const ripplesResponses = await inferRipples(organizationWithScopes, openai);
-    console.debug(`[${processId}]: Connecting Ripples`);
-    await connectRipples(
+
+    const [{ description, brief }, ripplesResponses] = await Promise.all([
+      describeOrganization(organizationWithScopes, openai),
+      inferRipples(organizationWithScopes, openai),
+    ]);
+    console.debug(`[${processId}]: Linking Data`);
+    await updateOrganization({
       processId,
-      organizationWithScopes,
-      ripplesResponses,
+      id: organizationWithScopes.id,
       client,
-    );
+      description,
+      brief,
+      ripplesResponses,
+    });
+
     console.debug(`[${processId}]: Done`);
   } catch (error) {
     console.error(`[${processId}]: Error ${error}`);

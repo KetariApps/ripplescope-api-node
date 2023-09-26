@@ -4,12 +4,14 @@ export const updateOrganizations = gql(`
 mutation UpdateOrganizations(
   $where: OrganizationWhere,
   $connectOrCreate: OrganizationConnectOrCreateInput,
-  $create: OrganizationRelationInput
+  $create: OrganizationRelationInput,
+  $update: OrganizationUpdateInput
   ) {
   updateOrganizations(
     where: $where,
     create: $create,
-    connectOrCreate: $connectOrCreate
+    connectOrCreate: $connectOrCreate,
+    update: $update
     ) {
     organizations {
       id

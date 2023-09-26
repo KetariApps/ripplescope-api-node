@@ -20,7 +20,7 @@ export default async function inferRipples(
       }/${arr.length}][${scopeEdge.node.name}]`;
 
       const response = await openai.chat.completions.create({
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4',
         messages: [
           definitions,
           raisonDetre,
