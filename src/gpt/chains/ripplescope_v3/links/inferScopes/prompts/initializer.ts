@@ -12,7 +12,7 @@ const initializer = (
   
     -------
   
-    Return any Scopes in which this Organization's operations cause Ripples, either by the primary operations or secondary effects of the Organization's operations. Use the provided scopes when applicable.
+    Return any Scopes in which this Organization's operations causes either positive or negative Ripples, either by the primary operations or secondary effects of the Organization's operations. Use the provided scopes when applicable.
   `,
 });
 export default initializer;
