@@ -1,11 +1,11 @@
-import OpenAI from 'openai';
-import getJSONString from '../../../../util/getJSONString.js';
 import {
   GPT_DescriptionResponse,
   OrganizationWithScopes,
 } from '../../types.js';
 import { definitions, raisonDetre } from '../../systemPrompts/index.js';
 import { initializer, template } from './prompts/index.js';
+import OpenAI from 'openai';
+import getJSONString from '../../../../util/getJSONString.js';
 
 export default async function inferRipples(
   organization: OrganizationWithScopes,

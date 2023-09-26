@@ -28,6 +28,6 @@ export default function getJSONString(str: string) {
     const json = JSON.parse(maybeJSONString);
     return json;
   } catch (error) {
-    throw new Error('Matched string was not valid JSON');
+    throw new Error(`Matched string was not valid JSON: ${maybeJSONString}`);
   }
 }

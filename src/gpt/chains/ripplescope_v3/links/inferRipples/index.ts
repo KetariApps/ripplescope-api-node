@@ -1,4 +1,3 @@
-import OpenAI from 'openai';
 import getJSONString from '../../../../util/getJSONString.js';
 import {
   GPT_Ripple,
@@ -8,6 +7,7 @@ import {
 import { definitions, raisonDetre } from '../../systemPrompts/index.js';
 import { initializer, template } from './prompts/index.js';
 import { connectScopes } from '../index.js';
+import OpenAI from 'openai';
 
 export default async function inferRipples(
   organization: OrganizationWithScopes,

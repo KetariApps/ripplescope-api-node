@@ -7,8 +7,8 @@ import {
 } from './links/index.js';
 import ripplescopeError from './links/ripplescopeError/index.js';
 import { CreateOrganizationsMutation } from '../../../__generated__/graphql.js';
-import OpenAI from 'openai';
 import { GraphQLClient } from 'graphql-request';
+import OpenAI from 'openai';
 
 export default async function ripplescopeChain(
   processId: string,

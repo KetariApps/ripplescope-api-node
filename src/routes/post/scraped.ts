@@ -5,13 +5,13 @@ import {
   OrganizationStatusName,
 } from '../../__generated__/graphql.js';
 import * as dotenv from 'dotenv';
-import OpenAI from 'openai';
 import { createOrganization } from '../../gpt/chains/ripplescope_v3/links/index.js';
 import { v4 as uuid } from 'uuid';
 import ripplescopeChain from '../../gpt/chains/ripplescope_v3/index.js';
 import parseScrapedData, {
   ParseScrapedDataProps,
 } from '../../gpt/util/parseScrapedData.js';
+import OpenAI from 'openai';
 
 export default async function scraped(req: Request, res: Response) {
   try {

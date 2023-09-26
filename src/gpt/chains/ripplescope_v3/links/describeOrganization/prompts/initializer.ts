@@ -1,6 +1,6 @@
-import OpenAI from 'openai';
 import { stringifyOrganization } from '../../../util/index.js';
-import { ConnectedScopeEdge, OrganizationWithScopes } from '../../../types.js';
+import { OrganizationWithScopes } from '../../../types.js';
+import OpenAI from 'openai';
 
 export default function initializer(
   organization: OrganizationWithScopes,
