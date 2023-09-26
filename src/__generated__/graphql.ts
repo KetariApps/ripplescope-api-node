@@ -24,9 +24,9 @@ export type CreateExamplesMutationResponse = {
   info: CreateInfo;
 };
 
-export type CreateGeographicsMutationResponse = {
-  __typename?: 'CreateGeographicsMutationResponse';
-  geographics: Array<Geographic>;
+export type CreateGeographiesMutationResponse = {
+  __typename?: 'CreateGeographiesMutationResponse';
+  geographies: Array<Geography>;
   info: CreateInfo;
 };
 
@@ -788,67 +788,74 @@ export type FloatAggregateSelectionNullable = {
   sum?: Maybe<Scalars['Float']['output']>;
 };
 
-export type Geographic = {
-  __typename?: 'Geographic';
+export type GeographiesConnection = {
+  __typename?: 'GeographiesConnection';
+  edges: Array<GeographyEdge>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int']['output'];
+};
+
+export type Geography = {
+  __typename?: 'Geography';
   brief?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['DateTime']['output'];
   description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   organization: Organization;
-  organizationAggregate?: Maybe<GeographicOrganizationOrganizationAggregationSelection>;
-  organizationConnection: GeographicOrganizationConnection;
+  organizationAggregate?: Maybe<GeographyOrganizationOrganizationAggregationSelection>;
+  organizationConnection: GeographyOrganizationConnection;
   users: Array<User>;
-  usersAggregate?: Maybe<GeographicUserUsersAggregationSelection>;
-  usersConnection: GeographicUsersConnection;
+  usersAggregate?: Maybe<GeographyUserUsersAggregationSelection>;
+  usersConnection: GeographyUsersConnection;
   verified: Scalars['Boolean']['output'];
 };
 
 
-export type GeographicOrganizationArgs = {
+export type GeographyOrganizationArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<OrganizationOptions>;
   where?: InputMaybe<OrganizationWhere>;
 };
 
 
-export type GeographicOrganizationAggregateArgs = {
+export type GeographyOrganizationAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<OrganizationWhere>;
 };
 
 
-export type GeographicOrganizationConnectionArgs = {
+export type GeographyOrganizationConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<GeographicOrganizationConnectionSort>>;
-  where?: InputMaybe<GeographicOrganizationConnectionWhere>;
+  sort?: InputMaybe<Array<GeographyOrganizationConnectionSort>>;
+  where?: InputMaybe<GeographyOrganizationConnectionWhere>;
 };
 
 
-export type GeographicUsersArgs = {
+export type GeographyUsersArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   options?: InputMaybe<UserOptions>;
   where?: InputMaybe<UserWhere>;
 };
 
 
-export type GeographicUsersAggregateArgs = {
+export type GeographyUsersAggregateArgs = {
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<UserWhere>;
 };
 
 
-export type GeographicUsersConnectionArgs = {
+export type GeographyUsersConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   directed?: InputMaybe<Scalars['Boolean']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<GeographicUsersConnectionSort>>;
-  where?: InputMaybe<GeographicUsersConnectionWhere>;
+  sort?: InputMaybe<Array<GeographyUsersConnectionSort>>;
+  where?: InputMaybe<GeographyUsersConnectionWhere>;
 };
 
-export type GeographicAggregateSelection = {
-  __typename?: 'GeographicAggregateSelection';
+export type GeographyAggregateSelection = {
+  __typename?: 'GeographyAggregateSelection';
   brief: StringAggregateSelectionNullable;
   count: Scalars['Int']['output'];
   createdAt: DateTimeAggregateSelectionNonNullable;
@@ -856,131 +863,131 @@ export type GeographicAggregateSelection = {
   id: IdAggregateSelectionNonNullable;
 };
 
-export type GeographicConnectInput = {
-  organization?: InputMaybe<GeographicOrganizationConnectFieldInput>;
-  users?: InputMaybe<Array<GeographicUsersConnectFieldInput>>;
+export type GeographyConnectInput = {
+  organization?: InputMaybe<GeographyOrganizationConnectFieldInput>;
+  users?: InputMaybe<Array<GeographyUsersConnectFieldInput>>;
 };
 
-export type GeographicConnectOrCreateInput = {
-  organization?: InputMaybe<GeographicOrganizationConnectOrCreateFieldInput>;
-  users?: InputMaybe<Array<GeographicUsersConnectOrCreateFieldInput>>;
+export type GeographyConnectOrCreateInput = {
+  organization?: InputMaybe<GeographyOrganizationConnectOrCreateFieldInput>;
+  users?: InputMaybe<Array<GeographyUsersConnectOrCreateFieldInput>>;
 };
 
-export type GeographicConnectOrCreateWhere = {
-  node: GeographicUniqueWhere;
+export type GeographyConnectOrCreateWhere = {
+  node: GeographyUniqueWhere;
 };
 
-export type GeographicConnectWhere = {
-  node: GeographicWhere;
+export type GeographyConnectWhere = {
+  node: GeographyWhere;
 };
 
-export type GeographicCreateInput = {
+export type GeographyCreateInput = {
   brief?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  organization?: InputMaybe<GeographicOrganizationFieldInput>;
-  users?: InputMaybe<GeographicUsersFieldInput>;
+  organization?: InputMaybe<GeographyOrganizationFieldInput>;
+  users?: InputMaybe<GeographyUsersFieldInput>;
   verified?: Scalars['Boolean']['input'];
 };
 
-export type GeographicDeleteInput = {
-  organization?: InputMaybe<GeographicOrganizationDeleteFieldInput>;
-  users?: InputMaybe<Array<GeographicUsersDeleteFieldInput>>;
+export type GeographyDeleteInput = {
+  organization?: InputMaybe<GeographyOrganizationDeleteFieldInput>;
+  users?: InputMaybe<Array<GeographyUsersDeleteFieldInput>>;
 };
 
-export type GeographicDisconnectInput = {
-  organization?: InputMaybe<GeographicOrganizationDisconnectFieldInput>;
-  users?: InputMaybe<Array<GeographicUsersDisconnectFieldInput>>;
+export type GeographyDisconnectInput = {
+  organization?: InputMaybe<GeographyOrganizationDisconnectFieldInput>;
+  users?: InputMaybe<Array<GeographyUsersDisconnectFieldInput>>;
 };
 
-export type GeographicEdge = {
-  __typename?: 'GeographicEdge';
+export type GeographyEdge = {
+  __typename?: 'GeographyEdge';
   cursor: Scalars['String']['output'];
-  node: Geographic;
+  node: Geography;
 };
 
-export type GeographicOnCreateInput = {
+export type GeographyOnCreateInput = {
   brief?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   verified?: Scalars['Boolean']['input'];
 };
 
-export type GeographicOptions = {
+export type GeographyOptions = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
-  /** Specify one or more GeographicSort objects to sort Geographics by. The sorts will be applied in the order in which they are arranged in the array. */
-  sort?: InputMaybe<Array<GeographicSort>>;
+  /** Specify one or more GeographySort objects to sort Geographies by. The sorts will be applied in the order in which they are arranged in the array. */
+  sort?: InputMaybe<Array<GeographySort>>;
 };
 
-export type GeographicOrganizationAggregateInput = {
-  AND?: InputMaybe<Array<GeographicOrganizationAggregateInput>>;
-  NOT?: InputMaybe<GeographicOrganizationAggregateInput>;
-  OR?: InputMaybe<Array<GeographicOrganizationAggregateInput>>;
+export type GeographyOrganizationAggregateInput = {
+  AND?: InputMaybe<Array<GeographyOrganizationAggregateInput>>;
+  NOT?: InputMaybe<GeographyOrganizationAggregateInput>;
+  OR?: InputMaybe<Array<GeographyOrganizationAggregateInput>>;
   count?: InputMaybe<Scalars['Int']['input']>;
   count_GT?: InputMaybe<Scalars['Int']['input']>;
   count_GTE?: InputMaybe<Scalars['Int']['input']>;
   count_LT?: InputMaybe<Scalars['Int']['input']>;
   count_LTE?: InputMaybe<Scalars['Int']['input']>;
-  node?: InputMaybe<GeographicOrganizationNodeAggregationWhereInput>;
+  node?: InputMaybe<GeographyOrganizationNodeAggregationWhereInput>;
 };
 
-export type GeographicOrganizationConnectFieldInput = {
+export type GeographyOrganizationConnectFieldInput = {
   connect?: InputMaybe<OrganizationConnectInput>;
   /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
   overwrite?: Scalars['Boolean']['input'];
   where?: InputMaybe<OrganizationConnectWhere>;
 };
 
-export type GeographicOrganizationConnectOrCreateFieldInput = {
-  onCreate: GeographicOrganizationConnectOrCreateFieldInputOnCreate;
+export type GeographyOrganizationConnectOrCreateFieldInput = {
+  onCreate: GeographyOrganizationConnectOrCreateFieldInputOnCreate;
   where: OrganizationConnectOrCreateWhere;
 };
 
-export type GeographicOrganizationConnectOrCreateFieldInputOnCreate = {
+export type GeographyOrganizationConnectOrCreateFieldInputOnCreate = {
   node: OrganizationOnCreateInput;
 };
 
-export type GeographicOrganizationConnection = {
-  __typename?: 'GeographicOrganizationConnection';
-  edges: Array<GeographicOrganizationRelationship>;
+export type GeographyOrganizationConnection = {
+  __typename?: 'GeographyOrganizationConnection';
+  edges: Array<GeographyOrganizationRelationship>;
   pageInfo: PageInfo;
   totalCount: Scalars['Int']['output'];
 };
 
-export type GeographicOrganizationConnectionSort = {
+export type GeographyOrganizationConnectionSort = {
   node?: InputMaybe<OrganizationSort>;
 };
 
-export type GeographicOrganizationConnectionWhere = {
-  AND?: InputMaybe<Array<GeographicOrganizationConnectionWhere>>;
-  NOT?: InputMaybe<GeographicOrganizationConnectionWhere>;
-  OR?: InputMaybe<Array<GeographicOrganizationConnectionWhere>>;
+export type GeographyOrganizationConnectionWhere = {
+  AND?: InputMaybe<Array<GeographyOrganizationConnectionWhere>>;
+  NOT?: InputMaybe<GeographyOrganizationConnectionWhere>;
+  OR?: InputMaybe<Array<GeographyOrganizationConnectionWhere>>;
   node?: InputMaybe<OrganizationWhere>;
 };
 
-export type GeographicOrganizationCreateFieldInput = {
+export type GeographyOrganizationCreateFieldInput = {
   node: OrganizationCreateInput;
 };
 
-export type GeographicOrganizationDeleteFieldInput = {
+export type GeographyOrganizationDeleteFieldInput = {
   delete?: InputMaybe<OrganizationDeleteInput>;
-  where?: InputMaybe<GeographicOrganizationConnectionWhere>;
+  where?: InputMaybe<GeographyOrganizationConnectionWhere>;
 };
 
-export type GeographicOrganizationDisconnectFieldInput = {
+export type GeographyOrganizationDisconnectFieldInput = {
   disconnect?: InputMaybe<OrganizationDisconnectInput>;
-  where?: InputMaybe<GeographicOrganizationConnectionWhere>;
+  where?: InputMaybe<GeographyOrganizationConnectionWhere>;
 };
 
-export type GeographicOrganizationFieldInput = {
-  connect?: InputMaybe<GeographicOrganizationConnectFieldInput>;
-  connectOrCreate?: InputMaybe<GeographicOrganizationConnectOrCreateFieldInput>;
-  create?: InputMaybe<GeographicOrganizationCreateFieldInput>;
+export type GeographyOrganizationFieldInput = {
+  connect?: InputMaybe<GeographyOrganizationConnectFieldInput>;
+  connectOrCreate?: InputMaybe<GeographyOrganizationConnectOrCreateFieldInput>;
+  create?: InputMaybe<GeographyOrganizationCreateFieldInput>;
 };
 
-export type GeographicOrganizationNodeAggregationWhereInput = {
-  AND?: InputMaybe<Array<GeographicOrganizationNodeAggregationWhereInput>>;
-  NOT?: InputMaybe<GeographicOrganizationNodeAggregationWhereInput>;
-  OR?: InputMaybe<Array<GeographicOrganizationNodeAggregationWhereInput>>;
+export type GeographyOrganizationNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<GeographyOrganizationNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<GeographyOrganizationNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<GeographyOrganizationNodeAggregationWhereInput>>;
   brief_AVERAGE_LENGTH_EQUAL?: InputMaybe<Scalars['Float']['input']>;
   brief_AVERAGE_LENGTH_GT?: InputMaybe<Scalars['Float']['input']>;
   brief_AVERAGE_LENGTH_GTE?: InputMaybe<Scalars['Float']['input']>;
@@ -1053,14 +1060,14 @@ export type GeographicOrganizationNodeAggregationWhereInput = {
   website_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type GeographicOrganizationOrganizationAggregationSelection = {
-  __typename?: 'GeographicOrganizationOrganizationAggregationSelection';
+export type GeographyOrganizationOrganizationAggregationSelection = {
+  __typename?: 'GeographyOrganizationOrganizationAggregationSelection';
   count: Scalars['Int']['output'];
-  node?: Maybe<GeographicOrganizationOrganizationNodeAggregateSelection>;
+  node?: Maybe<GeographyOrganizationOrganizationNodeAggregateSelection>;
 };
 
-export type GeographicOrganizationOrganizationNodeAggregateSelection = {
-  __typename?: 'GeographicOrganizationOrganizationNodeAggregateSelection';
+export type GeographyOrganizationOrganizationNodeAggregateSelection = {
+  __typename?: 'GeographyOrganizationOrganizationNodeAggregateSelection';
   brief: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
@@ -1069,33 +1076,33 @@ export type GeographicOrganizationOrganizationNodeAggregateSelection = {
   website: StringAggregateSelectionNonNullable;
 };
 
-export type GeographicOrganizationRelationship = {
-  __typename?: 'GeographicOrganizationRelationship';
+export type GeographyOrganizationRelationship = {
+  __typename?: 'GeographyOrganizationRelationship';
   cursor: Scalars['String']['output'];
   node: Organization;
 };
 
-export type GeographicOrganizationUpdateConnectionInput = {
+export type GeographyOrganizationUpdateConnectionInput = {
   node?: InputMaybe<OrganizationUpdateInput>;
 };
 
-export type GeographicOrganizationUpdateFieldInput = {
-  connect?: InputMaybe<GeographicOrganizationConnectFieldInput>;
-  connectOrCreate?: InputMaybe<GeographicOrganizationConnectOrCreateFieldInput>;
-  create?: InputMaybe<GeographicOrganizationCreateFieldInput>;
-  delete?: InputMaybe<GeographicOrganizationDeleteFieldInput>;
-  disconnect?: InputMaybe<GeographicOrganizationDisconnectFieldInput>;
-  update?: InputMaybe<GeographicOrganizationUpdateConnectionInput>;
-  where?: InputMaybe<GeographicOrganizationConnectionWhere>;
+export type GeographyOrganizationUpdateFieldInput = {
+  connect?: InputMaybe<GeographyOrganizationConnectFieldInput>;
+  connectOrCreate?: InputMaybe<GeographyOrganizationConnectOrCreateFieldInput>;
+  create?: InputMaybe<GeographyOrganizationCreateFieldInput>;
+  delete?: InputMaybe<GeographyOrganizationDeleteFieldInput>;
+  disconnect?: InputMaybe<GeographyOrganizationDisconnectFieldInput>;
+  update?: InputMaybe<GeographyOrganizationUpdateConnectionInput>;
+  where?: InputMaybe<GeographyOrganizationConnectionWhere>;
 };
 
-export type GeographicRelationInput = {
-  organization?: InputMaybe<GeographicOrganizationCreateFieldInput>;
-  users?: InputMaybe<Array<GeographicUsersCreateFieldInput>>;
+export type GeographyRelationInput = {
+  organization?: InputMaybe<GeographyOrganizationCreateFieldInput>;
+  users?: InputMaybe<Array<GeographyUsersCreateFieldInput>>;
 };
 
-/** Fields to sort Geographics by. The order in which sorts are applied is not guaranteed when specifying many fields in one GeographicSort object. */
-export type GeographicSort = {
+/** Fields to sort Geographies by. The order in which sorts are applied is not guaranteed when specifying many fields in one GeographySort object. */
+export type GeographySort = {
   brief?: InputMaybe<SortDirection>;
   createdAt?: InputMaybe<SortDirection>;
   description?: InputMaybe<SortDirection>;
@@ -1103,34 +1110,34 @@ export type GeographicSort = {
   verified?: InputMaybe<SortDirection>;
 };
 
-export type GeographicUniqueWhere = {
+export type GeographyUniqueWhere = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
-export type GeographicUpdateInput = {
+export type GeographyUpdateInput = {
   brief?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
-  organization?: InputMaybe<GeographicOrganizationUpdateFieldInput>;
-  users?: InputMaybe<Array<GeographicUsersUpdateFieldInput>>;
+  organization?: InputMaybe<GeographyOrganizationUpdateFieldInput>;
+  users?: InputMaybe<Array<GeographyUsersUpdateFieldInput>>;
   verified?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type GeographicUserUsersAggregationSelection = {
-  __typename?: 'GeographicUserUsersAggregationSelection';
+export type GeographyUserUsersAggregationSelection = {
+  __typename?: 'GeographyUserUsersAggregationSelection';
   count: Scalars['Int']['output'];
-  edge?: Maybe<GeographicUserUsersEdgeAggregateSelection>;
-  node?: Maybe<GeographicUserUsersNodeAggregateSelection>;
+  edge?: Maybe<GeographyUserUsersEdgeAggregateSelection>;
+  node?: Maybe<GeographyUserUsersNodeAggregateSelection>;
 };
 
-export type GeographicUserUsersEdgeAggregateSelection = {
-  __typename?: 'GeographicUserUsersEdgeAggregateSelection';
+export type GeographyUserUsersEdgeAggregateSelection = {
+  __typename?: 'GeographyUserUsersEdgeAggregateSelection';
   createdAt: DateTimeAggregateSelectionNonNullable;
   dump: StringAggregateSelectionNullable;
   message: StringAggregateSelectionNullable;
 };
 
-export type GeographicUserUsersNodeAggregateSelection = {
-  __typename?: 'GeographicUserUsersNodeAggregateSelection';
+export type GeographyUserUsersNodeAggregateSelection = {
+  __typename?: 'GeographyUserUsersNodeAggregateSelection';
   createdAt: DateTimeAggregateSelectionNonNullable;
   displayName: StringAggregateSelectionNullable;
   email: StringAggregateSelectionNonNullable;
@@ -1139,20 +1146,20 @@ export type GeographicUserUsersNodeAggregateSelection = {
   id: IdAggregateSelectionNonNullable;
 };
 
-export type GeographicUsersAggregateInput = {
-  AND?: InputMaybe<Array<GeographicUsersAggregateInput>>;
-  NOT?: InputMaybe<GeographicUsersAggregateInput>;
-  OR?: InputMaybe<Array<GeographicUsersAggregateInput>>;
+export type GeographyUsersAggregateInput = {
+  AND?: InputMaybe<Array<GeographyUsersAggregateInput>>;
+  NOT?: InputMaybe<GeographyUsersAggregateInput>;
+  OR?: InputMaybe<Array<GeographyUsersAggregateInput>>;
   count?: InputMaybe<Scalars['Int']['input']>;
   count_GT?: InputMaybe<Scalars['Int']['input']>;
   count_GTE?: InputMaybe<Scalars['Int']['input']>;
   count_LT?: InputMaybe<Scalars['Int']['input']>;
   count_LTE?: InputMaybe<Scalars['Int']['input']>;
-  edge?: InputMaybe<GeographicUsersEdgeAggregationWhereInput>;
-  node?: InputMaybe<GeographicUsersNodeAggregationWhereInput>;
+  edge?: InputMaybe<GeographyUsersEdgeAggregationWhereInput>;
+  node?: InputMaybe<GeographyUsersNodeAggregationWhereInput>;
 };
 
-export type GeographicUsersConnectFieldInput = {
+export type GeographyUsersConnectFieldInput = {
   connect?: InputMaybe<Array<UserConnectInput>>;
   edge: UserInteractsWithCreateInput;
   /** Whether or not to overwrite any matching relationship with the new properties. Will default to `false` in 4.0.0. */
@@ -1160,55 +1167,55 @@ export type GeographicUsersConnectFieldInput = {
   where?: InputMaybe<UserConnectWhere>;
 };
 
-export type GeographicUsersConnectOrCreateFieldInput = {
-  onCreate: GeographicUsersConnectOrCreateFieldInputOnCreate;
+export type GeographyUsersConnectOrCreateFieldInput = {
+  onCreate: GeographyUsersConnectOrCreateFieldInputOnCreate;
   where: UserConnectOrCreateWhere;
 };
 
-export type GeographicUsersConnectOrCreateFieldInputOnCreate = {
+export type GeographyUsersConnectOrCreateFieldInputOnCreate = {
   edge: UserInteractsWithCreateInput;
   node: UserOnCreateInput;
 };
 
-export type GeographicUsersConnection = {
-  __typename?: 'GeographicUsersConnection';
-  edges: Array<GeographicUsersRelationship>;
+export type GeographyUsersConnection = {
+  __typename?: 'GeographyUsersConnection';
+  edges: Array<GeographyUsersRelationship>;
   pageInfo: PageInfo;
   totalCount: Scalars['Int']['output'];
 };
 
-export type GeographicUsersConnectionSort = {
+export type GeographyUsersConnectionSort = {
   edge?: InputMaybe<UserInteractsWithSort>;
   node?: InputMaybe<UserSort>;
 };
 
-export type GeographicUsersConnectionWhere = {
-  AND?: InputMaybe<Array<GeographicUsersConnectionWhere>>;
-  NOT?: InputMaybe<GeographicUsersConnectionWhere>;
-  OR?: InputMaybe<Array<GeographicUsersConnectionWhere>>;
+export type GeographyUsersConnectionWhere = {
+  AND?: InputMaybe<Array<GeographyUsersConnectionWhere>>;
+  NOT?: InputMaybe<GeographyUsersConnectionWhere>;
+  OR?: InputMaybe<Array<GeographyUsersConnectionWhere>>;
   edge?: InputMaybe<UserInteractsWithWhere>;
   node?: InputMaybe<UserWhere>;
 };
 
-export type GeographicUsersCreateFieldInput = {
+export type GeographyUsersCreateFieldInput = {
   edge: UserInteractsWithCreateInput;
   node: UserCreateInput;
 };
 
-export type GeographicUsersDeleteFieldInput = {
+export type GeographyUsersDeleteFieldInput = {
   delete?: InputMaybe<UserDeleteInput>;
-  where?: InputMaybe<GeographicUsersConnectionWhere>;
+  where?: InputMaybe<GeographyUsersConnectionWhere>;
 };
 
-export type GeographicUsersDisconnectFieldInput = {
+export type GeographyUsersDisconnectFieldInput = {
   disconnect?: InputMaybe<UserDisconnectInput>;
-  where?: InputMaybe<GeographicUsersConnectionWhere>;
+  where?: InputMaybe<GeographyUsersConnectionWhere>;
 };
 
-export type GeographicUsersEdgeAggregationWhereInput = {
-  AND?: InputMaybe<Array<GeographicUsersEdgeAggregationWhereInput>>;
-  NOT?: InputMaybe<GeographicUsersEdgeAggregationWhereInput>;
-  OR?: InputMaybe<Array<GeographicUsersEdgeAggregationWhereInput>>;
+export type GeographyUsersEdgeAggregationWhereInput = {
+  AND?: InputMaybe<Array<GeographyUsersEdgeAggregationWhereInput>>;
+  NOT?: InputMaybe<GeographyUsersEdgeAggregationWhereInput>;
+  OR?: InputMaybe<Array<GeographyUsersEdgeAggregationWhereInput>>;
   createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
   createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
   createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
@@ -1251,16 +1258,16 @@ export type GeographicUsersEdgeAggregationWhereInput = {
   message_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type GeographicUsersFieldInput = {
-  connect?: InputMaybe<Array<GeographicUsersConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<GeographicUsersConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<GeographicUsersCreateFieldInput>>;
+export type GeographyUsersFieldInput = {
+  connect?: InputMaybe<Array<GeographyUsersConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<GeographyUsersConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<GeographyUsersCreateFieldInput>>;
 };
 
-export type GeographicUsersNodeAggregationWhereInput = {
-  AND?: InputMaybe<Array<GeographicUsersNodeAggregationWhereInput>>;
-  NOT?: InputMaybe<GeographicUsersNodeAggregationWhereInput>;
-  OR?: InputMaybe<Array<GeographicUsersNodeAggregationWhereInput>>;
+export type GeographyUsersNodeAggregationWhereInput = {
+  AND?: InputMaybe<Array<GeographyUsersNodeAggregationWhereInput>>;
+  NOT?: InputMaybe<GeographyUsersNodeAggregationWhereInput>;
+  OR?: InputMaybe<Array<GeographyUsersNodeAggregationWhereInput>>;
   createdAt_MAX_EQUAL?: InputMaybe<Scalars['DateTime']['input']>;
   createdAt_MAX_GT?: InputMaybe<Scalars['DateTime']['input']>;
   createdAt_MAX_GTE?: InputMaybe<Scalars['DateTime']['input']>;
@@ -1333,8 +1340,8 @@ export type GeographicUsersNodeAggregationWhereInput = {
   givenName_SHORTEST_LENGTH_LTE?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type GeographicUsersRelationship = UserInteractsWith & {
-  __typename?: 'GeographicUsersRelationship';
+export type GeographyUsersRelationship = UserInteractsWith & {
+  __typename?: 'GeographyUsersRelationship';
   createdAt: Scalars['DateTime']['output'];
   cursor: Scalars['String']['output'];
   dump?: Maybe<Scalars['String']['output']>;
@@ -1343,25 +1350,25 @@ export type GeographicUsersRelationship = UserInteractsWith & {
   type: UserInteractionName;
 };
 
-export type GeographicUsersUpdateConnectionInput = {
+export type GeographyUsersUpdateConnectionInput = {
   edge?: InputMaybe<UserInteractsWithUpdateInput>;
   node?: InputMaybe<UserUpdateInput>;
 };
 
-export type GeographicUsersUpdateFieldInput = {
-  connect?: InputMaybe<Array<GeographicUsersConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<GeographicUsersConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<GeographicUsersCreateFieldInput>>;
-  delete?: InputMaybe<Array<GeographicUsersDeleteFieldInput>>;
-  disconnect?: InputMaybe<Array<GeographicUsersDisconnectFieldInput>>;
-  update?: InputMaybe<GeographicUsersUpdateConnectionInput>;
-  where?: InputMaybe<GeographicUsersConnectionWhere>;
+export type GeographyUsersUpdateFieldInput = {
+  connect?: InputMaybe<Array<GeographyUsersConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<GeographyUsersConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<GeographyUsersCreateFieldInput>>;
+  delete?: InputMaybe<Array<GeographyUsersDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<GeographyUsersDisconnectFieldInput>>;
+  update?: InputMaybe<GeographyUsersUpdateConnectionInput>;
+  where?: InputMaybe<GeographyUsersConnectionWhere>;
 };
 
-export type GeographicWhere = {
-  AND?: InputMaybe<Array<GeographicWhere>>;
-  NOT?: InputMaybe<GeographicWhere>;
-  OR?: InputMaybe<Array<GeographicWhere>>;
+export type GeographyWhere = {
+  AND?: InputMaybe<Array<GeographyWhere>>;
+  NOT?: InputMaybe<GeographyWhere>;
+  OR?: InputMaybe<Array<GeographyWhere>>;
   brief?: InputMaybe<Scalars['String']['input']>;
   brief_CONTAINS?: InputMaybe<Scalars['String']['input']>;
   brief_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
@@ -1384,35 +1391,28 @@ export type GeographicWhere = {
   id_IN?: InputMaybe<Array<Scalars['ID']['input']>>;
   id_STARTS_WITH?: InputMaybe<Scalars['ID']['input']>;
   organization?: InputMaybe<OrganizationWhere>;
-  organizationAggregate?: InputMaybe<GeographicOrganizationAggregateInput>;
-  organizationConnection?: InputMaybe<GeographicOrganizationConnectionWhere>;
-  organizationConnection_NOT?: InputMaybe<GeographicOrganizationConnectionWhere>;
+  organizationAggregate?: InputMaybe<GeographyOrganizationAggregateInput>;
+  organizationConnection?: InputMaybe<GeographyOrganizationConnectionWhere>;
+  organizationConnection_NOT?: InputMaybe<GeographyOrganizationConnectionWhere>;
   organization_NOT?: InputMaybe<OrganizationWhere>;
-  usersAggregate?: InputMaybe<GeographicUsersAggregateInput>;
-  /** Return Geographics where all of the related GeographicUsersConnections match this filter */
-  usersConnection_ALL?: InputMaybe<GeographicUsersConnectionWhere>;
-  /** Return Geographics where none of the related GeographicUsersConnections match this filter */
-  usersConnection_NONE?: InputMaybe<GeographicUsersConnectionWhere>;
-  /** Return Geographics where one of the related GeographicUsersConnections match this filter */
-  usersConnection_SINGLE?: InputMaybe<GeographicUsersConnectionWhere>;
-  /** Return Geographics where some of the related GeographicUsersConnections match this filter */
-  usersConnection_SOME?: InputMaybe<GeographicUsersConnectionWhere>;
-  /** Return Geographics where all of the related Users match this filter */
+  usersAggregate?: InputMaybe<GeographyUsersAggregateInput>;
+  /** Return Geographies where all of the related GeographyUsersConnections match this filter */
+  usersConnection_ALL?: InputMaybe<GeographyUsersConnectionWhere>;
+  /** Return Geographies where none of the related GeographyUsersConnections match this filter */
+  usersConnection_NONE?: InputMaybe<GeographyUsersConnectionWhere>;
+  /** Return Geographies where one of the related GeographyUsersConnections match this filter */
+  usersConnection_SINGLE?: InputMaybe<GeographyUsersConnectionWhere>;
+  /** Return Geographies where some of the related GeographyUsersConnections match this filter */
+  usersConnection_SOME?: InputMaybe<GeographyUsersConnectionWhere>;
+  /** Return Geographies where all of the related Users match this filter */
   users_ALL?: InputMaybe<UserWhere>;
-  /** Return Geographics where none of the related Users match this filter */
+  /** Return Geographies where none of the related Users match this filter */
   users_NONE?: InputMaybe<UserWhere>;
-  /** Return Geographics where one of the related Users match this filter */
+  /** Return Geographies where one of the related Users match this filter */
   users_SINGLE?: InputMaybe<UserWhere>;
-  /** Return Geographics where some of the related Users match this filter */
+  /** Return Geographies where some of the related Users match this filter */
   users_SOME?: InputMaybe<UserWhere>;
   verified?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type GeographicsConnection = {
-  __typename?: 'GeographicsConnection';
-  edges: Array<GeographicEdge>;
-  pageInfo: PageInfo;
-  totalCount: Scalars['Int']['output'];
 };
 
 export type IdAggregateSelectionNonNullable = {
@@ -1421,11 +1421,11 @@ export type IdAggregateSelectionNonNullable = {
   shortest: Scalars['ID']['output'];
 };
 
-export type Interactable = Example | Geographic | Organization | OrganizationStatus | Problem | Question | Ripple | Scope | Solution | Stakeholder | Team | User | WebDump;
+export type Interactable = Example | Geography | Organization | OrganizationStatus | Problem | Question | Ripple | Scope | Solution | Stakeholder | Team | User | WebDump;
 
 export type InteractableWhere = {
   Example?: InputMaybe<ExampleWhere>;
-  Geographic?: InputMaybe<GeographicWhere>;
+  Geography?: InputMaybe<GeographyWhere>;
   Organization?: InputMaybe<OrganizationWhere>;
   OrganizationStatus?: InputMaybe<OrganizationStatusWhere>;
   Problem?: InputMaybe<ProblemWhere>;
@@ -2058,7 +2058,7 @@ export type MiscsConnection = {
 export type Mutation = {
   __typename?: 'Mutation';
   createExamples: CreateExamplesMutationResponse;
-  createGeographics: CreateGeographicsMutationResponse;
+  createGeographies: CreateGeographiesMutationResponse;
   createMiscs: CreateMiscsMutationResponse;
   createOrganizationStatuses: CreateOrganizationStatusesMutationResponse;
   createOrganizations: CreateOrganizationsMutationResponse;
@@ -2072,7 +2072,7 @@ export type Mutation = {
   createUsers: CreateUsersMutationResponse;
   createWebDumps: CreateWebDumpsMutationResponse;
   deleteExamples: DeleteInfo;
-  deleteGeographics: DeleteInfo;
+  deleteGeographies: DeleteInfo;
   deleteMiscs: DeleteInfo;
   deleteOrganizationStatuses: DeleteInfo;
   deleteOrganizations: DeleteInfo;
@@ -2086,7 +2086,7 @@ export type Mutation = {
   deleteUsers: DeleteInfo;
   deleteWebDumps: DeleteInfo;
   updateExamples: UpdateExamplesMutationResponse;
-  updateGeographics: UpdateGeographicsMutationResponse;
+  updateGeographies: UpdateGeographiesMutationResponse;
   updateMiscs: UpdateMiscsMutationResponse;
   updateOrganizationStatuses: UpdateOrganizationStatusesMutationResponse;
   updateOrganizations: UpdateOrganizationsMutationResponse;
@@ -2107,8 +2107,8 @@ export type MutationCreateExamplesArgs = {
 };
 
 
-export type MutationCreateGeographicsArgs = {
-  input: Array<GeographicCreateInput>;
+export type MutationCreateGeographiesArgs = {
+  input: Array<GeographyCreateInput>;
 };
 
 
@@ -2178,9 +2178,9 @@ export type MutationDeleteExamplesArgs = {
 };
 
 
-export type MutationDeleteGeographicsArgs = {
-  delete?: InputMaybe<GeographicDeleteInput>;
-  where?: InputMaybe<GeographicWhere>;
+export type MutationDeleteGeographiesArgs = {
+  delete?: InputMaybe<GeographyDeleteInput>;
+  where?: InputMaybe<GeographyWhere>;
 };
 
 
@@ -2267,14 +2267,14 @@ export type MutationUpdateExamplesArgs = {
 };
 
 
-export type MutationUpdateGeographicsArgs = {
-  connect?: InputMaybe<GeographicConnectInput>;
-  connectOrCreate?: InputMaybe<GeographicConnectOrCreateInput>;
-  create?: InputMaybe<GeographicRelationInput>;
-  delete?: InputMaybe<GeographicDeleteInput>;
-  disconnect?: InputMaybe<GeographicDisconnectInput>;
-  update?: InputMaybe<GeographicUpdateInput>;
-  where?: InputMaybe<GeographicWhere>;
+export type MutationUpdateGeographiesArgs = {
+  connect?: InputMaybe<GeographyConnectInput>;
+  connectOrCreate?: InputMaybe<GeographyConnectOrCreateInput>;
+  create?: InputMaybe<GeographyRelationInput>;
+  delete?: InputMaybe<GeographyDeleteInput>;
+  disconnect?: InputMaybe<GeographyDisconnectInput>;
+  update?: InputMaybe<GeographyUpdateInput>;
+  where?: InputMaybe<GeographyWhere>;
 };
 
 
@@ -2626,24 +2626,24 @@ export type OrganizationConnectWhere = {
   node: OrganizationWhere;
 };
 
-export type OrganizationConsideration = Geographic | Misc | Team | WebDump;
+export type OrganizationConsideration = Geography | Misc | Team | WebDump;
 
 export type OrganizationConsiderationWhere = {
-  Geographic?: InputMaybe<GeographicWhere>;
+  Geography?: InputMaybe<GeographyWhere>;
   Misc?: InputMaybe<MiscWhere>;
   Team?: InputMaybe<TeamWhere>;
   WebDump?: InputMaybe<WebDumpWhere>;
 };
 
 export type OrganizationConsiderationsConnectInput = {
-  Geographic?: InputMaybe<Array<OrganizationConsiderationsGeographicConnectFieldInput>>;
+  Geography?: InputMaybe<Array<OrganizationConsiderationsGeographyConnectFieldInput>>;
   Misc?: InputMaybe<Array<OrganizationConsiderationsMiscConnectFieldInput>>;
   Team?: InputMaybe<Array<OrganizationConsiderationsTeamConnectFieldInput>>;
   WebDump?: InputMaybe<Array<OrganizationConsiderationsWebDumpConnectFieldInput>>;
 };
 
 export type OrganizationConsiderationsConnectOrCreateInput = {
-  Geographic?: InputMaybe<Array<OrganizationConsiderationsGeographicConnectOrCreateFieldInput>>;
+  Geography?: InputMaybe<Array<OrganizationConsiderationsGeographyConnectOrCreateFieldInput>>;
   Misc?: InputMaybe<Array<OrganizationConsiderationsMiscConnectOrCreateFieldInput>>;
   Team?: InputMaybe<Array<OrganizationConsiderationsTeamConnectOrCreateFieldInput>>;
   WebDump?: InputMaybe<Array<OrganizationConsiderationsWebDumpConnectOrCreateFieldInput>>;
@@ -2657,93 +2657,93 @@ export type OrganizationConsiderationsConnection = {
 };
 
 export type OrganizationConsiderationsConnectionWhere = {
-  Geographic?: InputMaybe<OrganizationConsiderationsGeographicConnectionWhere>;
+  Geography?: InputMaybe<OrganizationConsiderationsGeographyConnectionWhere>;
   Misc?: InputMaybe<OrganizationConsiderationsMiscConnectionWhere>;
   Team?: InputMaybe<OrganizationConsiderationsTeamConnectionWhere>;
   WebDump?: InputMaybe<OrganizationConsiderationsWebDumpConnectionWhere>;
 };
 
 export type OrganizationConsiderationsCreateFieldInput = {
-  Geographic?: InputMaybe<Array<OrganizationConsiderationsGeographicCreateFieldInput>>;
+  Geography?: InputMaybe<Array<OrganizationConsiderationsGeographyCreateFieldInput>>;
   Misc?: InputMaybe<Array<OrganizationConsiderationsMiscCreateFieldInput>>;
   Team?: InputMaybe<Array<OrganizationConsiderationsTeamCreateFieldInput>>;
   WebDump?: InputMaybe<Array<OrganizationConsiderationsWebDumpCreateFieldInput>>;
 };
 
 export type OrganizationConsiderationsCreateInput = {
-  Geographic?: InputMaybe<OrganizationConsiderationsGeographicFieldInput>;
+  Geography?: InputMaybe<OrganizationConsiderationsGeographyFieldInput>;
   Misc?: InputMaybe<OrganizationConsiderationsMiscFieldInput>;
   Team?: InputMaybe<OrganizationConsiderationsTeamFieldInput>;
   WebDump?: InputMaybe<OrganizationConsiderationsWebDumpFieldInput>;
 };
 
 export type OrganizationConsiderationsDeleteInput = {
-  Geographic?: InputMaybe<Array<OrganizationConsiderationsGeographicDeleteFieldInput>>;
+  Geography?: InputMaybe<Array<OrganizationConsiderationsGeographyDeleteFieldInput>>;
   Misc?: InputMaybe<Array<OrganizationConsiderationsMiscDeleteFieldInput>>;
   Team?: InputMaybe<Array<OrganizationConsiderationsTeamDeleteFieldInput>>;
   WebDump?: InputMaybe<Array<OrganizationConsiderationsWebDumpDeleteFieldInput>>;
 };
 
 export type OrganizationConsiderationsDisconnectInput = {
-  Geographic?: InputMaybe<Array<OrganizationConsiderationsGeographicDisconnectFieldInput>>;
+  Geography?: InputMaybe<Array<OrganizationConsiderationsGeographyDisconnectFieldInput>>;
   Misc?: InputMaybe<Array<OrganizationConsiderationsMiscDisconnectFieldInput>>;
   Team?: InputMaybe<Array<OrganizationConsiderationsTeamDisconnectFieldInput>>;
   WebDump?: InputMaybe<Array<OrganizationConsiderationsWebDumpDisconnectFieldInput>>;
 };
 
-export type OrganizationConsiderationsGeographicConnectFieldInput = {
-  connect?: InputMaybe<Array<GeographicConnectInput>>;
-  where?: InputMaybe<GeographicConnectWhere>;
+export type OrganizationConsiderationsGeographyConnectFieldInput = {
+  connect?: InputMaybe<Array<GeographyConnectInput>>;
+  where?: InputMaybe<GeographyConnectWhere>;
 };
 
-export type OrganizationConsiderationsGeographicConnectOrCreateFieldInput = {
-  onCreate: OrganizationConsiderationsGeographicConnectOrCreateFieldInputOnCreate;
-  where: GeographicConnectOrCreateWhere;
+export type OrganizationConsiderationsGeographyConnectOrCreateFieldInput = {
+  onCreate: OrganizationConsiderationsGeographyConnectOrCreateFieldInputOnCreate;
+  where: GeographyConnectOrCreateWhere;
 };
 
-export type OrganizationConsiderationsGeographicConnectOrCreateFieldInputOnCreate = {
-  node: GeographicOnCreateInput;
+export type OrganizationConsiderationsGeographyConnectOrCreateFieldInputOnCreate = {
+  node: GeographyOnCreateInput;
 };
 
-export type OrganizationConsiderationsGeographicConnectionWhere = {
-  AND?: InputMaybe<Array<OrganizationConsiderationsGeographicConnectionWhere>>;
-  NOT?: InputMaybe<OrganizationConsiderationsGeographicConnectionWhere>;
-  OR?: InputMaybe<Array<OrganizationConsiderationsGeographicConnectionWhere>>;
-  node?: InputMaybe<GeographicWhere>;
+export type OrganizationConsiderationsGeographyConnectionWhere = {
+  AND?: InputMaybe<Array<OrganizationConsiderationsGeographyConnectionWhere>>;
+  NOT?: InputMaybe<OrganizationConsiderationsGeographyConnectionWhere>;
+  OR?: InputMaybe<Array<OrganizationConsiderationsGeographyConnectionWhere>>;
+  node?: InputMaybe<GeographyWhere>;
 };
 
-export type OrganizationConsiderationsGeographicCreateFieldInput = {
-  node: GeographicCreateInput;
+export type OrganizationConsiderationsGeographyCreateFieldInput = {
+  node: GeographyCreateInput;
 };
 
-export type OrganizationConsiderationsGeographicDeleteFieldInput = {
-  delete?: InputMaybe<GeographicDeleteInput>;
-  where?: InputMaybe<OrganizationConsiderationsGeographicConnectionWhere>;
+export type OrganizationConsiderationsGeographyDeleteFieldInput = {
+  delete?: InputMaybe<GeographyDeleteInput>;
+  where?: InputMaybe<OrganizationConsiderationsGeographyConnectionWhere>;
 };
 
-export type OrganizationConsiderationsGeographicDisconnectFieldInput = {
-  disconnect?: InputMaybe<GeographicDisconnectInput>;
-  where?: InputMaybe<OrganizationConsiderationsGeographicConnectionWhere>;
+export type OrganizationConsiderationsGeographyDisconnectFieldInput = {
+  disconnect?: InputMaybe<GeographyDisconnectInput>;
+  where?: InputMaybe<OrganizationConsiderationsGeographyConnectionWhere>;
 };
 
-export type OrganizationConsiderationsGeographicFieldInput = {
-  connect?: InputMaybe<Array<OrganizationConsiderationsGeographicConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<OrganizationConsiderationsGeographicConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<OrganizationConsiderationsGeographicCreateFieldInput>>;
+export type OrganizationConsiderationsGeographyFieldInput = {
+  connect?: InputMaybe<Array<OrganizationConsiderationsGeographyConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<OrganizationConsiderationsGeographyConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<OrganizationConsiderationsGeographyCreateFieldInput>>;
 };
 
-export type OrganizationConsiderationsGeographicUpdateConnectionInput = {
-  node?: InputMaybe<GeographicUpdateInput>;
+export type OrganizationConsiderationsGeographyUpdateConnectionInput = {
+  node?: InputMaybe<GeographyUpdateInput>;
 };
 
-export type OrganizationConsiderationsGeographicUpdateFieldInput = {
-  connect?: InputMaybe<Array<OrganizationConsiderationsGeographicConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<OrganizationConsiderationsGeographicConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<OrganizationConsiderationsGeographicCreateFieldInput>>;
-  delete?: InputMaybe<Array<OrganizationConsiderationsGeographicDeleteFieldInput>>;
-  disconnect?: InputMaybe<Array<OrganizationConsiderationsGeographicDisconnectFieldInput>>;
-  update?: InputMaybe<OrganizationConsiderationsGeographicUpdateConnectionInput>;
-  where?: InputMaybe<OrganizationConsiderationsGeographicConnectionWhere>;
+export type OrganizationConsiderationsGeographyUpdateFieldInput = {
+  connect?: InputMaybe<Array<OrganizationConsiderationsGeographyConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<OrganizationConsiderationsGeographyConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<OrganizationConsiderationsGeographyCreateFieldInput>>;
+  delete?: InputMaybe<Array<OrganizationConsiderationsGeographyDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<OrganizationConsiderationsGeographyDisconnectFieldInput>>;
+  update?: InputMaybe<OrganizationConsiderationsGeographyUpdateConnectionInput>;
+  where?: InputMaybe<OrganizationConsiderationsGeographyConnectionWhere>;
 };
 
 export type OrganizationConsiderationsMiscConnectFieldInput = {
@@ -2863,7 +2863,7 @@ export type OrganizationConsiderationsTeamUpdateFieldInput = {
 };
 
 export type OrganizationConsiderationsUpdateInput = {
-  Geographic?: InputMaybe<Array<OrganizationConsiderationsGeographicUpdateFieldInput>>;
+  Geography?: InputMaybe<Array<OrganizationConsiderationsGeographyUpdateFieldInput>>;
   Misc?: InputMaybe<Array<OrganizationConsiderationsMiscUpdateFieldInput>>;
   Team?: InputMaybe<Array<OrganizationConsiderationsTeamUpdateFieldInput>>;
   WebDump?: InputMaybe<Array<OrganizationConsiderationsWebDumpUpdateFieldInput>>;
@@ -6201,9 +6201,9 @@ export type Query = {
   examples: Array<Example>;
   examplesAggregate: ExampleAggregateSelection;
   examplesConnection: ExamplesConnection;
-  geographics: Array<Geographic>;
-  geographicsAggregate: GeographicAggregateSelection;
-  geographicsConnection: GeographicsConnection;
+  geographies: Array<Geography>;
+  geographiesAggregate: GeographyAggregateSelection;
+  geographiesConnection: GeographiesConnection;
   miscs: Array<Misc>;
   miscsAggregate: MiscAggregateSelection;
   miscsConnection: MiscsConnection;
@@ -6262,22 +6262,22 @@ export type QueryExamplesConnectionArgs = {
 };
 
 
-export type QueryGeographicsArgs = {
-  options?: InputMaybe<GeographicOptions>;
-  where?: InputMaybe<GeographicWhere>;
+export type QueryGeographiesArgs = {
+  options?: InputMaybe<GeographyOptions>;
+  where?: InputMaybe<GeographyWhere>;
 };
 
 
-export type QueryGeographicsAggregateArgs = {
-  where?: InputMaybe<GeographicWhere>;
+export type QueryGeographiesAggregateArgs = {
+  where?: InputMaybe<GeographyWhere>;
 };
 
 
-export type QueryGeographicsConnectionArgs = {
+export type QueryGeographiesConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
-  sort?: InputMaybe<Array<InputMaybe<GeographicSort>>>;
-  where?: InputMaybe<GeographicWhere>;
+  sort?: InputMaybe<Array<InputMaybe<GeographySort>>>;
+  where?: InputMaybe<GeographyWhere>;
 };
 
 
@@ -12546,9 +12546,9 @@ export type UpdateExamplesMutationResponse = {
   info: UpdateInfo;
 };
 
-export type UpdateGeographicsMutationResponse = {
-  __typename?: 'UpdateGeographicsMutationResponse';
-  geographics: Array<Geographic>;
+export type UpdateGeographiesMutationResponse = {
+  __typename?: 'UpdateGeographiesMutationResponse';
+  geographies: Array<Geography>;
   info: UpdateInfo;
 };
 
@@ -12726,7 +12726,7 @@ export enum UserInteractionName {
 
 export type UserInteractionsConnectInput = {
   Example?: InputMaybe<Array<UserInteractionsExampleConnectFieldInput>>;
-  Geographic?: InputMaybe<Array<UserInteractionsGeographicConnectFieldInput>>;
+  Geography?: InputMaybe<Array<UserInteractionsGeographyConnectFieldInput>>;
   Organization?: InputMaybe<Array<UserInteractionsOrganizationConnectFieldInput>>;
   OrganizationStatus?: InputMaybe<Array<UserInteractionsOrganizationStatusConnectFieldInput>>;
   Problem?: InputMaybe<Array<UserInteractionsProblemConnectFieldInput>>;
@@ -12742,7 +12742,7 @@ export type UserInteractionsConnectInput = {
 
 export type UserInteractionsConnectOrCreateInput = {
   Example?: InputMaybe<Array<UserInteractionsExampleConnectOrCreateFieldInput>>;
-  Geographic?: InputMaybe<Array<UserInteractionsGeographicConnectOrCreateFieldInput>>;
+  Geography?: InputMaybe<Array<UserInteractionsGeographyConnectOrCreateFieldInput>>;
   Organization?: InputMaybe<Array<UserInteractionsOrganizationConnectOrCreateFieldInput>>;
   OrganizationStatus?: InputMaybe<Array<UserInteractionsOrganizationStatusConnectOrCreateFieldInput>>;
   Problem?: InputMaybe<Array<UserInteractionsProblemConnectOrCreateFieldInput>>;
@@ -12769,7 +12769,7 @@ export type UserInteractionsConnectionSort = {
 
 export type UserInteractionsConnectionWhere = {
   Example?: InputMaybe<UserInteractionsExampleConnectionWhere>;
-  Geographic?: InputMaybe<UserInteractionsGeographicConnectionWhere>;
+  Geography?: InputMaybe<UserInteractionsGeographyConnectionWhere>;
   Organization?: InputMaybe<UserInteractionsOrganizationConnectionWhere>;
   OrganizationStatus?: InputMaybe<UserInteractionsOrganizationStatusConnectionWhere>;
   Problem?: InputMaybe<UserInteractionsProblemConnectionWhere>;
@@ -12785,7 +12785,7 @@ export type UserInteractionsConnectionWhere = {
 
 export type UserInteractionsCreateFieldInput = {
   Example?: InputMaybe<Array<UserInteractionsExampleCreateFieldInput>>;
-  Geographic?: InputMaybe<Array<UserInteractionsGeographicCreateFieldInput>>;
+  Geography?: InputMaybe<Array<UserInteractionsGeographyCreateFieldInput>>;
   Organization?: InputMaybe<Array<UserInteractionsOrganizationCreateFieldInput>>;
   OrganizationStatus?: InputMaybe<Array<UserInteractionsOrganizationStatusCreateFieldInput>>;
   Problem?: InputMaybe<Array<UserInteractionsProblemCreateFieldInput>>;
@@ -12801,7 +12801,7 @@ export type UserInteractionsCreateFieldInput = {
 
 export type UserInteractionsCreateInput = {
   Example?: InputMaybe<UserInteractionsExampleFieldInput>;
-  Geographic?: InputMaybe<UserInteractionsGeographicFieldInput>;
+  Geography?: InputMaybe<UserInteractionsGeographyFieldInput>;
   Organization?: InputMaybe<UserInteractionsOrganizationFieldInput>;
   OrganizationStatus?: InputMaybe<UserInteractionsOrganizationStatusFieldInput>;
   Problem?: InputMaybe<UserInteractionsProblemFieldInput>;
@@ -12817,7 +12817,7 @@ export type UserInteractionsCreateInput = {
 
 export type UserInteractionsDeleteInput = {
   Example?: InputMaybe<Array<UserInteractionsExampleDeleteFieldInput>>;
-  Geographic?: InputMaybe<Array<UserInteractionsGeographicDeleteFieldInput>>;
+  Geography?: InputMaybe<Array<UserInteractionsGeographyDeleteFieldInput>>;
   Organization?: InputMaybe<Array<UserInteractionsOrganizationDeleteFieldInput>>;
   OrganizationStatus?: InputMaybe<Array<UserInteractionsOrganizationStatusDeleteFieldInput>>;
   Problem?: InputMaybe<Array<UserInteractionsProblemDeleteFieldInput>>;
@@ -12833,7 +12833,7 @@ export type UserInteractionsDeleteInput = {
 
 export type UserInteractionsDisconnectInput = {
   Example?: InputMaybe<Array<UserInteractionsExampleDisconnectFieldInput>>;
-  Geographic?: InputMaybe<Array<UserInteractionsGeographicDisconnectFieldInput>>;
+  Geography?: InputMaybe<Array<UserInteractionsGeographyDisconnectFieldInput>>;
   Organization?: InputMaybe<Array<UserInteractionsOrganizationDisconnectFieldInput>>;
   OrganizationStatus?: InputMaybe<Array<UserInteractionsOrganizationStatusDisconnectFieldInput>>;
   Problem?: InputMaybe<Array<UserInteractionsProblemDisconnectFieldInput>>;
@@ -12907,64 +12907,64 @@ export type UserInteractionsExampleUpdateFieldInput = {
   where?: InputMaybe<UserInteractionsExampleConnectionWhere>;
 };
 
-export type UserInteractionsGeographicConnectFieldInput = {
-  connect?: InputMaybe<Array<GeographicConnectInput>>;
+export type UserInteractionsGeographyConnectFieldInput = {
+  connect?: InputMaybe<Array<GeographyConnectInput>>;
   edge: UserInteractsWithCreateInput;
-  where?: InputMaybe<GeographicConnectWhere>;
+  where?: InputMaybe<GeographyConnectWhere>;
 };
 
-export type UserInteractionsGeographicConnectOrCreateFieldInput = {
-  onCreate: UserInteractionsGeographicConnectOrCreateFieldInputOnCreate;
-  where: GeographicConnectOrCreateWhere;
+export type UserInteractionsGeographyConnectOrCreateFieldInput = {
+  onCreate: UserInteractionsGeographyConnectOrCreateFieldInputOnCreate;
+  where: GeographyConnectOrCreateWhere;
 };
 
-export type UserInteractionsGeographicConnectOrCreateFieldInputOnCreate = {
+export type UserInteractionsGeographyConnectOrCreateFieldInputOnCreate = {
   edge: UserInteractsWithCreateInput;
-  node: GeographicOnCreateInput;
+  node: GeographyOnCreateInput;
 };
 
-export type UserInteractionsGeographicConnectionWhere = {
-  AND?: InputMaybe<Array<UserInteractionsGeographicConnectionWhere>>;
-  NOT?: InputMaybe<UserInteractionsGeographicConnectionWhere>;
-  OR?: InputMaybe<Array<UserInteractionsGeographicConnectionWhere>>;
+export type UserInteractionsGeographyConnectionWhere = {
+  AND?: InputMaybe<Array<UserInteractionsGeographyConnectionWhere>>;
+  NOT?: InputMaybe<UserInteractionsGeographyConnectionWhere>;
+  OR?: InputMaybe<Array<UserInteractionsGeographyConnectionWhere>>;
   edge?: InputMaybe<UserInteractsWithWhere>;
-  node?: InputMaybe<GeographicWhere>;
+  node?: InputMaybe<GeographyWhere>;
 };
 
-export type UserInteractionsGeographicCreateFieldInput = {
+export type UserInteractionsGeographyCreateFieldInput = {
   edge: UserInteractsWithCreateInput;
-  node: GeographicCreateInput;
+  node: GeographyCreateInput;
 };
 
-export type UserInteractionsGeographicDeleteFieldInput = {
-  delete?: InputMaybe<GeographicDeleteInput>;
-  where?: InputMaybe<UserInteractionsGeographicConnectionWhere>;
+export type UserInteractionsGeographyDeleteFieldInput = {
+  delete?: InputMaybe<GeographyDeleteInput>;
+  where?: InputMaybe<UserInteractionsGeographyConnectionWhere>;
 };
 
-export type UserInteractionsGeographicDisconnectFieldInput = {
-  disconnect?: InputMaybe<GeographicDisconnectInput>;
-  where?: InputMaybe<UserInteractionsGeographicConnectionWhere>;
+export type UserInteractionsGeographyDisconnectFieldInput = {
+  disconnect?: InputMaybe<GeographyDisconnectInput>;
+  where?: InputMaybe<UserInteractionsGeographyConnectionWhere>;
 };
 
-export type UserInteractionsGeographicFieldInput = {
-  connect?: InputMaybe<Array<UserInteractionsGeographicConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<UserInteractionsGeographicConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<UserInteractionsGeographicCreateFieldInput>>;
+export type UserInteractionsGeographyFieldInput = {
+  connect?: InputMaybe<Array<UserInteractionsGeographyConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<UserInteractionsGeographyConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<UserInteractionsGeographyCreateFieldInput>>;
 };
 
-export type UserInteractionsGeographicUpdateConnectionInput = {
+export type UserInteractionsGeographyUpdateConnectionInput = {
   edge?: InputMaybe<UserInteractsWithUpdateInput>;
-  node?: InputMaybe<GeographicUpdateInput>;
+  node?: InputMaybe<GeographyUpdateInput>;
 };
 
-export type UserInteractionsGeographicUpdateFieldInput = {
-  connect?: InputMaybe<Array<UserInteractionsGeographicConnectFieldInput>>;
-  connectOrCreate?: InputMaybe<Array<UserInteractionsGeographicConnectOrCreateFieldInput>>;
-  create?: InputMaybe<Array<UserInteractionsGeographicCreateFieldInput>>;
-  delete?: InputMaybe<Array<UserInteractionsGeographicDeleteFieldInput>>;
-  disconnect?: InputMaybe<Array<UserInteractionsGeographicDisconnectFieldInput>>;
-  update?: InputMaybe<UserInteractionsGeographicUpdateConnectionInput>;
-  where?: InputMaybe<UserInteractionsGeographicConnectionWhere>;
+export type UserInteractionsGeographyUpdateFieldInput = {
+  connect?: InputMaybe<Array<UserInteractionsGeographyConnectFieldInput>>;
+  connectOrCreate?: InputMaybe<Array<UserInteractionsGeographyConnectOrCreateFieldInput>>;
+  create?: InputMaybe<Array<UserInteractionsGeographyCreateFieldInput>>;
+  delete?: InputMaybe<Array<UserInteractionsGeographyDeleteFieldInput>>;
+  disconnect?: InputMaybe<Array<UserInteractionsGeographyDisconnectFieldInput>>;
+  update?: InputMaybe<UserInteractionsGeographyUpdateConnectionInput>;
+  where?: InputMaybe<UserInteractionsGeographyConnectionWhere>;
 };
 
 export type UserInteractionsOrganizationConnectFieldInput = {
@@ -13519,7 +13519,7 @@ export type UserInteractionsTeamUpdateFieldInput = {
 
 export type UserInteractionsUpdateInput = {
   Example?: InputMaybe<Array<UserInteractionsExampleUpdateFieldInput>>;
-  Geographic?: InputMaybe<Array<UserInteractionsGeographicUpdateFieldInput>>;
+  Geography?: InputMaybe<Array<UserInteractionsGeographyUpdateFieldInput>>;
   Organization?: InputMaybe<Array<UserInteractionsOrganizationUpdateFieldInput>>;
   OrganizationStatus?: InputMaybe<Array<UserInteractionsOrganizationStatusUpdateFieldInput>>;
   Problem?: InputMaybe<Array<UserInteractionsProblemUpdateFieldInput>>;
@@ -14426,7 +14426,7 @@ export type CreateOrganizationsMutationVariables = Exact<{
 }>;
 
 
-export type CreateOrganizationsMutation = { __typename?: 'Mutation', createOrganizations: { __typename?: 'CreateOrganizationsMutationResponse', organizations: Array<{ __typename?: 'Organization', id: string, name: string, brief?: string | null, description?: string | null, solutions: Array<{ __typename?: 'Solution', id: string, brief?: string | null, description?: string | null, problems: Array<{ __typename?: 'Problem', id: string, brief?: string | null, description?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', id: string, name: string, description?: string | null }> }> }>, considerations: Array<{ __typename?: 'Geographic', brief?: string | null, description?: string | null } | { __typename?: 'Misc', content: string } | { __typename?: 'Team', brief?: string | null, description?: string | null } | { __typename?: 'WebDump', content: string }> }> } };
+export type CreateOrganizationsMutation = { __typename?: 'Mutation', createOrganizations: { __typename?: 'CreateOrganizationsMutationResponse', organizations: Array<{ __typename?: 'Organization', id: string, name: string, brief?: string | null, description?: string | null, solutions: Array<{ __typename?: 'Solution', id: string, brief?: string | null, description?: string | null, problems: Array<{ __typename?: 'Problem', id: string, brief?: string | null, description?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', id: string, name: string, description?: string | null }> }> }>, considerations: Array<{ __typename?: 'Geography', brief?: string | null, description?: string | null } | { __typename?: 'Misc', content: string } | { __typename?: 'Team', brief?: string | null, description?: string | null } | { __typename?: 'WebDump', content: string }> }> } };
 
 export type UpdateOrganizationsMutationVariables = Exact<{
   where?: InputMaybe<OrganizationWhere>;
@@ -14436,7 +14436,7 @@ export type UpdateOrganizationsMutationVariables = Exact<{
 }>;
 
 
-export type UpdateOrganizationsMutation = { __typename?: 'Mutation', updateOrganizations: { __typename?: 'UpdateOrganizationsMutationResponse', organizations: Array<{ __typename?: 'Organization', id: string, name: string, solutions: Array<{ __typename?: 'Solution', id: string, brief?: string | null, problems: Array<{ __typename?: 'Problem', id: string, brief?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', id: string, name: string }> }> }>, considerations: Array<{ __typename?: 'Geographic', brief?: string | null } | { __typename?: 'Misc', content: string } | { __typename?: 'Team', brief?: string | null } | { __typename?: 'WebDump', content: string }>, statuses: Array<{ __typename?: 'OrganizationStatus', name: OrganizationStatusName }>, scopesConnection: { __typename?: 'OrganizationScopesConnection', edges: Array<{ __typename?: 'OrganizationScopesRelationship', aspect: string, reason: string, node: { __typename?: 'Scope', name: string, brief: string, basis?: string | null, description?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', name: string, brief: string, description?: string | null }>, considerations: Array<{ __typename?: 'Example', brief: string, description?: string | null } | { __typename?: 'Question', brief: string, description?: string | null }> } }> } }> } };
+export type UpdateOrganizationsMutation = { __typename?: 'Mutation', updateOrganizations: { __typename?: 'UpdateOrganizationsMutationResponse', organizations: Array<{ __typename?: 'Organization', id: string, name: string, solutions: Array<{ __typename?: 'Solution', id: string, brief?: string | null, problems: Array<{ __typename?: 'Problem', id: string, brief?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', id: string, name: string }> }> }>, considerations: Array<{ __typename?: 'Geography', brief?: string | null } | { __typename?: 'Misc', content: string } | { __typename?: 'Team', brief?: string | null } | { __typename?: 'WebDump', content: string }>, statuses: Array<{ __typename?: 'OrganizationStatus', name: OrganizationStatusName }>, scopesConnection: { __typename?: 'OrganizationScopesConnection', edges: Array<{ __typename?: 'OrganizationScopesRelationship', aspect: string, reason: string, node: { __typename?: 'Scope', name: string, brief: string, basis?: string | null, description?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', name: string, brief: string, description?: string | null }>, considerations: Array<{ __typename?: 'Example', brief: string, description?: string | null } | { __typename?: 'Question', brief: string, description?: string | null }> } }> } }> } };
 
 export type CreateScopesMutationVariables = Exact<{
   input: Array<ScopeCreateInput> | ScopeCreateInput;
@@ -14467,8 +14467,8 @@ export type ScopesQueryVariables = Exact<{
 export type ScopesQuery = { __typename?: 'Query', scopes: Array<{ __typename?: 'Scope', name: string, brief: string, basis?: string | null }> };
 
 
-export const CreateOrganizationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateOrganizations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createOrganizations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"solutions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"problems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"stakeholders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Misc"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebDump"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Geographic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Team"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateOrganizationsMutation, CreateOrganizationsMutationVariables>;
-export const UpdateOrganizationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateOrganizations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationConnectOrCreateInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"create"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationRelationInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"update"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationUpdateInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateOrganizations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"create"},"value":{"kind":"Variable","name":{"kind":"Name","value":"create"}}},{"kind":"Argument","name":{"kind":"Name","value":"connectOrCreate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}}},{"kind":"Argument","name":{"kind":"Name","value":"update"},"value":{"kind":"Variable","name":{"kind":"Name","value":"update"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"solutions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"problems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"stakeholders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Misc"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebDump"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Geographic"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Team"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"statuses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"scopesConnection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"aspect"}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"basis"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"stakeholders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Question"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Example"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateOrganizationsMutation, UpdateOrganizationsMutationVariables>;
+export const CreateOrganizationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateOrganizations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createOrganizations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"solutions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"problems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"stakeholders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Misc"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebDump"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Geography"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Team"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateOrganizationsMutation, CreateOrganizationsMutationVariables>;
+export const UpdateOrganizationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateOrganizations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationWhere"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationConnectOrCreateInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"create"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationRelationInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"update"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationUpdateInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateOrganizations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"create"},"value":{"kind":"Variable","name":{"kind":"Name","value":"create"}}},{"kind":"Argument","name":{"kind":"Name","value":"connectOrCreate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"connectOrCreate"}}},{"kind":"Argument","name":{"kind":"Name","value":"update"},"value":{"kind":"Variable","name":{"kind":"Name","value":"update"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"solutions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"problems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"stakeholders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Misc"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebDump"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Geography"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Team"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"statuses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"scopesConnection"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"aspect"}},{"kind":"Field","name":{"kind":"Name","value":"reason"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"basis"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"stakeholders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"considerations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Question"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Example"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateOrganizationsMutation, UpdateOrganizationsMutationVariables>;
 export const CreateScopesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateScopes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ScopeCreateInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createScopes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"scopes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"basis"}}]}}]}}]}}]} as unknown as DocumentNode<CreateScopesMutation, CreateScopesMutationVariables>;
 export const CountOrganizationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CountOrganizations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationWhere"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizationsAggregate"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"count"}}]}}]}}]} as unknown as DocumentNode<CountOrganizationsQuery, CountOrganizationsQueryVariables>;
 export const OrganizationsQuickDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"OrganizationsQuick"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"OrganizationWhere"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organizations"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"website"}}]}}]}}]} as unknown as DocumentNode<OrganizationsQuickQuery, OrganizationsQuickQueryVariables>;

@@ -35,7 +35,7 @@ mutation UpdateOrganizations(
         ... on WebDump {
           content
         }
-        ... on Geographic {
+        ... on Geography {
           brief
         }
         ... on Team {

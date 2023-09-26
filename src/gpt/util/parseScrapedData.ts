@@ -11,7 +11,7 @@ export interface ScrapedOrganizationData {
   problem: string;
   solution: string;
   team: string;
-  geographic: string;
+  geography: string;
   misc?: string[];
 }
 export interface ParseScrapedDataProps {
@@ -30,7 +30,7 @@ export default function parseScrapedData({
     problem,
     solution,
     team,
-    geographic,
+    geography,
     misc,
   } = organization;
   const userConnection = {
@@ -99,11 +99,11 @@ export default function parseScrapedData({
           },
         })),
       },
-      Geographic: {
+      Geography: {
         create: [
           {
             node: {
-              description: geographic,
+              description: geography,
               users: userConnection,
             },
           },

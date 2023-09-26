@@ -30,7 +30,7 @@ mutation CreateOrganizations($input: [OrganizationCreateInput!]!) {
           ... on WebDump {
             content
           }
-          ... on Geographic {
+          ... on Geography {
             brief
             description
           }

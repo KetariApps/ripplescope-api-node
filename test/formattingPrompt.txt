@@ -6,6 +6,6 @@ Organizations: [{
   problem: “the problem the organization is solving”,
   solution: “the organization’s solution to the problem”,
   team: “any information about the organization’s team in paragraph form”,
-  geographic: “a description of the geographic context in which the organization operates and impacts through its operations in paragraph form”,
+  geography: “a description of the geography context in which the organization operates and impacts through its operations in paragraph form”,
   misc?: Array<“Any additional context about the organization and its operations that did not fit in the previous sections”>,
 }]

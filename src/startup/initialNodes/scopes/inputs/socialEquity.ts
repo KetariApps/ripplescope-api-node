@@ -23,7 +23,7 @@ const socialEquity: ScopeCreateInput = {
   
         Transparency in sharing diversity and inclusion metrics with the public demonstrates the initiative's commitment to accountability and progress.
   
-        Understanding the percentage of geographically secluded community members helps prevent the unintentional oversight or isolation of any population segment.
+        Understanding the percentage of geographyally secluded community members helps prevent the unintentional oversight or isolation of any population segment.
         `,
   stakeholders: {
     connectOrCreate: [
@@ -136,9 +136,9 @@ const socialEquity: ScopeCreateInput = {
         {
           node: {
             brief:
-              'What percentage of community members are considered geographically secluded?',
+              'What percentage of community members are considered geographyally secluded?',
             description:
-              'This question helps identify and address the needs of geographically secluded community members.',
+              'This question helps identify and address the needs of geographyally secluded community members.',
           },
         },
       ],
