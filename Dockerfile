@@ -4,5 +4,5 @@ WORKDIR /app
 COPY . .
 RUN npm install
 RUN npm run build
-RUN npm run pre-populate-database
+RUN npm run startup
 ENTRYPOINT ["npm", "start"]
