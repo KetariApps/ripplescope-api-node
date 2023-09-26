@@ -15,6 +15,7 @@
     "watch": "graphql-codegen -w",
     "codegen": "graphql-codegen --config codegen.ts",
     "pre-populate-database": "node build/startup/index.js",
+    "startup": "node build/startup/index.js",
     "test-org": "cd test && ./org-test.sh"
   },
   "author": "Zach Garrett",
