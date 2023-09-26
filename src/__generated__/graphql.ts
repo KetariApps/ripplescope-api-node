@@ -4006,12 +4006,12 @@ export type OrganizationStatusEdge = {
 };
 
 export enum OrganizationStatusName {
+  RippleChainDataLinked = 'RIPPLE_CHAIN_DATA_LINKED',
   RippleChainDone = 'RIPPLE_CHAIN_DONE',
   RippleChainError = 'RIPPLE_CHAIN_ERROR',
   RippleChainLocationsConnected = 'RIPPLE_CHAIN_LOCATIONS_CONNECTED',
   RippleChainLocationsInferring = 'RIPPLE_CHAIN_LOCATIONS_INFERRING',
   RippleChainOrganizationDescribing = 'RIPPLE_CHAIN_ORGANIZATION_DESCRIBING',
-  RippleChainRipplesConnected = 'RIPPLE_CHAIN_RIPPLES_CONNECTED',
   RippleChainRipplesInferring = 'RIPPLE_CHAIN_RIPPLES_INFERRING',
   RippleChainScopesConnected = 'RIPPLE_CHAIN_SCOPES_CONNECTED',
   RippleChainScopesInferring = 'RIPPLE_CHAIN_SCOPES_INFERRING',
