@@ -65,13 +65,17 @@ export const insertScopes = async () => {
       water,
     ];
     console.log('Creating initial scopes.');
-    await Promise.all(
+    await Promise.allSettled(
       scopes.map(async (scope, i, arr) => {
-        console.log(`[${i + 1}/${arr.length}]: Sent`);
-        await client.request(createScopes, {
-          input: scope,
-        });
-        console.log(`[${i + 1}/${arr.length}]: Success`);
+        try {
+          console.debug(`[${i + 1}/${arr.length}]: Sent`);
+          await client.request(createScopes, {
+            input: scope,
+          });
+          console.debug(`[${i + 1}/${arr.length}]: Success`);
+        } catch (error) {
+          console.debug(`[${i + 1}/${arr.length}]: Failed`);
+        }
       }),
     );
     console.log('Created initial scopes.');
@@ -79,5 +83,8 @@ export const insertScopes = async () => {
   } catch (error) {
     console.error(error);
     return null;
+  } finally {
+    console.debug('Inserted Scopes');
+    return;
   }
 };

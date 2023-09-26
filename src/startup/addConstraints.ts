@@ -24,11 +24,13 @@ export const addConstraints = async () => {
         REQUIRE n.email IS UNIQUE
       `);
       tx.run(`
-      CREATE CONSTRAINT scope_name IF NOT EXISTS
-      FOR (n:Scope)
-      REQUIRE n.name IS UNIQUE
-    `);
+        CREATE CONSTRAINT scope_name IF NOT EXISTS
+        FOR (n:Scope)
+        REQUIRE n.name IS UNIQUE
+      `);
     });
+  } catch (error) {
+    console.error(error);
   } finally {
     console.debug('Added constraints');
     await session.close();
