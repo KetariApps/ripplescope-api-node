@@ -10,36 +10,27 @@ export const addConstraints = async () => {
   const session = driver.session();
   try {
     console.debug('Adding organization_website constraint');
-    const orgConstriaint = session.run(`
-    CREATE CONSTRAINT organization_website IF NOT EXISTS
-    FOR (n:Organization)
-    REQUIRE n.website IS UNIQUE
-  `);
-
     console.debug('Adding user_email constraint');
-    const userConstraint = session.run(`
-    CREATE CONSTRAINT user_email IF NOT EXISTS
-    FOR (n:User)
-    REQUIRE n.email IS UNIQUE
-  `);
-
     console.debug('Adding scope_name constraint');
-    const scopeConstraint = session.run(`
-    CREATE CONSTRAINT scope_name IF NOT EXISTS
-    FOR (n:Scope)
-    REQUIRE n.name IS UNIQUE
-  `);
-
-    const settledResults = await Promise.allSettled([
-      orgConstriaint,
-      userConstraint,
-      scopeConstraint,
-    ]);
-    settledResults.forEach((res) => {
-      if (res.status === 'rejected') console.error(res.reason);
-      if (res.status === 'fulfilled') console.log('Added constraint');
+    await session.executeWrite((tx) => {
+      tx.run(`
+        CREATE CONSTRAINT organization_website IF NOT EXISTS
+        FOR (n:Organization)
+        REQUIRE n.website IS UNIQUE
+      `);
+      tx.run(`
+        CREATE CONSTRAINT user_email IF NOT EXISTS
+        FOR (n:User)
+        REQUIRE n.email IS UNIQUE
+      `);
+      tx.run(`
+      CREATE CONSTRAINT scope_name IF NOT EXISTS
+      FOR (n:Scope)
+      REQUIRE n.name IS UNIQUE
+    `);
     });
   } finally {
+    console.debug('Added constraints');
     await session.close();
   }
 };
