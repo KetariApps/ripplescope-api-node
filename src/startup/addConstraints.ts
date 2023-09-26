@@ -3,13 +3,9 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 export const addConstraints = async () => {
   const { NEO_URI, NEO_USER, NEO_PASS } = process.env;
-  if (
-    NEO_URI === undefined ||
-    NEO_USER === undefined ||
-    NEO_PASS === undefined
-  ) {
-    throw new Error('undefined environment variables');
-  }
+  if (NEO_URI === undefined) throw new Error('NEO_URI was undefined');
+  if (NEO_USER === undefined) throw new Error('NEO_USER was undefined');
+  if (NEO_PASS === undefined) throw new Error('NEO_PASS was undefined');
   const driver = neo4j.driver(NEO_URI, neo4j.auth.basic(NEO_USER, NEO_PASS));
   const session = driver.session();
   try {
