@@ -1,18 +1,70 @@
 {
   "Organizations": [
     {
+      "userEmail": "matt.scouten@gmail.com",
       "organization": {
-        "name": "Birdstop",
-        "website": "https://www.birdstop.io/",
-        "problem": "Companies in sectors ranging from energy to agriculture to telecommunications need to make mission critical decisions in near real-time. Humans can't always access these areas quickly.",
-        "solution": "Birdstop nodes sit in the field to deploy and command Unmanned Aerial Vehicles (UAVs) in conjunction with fixed sensors to acquire intel without requiring personnel onsite.",
-        "team": "The Birdstop team is brought together by a vision of building a new remote sensing platform using uncrewed aerial technology in low altitude airspace.",
-        "geographic": "Birdstop operates in Concord, California, United States, and impacts the remote sensing and data collection landscape in various industries globally.",
+        "name": "Serotonin Creative Consultancy",
+        "website": "https://www.serotonincreative.com/",
+        "problem": "With the increased pace of business, ceaseless stream of content, and shrinking attention spans, it's never been more challenging to rise above the noise, connect with your audience, and move people to take meaningful action for your business and the planet.",
+        "solution": "We build and amplify the impact of purpose-driven brands and organizations in the public and private sectors.",
+        "team": "Serotonin Creative Consultancy is a team of 4 professionals dedicated to helping purpose-driven brands make a meaningful impact.",
+        "geographic": "Located in Modesto, California, United States, Serotonin Creative Consultancy assists brands and organizations in connecting with their audience and driving positive change.",
         "misc": [
-          "Birdstop's vision is to effectively build a constellation of satellites that sit on the ground, collecting high fidelity data on demand. Join us in pioneering a new layer of Earth observation."
+          "Whether it's brand building, brand strategy, campaign development, content creation, storytelling, writing, or design, Serotonin is here to help you unlock hidden value and stand out by seizing opportunities in: Corporate Social Responsibility, Sustainability, and Impact Storytelling."
         ]
-      },
-      "userEmail": "matt.scouten@gmail.com"
+      }
+    },
+    {
+      "userEmail": "matt.scouten@gmail.com",
+      "organization": {
+        "name": "Gridware",
+        "website": "https://www.gridware.io/",
+        "problem": "Powerlines are leading to forest fires. The grid needs to be modernized.",
+        "solution": "Gridware builds technology that efficiently addresses these challenges with products that enable utilities to monitor assets, detect and prevent hazards—like vegetation contact, downed lines, transformer overloads and pole rot.",
+        "team": "Gridware is supported by a team of 37 professionals dedicated to improving grid safety and preventing forest fires.",
+        "geographic": "Gridware is located in Walnut Creek, California, United States, and contributes to the modernization of power grids to enhance safety.",
+        "misc": []
+      }
+    },
+    {
+      "userEmail": "matt.scouten@gmail.com",
+      "organization": {
+        "name": "Overstory",
+        "website": "https://www.overstory.com/",
+        "problem": "Vegetation is the single greatest contributor to power outages and wildfires caused by our electric grid.",
+        "solution": "Overstory provides utilities with visibility, risk analysis, and optimization recommendations for vegetation management throughout your entire service territory.",
+        "team": "Overstory is powered by a team of 59 professionals specializing in vegetation management and grid reliability.",
+        "geographic": "Overstory is headquartered in Amsterdam, Netherlands, and offers solutions to reduce power outages and wildfires globally.",
+        "misc": [
+          "It does this by applying artificial intelligence to satellite imagery."
+        ]
+      }
+    },
+    {
+      "userEmail": "matt.scouten@gmail.com",
+      "organization": {
+        "name": "Pano",
+        "website": "https://www.pano.ai/",
+        "problem": "The early minutes of a fire are critical, and initial response time determines the ultimate threat to lives and property. With most wildfires detected by bystanders and reported via 911, it can take hours to detect a fire, verify its exact location and size, and dispatch first responders.",
+        "solution": "Pano Rapid Detect speeds response time by empowering detection specialists with enhanced visual equipment and rapid data analysis, supported by AI. Specialists have a single, unified view combining ultra-high-definition cameras, geo satellite data, field sensors, legacy cameras, emergency alerts, and other data feeds — as well as the ability to share everything in real-time with their extended team. Altogether, this makes it possible to quickly identify and contain devastating wildfires, protecting lives, property, and our forests.",
+        "team": "Pano is driven by a team of 69 professionals dedicated to improving wildfire detection and response.",
+        "geographic": "Pano is located in San Francisco, California, United States, and contributes to wildfire prevention and response efforts.",
+        "misc": []
+      }
+    },
+    {
+      "userEmail": "matt.scouten@gmail.com",
+      "organization": {
+        "name": "Earthforce Technologies",
+        "website": "https://www.earthforce.io/",
+        "problem": "Wildfire risk is growing exponentially, yet vegetation management lags dramatically behind. One year of California wildfires erased 16 years of emission cuts. We're on a mission to reduce climate change via cutting-edge technology applied to forestry and vegetation management.",
+        "solution": "Earth Force is building management software to enable scalable solutions for vegetation and forest management, designed from the ground up to meet today's challenges. We're working with our partners to identify areas for innovation.",
+        "team": "Earthforce Technologies is backed by a team of 15 individuals committed to advancing technology-driven forestry and vegetation management.",
+        "geographic": "Earthforce Technologies operates in San Francisco, California, United States, and aims to reduce wildfire risk and mitigate climate change through innovative technology.",
+        "misc": [
+          "Heightened awareness has led to a greater expectation from the public for responsible and sustainable forestry practices. The public expects forestry stewardship to not only protect natural resources and wildlife but also to promote biodiversity, mitigate climate change, and provide social and economic benefits to local communities. In response to these expectations, many forestry companies and organizations have adopted more comprehensive and transparent approaches to stewardship, ensuring that their practices are environmentally and socially responsible."
+        ]
+      }
     }
   ]
 }
