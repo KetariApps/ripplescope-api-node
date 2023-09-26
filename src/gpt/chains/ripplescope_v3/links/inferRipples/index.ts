@@ -36,9 +36,13 @@ export default async function inferRipples(
             `${decorator}: No response from OpenAI while inferring ripples`,
           );
         }
-        const GPT_Response = getJSONString(
-          GPT_ResponseString,
-        ) as GPT_RipplesResponse;
+
+        let GPT_Response: GPT_RipplesResponse;
+        try {
+          GPT_Response = JSON.parse(GPT_ResponseString);
+        } catch (error) {
+          GPT_Response = getJSONString(GPT_ResponseString);
+        }
 
         if (GPT_Response === undefined) {
           throw new Error(

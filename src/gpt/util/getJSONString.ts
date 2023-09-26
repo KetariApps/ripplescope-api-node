@@ -5,21 +5,16 @@
  * @returns
  */
 export default function getJSONString(str: string) {
-  if (
-    !str.includes('{') ||
-    !str.includes('}') ||
-    !str.includes('[') ||
-    !str.includes(']')
-  ) {
+  if (!(str.includes('{') && str.includes('}'))) {
     console.log(str);
     throw new Error('String did not contain valid JSON');
   }
 
   const firstCurlIndex = str.indexOf('{');
-  const firstSquareIndex = str.indexOf('[');
+  const firstSquareIndex = str.includes('[') ? str.indexOf('[') : null;
   let jsonStartIndex = 0;
   let jsonEndIndex = 0;
-  if (firstCurlIndex < firstSquareIndex) {
+  if (firstSquareIndex === null || firstCurlIndex < firstSquareIndex) {
     const lastCurlIndex = str.lastIndexOf('}');
     jsonStartIndex = firstCurlIndex;
     jsonEndIndex = lastCurlIndex;

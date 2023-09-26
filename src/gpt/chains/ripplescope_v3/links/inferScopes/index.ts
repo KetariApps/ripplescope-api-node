@@ -34,9 +34,13 @@ export default async function inferScopes(
         `${decorator}: No response from OpenAI while inferring scopes`,
       );
     }
-    const GPT_Response = getJSONString(
-      GPT_ResponseString,
-    ) as GPT_ScopesResponse;
+
+    let GPT_Response: GPT_ScopesResponse;
+    try {
+      GPT_Response = JSON.parse(GPT_ResponseString);
+    } catch (error) {
+      GPT_Response = getJSONString(GPT_ResponseString);
+    }
 
     if (GPT_Response === undefined) {
       throw new Error(
