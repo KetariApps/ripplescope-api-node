@@ -26,3 +26,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/ripplescope-api-node:develop
+          build-args: |
+            NEO_USER=${{ secrets.NEO_USER }}
+            NEO_PASS=${{ secrets.NEO_PASS }}     
