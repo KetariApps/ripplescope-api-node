@@ -4,6 +4,7 @@ import {
   OrganizationRelationInput,
   OrganizationStatusName,
   RipplesSentiment,
+  UserInteractionName,
 } from '../../../../../__generated__/graphql.js';
 import { updateOrganizations } from '../../../../../db/mutation/organization/update.js';
 
@@ -38,6 +39,17 @@ export default async function updateOrganization({
           name: ripple.name.toLocaleUpperCase(),
           brief: ripple.brief,
           description: ripple.description,
+          users: {
+            connectOrCreate: [
+              {
+                onCreate: {
+                  node: { email: 'gpt@ripplescope.com' },
+                  edge: { type: UserInteractionName.Create },
+                },
+                where: { node: { email: 'gpt@ripplescope.com' } },
+              },
+            ],
+          },
           scopes: {
             connect: [
               {
