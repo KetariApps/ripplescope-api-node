@@ -20,9 +20,10 @@ const initializer = (
   const userMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
     role: 'user',
     content: `From the provided details of this organization and the provided information about scopes, tag this Organization with 
-    any of the provided scopes in which its operations causes either positive or negative Ripples, either as a result of 
-    the primary operations or secondary effects of the Organization's operations. Scoped may be non-obvious, but must always 
-    be directly inferrable from the provided information about the organization.`,
+    any of the provided scopes in which its operations causes either positive or negative Ripples, either as an obvious result of 
+    the primary operations or a non-obvious result of some effect of the Organization's operations. Scoped may be non-obvious, but must always 
+    be inferred from the provided information about the organization. If, and only if, no scopes exist to classify the Organization, 
+    a new scope may be proposed, provided they compliment the existing list of scopes and meet the defined criteria for a Scope.`,
   };
   return [organizationMessage, scopesMessage, userMessage];
 };
