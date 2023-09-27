@@ -21,9 +21,9 @@ const initializer = (
     role: 'user',
     content: `From the provided details of this organization and the provided information about scopes, tag this Organization with 
     any of the provided scopes in which its operations causes either positive or negative Ripples, either as an obvious result of 
-    the primary operations or a non-obvious result of some effect of the Organization's operations. Scoped may be non-obvious, but must always 
-    be inferred from the provided information about the organization. If, and only if, no scopes exist to classify the Organization, 
-    a new scope may be proposed, provided they compliment the existing list of scopes and meet the defined criteria for a Scope.`,
+    the primary operations or a non-obvious result of some effect of the Organization's operations. Every organization impacts 
+    at least some of these scopes though the impact may be non-obvious. This is true because organizations are inherently social 
+    constructs which exist in thecontext of human society on earth. Therefore, every organization has some social and ecological impact.`,
   };
   return [organizationMessage, scopesMessage, userMessage];
 };

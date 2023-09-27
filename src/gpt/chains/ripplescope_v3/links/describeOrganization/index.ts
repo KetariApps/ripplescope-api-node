@@ -31,6 +31,8 @@ export default async function inferRipples(
       );
     }
 
+    console.log('DESCRIBE_ORG', GPT_ResponseString);
+
     let GPT_Response: GPT_DescriptionResponse;
     try {
       GPT_Response = JSON.parse(GPT_ResponseString);
