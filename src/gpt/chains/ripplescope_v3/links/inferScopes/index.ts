@@ -3,11 +3,7 @@ import getJSONString from '../../../../util/getJSONString.js';
 import { initializer, template } from './prompts/index.js';
 import { GraphQLClient } from 'graphql-request';
 import { GPT_ScopesResponse } from '../../types.js';
-import {
-  definitions,
-  getExistingScopes,
-  raisonDetre,
-} from '../../systemPrompts/index.js';
+import { definitions, raisonDetre } from '../../systemPrompts/index.js';
 import { CreateOrganizationsMutation } from '../../../../../__generated__/graphql.js';
 import { scopes } from '../../../../../db/query/scope/scopes.js';
 
