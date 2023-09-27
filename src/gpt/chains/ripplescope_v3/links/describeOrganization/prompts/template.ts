@@ -3,7 +3,7 @@ import { GPT_DescriptionResponse } from '../../../types.js';
 
 const responseObject: GPT_DescriptionResponse = {
   description:
-    'A description of the organization and its primary operations in paragraph form',
+    'A descriptive summary of the organization from the given information in paragraph form.',
   brief: 'A short summary of the organization. No more than two sentences.',
 };
 const template: OpenAI.Chat.CreateChatCompletionRequestMessage = {

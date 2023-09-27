@@ -23,7 +23,7 @@ export default async function ripplescopeError(
               },
               onCreate: {
                 node: { name: errorStatus },
-                edge: { dump: JSON.stringify(error), processId },
+                edge: { dump: String(error), processId },
               },
             },
           ],

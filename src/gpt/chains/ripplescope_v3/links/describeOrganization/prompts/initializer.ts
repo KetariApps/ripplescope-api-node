@@ -11,7 +11,7 @@ export default function initializer(
   };
   const userMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
     role: 'user',
-    content: `Describe ${organization.name}.`,
+    content: `Summarize ${organization.name} from the given information.`,
   };
   return [userMessage, organizationMessage];
 }

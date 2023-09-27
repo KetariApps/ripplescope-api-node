@@ -21,7 +21,8 @@ const initializer = (
     role: 'user',
     content: `From the provided details of this organization and the provided information about scopes, tag this Organization with 
     any of the provided scopes in which its operations causes either positive or negative Ripples, either as a result of 
-    the primary operations or secondary effects of the Organization's operations.`,
+    the primary operations or secondary effects of the Organization's operations. Scoped may be non-obvious, but must always 
+    be directly inferrable from the provided information about the organization.`,
   };
   return [organizationMessage, scopesMessage, userMessage];
 };
