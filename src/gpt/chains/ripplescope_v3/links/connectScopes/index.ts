@@ -43,7 +43,7 @@ export default async function connectScopes(
         scopes: scopes.map((scope) => ({
           where: {
             node: {
-              name: scope.name,
+              name: scope.name.toUpperCase(),
             },
           },
           onCreate: {
@@ -53,7 +53,7 @@ export default async function connectScopes(
               processId,
             },
             node: {
-              name: scope.name,
+              name: scope.name.toUpperCase(),
               brief: scope.description,
             },
           },
