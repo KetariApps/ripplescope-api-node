@@ -9,6 +9,7 @@ import {
   raisonDetre,
 } from '../../systemPrompts/index.js';
 import { CreateOrganizationsMutation } from '../../../../../__generated__/graphql.js';
+import { scopes } from '../../../../../db/query/scope/scopes.js';
 
 export default async function inferScopes(
   organization: CreateOrganizationsMutation['createOrganizations']['organizations'][0],
@@ -17,10 +18,13 @@ export default async function inferScopes(
 ) {
   const decorator = `[${new Date().toUTCString()}][${organization.name}]`;
 
-  const existingScopes = await getExistingScopes(client);
-  const messages = [definitions, raisonDetre, initializer(organization)];
-  if (existingScopes !== null) messages.push(existingScopes);
-  messages.push(template);
+  const scopesQuery = await client.request(scopes, {});
+  const messages = [
+    definitions,
+    raisonDetre,
+    ...initializer(organization, scopesQuery),
+    template,
+  ];
 
   const response = await openai.chat.completions.create({
     model: 'gpt-4',

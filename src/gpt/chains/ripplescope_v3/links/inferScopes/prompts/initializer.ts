@@ -1,18 +1,28 @@
 import OpenAI from 'openai';
 import { RecentlyCreatedOrganization } from '../../../types.js';
 import { stringifyOrganization } from '../../../util/index.js';
+import { ScopesQuery } from '../../../../../../__generated__/graphql.js';
 
 const initializer = (
   organization: RecentlyCreatedOrganization,
-): OpenAI.Chat.CreateChatCompletionRequestMessage => ({
-  role: 'user',
-  content: `${organization.name}
-  
-  ${stringifyOrganization(organization)}
-  
-    -------
-  
-    Return any Scopes in which this Organization's operations causes either positive or negative Ripples, either by the primary operations or secondary effects of the Organization's operations. Use the provided scopes when applicable.
-  `,
-});
+  scopesQuery: ScopesQuery,
+): OpenAI.Chat.CreateChatCompletionRequestMessage[] => {
+  const organizationMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
+    role: 'assistant',
+    content: stringifyOrganization(organization),
+  };
+  const scopesMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
+    role: 'assistant',
+    content: scopesQuery.scopes
+      .map(({ name, brief }) => `${name}:\n${brief}`)
+      .join('\n\n'),
+  };
+  const userMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
+    role: 'user',
+    content: `From the provided details of this organization and the provided information about scopes, tag this Organization with 
+    any of the provided scopes in which its operations causes either positive or negative Ripples, either as a result of 
+    the primary operations or secondary effects of the Organization's operations.`,
+  };
+  return [organizationMessage, scopesMessage, userMessage];
+};
 export default initializer;

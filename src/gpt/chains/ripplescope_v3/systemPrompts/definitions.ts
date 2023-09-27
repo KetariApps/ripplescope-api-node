@@ -22,8 +22,8 @@ const destructiveInterference = `Destructive Interference:
   Therefore, Destructive Interference may result in mitigation of risk (perhaps even eliminating risk entirely)
   or reduction of benefit (perhaps even eliminating benefit entirely).`;
 const ripplescope = `Ripplescope:
-Ripplescope is a system that assesses the overall impact of a organization on the world,
-  including that organization's interference with other organizations via its Ripples.`;
+Ripplescope is a system that assesses the overall impact of a organization on the world, 
+including that organization's interference with other organizations via its Ripples.`;
 
 const definitions: OpenAI.Chat.CreateChatCompletionRequestMessage = {
   role: 'system',

@@ -19,7 +19,7 @@ export default function initializer(
   };
   const userMessage: OpenAI.Chat.CreateChatCompletionRequestMessage = {
     role: 'user',
-    content: `Infer any positive or negative Ripples caused by ${
+    content: `Infer any positive or negative Ripples caused by the operations of ${
       organization.name
     } within the scope of ${scopeEdge.node.name.toLocaleLowerCase()}.`,
   };
