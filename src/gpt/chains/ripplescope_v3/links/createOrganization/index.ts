@@ -5,19 +5,19 @@ import isWebsiteResponsive from './preflight/isWebsiteResponsive.js';
 import isWebsiteInDatabase from './preflight/isWebsiteInDatabase.js';
 
 export default async function createOrganization(
-  organizationDetails: OrganizationCreateInput,
+  organizationInput: OrganizationCreateInput,
   client: GraphQLClient,
 ) {
   try {
-    await isWebsiteResponsive(organizationDetails.website);
-    await isWebsiteInDatabase(organizationDetails.website, client);
+    await isWebsiteResponsive(organizationInput.website);
+    await isWebsiteInDatabase(organizationInput.website, client);
   } catch (error) {
     throw new Error(error as string);
   }
   const createOrganizationsMutation = await client.request(
     createOrganizations,
     {
-      input: organizationDetails,
+      input: organizationInput,
     },
   );
   return createOrganizationsMutation.createOrganizations.organizations[0];

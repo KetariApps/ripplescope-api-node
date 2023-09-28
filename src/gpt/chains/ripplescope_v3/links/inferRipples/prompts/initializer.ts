@@ -23,5 +23,5 @@ export default function initializer(
       organization.name
     } within the scope of ${scopeEdge.node.name.toLocaleLowerCase()}.`,
   };
-  return [userMessage, organizationMessage, scopeMessage];
+  return [organizationMessage, scopeMessage, userMessage];
 }

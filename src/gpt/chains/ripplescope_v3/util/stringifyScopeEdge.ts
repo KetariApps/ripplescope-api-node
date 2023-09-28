@@ -1,9 +1,9 @@
 import { ConnectedScopeEdge } from '../types.js';
 
 const stringifyScopeEdge = ({ aspect, reason, node }: ConnectedScopeEdge) =>
-  `Scope:\n${node.name}\n${node.brief}\n\n${node.basis}\n\n${
-    node.description
-  }\n\n${aspect}\n${reason}\n\n${node.stakeholders
+  `Scope:\n${aspect}\n${reason}\n\n${node.name}\n\n${node.brief}\n\n${
+    node.basis
+  }\n\n${node.description}\n\n${node.stakeholders
     .map(({ name }) => `Stakeholder: ${name}`)
     .join('\n')}\n\n${
     node.considerations.length > 0
