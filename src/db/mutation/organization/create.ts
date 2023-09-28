@@ -25,18 +25,26 @@ mutation CreateOrganizations($input: [OrganizationCreateInput!]!) {
         }
         considerations {
           ... on Misc {
+            __typename
             content
+            id
           }
           ... on WebDump {
+            __typename
             content
+            id
           }
           ... on Geography {
+            __typename
             brief
             description
+            id
           }
           ... on Team {
+            __typename
             brief
             description
+            id
           }
         }
       }

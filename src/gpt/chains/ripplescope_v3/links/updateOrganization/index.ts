@@ -11,10 +11,10 @@ import { updateOrganizations } from '../../../../../db/mutation/organization/upd
 export interface UpdateOrganizationProps {
   processId: string;
   id: string;
-  description: string;
-  brief: string;
+  description?: string;
+  brief?: string;
   client: GraphQLClient;
-  ripplesResponses: Awaited<ReturnType<typeof inferRipples>>;
+  ripplesResponses?: Awaited<ReturnType<typeof inferRipples>>;
 }
 export default async function updateOrganization({
   processId,
@@ -28,48 +28,51 @@ export default async function updateOrganization({
   const nextStep = OrganizationStatusName.RippleChainDone;
 
   const newRipplesInput: OrganizationRelationInput = {
-    ripples: ripplesResponses.map(({ scopeEdge, ripple }) => {
-      return {
-        edge: {
-          aspect: ripple.edge.aspect,
-          reason: ripple.edge.reason,
-          processId,
-        },
-        node: {
-          name: ripple.name.toLocaleUpperCase(),
-          brief: ripple.brief,
-          description: ripple.description,
-          users: {
-            connectOrCreate: [
-              {
-                onCreate: {
-                  node: { email: 'gpt@ripplescope.com' },
-                  edge: { type: UserInteractionName.Create },
-                },
-                where: { node: { email: 'gpt@ripplescope.com' } },
-              },
-            ],
-          },
-          scopes: {
-            connect: [
-              {
-                where: {
-                  node: {
-                    name: scopeEdge.node.name,
+    // return an empty array if ripples are undefined
+    ripples: ripplesResponses
+      ? ripplesResponses.map(({ scopeEdge, ripple }) => {
+          return {
+            edge: {
+              aspect: ripple.edge.aspect,
+              reason: ripple.edge.reason,
+              processId,
+            },
+            node: {
+              name: ripple.name.toLocaleUpperCase(),
+              brief: ripple.brief,
+              description: ripple.description,
+              users: {
+                connectOrCreate: [
+                  {
+                    onCreate: {
+                      node: { email: 'gpt@ripplescope.com' },
+                      edge: { type: UserInteractionName.Create },
+                    },
+                    where: { node: { email: 'gpt@ripplescope.com' } },
                   },
-                },
-                edge: {
-                  processId,
-                  magnitude: Number(ripple.edge.magnitude),
-                  sentiment:
-                    ripple.edge.sentiment.toLocaleUpperCase() as RipplesSentiment,
-                },
+                ],
               },
-            ],
-          },
-        },
-      };
-    }),
+              scopes: {
+                connect: [
+                  {
+                    where: {
+                      node: {
+                        name: scopeEdge.node.name,
+                      },
+                    },
+                    edge: {
+                      processId,
+                      magnitude: Number(ripple.edge.magnitude),
+                      sentiment:
+                        ripple.edge.sentiment.toLocaleUpperCase() as RipplesSentiment,
+                    },
+                  },
+                ],
+              },
+            },
+          };
+        })
+      : [],
   };
 
   const updateOrganizationsMutation = await client.request(

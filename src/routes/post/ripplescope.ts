@@ -9,6 +9,8 @@ import { createOrganization } from '../../gpt/chains/ripplescope_v3/links/index.
 import { v4 as uuid } from 'uuid';
 import ripplescopeChain from '../../gpt/chains/ripplescope_v3/index.js';
 import OpenAI from 'openai';
+import nameConsiderations from '../../gpt/chains/naming/links/nameConsiderations/index.js';
+import { namingChain } from '../../gpt/chains/index.js';
 
 export default async function ripplescope(req: Request, res: Response) {
   const processId = uuid();
@@ -43,6 +45,19 @@ export default async function ripplescope(req: Request, res: Response) {
     const organization = await createOrganization(inputWithStatus, client);
     console.log(`${decorator} Created organization`);
 
+    /**
+     * It might be good to push these chains to a stream that can be subscribed to in the UI.
+     * Currently we accomplish this by polling for connections in the database, which seems more robust,
+     * but maybe it'as not necessary.
+     * Or perhaps the two methods could work together.
+     */
+    /**
+     * Any naming of user-entered data can happen entirely independently of the ripplescope analysis chain
+     */
+    console.debug(`[${processId}]: Naming any unnammed user entries`);
+    namingChain(processId, organization, openai, client);
+
+    console.debug(`[${processId}]: Kicking of the ripplescope chain`);
     ripplescopeChain(processId, organization, openai, client);
 
     res.status(200).json({

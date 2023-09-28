@@ -2,12 +2,11 @@ import {
   GPT_DescriptionResponse,
   OrganizationWithScopes,
 } from '../../types.js';
-import { definitions, raisonDetre } from '../../systemPrompts/index.js';
 import { initializer, template } from './prompts/index.js';
 import OpenAI from 'openai';
 import getJSONString from '../../../../util/getJSONString.js';
 
-export default async function inferRipples(
+export default async function describeOrganization(
   organization: OrganizationWithScopes,
   openai: OpenAI,
 ) {
@@ -15,12 +14,7 @@ export default async function inferRipples(
 
   const response = await openai.chat.completions.create({
     model: 'gpt-4',
-    messages: [
-      definitions,
-      raisonDetre,
-      ...initializer(organization),
-      template,
-    ],
+    messages: [...initializer(organization), template],
   });
 
   if (response) {
@@ -31,12 +25,11 @@ export default async function inferRipples(
       );
     }
 
-    console.log('DESCRIBE_ORG', GPT_ResponseString);
-
     let GPT_Response: GPT_DescriptionResponse;
     try {
       GPT_Response = JSON.parse(GPT_ResponseString);
     } catch (error) {
+      console.log('DESCRIBE_ORG', GPT_ResponseString);
       GPT_Response = getJSONString(GPT_ResponseString);
     }
 

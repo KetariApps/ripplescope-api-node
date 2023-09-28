@@ -38,3 +38,7 @@ export interface GPT_DescriptionResponse {
   description: string;
   brief: string;
 }
+
+export interface GPT_NameResponse {
+  name: string;
+}

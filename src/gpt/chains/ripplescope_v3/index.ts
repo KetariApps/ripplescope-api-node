@@ -9,6 +9,7 @@ import ripplescopeError from './links/ripplescopeError/index.js';
 import { CreateOrganizationsMutation } from '../../../__generated__/graphql.js';
 import { GraphQLClient } from 'graphql-request';
 import OpenAI from 'openai';
+import { resolveRipplesResponse, resolveSettledSummary } from './util/index.js';
 
 export default async function ripplescopeChain(
   processId: string,
@@ -16,36 +17,41 @@ export default async function ripplescopeChain(
   openai: OpenAI,
   client: GraphQLClient,
 ) {
+  const decorator = `[${processId}][Ripplescope Chain]`;
   try {
-    console.debug(`[${processId}]: Inferring Scopes`);
+    console.debug(`${decorator}: Inferring Scopes`);
     const scopes = await inferScopes(organization, openai, client);
-    console.debug(`[${processId}]: Connecting Scopes`);
+    console.debug(`${decorator}: Connecting Scopes`);
     const organizationWithScopes = await connectScopes(
       processId,
       organization,
       scopes,
       client,
     );
-    console.debug(`[${processId}]: Describing Organization`);
-    console.debug(`[${processId}]: Inferring Ripples`);
+    console.debug(`${decorator}: Describing Organization`);
+    console.debug(`${decorator}: Inferring Ripples`);
 
-    const [{ description, brief }, ripplesResponses] = await Promise.all([
+    const [settledSummary, settledRipplesResponse] = await Promise.allSettled([
       describeOrganization(organizationWithScopes, openai),
       inferRipples(organizationWithScopes, openai),
     ]);
-    console.debug(`[${processId}]: Linking Data`);
+
+    const summary = resolveSettledSummary(settledSummary);
+    const ripplesResponses = resolveRipplesResponse(settledRipplesResponse);
+
+    console.debug(`${decorator}: Linking Data`);
     await updateOrganization({
       processId,
       id: organizationWithScopes.id,
       client,
-      description,
-      brief,
+      description: summary?.description,
+      brief: summary?.brief,
       ripplesResponses,
     });
 
-    console.debug(`[${processId}]: Done`);
+    console.debug(`${decorator}: Done`);
   } catch (error) {
-    console.error(`[${processId}]: Error ${error}`);
+    console.error(`${decorator}: Error ${error}`);
     await ripplescopeError(processId, organization, error, client);
   }
 }

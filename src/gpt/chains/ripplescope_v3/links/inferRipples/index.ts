@@ -77,9 +77,6 @@ export default async function inferRipples(
       console.error(result.reason);
     }
   });
-  if (fulfilled_GPT_RipplesResponses.length === 0) {
-    throw new Error('Could not infer any ripples on organization.');
-  }
   const flat_fulfilled_GPT_RipplesResponses =
     fulfilled_GPT_RipplesResponses.flat();
   return flat_fulfilled_GPT_RipplesResponses;
