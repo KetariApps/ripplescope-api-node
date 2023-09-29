@@ -1,8 +1,0 @@
-curl -X POST -H "Content-Type: application/json" -d '{"message": "today has been a very long day. it sarted with me trying to write a computer program and after eight or so hours Ive finally made som progrress."}' http://localhost:4000/edit
-
-curl -N 'http://localhost:4000/sse?streamId=5'
-
-
-
-
-curl -X POST -H "Content-Type: application/json" -d '{"message": "Company: Adamo Foods\n\nLocation: London, UK\n\nEmployees: 5\n\nProblem Solving: Animal farming is a leading contributor to climate change and environmental degradation. Steak is one of the main culprits, using 15,000 liters of water to produce just 1kg. To fight climate change, we must reduce global red meat consumption. Think about it… we currently raise & slaughter billions of cows, feeding them enormous quantities of food and water every day for years. This inefficient technology is outdated.\n\nHow Solving: Simply leveraging the power of mother nature. Fungi grow at an exponential rate, and require minimal resources. Our large fermentation tanks make sure the fungi is happy and growing in the same way it does outside.  With our proprietary fermentation process, we end up with large batches of fibrous fungus roots, also called mycelium. \n\nInteresting Business Note: Our fungi steak contains zero cholesterol or hormones, and has much less saturated fat than beef. It is packed with protein & fibres, and contains all nine essential Amino Acids. Adamo’s technology creates good & delicious protein from fungi that only require small amounts of inexpensive nutrients & sugars. This efficient conversion process will contribute to tackling food insecurity worldwide."}' http://localhost:4000/ripplescope | grep -o '"message":[^,}]*' | cut -d':' -f2 | sed 's/"//g'

@@ -1,0 +1,35 @@
+{
+  "Organizations": [
+    {
+      "userEmail": "matt.scouten@gmail.com",
+      "organization": {
+        "name": "the name of the organization",
+        "brief": "a brief summary of the organization",
+        "description": "a detailed description of the organization",
+        "website": "the organization's website",
+        "solutions": [
+          {
+            "name": "the name of the solution",
+            "description": "one of the Organization's solutions",
+            "problems": [
+              {
+                "name": "a name for this problem",
+                "description": "One of the problems being addressed by this solution. do not include information about the organization in this problem statement.",
+                "stakeholders": [
+                  {
+                    "name": "the name of this stakeholder of the problem"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "team": "any information about the organization's team in paragraph form",
+        "geography": "a description of the geography context in which the organization operates and impacts through its operations in paragraph form",
+        "misc": [
+          "Any additional context about the organization and its operations that did not fit in the previous sections"
+        ]
+      }
+    }
+  ]
+}
