@@ -3,80 +3,80 @@
     {
       "userEmail": "matt.scouten@gmail.com",
       "organization": {
-        "name": "Birdstop",
-        "website": "https://www.birdstop.io/",
-        "problem": "Companies in sectors ranging from energy to agriculture to telecommunications need to make mission critical decisions in near real-time. Humans can't always access these areas quickly.",
-        "solution": "Birdstop nodes sit in the field to deploy and command Unmanned Aerial Vehicles (UAVs) in conjunction with fixed sensors to acquire intel without requiring personnel onsite.",
-        "team": "The Birdstop team is brought together by a vision of building a new remote sensing platform using uncrewed aerial technology in low altitude airspace.",
-        "geography": "Birdstop operates in Concord, California, United States, and impacts the remote sensing and data collection landscape in various industries globally.",
+        "name": "Andes",
+        "brief": "A company focused on removing CO2 from the atmosphere using minerals.",
+        "description": "Andes, located in Alameda, California, United States, employs 34 professionals to tackle the problem of atmospheric CO2. They use microorganisms to permanently remove CO2 by introducing beneficial microorganisms to the soil along with agricultural seeds. These microorganisms accelerate the conversion of CO2 into minerals, which move deep into the soil with rainfall, contributing to annual CO2 removal. This technology seamlessly integrates with existing farm operations, turning agricultural fields into carbon dioxide removal hubs while growing food. Andes offers an easy-to-adopt, low-cost solution for gigatonne-scale CO2 removal within years.",
+        "website": "https://www.andes.bio/",
+        "problem": "Removing CO2 from the atmosphere by way of minerals.",
+        "solution": "We use microorganisms to permanently remove CO₂ from the atmosphere. Andes beneficial microorganisms are added to the soil along with agricultural seeds, such as corn and wheat. These microorganisms grow with plant roots and accelerate the conversion of CO₂ into minerals. With rainfall, these minerals move deep into the soil, making room for annual CO₂ removal. Our microorganism technology integrates seamlessly with existing farm operations. These microorganisms enable agricultural fields to become mega-factories of carbon dioxide removal while growing food. Our easy-to-adopt technology results in low-cost, gigatonne-scale carbon dioxide removal in years, not decades. With science and technology, we harness what microorganisms have been doing for billions of years.",
+        "team": "The Andes team consists of 34 dedicated professionals with expertise in microbiology, agriculture, and sustainability.",
+        "geography": "Andes operates in Alameda, California, United States, but their impact is global as they contribute to addressing climate change.",
         "misc": [
-          "Birdstop's vision is to effectively build a constellation of satellites that sit on the ground, collecting high fidelity data on demand. Join us in pioneering a new layer of Earth observation."
+          "The build-up of minerals in agricultural fields has positive effects on soil and plant health. Benefits of minerals include improved water drainage, higher nutrient content in the soil, and decreased likelihood of plant diseases. Additionally, minerals stabilize soil organic matter, benefiting the overall health of soil, plants, and communities that depend on agricultural systems. Female founder."
         ]
       }
     },
     {
       "userEmail": "matt.scouten@gmail.com",
       "organization": {
-        "name": "Serotonin Creative Consultancy",
-        "website": "https://www.serotonincreative.com/",
-        "problem": "With the increased pace of business, ceaseless stream of content, and shrinking attention spans, it's never been more challenging to rise above the noise, connect with your audience, and move people to take meaningful action for your business and the planet.",
-        "solution": "We build and amplify the impact of purpose-driven brands and organizations in the public and private sectors.",
-        "team": "Serotonin Creative Consultancy is a team of 4 professionals dedicated to helping purpose-driven brands make a meaningful impact.",
-        "geography": "Located in Modesto, California, United States, Serotonin Creative Consultancy assists brands and organizations in connecting with their audience and driving positive change.",
+        "name": "Aether",
+        "brief": "Producers of sustainable diamonds from captured CO2.",
+        "description": "Aether, headquartered in New York, NY, United States, employs 37 professionals dedicated to advancing humanity's transition away from fossil fuels by producing carbon-neutral materials from captured CO2. They use a thermochemical process to capture CO2, purify it, and transform it into high-purity Atmospheric Methane™, which is used to grow sustainable diamonds atom by atom. Aether offers best-in-class traceability, tracking every atom of carbon in their diamonds from capture to sale, making them the world's first B Corp certified diamond company.",
+        "website": "https://aetherdiamonds.com/",
+        "problem": "Producing vital carbon-neutral materials from captured CO2.",
+        "solution": "Making 100% sustainable diamonds from thin air. A thermochemical process is used to capture CO2, which is then purified and pumped into high-pressure cylinders for storage. Captured CO2 is combined with green hydrogen to produce high-purity Atmospheric Methane™. Atmospheric Methane™ is pumped into specialized CVD growing chambers, where the diamond starts to take shape, one ambitious atom at a time. Once the diamond material has been grown, it is rough cut into small cubes, and advanced software maps the material and produces a cutting plan. From there, the stones are cut and polished using traditional methods.",
+        "team": "The Aether team consists of 37 professionals with expertise in carbon capture, diamond growth, and sustainability.",
+        "geography": "Aether is headquartered in New York, NY, United States, and is committed to producing sustainable diamonds and reducing CO2 emissions globally.",
         "misc": [
-          "Whether it's brand building, brand strategy, campaign development, content creation, storytelling, writing, or design, Serotonin is here to help you unlock hidden value and stand out by seizing opportunities in: Corporate Social Responsibility, Sustainability, and Impact Storytelling."
+          "Aether offers best-in-class traceability, tracking the journey of every atom of carbon in your diamond from the point of initial capture all the way through to final sale. Aether's commitment to the highest environmental and social standards has enabled us to become the first and only B Corp certified diamond company in the world. For every carat of diamond we produce, there is less CO2 in the air than there was before. By definition, this is the only truly sustainable way to produce a diamond."
         ]
       }
     },
     {
       "userEmail": "matt.scouten@gmail.com",
       "organization": {
-        "name": "Gridware",
-        "website": "https://www.gridware.io/",
-        "problem": "Powerlines are leading to forest fires. The grid needs to be modernized.",
-        "solution": "Gridware builds technology that efficiently addresses these challenges with products that enable utilities to monitor assets, detect and prevent hazards—like vegetation contact, downed lines, transformer overloads and pole rot.",
-        "team": "Gridware is supported by a team of 37 professionals dedicated to improving grid safety and preventing forest fires.",
-        "geography": "Gridware is located in Walnut Creek, California, United States, and contributes to the modernization of power grids to enhance safety.",
-        "misc": []
-      }
-    },
-    {
-      "userEmail": "matt.scouten@gmail.com",
-      "organization": {
-        "name": "Overstory",
-        "website": "https://www.overstory.com/",
-        "problem": "Vegetation is the single greatest contributor to power outages and wildfires caused by our electric grid.",
-        "solution": "Overstory provides utilities with visibility, risk analysis, and optimization recommendations for vegetation management throughout your entire service territory.",
-        "team": "Overstory is powered by a team of 59 professionals specializing in vegetation management and grid reliability.",
-        "geography": "Overstory is headquartered in Amsterdam, Netherlands, and offers solutions to reduce power outages and wildfires globally.",
+        "name": "Air Myne",
+        "brief": "Engineers of a Direct Air Capture (DAC) process to address climate change.",
+        "description": "Air Myne, based in Berkeley, California, United States, focuses on addressing climate change by engineering a Direct Air Capture (DAC) process designed to scale effectively. Their team of engineers and scientists is experienced in commercializing industrial processes at a global scale.",
+        "website": "https://www.airmyne.com/",
+        "problem": "Addressing climate change by removing carbon dioxide from the atmosphere.",
+        "solution": "Our team is engineering a Direct Air Capture (DAC) process with scale in mind from Day 1.",
+        "team": "Air Myne's team comprises engineers and scientists with extensive experience in large-scale industrial processes.",
+        "geography": "Air Myne is headquartered in Berkeley, California, United States, and aims to make a significant impact in addressing climate change worldwide.",
         "misc": [
-          "It does this by applying artificial intelligence to satellite imagery."
+          "We are a team of engineers & scientists who know what it takes to commercialize industrial processes at global scale."
         ]
       }
     },
     {
       "userEmail": "matt.scouten@gmail.com",
       "organization": {
-        "name": "Pano",
-        "website": "https://www.pano.ai/",
-        "problem": "The early minutes of a fire are critical, and initial response time determines the ultimate threat to lives and property. With most wildfires detected by bystanders and reported via 911, it can take hours to detect a fire, verify its exact location and size, and dispatch first responders.",
-        "solution": "Pano Rapid Detect speeds response time by empowering detection specialists with enhanced visual equipment and rapid data analysis, supported by AI. Specialists have a single, unified view combining ultra-high-definition cameras, geo satellite data, field sensors, legacy cameras, emergency alerts, and other data feeds — as well as the ability to share everything in real-time with their extended team. Altogether, this makes it possible to quickly identify and contain devastating wildfires, protecting lives, property, and our forests.",
-        "team": "Pano is driven by a team of 69 professionals dedicated to improving wildfire detection and response.",
-        "geography": "Pano is located in San Francisco, California, United States, and contributes to wildfire prevention and response efforts.",
-        "misc": []
+        "name": "Arca",
+        "brief": "Innovators in carbon dioxide sequestration using mine tailings.",
+        "description": "Arca, located in Vancouver, British Columbia, Canada, employs 14 professionals with a mission to decarbonize energy systems and make critical metal mining carbon negative. They focus on carbon dioxide sequestration using ultramafic mine tailings, a byproduct of critical metal mining, to remove gigatonnes of CO2 from the atmosphere while benefiting the mining industry.",
+        "website": "https://arcaclimate.com/",
+        "problem": "Decarbonizing energy systems and making critical metal mining carbon negative.",
+        "solution": "We remove excess CO2 from the atmosphere and transform it into rocks – naturally storing it for millennia. Our technology significantly accelerates the natural process of carbon mineralization in mine tailings. Building upon decades of research, we’ve developed new ways to transform mine waste into a valuable new resource. This presents an unprecedented opportunity for permanent carbon dioxide sequestration on a gigatonne scale.",
+        "team": "Arca collaborates with mining partners to develop innovative carbon dioxide removal solutions for the clean energy transition.",
+        "geography": "Arca is located in Vancouver, British Columbia, Canada, and partners with mining companies worldwide to reduce carbon emissions.",
+        "misc": [
+          "Our mining partners produce the critical metals needed for the clean energy transition. Together, we develop new ways to decarbonize their operations, enabling them to achieve their environmental and social commitments and make carbon-negative mining a reality. We work with progressive companies who are taking responsibility for their emissions – past, present, and future. For these leaders, we offer scalable carbon dioxide removal that’s always safe, verified, and durable."
+        ]
       }
     },
     {
       "userEmail": "matt.scouten@gmail.com",
       "organization": {
-        "name": "Earthforce Technologies",
-        "website": "https://www.earthforce.io/",
-        "problem": "Wildfire risk is growing exponentially, yet vegetation management lags dramatically behind. One year of California wildfires erased 16 years of emission cuts. We're on a mission to reduce climate change via cutting-edge technology applied to forestry and vegetation management.",
-        "solution": "Earth Force is building management software to enable scalable solutions for vegetation and forest management, designed from the ground up to meet today's challenges. We're working with our partners to identify areas for innovation.",
-        "team": "Earthforce Technologies is backed by a team of 15 individuals committed to advancing technology-driven forestry and vegetation management.",
-        "geography": "Earthforce Technologies operates in San Francisco, California, United States, and aims to reduce wildfire risk and mitigate climate change through innovative technology.",
+        "name": "Cacto",
+        "brief": "Creators of sustainable cactus leather accessories.",
+        "description": "Cacto, based in Gilroy, California, United States, addresses the environmental impact of cow leather by offering sustainable accessories made from cactus leather. They emphasize clean and ethical production in Mexico, utilizing cactus leather for its environmental benefits. Cacto is committed to fair labor standards and sustainability.",
+        "website": "https://cacto.green/",
+        "problem": "Reducing the environmental impact of cow leather and cattle ranching.",
+        "solution": "Developed by young Mexican entrepreneurs in Jalisco, cactus leather offers multiple environmental benefits compared to other vegan leathers and polyurethanes. It is low energy-intensive, toxic chemical-free, partially biodegradable, and socially responsible. Cacto's accessories are crafted by skilled artisans in Mexico, offering a cruelty-free, sustainable, and affordable alternative to traditional luxury brands.",
+        "team": "Cacto collaborates with artisans in Mexico and promotes sustainable and cruelty-free practices.",
+        "geography": "Cacto is based in Gilroy, California, United States, and sources cactus materials from organic certified plantations in Mexico.",
         "misc": [
-          "Heightened awareness has led to a greater expectation from the public for responsible and sustainable forestry practices. The public expects forestry stewardship to not only protect natural resources and wildlife but also to promote biodiversity, mitigate climate change, and provide social and economic benefits to local communities. In response to these expectations, many forestry companies and organizations have adopted more comprehensive and transparent approaches to stewardship, ensuring that their practices are environmentally and socially responsible."
+          "Our primary material is low energy-intensive, toxic chemical-free, and partially biodegradable- among its many environmental added values. Furthermore, we are socially responsible and implement fair labor standards. We have invested in recruiting the best artisans in Mexico, who can rival the craftsmanship at the most prestigious French maisons, all while being cruelty-free, sustainable, and affordable. Traditional luxury brands destroy functional merchandise deemed unsuitable, or even worse, for 'brand protection' purposes, to safeguard a reputation of exclusivity. We rather offer it to our customers at severely discounted prices. Comes from organic certified cactus plantations. It is herbicide-free and pesticide-free. So much so that all the remaining organic cactus material not used in the manufacturing process is exported and sold nationally in the food industry."
         ]
       }
     }

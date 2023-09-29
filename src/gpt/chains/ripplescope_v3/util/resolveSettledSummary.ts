@@ -1,14 +1,15 @@
 import { GPT_DescriptionResponse } from '../types.js';
 
 export default function resolveSettledSummary(
-  settledSummary: PromiseSettledResult<GPT_DescriptionResponse>,
+  settledSummary: PromiseSettledResult<GPT_DescriptionResponse | undefined>,
 ) {
-  let sulfilledSummary: GPT_DescriptionResponse | undefined = undefined;
+  if (settledSummary === undefined) return undefined;
+  let fulfilledSummary: GPT_DescriptionResponse | undefined = undefined;
   if (settledSummary.status === 'fulfilled') {
-    sulfilledSummary = settledSummary.value;
+    fulfilledSummary = settledSummary.value;
   } else {
     console.error(settledSummary.reason);
   }
 
-  return sulfilledSummary;
+  return fulfilledSummary;
 }

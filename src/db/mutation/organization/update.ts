@@ -16,6 +16,8 @@ mutation UpdateOrganizations(
     organizations {
       id
       name
+      brief
+      description
       solutions {
         id
         brief

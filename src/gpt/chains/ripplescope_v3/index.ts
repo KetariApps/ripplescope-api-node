@@ -28,11 +28,18 @@ export default async function ripplescopeChain(
       scopes,
       client,
     );
-    console.debug(`${decorator}: Describing Organization`);
+
+    const orgMissingDescriptionAndBrief =
+      typeof organizationWithScopes.description !== 'string' &&
+      typeof organizationWithScopes.brief !== 'string';
+    orgMissingDescriptionAndBrief &&
+      console.debug(`${decorator}: Describing Organization`);
     console.debug(`${decorator}: Inferring Ripples`);
 
     const [settledSummary, settledRipplesResponse] = await Promise.allSettled([
-      describeOrganization(organizationWithScopes, openai),
+      orgMissingDescriptionAndBrief
+        ? describeOrganization(organizationWithScopes, openai)
+        : undefined,
       inferRipples(organizationWithScopes, openai),
     ]);
 
