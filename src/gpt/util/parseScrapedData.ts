@@ -8,11 +8,18 @@ export interface ScrapedOrganizationData {
   brief: string;
   description: string;
   website: string;
-  problem: string;
-  solution: string;
+  solutions: Array<{
+    name: string;
+    description: string;
+    problems: Array<{
+      name: string;
+      description: string;
+      stakeholders: Array<{ name: string }>;
+    }>;
+  }>;
   team: string;
   geography: string;
-  misc?: string[];
+  misc: string[];
 }
 export interface ParseScrapedDataProps {
   organization: ScrapedOrganizationData;
@@ -27,8 +34,7 @@ export default function parseScrapedData({
     brief,
     description,
     website,
-    problem,
-    solution,
+    solutions,
     team,
     geography,
     misc,
@@ -60,25 +66,38 @@ export default function parseScrapedData({
     website,
     users: userConnection,
     solutions: {
-      create: [
-        {
-          node: {
-            description: solution,
-            users: userConnection,
-            problems: {
-              create: [
-                {
-                  node: {
-                    users: userConnection,
-                    description: problem,
-                  },
-                  edge: {},
+      create: solutions.map(({ description, name, problems }) => ({
+        node: {
+          name,
+          description,
+          users: userConnection,
+          problems: {
+            create: problems.map(({ name, description, stakeholders }) => ({
+              node: {
+                users: userConnection,
+                name,
+                description,
+                stakeholders: {
+                  connectOrCreate: stakeholders.map(({ name }) => ({
+                    where: {
+                      node: {
+                        name,
+                      },
+                    },
+                    onCreate: {
+                      node: {
+                        name,
+                      },
+                      edge: {},
+                    },
+                  })),
                 },
-              ],
-            },
+              },
+              edge: {},
+            })),
           },
         },
-      ],
+      })),
     },
     considerations: {
       Team: {

@@ -6522,7 +6522,7 @@ export type ProblemStakeholderStakeholdersEdgeAggregateSelection = {
 
 export type ProblemStakeholderStakeholdersNodeAggregateSelection = {
   __typename?: 'ProblemStakeholderStakeholdersNodeAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
+  brief: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -10254,7 +10254,7 @@ export type ScopeStakeholderStakeholdersAggregationSelection = {
 
 export type ScopeStakeholderStakeholdersNodeAggregateSelection = {
   __typename?: 'ScopeStakeholderStakeholdersNodeAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
+  brief: StringAggregateSelectionNullable;
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
   id: IdAggregateSelectionNonNullable;
@@ -11704,7 +11704,7 @@ export enum SortDirection {
 
 export type Stakeholder = {
   __typename?: 'Stakeholder';
-  brief: Scalars['String']['output'];
+  brief?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['DateTime']['output'];
   description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
@@ -11814,7 +11814,7 @@ export type StakeholderUsersConnectionArgs = {
 
 export type StakeholderAggregateSelection = {
   __typename?: 'StakeholderAggregateSelection';
-  brief: StringAggregateSelectionNonNullable;
+  brief: StringAggregateSelectionNullable;
   count: Scalars['Int']['output'];
   createdAt: DateTimeAggregateSelectionNonNullable;
   description: StringAggregateSelectionNullable;
@@ -11845,7 +11845,7 @@ export type StakeholderConnectWhere = {
 };
 
 export type StakeholderCreateInput = {
-  brief: Scalars['String']['input'];
+  brief?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   organizations?: InputMaybe<StakeholderOrganizationsFieldInput>;
@@ -11876,7 +11876,7 @@ export type StakeholderEdge = {
 };
 
 export type StakeholderOnCreateInput = {
-  brief: Scalars['String']['input'];
+  brief?: InputMaybe<Scalars['String']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   verified?: Scalars['Boolean']['input'];
@@ -12719,7 +12719,7 @@ export type StakeholderWhere = {
   brief?: InputMaybe<Scalars['String']['input']>;
   brief_CONTAINS?: InputMaybe<Scalars['String']['input']>;
   brief_ENDS_WITH?: InputMaybe<Scalars['String']['input']>;
-  brief_IN?: InputMaybe<Array<Scalars['String']['input']>>;
+  brief_IN?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   brief_STARTS_WITH?: InputMaybe<Scalars['String']['input']>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   createdAt_GT?: InputMaybe<Scalars['DateTime']['input']>;
@@ -15380,7 +15380,7 @@ export type UpdateOrganizationsMutationVariables = Exact<{
 }>;
 
 
-export type UpdateOrganizationsMutation = { __typename?: 'Mutation', updateOrganizations: { __typename?: 'UpdateOrganizationsMutationResponse', organizations: Array<{ __typename?: 'Organization', id: string, name: string, brief?: string | null, description?: string | null, solutions: Array<{ __typename?: 'Solution', id: string, brief?: string | null, problems: Array<{ __typename?: 'Problem', id: string, brief?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', id: string, name: string }> }> }>, considerations: Array<{ __typename?: 'Geography', brief?: string | null } | { __typename?: 'Misc', content: string } | { __typename?: 'Team', brief?: string | null } | { __typename?: 'WebDump', content: string }>, statuses: Array<{ __typename?: 'OrganizationStatus', name: OrganizationStatusName }>, scopesConnection: { __typename?: 'OrganizationScopesConnection', edges: Array<{ __typename?: 'OrganizationScopesRelationship', aspect: string, reason: string, node: { __typename?: 'Scope', name: string, brief: string, basis?: string | null, description?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', name: string, brief: string, description?: string | null }>, considerations: Array<{ __typename?: 'Example', brief: string, description?: string | null } | { __typename?: 'Question', brief: string, description?: string | null }> } }> } }> } };
+export type UpdateOrganizationsMutation = { __typename?: 'Mutation', updateOrganizations: { __typename?: 'UpdateOrganizationsMutationResponse', organizations: Array<{ __typename?: 'Organization', id: string, name: string, brief?: string | null, description?: string | null, solutions: Array<{ __typename?: 'Solution', id: string, brief?: string | null, problems: Array<{ __typename?: 'Problem', id: string, brief?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', id: string, name: string }> }> }>, considerations: Array<{ __typename?: 'Geography', brief?: string | null } | { __typename?: 'Misc', content: string } | { __typename?: 'Team', brief?: string | null } | { __typename?: 'WebDump', content: string }>, statuses: Array<{ __typename?: 'OrganizationStatus', name: OrganizationStatusName }>, scopesConnection: { __typename?: 'OrganizationScopesConnection', edges: Array<{ __typename?: 'OrganizationScopesRelationship', aspect: string, reason: string, node: { __typename?: 'Scope', name: string, brief: string, basis?: string | null, description?: string | null, stakeholders: Array<{ __typename?: 'Stakeholder', name: string, brief?: string | null, description?: string | null }>, considerations: Array<{ __typename?: 'Example', brief: string, description?: string | null } | { __typename?: 'Question', brief: string, description?: string | null }> } }> } }> } };
 
 export type CreateScopesMutationVariables = Exact<{
   input: Array<ScopeCreateInput> | ScopeCreateInput;
