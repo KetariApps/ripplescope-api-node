@@ -5,6 +5,7 @@ import {
 } from '../../../../../__generated__/graphql.js';
 import { GPT_ScopesResponse } from '../../types.js';
 import { updateOrganizations } from '../../../../../db/mutation/organization/update.js';
+import { v4 as uuid } from 'uuid';
 
 export default async function connectScopes(
   processId: string,
@@ -43,7 +44,7 @@ export default async function connectScopes(
         scopes: scopes.map((scope) => ({
           where: {
             node: {
-              name: scope.name.toUpperCase(),
+              name: scope.name?.toUpperCase() || uuid(),
             },
           },
           onCreate: {
@@ -53,7 +54,7 @@ export default async function connectScopes(
               processId,
             },
             node: {
-              name: scope.name.toUpperCase(),
+              name: scope.name?.toUpperCase() || uuid(),
               brief: scope.description,
             },
           },
