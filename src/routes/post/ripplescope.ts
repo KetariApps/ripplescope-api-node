@@ -9,7 +9,6 @@ import { createOrganization } from '../../gpt/chains/ripplescope_v3/links/index.
 import { v4 as uuid } from 'uuid';
 import ripplescopeChain from '../../gpt/chains/ripplescope_v3/index.js';
 import OpenAI from 'openai';
-import nameConsiderations from '../../gpt/chains/naming/links/nameConsiderations/index.js';
 import { namingChain } from '../../gpt/chains/index.js';
 
 export default async function ripplescope(req: Request, res: Response) {

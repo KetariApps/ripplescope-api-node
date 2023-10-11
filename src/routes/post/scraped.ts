@@ -12,22 +12,25 @@ import parseScrapedData, {
   ParseScrapedDataProps,
 } from '../../gpt/util/parseScrapedData.js';
 import OpenAI from 'openai';
+import { namingChain } from '../../gpt/chains/index.js';
 
 export default async function scraped(req: Request, res: Response) {
+  const processId = uuid();
+  const decorator = `[${processId}]:`;
   try {
     dotenv.config();
     const { GRAPH_URI, OPENAI_API_KEY } = process.env;
-    if (GRAPH_URI === undefined) throw new Error('GRAPH_URI is undefined');
+    if (GRAPH_URI === undefined)
+      throw new Error(`${decorator} GRAPH_URI is undefined`);
     if (OPENAI_API_KEY === undefined)
-      throw new Error('OPENAI_API_KEY is undefined');
+      throw new Error(`${decorator} OPENAI_API_KEY is undefined`);
     const client = new GraphQLClient(GRAPH_URI);
     const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
 
     const data = req.body as ParseScrapedDataProps;
-    console.log(data);
     const parsedInput = parseScrapedData(data);
+    console.log(parsedInput);
 
-    const processId = uuid();
     const inputWithStatus: OrganizationCreateInput = {
       ...parsedInput,
       statuses: {
@@ -45,8 +48,21 @@ export default async function scraped(req: Request, res: Response) {
       },
     };
     const organization = await createOrganization(inputWithStatus, client);
-    console.log(`[${processId}]: Created organization`);
+    console.log(`${decorator} Created organization`);
 
+    /**
+     * It might be good to push these chains to a stream that can be subscribed to in the UI.
+     * Currently we accomplish this by polling for connections in the database, which seems more robust,
+     * but maybe it'as not necessary.
+     * Or perhaps the two methods could work together.
+     */
+    /**
+     * Any naming of user-entered data can happen entirely independently of the ripplescope analysis chain
+     */
+    console.debug(`[${processId}]: Naming any unnammed user entries`);
+    namingChain(processId, organization, openai, client);
+
+    console.debug(`[${processId}]: Kicking of the ripplescope chain`);
     ripplescopeChain(processId, organization, openai, client);
 
     res.status(200).json({
