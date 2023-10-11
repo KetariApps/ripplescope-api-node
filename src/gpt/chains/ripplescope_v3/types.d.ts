@@ -15,10 +15,8 @@ export type ConnectedScopeEdge =
 
 export type GPT_Ripple = Pick<Ripple, 'name' | 'description' | 'brief'> & {
   edge: {
-    magnitude: string;
-    aspect: string;
-    reason: string;
-    sentiment: string;
+    aspect?: string;
+    reason?: string;
   };
 };
 export interface GPT_RipplesResponse {
@@ -26,19 +24,19 @@ export interface GPT_RipplesResponse {
 }
 
 export type GPT_Scope = {
-  name: string;
-  description: string;
-  edge: { aspect: string; reason: string };
+  name?: string;
+  description?: string;
+  edge: { aspect?: string; reason?: string };
 };
 export interface GPT_ScopesResponse {
   scopes: Array<GPT_Scope>;
 }
 
 export interface GPT_DescriptionResponse {
-  description: string;
-  brief: string;
+  description?: string;
+  brief?: string;
 }
 
 export interface GPT_NameResponse {
-  name: string;
+  name?: string;
 }

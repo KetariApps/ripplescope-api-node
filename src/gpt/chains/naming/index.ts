@@ -26,6 +26,9 @@ export default async function namingChain(
             arr.length
           }][${id}]: Updating name : ${name}`,
         );
+        if (name === undefined) {
+          throw new Error('No name was generated');
+        }
         return client.request(updateMiscs, rename(id, name));
       }),
     );

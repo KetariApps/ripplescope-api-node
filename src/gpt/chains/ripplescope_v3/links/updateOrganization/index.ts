@@ -3,7 +3,6 @@ import inferRipples from '../inferRipples/index.js';
 import {
   OrganizationRelationInput,
   OrganizationStatusName,
-  RipplesSentiment,
   UserInteractionName,
 } from '../../../../../__generated__/graphql.js';
 import { updateOrganizations } from '../../../../../db/mutation/organization/update.js';
@@ -62,9 +61,6 @@ export default async function updateOrganization({
                     },
                     edge: {
                       processId,
-                      magnitude: Number(ripple.edge.magnitude),
-                      sentiment:
-                        ripple.edge.sentiment.toLocaleUpperCase() as RipplesSentiment,
                     },
                   },
                 ],
